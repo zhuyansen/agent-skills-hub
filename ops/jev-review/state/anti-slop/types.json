@@ -4240,5 +4240,75 @@
    "rules": 0.77
   },
   "kind": "design"
+ },
+ {
+  "repo": "Winkey86/humanizer-agent-skill",
+  "stars": 6,
+  "description": "Humanize Russian and English text in Codex and Claude without changing facts or voice.",
+  "scores": {
+   "writing": 0.93,
+   "detector": 0.9,
+   "chinese": 0.02,
+   "code": 0.1,
+   "design": 0.08,
+   "rules": 0.81
+  },
+  "kind": "writing"
+ },
+ {
+  "repo": "hikariming/anti-slop",
+  "stars": 6,
+  "description": "Skills that teach coding agents to resist AI slop: simple, readable, honest code in TypeScript, Node.js, Java, Go, Python, Rust, Kotlin, and C#",
+  "scores": {
+   "writing": 0.06,
+   "detector": 0.14,
+   "chinese": 0.02,
+   "code": 0.9,
+   "design": 0.07,
+   "rules": 0.83
+  },
+  "kind": "code"
+ },
+ {
+  "repo": "JacobJNilsson/anti-slop-go",
+  "stars": 5,
+  "description": "Opinionated go/analysis rules that reject low-evidence Go patterns. A Go companion to dmmulroy/anti-slop.",
+  "scores": {
+   "writing": 0.02,
+   "detector": 0.34,
+   "chinese": 0.01,
+   "code": 0.3,
+   "design": 0.03,
+   "rules": 0.19
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "antonellof/s0-cli",
+  "stars": 5,
+  "description": "Security-Zero: an LLM agent CLI that runs classic SAST scanners + AI-slop detectors, then triages every finding. Self-optimizing via a Meta-Harness outer loop with a held-out benchmark.",
+  "scores": {
+   "writing": 0.05,
+   "detector": 0.96,
+   "chinese": 0.02,
+   "code": 0.15,
+   "design": 0.08,
+   "rules": 0.05
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "SadhvikChirunomula/measured-humanizer",
+  "stars": 5,
+  "description": "Deterministic, statistical style gate and calibrator for AI writing that measures structural variance instead of word lists. Zero runtime dependencies.",
+  "scores": {
+   "writing": 0.38,
+   "detector": 0.92,
+   "chinese": 0.04,
+   "code": 0.14,
+   "design": 0.08,
+   "rules": 0.18
+  },
+  "kind": "detector"
  }
 ]

@@ -591,6 +591,14 @@
   "type": "image/png",
   "bytes": 217415
  },
+ "Cashara-io/cupel": {
+  "repo": "Cashara-io/cupel",
+  "url": "https://raw.githubusercontent.com/Cashara-io/cupel/HEAD/docs/images/eunomia-launch-film-poster.jpg",
+  "alt": "The Cupel launch film: memory cards bursting out of the recall bar",
+  "score": 1.75,
+  "type": "image/jpeg",
+  "bytes": 174243
+ },
  "Cashara-io/eunomia": {
   "repo": "Cashara-io/eunomia",
   "url": "https://raw.githubusercontent.com/Cashara-io/eunomia/HEAD/docs/images/eunomia-launch-film-poster.jpg",
@@ -1327,6 +1335,14 @@
   "type": "image/png",
   "bytes": 1475582
  },
+ "IpinZhu/es-ppt-skill": {
+  "repo": "IpinZhu/es-ppt-skill",
+  "url": "https://raw.githubusercontent.com/IpinZhu/es-ppt-skill/HEAD/imgs/README/image-20260526210205294.png",
+  "alt": "image-20260526210205294",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 512816
+ },
  "IskakovDamir/apple-motion": {
   "repo": "IskakovDamir/apple-motion",
   "url": "https://raw.githubusercontent.com/IskakovDamir/apple-motion/HEAD/docs/demo.gif",
@@ -2031,6 +2047,14 @@
   "type": "image/gif",
   "bytes": 4077694
  },
+ "Rudywizz/rudywizz-motion": {
+  "repo": "Rudywizz/rudywizz-motion",
+  "url": "https://raw.githubusercontent.com/Rudywizz/rudywizz-motion/HEAD/gallery/word-stack.webp",
+  "alt": "",
+  "score": -0.35,
+  "type": "image/webp",
+  "bytes": 385030
+ },
  "S4US/Roqer": {
   "repo": "S4US/Roqer",
   "url": "https://raw.githubusercontent.com/S4US/Roqer/HEAD/docs/media/roqer-run.webp",
@@ -2054,6 +2078,14 @@
   "score": -0.2,
   "type": "image/webp",
   "bytes": 162762
+ },
+ "SadhvikChirunomula/measured-humanizer": {
+  "repo": "SadhvikChirunomula/measured-humanizer",
+  "url": "https://raw.githubusercontent.com/SadhvikChirunomula/measured-humanizer/HEAD/docs/measured_humanizer_preview.jpg",
+  "alt": "Measured Humanizer Preview",
+  "score": 1.65,
+  "type": "image/jpeg",
+  "bytes": 1089492
  },
  "SallyRS/video-director": {
   "repo": "SallyRS/video-director",
@@ -2126,6 +2158,14 @@
   "score": 0.0,
   "type": "image/webp",
   "bytes": 55760
+ },
+ "SerenaMugua/news-documentary-video-skill": {
+  "repo": "SerenaMugua/news-documentary-video-skill",
+  "url": "https://raw.githubusercontent.com/SerenaMugua/news-documentary-video-skill/HEAD/preview/01_newspaper_open.png",
+  "alt": "旧报纸打字开场",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 1891677
  },
  "ShalomObongo/codex-imagegen-mcp": {
   "repo": "ShalomObongo/codex-imagegen-mcp",
@@ -2863,6 +2903,14 @@
   "type": "image/jpeg",
   "bytes": 421040
  },
+ "antonellof/s0-cli": {
+  "repo": "antonellof/s0-cli",
+  "url": "https://raw.githubusercontent.com/antonellof/s0-cli/HEAD/docs/img/demo.gif",
+  "alt": "s0-cli demo",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 803255
+ },
  "antropos17/chatgpt-gif-cinema": {
   "repo": "antropos17/chatgpt-gif-cinema",
   "url": "https://raw.githubusercontent.com/antropos17/chatgpt-gif-cinema/HEAD/docs/assets/stroke-reveal/preview.gif",
@@ -3174,6 +3222,14 @@
   "score": -0.05,
   "type": "image/png",
   "bytes": 103354
+ },
+ "blotato/contentskills": {
+  "repo": "blotato/contentskills",
+  "url": "https://raw.githubusercontent.com/blotato/contentskills/HEAD/gallery/showcase/showcase-16x9.jpg",
+  "alt": "100 looks from one take: effects, themes, filters, captions, text, 3D, charts, a",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 2302746
  },
  "blwfish/freecad-mcp": {
   "repo": "blwfish/freecad-mcp",
@@ -4070,6 +4126,14 @@
   "score": 3.0,
   "type": "image/gif",
   "bytes": 8869831
+ },
+ "famfamfam/code-cartoon": {
+  "repo": "famfamfam/code-cartoon",
+  "url": "https://raw.githubusercontent.com/famfamfam/code-cartoon/HEAD/docs/media/lubok-sun-ship.webp",
+  "alt": "A pencil sketch of a boat opens into a lubok print",
+  "score": 0.0,
+  "type": "image/webp",
+  "bytes": 745546
  },
  "fangyuanopus/literature-report-ppt-builder": {
   "repo": "fangyuanopus/literature-report-ppt-builder",
@@ -5383,6 +5447,14 @@
   "type": "image/png",
   "bytes": 219851
  },
+ "koihq/koi": {
+  "repo": "koihq/koi",
+  "url": "https://raw.githubusercontent.com/koihq/koi/HEAD/ui/src/assets/koi-mark.png",
+  "alt": "Koi logo",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 369303
+ },
  "krisyangdev/motionboard": {
   "repo": "krisyangdev/motionboard",
   "url": "https://raw.githubusercontent.com/krisyangdev/motionboard/HEAD/assets/readme/film.gif",
@@ -6150,6 +6222,14 @@
   "score": -0.1,
   "type": "image/webp",
   "bytes": 109066
+ },
+ "omerbatutandogan/seekwide": {
+  "repo": "omerbatutandogan/seekwide",
+  "url": "https://raw.githubusercontent.com/omerbatutandogan/seekwide/HEAD/docs/images/report-overview.png",
+  "alt": "The top of a Seekwide report for a fictional café site: the logo and name of the",
+  "score": -0.6,
+  "type": "image/png",
+  "bytes": 261446
  },
  "op7418/dsh-guizang-design": {
   "repo": "op7418/dsh-guizang-design",
@@ -7710,6 +7790,14 @@
   "score": -0.05,
   "type": "image/png",
   "bytes": 443217
+ },
+ "yoruuuchan/create-blender-story-video": {
+  "repo": "yoruuuchan/create-blender-story-video",
+  "url": "https://raw.githubusercontent.com/yoruuuchan/create-blender-story-video/HEAD/docs/media/poolcore.gif",
+  "alt": "Poolcore：空无一人的泳池，4 秒 1080p 真实渲染",
+  "score": 3.0,
+  "type": "image/gif",
+  "bytes": 6961766
  },
  "young920/gz-ppt-skill": {
   "repo": "young920/gz-ppt-skill",

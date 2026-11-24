@@ -3502,5 +3502,21 @@
    "gen3d": 0.02
   },
   "kind": "web3d"
+ },
+ {
+  "repo": "yoruuuchan/create-blender-story-video",
+  "stars": 81,
+  "description": "Agent Skill for resilient Blender story-video production, monitoring, Resolve editing, and verified 4K delivery",
+  "scores": {
+   "blender": 0.9,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.02,
+   "dcc": 0.02,
+   "web3d": 0.02,
+   "gen3d": 0.08
+  },
+  "kind": "blender"
  }
 ]

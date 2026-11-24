@@ -5070,5 +5070,53 @@
    "marketing": 0.29
   },
   "kind": "suite"
+ },
+ {
+  "repo": "gitroomhq/postiz-content-skills",
+  "stars": 8,
+  "description": "Claude Code skills that turn one article into an SEO blog post and a 30s Short with your AI twin, scheduled with Postiz",
+  "scores": {
+   "suite": 0.12,
+   "audit": 0.03,
+   "research": 0.1,
+   "data_mcp": 0.08,
+   "geo": 0.08,
+   "content": 0.45,
+   "links": 0.02,
+   "marketing": 0.29
+  },
+  "kind": "content"
+ },
+ {
+  "repo": "omerbatutandogan/seekwide",
+  "stars": 5,
+  "description": "Claude Code plugin for site audits you can re-run and trust: scripted SEO, Core Web Vitals, links, signs of a hacked site, images and video, with evidence for every finding, repeatable scores, a client-ready report and fixes verified by a second audit.",
+  "scores": {
+   "suite": 0.24,
+   "audit": 0.97,
+   "research": 0.03,
+   "data_mcp": 0.23,
+   "geo": 0.11,
+   "content": 0.05,
+   "links": 0.06,
+   "marketing": 0.09
+  },
+  "kind": "audit"
+ },
+ {
+  "repo": "koihq/koi",
+  "stars": 5,
+  "description": "The open source alternative to Profound and Peec AI.",
+  "scores": {
+   "suite": 0.04,
+   "audit": 0.05,
+   "research": 0.12,
+   "data_mcp": 0.21,
+   "geo": 0.98,
+   "content": 0.11,
+   "links": 0.04,
+   "marketing": 0.12
+  },
+  "kind": "geo"
  }
 ]

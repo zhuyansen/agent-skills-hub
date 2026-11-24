@@ -5444,5 +5444,33 @@
    "personal": 0.33
   },
   "kind": "graph"
+ },
+ {
+  "repo": "substrate-systems/evermatter",
+  "stars": 9,
+  "description": "Evermatter: governed long-term memory for AI agents. A typed knowledge graph with sources, evidence and epistemic status, served over MCP to Claude, ChatGPT, Codex and Cursor. Self-hosted or Evermatter Cloud.",
+  "scores": {
+   "llm_wiki": 0.45,
+   "rag_platform": 0.21,
+   "mcp": 0.93,
+   "docs_qa": 0.59,
+   "graph": 0.85,
+   "personal": 0.36
+  },
+  "kind": "mcp"
+ },
+ {
+  "repo": "Cashara-io/cupel",
+  "stars": 15,
+  "description": "Self-hosted shared memory for AI agents: vaults of people, facts and decisions your agents recall over MCP or REST, with semantic, keyword and graph search.",
+  "scores": {
+   "llm_wiki": 0.12,
+   "rag_platform": 0.62,
+   "mcp": 0.74,
+   "docs_qa": 0.6,
+   "graph": 0.94,
+   "personal": 0.3
+  },
+  "kind": "graph"
  }
 ]

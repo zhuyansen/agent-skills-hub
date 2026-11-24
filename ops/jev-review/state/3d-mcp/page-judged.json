@@ -10399,5 +10399,38 @@
   "days": 1,
   "stars_per_day": 126.0,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "yoruuuchan/create-blender-story-video",
+  "name": "create-blender-story-video",
+  "stars": 81,
+  "description": "Agent Skill for resilient Blender story-video production, monitoring, Resolve editing, and verified 4K delivery",
+  "topics": [
+   "4k",
+   "agent-skill",
+   "automation",
+   "blender",
+   "davinci-resolve",
+   "video-production"
+  ],
+  "created": "2026-07-30",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 7610,
+  "names_model": false,
+  "on_subject": 0.93,
+  "is_software": 0.98,
+  "shows_result": 0.93,
+  "one_command_start": 0.23,
+  "specific_outcome": 0.87,
+  "complete_docs": 0.76,
+  "novel_angle": 0.79,
+  "shareable_output": 0.84,
+  "quality": 0.6975,
+  "tier": "中",
+  "hit_prior": 0.8533333333333334,
+  "days": 117,
+  "stars_per_day": 0.6923076923076923,
+  "verdict": "low_quality"
  }
 ]

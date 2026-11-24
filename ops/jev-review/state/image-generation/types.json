@@ -3834,5 +3834,33 @@
    "mcp": 0.53
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "guilhermealvestech/codex-imagegen",
+  "stars": 10,
+  "description": "Claude Code skill for native image generation through the Codex CLI",
+  "scores": {
+   "gpt_image": 0.71,
+   "nano_banana": 0.02,
+   "open_models": 0.05,
+   "editing": 0.12,
+   "design": 0.11,
+   "mcp": 0.16
+  },
+  "kind": "gpt_image"
+ },
+ {
+  "repo": "grandamenium/nano-banana-2-skill",
+  "stars": 5,
+  "description": "Image generation & editing skill for Claude Code using Google's Nano Banana 2 (Gemini 3.1 Flash Image) API",
+  "scores": {
+   "gpt_image": 0.02,
+   "nano_banana": 0.95,
+   "open_models": 0.03,
+   "editing": 0.21,
+   "design": 0.07,
+   "mcp": 0.15
+  },
+  "kind": "nano_banana"
  }
 ]

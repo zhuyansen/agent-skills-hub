@@ -2057,7 +2057,9 @@
     "PotionUI/PotionUI",
     "alfeusaditya/claude-codex-connector",
     "scumble-app/scumble",
-    "adamd9/skill-image-gen"
+    "adamd9/skill-image-gen",
+    "guilhermealvestech/codex-imagegen",
+    "grandamenium/nano-banana-2-skill"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -2067,7 +2069,8 @@
     "wuyoscar/gpt_image_2_skill",
     "ilovehugetits/codex-images",
     "Arekejoker/qwen21-nsfw-pose-skill",
-    "DenRakEiw/scumble"
+    "DenRakEiw/scumble",
+    "webkubor/museav-mcp"
    ],
    "featured": [
     "helloianneo/ian-xiaohei-illustrations",
@@ -2230,14 +2233,16 @@
     "baney75/smoothstone",
     "felixbfx/MuleCreate",
     "bookwjitchieni1986/blender-ai-mcp-addon",
-    "Guten-Morgen1302/prismbox"
+    "Guten-Morgen1302/prismbox",
+    "yoruuuchan/create-blender-story-video"
    ],
    "exclude_repos": [
     "codepawl/67.js",
     "ezpeezee/beta-version-blox-studio",
     "ezpeezee/beta-version-toon-studio",
     "hitkeeen/blender-ai-mcp-addon",
-    "nocodehack/make-short"
+    "nocodehack/make-short",
+    "bookwjitchieni1986/blender-ai-mcp-addon"
    ]
   },
   "related": [
@@ -3464,7 +3469,9 @@
     "alpha03123/vsummary",
     "databrickslabs/ontobricks",
     "Guan0923/Praxis-RAG",
-    "zenoyang-ai/nihaixia-knowledge-graph"
+    "zenoyang-ai/nihaixia-knowledge-graph",
+    "Cashara-io/cupel",
+    "substrate-systems/evermatter"
    ],
    "exclude_repos": [
     "Laurent00TT/pharos",
@@ -3490,7 +3497,8 @@
     "viddexa/autollm",
     "xingranya/GitHub-Stars-AI-Tools",
     "1llu50ry/mcp-reverse",
-    "FlowElement-xinliuyuansu/m_flow"
+    "FlowElement-xinliuyuansu/m_flow",
+    "Cashara-io/eunomia"
    ]
   },
   "related": [
@@ -4758,7 +4766,12 @@
     "imMamdouhaboammar/anti-slop-engineering",
     "noobarafat/research-paper-humanizer",
     "techwithtk/nopurple",
-    "erkamyaman/unslop-anything"
+    "erkamyaman/unslop-anything",
+    "Winkey86/humanizer-agent-skill",
+    "hikariming/anti-slop",
+    "JacobJNilsson/anti-slop-go",
+    "antonellof/s0-cli",
+    "SadhvikChirunomula/measured-humanizer"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -5289,7 +5302,10 @@
     "WordRocket/claude-seo-skills",
     "trackee-API/skills",
     "GroMarketing/keyword-planner-mcp",
-    "cheng-sir-0038/seo-diagnosis-agent"
+    "cheng-sir-0038/seo-diagnosis-agent",
+    "gitroomhq/postiz-content-skills",
+    "omerbatutandogan/seekwide",
+    "koihq/koi"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -6935,7 +6951,8 @@
     "Ihor-Zakharov/deck-workflow",
     "techwithtk/nopurple",
     "khalil-wu/academic-image-to-editable-ppt",
-    "isatimur/presentation-md"
+    "isatimur/presentation-md",
+    "IpinZhu/es-ppt-skill"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -7876,14 +7893,16 @@
     "SystemSculpt/obsidian-systemsculpt-ai",
     "SherwinQ/karpathy-wiki",
     "obsidianmd/obsidian-skills",
-    "lemoncloud-io/doki"
+    "lemoncloud-io/doki",
+    "substrate-systems/evermatter"
    ],
    "exclude_repos": [
     "RoundTable02/tutor-skills",
     "bitbonsai/mcp-obsidian",
     "fxa3bah/OneBrain",
     "caibucaiAI/obsidian-speaking-practice",
-    "kepano/obsidian-skills"
+    "kepano/obsidian-skills",
+    "Artexis10/exomem"
    ]
   },
   "related": [
@@ -9068,7 +9087,14 @@
     "Marwanenoudouar10/motion-explainer",
     "whystrohm/shotkit",
     "kodlaciz/yumurta-stili",
-    "ctskool/claude-edit"
+    "ctskool/claude-edit",
+    "Jaycheng1103/chatgpt-video-editing-skills",
+    "yoruuuchan/create-blender-story-video",
+    "SerenaMugua/news-documentary-video-skill",
+    "blotato/contentskills",
+    "famfamfam/code-cartoon",
+    "Universaljojo/html-to-mp4",
+    "Rudywizz/rudywizz-motion"
    ],
    "sub_skills": [
     {

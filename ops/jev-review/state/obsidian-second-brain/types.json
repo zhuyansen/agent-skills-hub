@@ -2130,5 +2130,18 @@
    "sync": 0.94
   },
   "kind": "sync"
+ },
+ {
+  "repo": "substrate-systems/evermatter",
+  "stars": 9,
+  "description": "Evermatter: governed long-term memory for AI agents. A typed knowledge graph with sources, evidence and epistemic status, served over MCP to Claude, ChatGPT, Codex and Cursor. Self-hosted or Evermatter Cloud.",
+  "scores": {
+   "skill": 0.55,
+   "mcp": 0.91,
+   "plugin": 0.06,
+   "second_brain": 0.27,
+   "sync": 0.73
+  },
+  "kind": "mcp"
  }
 ]

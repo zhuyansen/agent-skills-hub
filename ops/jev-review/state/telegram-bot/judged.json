@@ -83298,5 +83298,31 @@
   "days": 304,
   "stars_per_day": 240.10855263157896,
   "verdict": "off_topic"
+ },
+ {
+  "repo": "mmdju/mmdju",
+  "name": "mmdju",
+  "stars": 5,
+  "description": "Python backend developer - Telegram bots, REST APIs, MCP servers",
+  "topics": [],
+  "created": "2026-09-11",
+  "pushed": "2026-11-24",
+  "source": "topic",
+  "readme_chars": 4700,
+  "names_model": false,
+  "on_subject": 0.24,
+  "is_software": 0.29,
+  "shows_result": 0.16,
+  "one_command_start": 0.04,
+  "specific_outcome": 0.59,
+  "complete_docs": 0.03,
+  "novel_angle": 0.34,
+  "shareable_output": 0.49,
+  "quality": 0.205,
+  "tier": "低",
+  "hit_prior": 0.33,
+  "days": 74,
+  "stars_per_day": 0.06756756756756757,
+  "verdict": "off_topic"
  }
 ]

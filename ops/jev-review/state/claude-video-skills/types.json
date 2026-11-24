@@ -10186,5 +10186,131 @@
    "general": 0.04
   },
   "kind": "editing"
+ },
+ {
+  "repo": "Jaycheng1103/chatgpt-video-editing-skills",
+  "stars": 636,
+  "description": "用 ChatGPT／Codex 安裝 AI 剪輯環境，並依八大步驟完成可驗證的短影音剪輯。",
+  "scores": {
+   "promo": 0.1,
+   "explainer": 0.23,
+   "music": 0.08,
+   "motion": 0.06,
+   "shorts": 0.94,
+   "editing": 0.95,
+   "demo": 0.15,
+   "story": 0.08,
+   "avatar": 0.3,
+   "general": 0.07
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "yoruuuchan/create-blender-story-video",
+  "stars": 81,
+  "description": "Agent Skill for resilient Blender story-video production, monitoring, Resolve editing, and verified 4K delivery",
+  "scores": {
+   "promo": 0.12,
+   "explainer": 0.15,
+   "music": 0.07,
+   "motion": 0.09,
+   "shorts": 0.24,
+   "editing": 0.15,
+   "demo": 0.3,
+   "story": 0.76,
+   "avatar": 0.03,
+   "general": 0.12
+  },
+  "kind": "story"
+ },
+ {
+  "repo": "SerenaMugua/news-documentary-video-skill",
+  "stars": 20,
+  "description": "End-to-end news documentary code video Skill for AI Coding Agents (Antigravity / Claude Code / Codex) — A/B-roll, vintage newspaper cutouts, data charts & QA checklist",
+  "scores": {
+   "promo": 0.07,
+   "explainer": 0.24,
+   "music": 0.09,
+   "motion": 0.06,
+   "shorts": 0.06,
+   "editing": 0.08,
+   "demo": 0.46,
+   "story": 0.13,
+   "avatar": 0.06,
+   "general": 0.05
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "blotato/contentskills",
+  "stars": 11,
+  "description": "Content skills for AI agents: write scripts, create videos, edit videos, and post everywhere.",
+  "scores": {
+   "promo": 0.5,
+   "explainer": 0.45,
+   "music": 0.1,
+   "motion": 0.3,
+   "shorts": 0.94,
+   "editing": 0.68,
+   "demo": 0.8,
+   "story": 0.18,
+   "avatar": 0.12,
+   "general": 0.77
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "famfamfam/code-cartoon",
+  "stars": 5,
+  "description": "Claude Code skill that makes animated videos by writing code: cartoons, explainers, music clips. Every frame is drawn by a program (canvas, three.js) and rendered to MP4 on your machine — no AI video models.",
+  "scores": {
+   "promo": 0.16,
+   "explainer": 0.51,
+   "music": 0.88,
+   "motion": 0.22,
+   "shorts": 0.56,
+   "editing": 0.05,
+   "demo": 0.21,
+   "story": 0.78,
+   "avatar": 0.05,
+   "general": 0.37
+  },
+  "kind": "music"
+ },
+ {
+  "repo": "Universaljojo/html-to-mp4",
+  "stars": 5,
+  "description": "HTML animations → MP4. For the videos AI models can't do: precise text, pixel-accurate UI, data viz. Zero cost per iteration. Also ships as a Claude Code skill.",
+  "scores": {
+   "promo": 0.22,
+   "explainer": 0.26,
+   "music": 0.07,
+   "motion": 0.83,
+   "shorts": 0.43,
+   "editing": 0.06,
+   "demo": 0.46,
+   "story": 0.2,
+   "avatar": 0.07,
+   "general": 0.23
+  },
+  "kind": "motion"
+ },
+ {
+  "repo": "Rudywizz/rudywizz-motion",
+  "stars": 5,
+  "description": "Cinematic motion graphics rendered from code: kinetic type, 3D titles, captions, world-map animations, characters that act out your script, your own mascot as host and music made by code. A CLI + Claude Code skills. No After Effects, no AI video model.",
+  "scores": {
+   "promo": 0.48,
+   "explainer": 0.3,
+   "music": 0.61,
+   "motion": 0.55,
+   "shorts": 0.76,
+   "editing": 0.08,
+   "demo": 0.5,
+   "story": 0.82,
+   "avatar": 0.39,
+   "general": 0.85
+  },
+  "kind": "general"
  }
 ]
