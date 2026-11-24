@@ -20,7 +20,10 @@ concurrency:
 jobs:
   watch:
     runs-on: ubuntu-latest
-    timeout-minutes: 180 # the first pass inspects about 2,300 URLs at some 3 s each (measured 2026-10-27); later days a few hundred
+    # An inspection takes 6-11 s (2026-11-19/20) and sitemap-audit.xml doubled agentskillshub.top to ~9,600 URLs,
+    # so two days ran into this timeout (2026-11-22/23). The script now inspects 4 at a time and stops starting
+    # new ones after INDEX_WATCH_MINUTES; the pages it did not reach are first in line the next day.
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
 
@@ -41,4 +44,5 @@ jobs:
         env:
           SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
           INDEX_WATCH_EXTRA_SITES: ${{ secrets.INDEX_WATCH_EXTRA_SITES }} # sites not named in this repo; the log prints "extra site N"
+          INDEX_WATCH_MINUTES: "140" # inspections stop starting here, leaving 40 of the 180 minutes for setup and the last saves
         run: python ops/index/index_watch.py

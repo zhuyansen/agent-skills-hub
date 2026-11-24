@@ -23,6 +23,9 @@ OUT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out")
 REPO = os.environ.get("GITHUB_REPOSITORY") or "zhuyansen/agent-skills-hub"
 MIN_AISA_USD = 1.0
 MIN_OR_USD = 2.0
+# A run cancelled after this long hit its timeout; a shorter cancel is a newer run superseding it
+# (concurrency groups), which is no failure. index-watch hid two 3-hour timeouts this way (2026-11-22/23).
+TIMEOUT_CANCEL_MIN = 30
 
 SITES = (
     {"id": "home", "label": "官网首页", "url": "https://agentskillshub.top/", "marker": "AgentSkillsHub"},
@@ -54,6 +57,29 @@ WORKFLOWS = {
 }
 
 
+def _minutes(run: dict) -> float:
+    try:
+        start = datetime.fromisoformat((run.get("run_started_at") or run["created_at"]).replace("Z", "+00:00"))
+        end = datetime.fromisoformat(run["updated_at"].replace("Z", "+00:00"))
+        return (end - start).total_seconds() / 60
+    except (KeyError, TypeError, ValueError):
+        return 0.0
+
+
+def timed_out_since_last(runs: list[dict]) -> list[dict]:
+    """The runs, newest first, that were cancelled after TIMEOUT_CANCEL_MIN minutes since the last run
+    that finished (success, failure or skipped)."""
+    out = []
+    for run in runs:
+        if run.get("status") != "completed":
+            continue
+        if run.get("conclusion") != "cancelled":
+            break
+        if _minutes(run) >= TIMEOUT_CANCEL_MIN:
+            out.append(run)
+    return out
+
+
 def check_workflows() -> list[dict]:
     tok = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN") or ""
     headers = {"Accept": "application/vnd.github+json"}
@@ -72,6 +98,7 @@ def check_workflows() -> list[dict]:
             done = [x for x in runs if x.get("status") == "completed" and x.get("conclusion") != "cancelled"]
             in_prog = [x for x in runs if x.get("status") in ("in_progress", "queued")]
             last = done[0] if done else None
+            timeouts = timed_out_since_last(runs)
             at_cst = ""
             if last and last.get("created_at"):
                 at_cst = (
@@ -79,6 +106,22 @@ def check_workflows() -> list[dict]:
                     .astimezone(CST)
                     .strftime("%m-%d %H:%M")
                 )
+            if timeouts:
+                newest = timeouts[0]
+                at = (datetime.fromisoformat(newest["created_at"].replace("Z", "+00:00"))
+                      .astimezone(CST).strftime("%m-%d %H:%M"))
+                out.append({
+                    "file": wf,
+                    "label": label,
+                    "conclusion": "timed_out",
+                    "at": at,
+                    "url": newest.get("html_url"),
+                    "running": bool(in_prog),
+                    "ok": False,
+                    "error": (f"最近 {len(timeouts)} 次运行超时被取消（{at} 那次跑了 {_minutes(newest) / 60:.1f} 小时）"
+                              f"；上次正常结束 {at_cst or '不在最近 5 次内'} {newest.get('html_url', '')}"),
+                })
+                continue
             out.append({
                 "file": wf,
                 "label": label,

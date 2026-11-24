@@ -59,3 +59,49 @@ def test_check_sites_validates_status_and_marker(monkeypatch):
     assert by_id["sitemap"]["status_code"] == 503
     assert by_id["llms"]["ok"] is False
     assert "缺失" in by_id["llms"]["status_text"]
+
+
+def _run(conclusion, start, end, status="completed"):
+    return {"status": status, "conclusion": conclusion, "created_at": start, "run_started_at": start,
+            "updated_at": end, "html_url": f"https://github.com/x/actions/runs/{start}"}
+
+
+def _runs_api(monkeypatch, runs):
+    monkeypatch.setattr(fetch_health, "WORKFLOWS", {"index-watch.yml": "Google 收录巡检"})
+    monkeypatch.setattr(fetch_health.requests, "get", lambda *a, **kw: _resp(200, "", {"workflow_runs": runs}))
+    return fetch_health.check_workflows()[0]
+
+
+def test_timeouts_since_last_success_fail_the_workflow(monkeypatch):
+    w = _runs_api(monkeypatch, [
+        _run("cancelled", "2026-11-23T09:46:24Z", "2026-11-23T12:46:44Z"),
+        _run("cancelled", "2026-11-22T08:50:10Z", "2026-11-22T11:50:29Z"),
+        _run("success", "2026-11-21T08:45:27Z", "2026-11-21T10:14:41Z"),
+    ])
+    assert w["ok"] is False and w["conclusion"] == "timed_out"
+    assert "最近 2 次运行超时被取消" in w["error"] and "3.0 小时" in w["error"]
+
+
+def test_a_quick_cancel_is_a_superseded_run_not_a_failure(monkeypatch):
+    w = _runs_api(monkeypatch, [
+        _run("cancelled", "2026-11-23T09:46:24Z", "2026-11-23T09:47:00Z"),
+        _run("success", "2026-11-23T09:40:00Z", "2026-11-23T09:45:00Z"),
+    ])
+    assert w["ok"] is True and w["conclusion"] == "success"
+
+
+def test_an_old_timeout_before_a_success_is_forgotten(monkeypatch):
+    w = _runs_api(monkeypatch, [
+        _run("success", "2026-11-24T09:00:00Z", "2026-11-24T10:00:00Z"),
+        _run("cancelled", "2026-11-23T09:46:24Z", "2026-11-23T12:46:44Z"),
+    ])
+    assert w["ok"] is True
+
+
+def test_a_run_in_progress_does_not_hide_a_timeout(monkeypatch):
+    w = _runs_api(monkeypatch, [
+        _run(None, "2026-11-24T09:00:00Z", "2026-11-24T09:30:00Z", status="in_progress"),
+        _run("cancelled", "2026-11-23T09:46:24Z", "2026-11-23T12:46:44Z"),
+        _run("success", "2026-11-21T08:45:27Z", "2026-11-21T10:14:41Z"),
+    ])
+    assert w["ok"] is False and w["running"] is True

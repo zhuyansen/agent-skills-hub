@@ -7,6 +7,10 @@ quota on the rest, new pages first. Results go to index_pages and index_checks
 Actions logs are public.
 
   python ops/index/index_watch.py [--dry-run] [--limit N]   # every site; --dry-run writes nothing
+
+One inspection takes 6-11 s (measured 2026-11-19/20), so WORKERS run in parallel, and the run stops
+starting new ones after INDEX_WATCH_MINUTES of wall clock: what it saved stays saved, and the pages
+it did not reach are the most overdue tomorrow (pick() puts the longest unchecked first).
   python ops/index/index_watch.py report                    # per site and kind, from the tables
 
 Needs ops/gsc/token.json (webmasters.readonly is enough) and SUPABASE_DB_URL. Shadow mode from
@@ -17,7 +21,9 @@ from __future__ import annotations
 import json
 import os
 import sys
+import threading
 import time
+from concurrent.futures import ThreadPoolExecutor
 import xml.etree.ElementTree as ET
 from collections import Counter
 from dataclasses import astuple, dataclass
@@ -47,6 +53,9 @@ NEW_DAYS = 30              # a page this young is inspected every day until it i
 UNINDEXED_EVERY = 7        # days between inspections of an older page that is not indexed
 INDEXED_EVERY = 30         # days between inspections of an indexed page without impressions
 SAVE_EVERY = 200           # inspections written per transaction
+WORKERS = 4                # inspections in flight: at 6-11 s each that is 20-40 a minute, far under the quota
+RUN_MINUTES = 140          # wall clock for every site's inspections; the job's timeout is 180 (INDEX_WATCH_MINUTES)
+SITE_RESERVE = 15          # minutes kept for each site still to come when an earlier one has a backlog
 TIMEOUT = 60               # seconds for each HTTP call
 CONNECT_TIMEOUT = 30       # seconds to reach the database
 QUOTA_HIT = 429
@@ -202,17 +211,57 @@ def apply(page: Page, status: dict, today: date) -> dict:
     return {"url": page.url, **{col: status.get(key) for col, key in FIELDS.items()}}
 
 
-def inspect_chunk(sess, site: str, chunk: list[Page], today: date, tally: Counter) -> list[dict]:
-    checks = []
-    for page in chunk:
-        status = inspect(sess, site, page.url)
+_local = threading.local()
+
+
+def thread_session(sess):
+    """A session per worker thread on the shared credentials: requests sessions are not thread-safe."""
+    creds = getattr(sess, "credentials", None)
+    if creds is None:  # a stand-in session in tests
+        return sess
+    if getattr(_local, "base", None) is not sess:
+        from google.auth.transport.requests import AuthorizedSession
+        _local.base, _local.sess = sess, AuthorizedSession(creds)
+    return _local.sess
+
+
+SKIPPED = object()  # not inspected: the deadline passed or the quota ran out first
+
+
+def inspect_chunk(sess, site: str, chunk: list[Page], today: date, tally: Counter,
+                  deadline: float | None = None, workers: int = WORKERS) -> tuple[list[dict], bool]:
+    """Inspect a chunk WORKERS at a time and start none after the deadline or the quota's end.
+    Returns the index_checks rows and whether the run should stop at this chunk. Pages are updated
+    on the calling thread only; one not reached counts as deferred and keeps its last_checked."""
+    stop, quota = threading.Event(), threading.Event()
+
+    def one(page: Page):
+        if stop.is_set() or (deadline is not None and time.monotonic() >= deadline):
+            stop.set()
+            return page, SKIPPED
+        try:
+            status = inspect(thread_session(sess), site, page.url)
+        except Quota:
+            quota.set()
+            stop.set()
+            return page, SKIPPED
         time.sleep(PAUSE)
-        if status is None:
+        return page, status
+
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        results = list(pool.map(one, chunk))
+    checks = []
+    for page, status in results:
+        if status is SKIPPED:
+            tally["deferred"] += 1
+        elif status is None:
             tally["failed"] += 1
-            continue
-        checks.append(apply(page, status, today))
-        tally[page.last_state or "no state"] += 1
-    return checks
+        else:
+            checks.append(apply(page, status, today))
+            tally[page.last_state or "no state"] += 1
+    if quota.is_set():
+        tally["quota spent"] += 1
+    return checks, stop.is_set()
 
 
 # --- the tables -------------------------------------------------------------------------
@@ -257,7 +306,8 @@ def save(conn, pages, checks: list[dict]) -> None:
 
 # --- a run ------------------------------------------------------------------------------
 
-def watch(sess, conn, site: str, root: str, today: date, limit: int, since: date | None = None) -> Counter:
+def watch(sess, conn, site: str, root: str, today: date, limit: int, since: date | None = None,
+          deadline: float | None = None) -> Counter:
     pages = merge(load(conn, site), sitemap(root), site, today, since)
     seen = searched(sess, site, today)
     note_search(pages, seen, today)
@@ -265,17 +315,18 @@ def watch(sess, conn, site: str, root: str, today: date, limit: int, since: date
     todo = pick(pages.values(), today, limit)
     tally = Counter(listed=sum(p.in_sitemap for p in pages.values()), searched=len(seen & pages.keys()),
                     new=sum(p.first_seen == today for p in pages.values()), due=len(todo))
-    try:
-        for start in range(0, len(todo), SAVE_EVERY):
-            chunk = todo[start:start + SAVE_EVERY]
-            save(conn, chunk, inspect_chunk(sess, site, chunk, today, tally))
-    except Quota:
-        tally["quota spent"] += 1
+    for start in range(0, len(todo), SAVE_EVERY):
+        chunk = todo[start:start + SAVE_EVERY]
+        checks, stopped = inspect_chunk(sess, site, chunk, today, tally, deadline)
+        save(conn, chunk, checks)
+        if stopped:
+            tally["deferred"] += len(todo) - start - len(chunk)
+            break
     return tally
 
 
 def line(site: str, tally: Counter) -> str:
-    head = ("listed", "new", "searched", "due", "failed", "quota spent")
+    head = ("listed", "new", "searched", "due", "deferred", "failed", "quota spent")
     states = ", ".join(f"{k} {v}" for k, v in tally.most_common() if k not in head)
     return f"{site}: " + ", ".join(f"{k} {tally[k]}" for k in head) + (f" | {states}" if states else "")
 
@@ -310,15 +361,25 @@ def sites(env: dict | None = None) -> list[tuple[str, str, date | None, str]]:
     return out
 
 
+def site_deadline(now: float, end: float, sites_after: int) -> float:
+    """When this site stops starting inspections: the run's end, less SITE_RESERVE minutes for each
+    site still to come, but never less than an even share of what is left."""
+    left = max(end - now, 0.0)
+    return now + max(left - 60 * SITE_RESERVE * sites_after, left / (sites_after + 1))
+
+
 def main(argv: list[str]) -> None:
     if argv[:1] == ["report"]:
         return report(connect())
     limit = int(argv[argv.index("--limit") + 1]) if "--limit" in argv else DAILY_BUDGET
     conn = None if "--dry-run" in argv else connect()
     sess, today, failed = gsc.get_service(), date.today(), []
-    for site, root, since, name in sites():
+    todo = sites()
+    end = time.monotonic() + 60 * float(os.environ.get("INDEX_WATCH_MINUTES") or RUN_MINUTES)
+    for n, (site, root, since, name) in enumerate(todo):
         try:
-            print(line(name, watch(sess, conn, site, root, today, limit, since)), flush=True)
+            deadline = site_deadline(time.monotonic(), end, len(todo) - n - 1)
+            print(line(name, watch(sess, conn, site, root, today, limit, since, deadline)), flush=True)
         except Exception as e:  # noqa: BLE001 - a secret site's traceback would print its address
             if name == site:
                 raise
