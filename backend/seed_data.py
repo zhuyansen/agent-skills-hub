@@ -74,6 +74,7 @@ EXTRA_REPOS = [
     "joeseesun/knowledge-site-creator",
     "joeseesun/qiaomu-music-player-spotify",
     "joeseesun/qiaomu-design-advisor",
+    "brajendrak00068/agentic-ai-video-production",  # Levea AI Video Editor — MCP server, 12 agent skills, 200+ caption templates, cloud MP4 export
 ]
 
 # Additional: trending repos from last 3 days
