@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-11-24
+1. erkamyaman/safe-anything — 🆕 扫描代码、依赖 CVE 及 AI 智能体配置漏洞，防范安全风险（442★ 258.1/day）
+2. nickvasilescu/os1-her — 🆕 搭建语音优先的个人智能体系统，融合实时对话与工具编排（55★ 27.3/day）
+3. Fanqi89/dsh-craft-anything — 桥接 DeepSeek Harness 与本地 craft-anything，支持状态监控与双模式切换（433★ 23.8/day）
+4. erkamyaman/unslop-anything — 排查并修复网页及移动端界面中的 AI 模板味，提升设计质感（344★ 23.6/day）
+5. usamahz/cpu-performance-engineering — 提供 CPU 性能工程一手资料、可复现基准测试与本地 MCP 服务（1160★ 17.2/day）
+6. gokayfem/reference-to-game — 提取参考图风格与配色，驱动智能体快速构建可玩 Three.js 游戏（266★ 17.2/day）
+7. byttrade/free-crypto-trading-bot — 🆕 提供多交易所永续合约趋势策略与回测面板，支持智能体 API 调用（55★ 14.5/day）
+8. DaBinBinah/magpie-AWS-Quick-bridge — 🆕 桥接 Amazon Quick 账号至 Magpie 与 CC Switch，供编程智能体复用（23★ 11.9/day）
+9. owoevan-dev/sfx-skill — 🆕 设计可编辑的多层合成与采样音效，批量导出至游戏引擎（25★ 11.7/day）
+10. zeative/motion-educator — 🆕 编排 3D 拆解式教学短片，自动生成分镜运镜、旁白与音效（107★ 10.9/day）
+🎯 今日趋势：这批入选项正从简单问答转向**工程落地与垂直创作**，涵盖安全扫描、游戏资产生成到 **MCP 本地桥接**，候选里 15 个 14 天内新建项目中已有不少成型工作流。
+> 注：GitHub Actions 自动生成（gemini-4-hydrogen 挑选和撰写，数据和格式由脚本核对）。去重范围＝repo 内 archive 全部 148 个日期段，比对 1,465 个 owner/repo。单连接查询（`connect_timeout=15`、`statement_timeout=30000`、NullPool）一次：`first_seen ≥72h`、stars ≥20 得 150 条；切回 48h 剩 99 条、去重后 96 条，未放宽到 72h。velocity = stars ÷ max(距 created_at 天数, 1)，按 velocity 往下用 `gh api` 抽查 26 个。**代码硬规则剔除**：lucasito92/delta-executor-pc：名字或描述像破解 / 激活 / 外挂类诱饵；Restackerr/jjsploit-v8-executor-cekalan：名字或描述像破解 / 激活 / 外挂类诱饵；kevin-codecode20r2/jjsploit-v8-executor：名字或描述像破解 / 激活 / 外挂类诱饵；Saanvi270/cryptic-executor-pc：名字或描述像破解 / 激活 / 外挂类诱饵；nikita-berg-io2090h6/celery-executor-roblox：名字或描述像破解 / 激活 / 外挂类诱饵；ryan-lopez-ops2091w4/celery-executor-roblox：名字或描述像破解 / 激活 / 外挂类诱饵；MarcoVolkov43401/zorara-nihon-executor：名字或描述像破解 / 激活 / 外挂类诱饵；pebble-grove/krnl-reborn-executor：名字或描述像破解 / 激活 / 外挂类诱饵；robertsmi-codes63/jjsploit-v8-executor-x64：名字或描述像破解 / 激活 / 外挂类诱饵；ryan-h-lab94s3/nezur-external-roblox：名字或描述像破解 / 激活 / 外挂类诱饵；louischavez7324/luna-atlantis-executor：名字或描述像破解 / 激活 / 外挂类诱饵；ClaraHakansson4302/arceus-x-neo-pc：名字或描述像破解 / 激活 / 外挂类诱饵；dovecopper/jjsploit-v8-executor：名字或描述像破解 / 激活 / 外挂类诱饵；brewer38501/celery-executor-roblox：名字或描述像破解 / 激活 / 外挂类诱饵；vellumlichen/fluxus-executor-pc：名字或描述像破解 / 激活 / 外挂类诱饵；doughslip/codex-executor-pc：名字或描述像破解 / 激活 / 外挂类诱饵；RefexaLiq48/argon-valex-executor：名字或描述像破解 / 激活 / 外挂类诱饵；XikorePa85/nezur-external-roblox：名字或描述像破解 / 激活 / 外挂类诱饵；db-branch/db-branch：security_grade 为 caution。**模型排除项**：①uxpilot-ai/user-interview-skill（84★ 84.0/day）：组织账号 0 粉丝且其余仓库仅 11/0/0 星、0 个 open issue，存在冷启动刷星或单仓推广嫌疑；②shnfatih-hash/devlet-arsivleri-soykutugu（145★ 74.1/day）：作者仅 9 粉且名下共 2 个仓库、另一仓库仅 1 星，该仓却突增至 150 实时星且 0 issue，疑似刷星；③MaryCache/tsuzuri（61★ 61.0/day）：实时星数已达 117 星却只有 1 个 fork 且 0 个 issue，符合百星以上仅 0–1 fork 的异常特征；④pritamux/gridlines（164★ 56.1/day）：作者 0 粉、名下仅 2 个仓库且另一仓库为 0 星，该仓却达 232 实时星，符合其余仓库无星而单仓爆星特征；⑤21stware/bowel（628★ 37.7/day）：属于 Clash Meta (mihomo) 翻墙代理客户端，不符合平台收录与推荐规范；⑥deusyu/harness-engineering（6314★ 25.7/day）：属于概念笔记、一手翻译与中文学习档案，并非可直接调用的智能体技能或开发工具；⑦CYFARE/Mariana-Studio（62★ 15.4/day）：仓库描述仅有一句空泛口号，无法判断具体功能与使用价值；⑧kodlaciz/yumurta-stili（35★ 13.4/day）：账号仅 5 粉且名下只有这 1 个 uncategorized 仓库，属新号单仓且通用智能体工具属性较弱；⑨hotcoffeeshake/tong-jincheng-skill（3008★ 12.9/day）：作者其余仓库最高仅 9 星而该仓达 3009 实时星，且内容偏娱乐向恋爱话术，按规则跳过；⑩usetuff/tuff（126★ 12.1/day）：组织账号刚建不久、仅 1 粉且名下只有这 1 个仓库（0 个 issue），符合新组织单仓可疑特征。**轻红旗**（保留）：byttrade/free-crypto-trading-bot：账号注册约一个月且主页含推广参数，但已有 18 个 fork 且作者另有两个高星项目；owoevan-dev/sfx-skill：作者粉丝仅 5 人，但曾有 277 星项目且该仓已有 2 个 fork 和 1 个 issue。🆕 判定＝created_at 距今 14 天内：safe-anything（1.7 天）、os1-her（2.0 天）、free-crypto-trading-bot（3.8 天）、magpie-AWS-Quick-bridge（1.9 天）、sfx-skill（2.1 天）、motion-educator（9.8 天）。security_grade：入选 10 仓为 safe。表中 stars 为数据库快照。
+
+---
+
 ## 2026-11-23
 1. Leobai03/t3code-quota-ui — 🆕 优化 T3 Code 的界面，并排展示多账号配额与上下文消耗（26★ 26.0/day）
 2. deeeeone/Anvil — 🆕 提供 macOS 原生编程智能体，支持多模型、检查点与模拟器操控（36★ 23.8/day）
