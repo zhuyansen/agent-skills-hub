@@ -86,6 +86,8 @@ def print_academic_index():
     someone else. A missing file means the check did not run.
     """
     ai = load("geo/out/academic-index.json")
+    if ai and ai.get("skipped"):
+        return  # weekly check (Mondays): other days leave the section out
     if not ai:
         print("\n## ⚠️ 学术索引没核成\n")
         print("- 学术索引检查没出结果(查 Actions 日志里 Academic index 这一步)。")

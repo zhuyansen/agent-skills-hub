@@ -96,9 +96,16 @@ jobs:
       # Entity-audit node 8: every DOI on the ORCID record resolves and is filed under us at
       # DataCite and OpenAlex. ORCID, doi.org, DataCite, OpenAlex, Semantic Scholar and Wikidata are
       # public, no secrets. ~40 seconds: Semantic Scholar takes one request a second without a key.
+      # Weekly since 2026-11-24 (scheduled runs on Mondays, Beijing time; manual runs always): OpenAlex
+      # refreshes every couple of days and coverage moves slowly, so a daily run repeated the same lines.
+      # Other days write a marker so the digest leaves the section out instead of warning it did not run.
       - name: Academic index
         run: |
           mkdir -p ops/geo/out
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$(TZ=Asia/Shanghai date +%u)" != "1" ]; then
+            echo '{"skipped": "weekly: scheduled runs check on Mondays"}' > ops/geo/out/academic-index.json
+            exit 0
+          fi
           python ops/geo/academic_index.py --json > ops/geo/out/academic-index.json || rm -f ops/geo/out/academic-index.json
 
       - name: Build digest → Step Summary
