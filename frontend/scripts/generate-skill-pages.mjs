@@ -358,13 +358,14 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   // deleted repos shared one description (OpenSEO audit 2026-11-19). The name goes first.
   let metaDesc = isGone ? truncate(`${repo_full_name}: ${verdict}`, LIMIT - 3) : "";
   if (isGone && metaDesc.length + clause.length <= LIMIT) metaDesc += clause;
-  if (!isGone) metaDesc = skillDescription(repo_name, description, installs);
+  const descMeta = { grade: security_grade, quality: quality_score };
+  if (!isGone) metaDesc = skillDescription(repo_name, description, installs, descMeta);
   // Copies of a repo keep its name and description word for word, so their pages had the same
   // meta description (OpenSEO audit 2026-11-19: anthropics/claude-code and two copies). Which
   // one is the original cannot be told from stars (clone campaigns buy them), so every page in
   // such a group names its owner instead of the bare repo name.
   if (!isGone && (SHARED_DESCRIPTION.get(descriptionKey(repo_name, description)) || 0) > 1) {
-    metaDesc = skillDescription(repo_full_name, description, installs);
+    metaDesc = skillDescription(repo_full_name, description, installs, descMeta);
   }
 
   // README excerpt: a short summary below our own data (see the file header)

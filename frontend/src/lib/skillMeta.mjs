@@ -148,19 +148,40 @@ function titleHead(repoFullName) {
   return owner.toLowerCase() === repo.toLowerCase() || crowded ? repo : full;
 }
 
+/** Below this display width (~70 Latin chars), OpenSEO flags a meta description as too short.
+ *  Measured by display width so CJK descriptions (50-65 chars ≈ 100-130 width) are left alone. */
+export const DESCRIPTION_MIN_WIDTH = 70;
+const VALID_GRADES = new Set(["safe", "caution", "unsafe", "reject"]);
+
+/** Fit an identifier (repo name or owner/repo) to `budget` display width, preferring a separator break. */
+export function fitName(name, budget) {
+  if (displayWidth(name) <= budget) return name;
+  const head = prefixWithin(name, Math.max(budget - 1, 1));
+  const sep = Math.max(head.lastIndexOf("-"), head.lastIndexOf("_"), head.lastIndexOf(" "), head.lastIndexOf("/"));
+  const cut = sep > 0 && displayWidth(head.slice(0, sep)) >= budget * 0.6 ? head.slice(0, sep) : head;
+  return `${cut.replace(/[-_\s/]+$/, "")}…`;
+}
+
 /** "<repo> by <owner>: <description clause>", or the fallback when the description gives nothing usable. */
 export function skillTitle(repoFullName, repoName, description, fallback = TITLE_FALLBACK) {
   const head = titleHead(repoFullName);
-  const budget = Math.max(TITLE_MAX_WIDTH - displayWidth(`${head}: `), MIN_CLAUSE_BUDGET);
-  const clause = fitClause(cleanDescription(description, repoName), budget);
-  return displayWidth(clause) >= MIN_CLAUSE_WIDTH ? `${head}: ${clause}` : fallbackTitle(head, fallback);
+  const remaining = TITLE_MAX_WIDTH - displayWidth(`${head}: `);
+  if (remaining >= MIN_CLAUSE_WIDTH) {
+    const clause = fitClause(cleanDescription(description, repoName), remaining);
+    if (displayWidth(clause) >= MIN_CLAUSE_WIDTH) return `${head}: ${clause}`;
+  }
+  return fallbackTitle(head, fallback);
 }
 
 /** "<head>: what it is & alternatives", or ": alternatives" when that would run past the
- *  results page: 469 skill titles did, with no usable description (scan of 2026-11-19). */
+ *  results page: 469 skill titles did, with no usable description (scan of 2026-11-19).
+ *  Ultra-long repo names drop the suffix and cap at TITLE_MAX_WIDTH. */
 export function fallbackTitle(head, fallback = TITLE_FALLBACK) {
   const full = `${head}: ${fallback}`;
-  return displayWidth(full) <= TITLE_MAX_WIDTH ? full : `${head}: alternatives`;
+  if (displayWidth(full) <= TITLE_MAX_WIDTH) return full;
+  const short = `${head}: alternatives`;
+  if (displayWidth(short) <= TITLE_MAX_WIDTH) return short;
+  return fitName(head, TITLE_MAX_WIDTH);
 }
 
 /** The h1 clause from the same description: all of it when it fits, else its first sentence. */
@@ -181,14 +202,29 @@ function cutUnits(text, n) {
 /**
  * Meta description for a live repo: what it is, then the install command when the
  * README gave one, then the alternatives the page compares, cut at what a results
- * page shows. The React page never sees the README, so it reuses the description the
- * pre-rendered page shipped with (src/lib/prerenderedMeta.ts) and only builds one
- * here, without the install command, after a client-side navigation.
+ * page shows. When a short upstream description leaves a non-CJK snippet below
+ * DESCRIPTION_MIN_WIDTH, security grade / audit context fills the gap. The React
+ * page never sees the README, so it reuses the description the pre-rendered page
+ * shipped with (src/lib/prerenderedMeta.ts) and only builds one here, without the
+ * install command, after a client-side navigation.
  */
-export function skillDescription(repoName, description, installs = []) {
+export function skillDescription(repoName, description, installs = [], meta = {}) {
   const what = description ? `${repoName}: ${description.trim().replace(/\.$/, "")}.` : `${repoName}, an open-source agent tool.`;
   const parts = [installs[0] ? ` Install: ${installs[0]}.` : "", " Alternatives compared."];
   let out = what.length > DESCRIPTION_LIMIT ? `${cutUnits(what, DESCRIPTION_LIMIT - 1).trim()}…` : what;
   for (const part of parts) if (part && out.length + part.length <= DESCRIPTION_LIMIT) out += part;
+  if (displayWidth(out) < DESCRIPTION_MIN_WIDTH) {
+    const rawGrade = typeof meta.grade === "string" ? meta.grade.toLowerCase() : "";
+    const grade = VALID_GRADES.has(rawGrade) ? rawGrade.toUpperCase() : "";
+    const q = typeof meta.quality === "number" && Number.isFinite(meta.quality) ? Math.round(meta.quality) : null;
+    const extras = [
+      grade ? ` Security grade: ${grade}${q !== null ? ` (${q}/100)` : ""}.` : "",
+      grade ? " Audited on Agent Skills Hub." : " Independent security check & quality score on Agent Skills Hub.",
+    ];
+    for (const extra of extras) {
+      if (displayWidth(out) >= DESCRIPTION_MIN_WIDTH) break;
+      if (extra && out.length + extra.length <= DESCRIPTION_LIMIT) out += extra;
+    }
+  }
   return out;
 }

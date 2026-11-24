@@ -29,8 +29,11 @@ test("a repo name two audited repos share keeps its owner", () => {
   const b = skill("another-organisation/agent-skills-collection-x");
   const shared = sharedRepoNames([a, b]);
   assert.ok(shared.has("agent-skills-collection-x"));
-  assert.equal(auditTitle(a, shared), "Is some-long-organisation-name/agent-skills-collection-x Safe?");
-  assert.notEqual(auditTitle(a, shared), auditTitle(b, shared));
+  const ta = auditTitle(a, shared);
+  const tb = auditTitle(b, shared);
+  assert.ok(ta.startsWith("Is some-long-organisation-name/"), ta);
+  assert.ok(displayWidth(ta) <= TITLE_MAX_WIDTH, `${displayWidth(ta)}: ${ta}`);
+  assert.notEqual(ta, tb);
 });
 
 test("every title of a set is its own", () => {
@@ -65,9 +68,20 @@ test("a long owner/repo falls back to the repo's own name as the question", () =
   assert.ok(displayWidth(t) <= TITLE_MAX_WIDTH, t);
 });
 
-test("a name nothing can fit keeps its owner", () => {
-  const s = skill("NAalytics/Assemblies-of-putative-SARS-CoV2-spike-encoding-mRNA-sequences-for-vaccines");
-  assert.equal(auditTitle(s, sharedRepoNames([s])), `Is ${s.repo_full_name} Safe?`);
+test("a name nothing can fit keeps its owner and caps at TITLE_MAX_WIDTH", () => {
+  const s = skill("NAalytics/Assemblies-of-putative-SARS-CoV2-spike-encoding-mRNA-sequences-for-vaccines-BNT-162b2-and-mRNA-1273");
+  const t = auditTitle(s, sharedRepoNames([s]));
+  assert.ok(t.startsWith("Is NAalytics/"), t);
+  assert.ok(t.endsWith("… Safe?"), t);
+  assert.ok(displayWidth(t) <= TITLE_MAX_WIDTH, `${displayWidth(t)}: ${t}`);
+});
+
+test("an ultra-long owner/repo caps the description and keeps the verdict", () => {
+  const s = skill("NAalytics/Assemblies-of-putative-SARS-CoV2-spike-encoding-mRNA-sequences-for-vaccines-BNT-162b2-and-mRNA-1273", 68);
+  const d = auditDescription(s, "SAFE", 0);
+  assert.ok(d.length <= DESCRIPTION_LIMIT, `${d.length}: ${d}`);
+  assert.ok(d.startsWith("NAalytics/"), d);
+  assert.match(d, /…: graded SAFE by AgentSkillsHub\. No dangerous patterns found\. Quality score 68\/100\.$/);
 });
 
 test("the audit sitemap lists every page once, most-starred first, with no dates", async () => {

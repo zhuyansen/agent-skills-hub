@@ -156,7 +156,7 @@ export function OrgAuditPage() {
         <title>
           {zh
             ? "批量安全审计 · 审计整个 GitHub 组织 | Agent Skills Hub"
-            : "Batch Security Audit · Vet a whole GitHub org | Agent Skills Hub"}
+            : "Batch Security Audit — Vet a GitHub Org · Agent Skills Hub"}
         </title>
         <meta
           name="description"

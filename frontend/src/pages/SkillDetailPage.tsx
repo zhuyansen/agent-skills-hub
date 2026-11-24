@@ -135,7 +135,11 @@ export function SkillDetailPage() {
       ? fallbackTitle(detail.repo_full_name)
       : skillTitle(detail.repo_full_name, detail.repo_name, detail.description);
   const metaDescription =
-    prerenderedDescription() ?? skillDescription(detail.repo_name, detail.description);
+    prerenderedDescription() ??
+    skillDescription(detail.repo_name, detail.description, [], {
+      grade: detail.security_grade,
+      quality: detail.quality_score,
+    });
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">

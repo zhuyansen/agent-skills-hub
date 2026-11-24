@@ -9,7 +9,7 @@
  * 08-18 to 11-18, 322 clicks on 14,438 impressions at position 6-7. The question and the name
  * stay; the site name goes (a results page shows it above the title).
  */
-import { DESCRIPTION_LIMIT, TITLE_MAX_WIDTH, displayWidth } from "../src/lib/skillMeta.mjs";
+import { DESCRIPTION_LIMIT, TITLE_MAX_WIDTH, displayWidth, fitName } from "../src/lib/skillMeta.mjs";
 
 /** Lowercased repo names that more than one of these repos has ("skills", "mcp"): a title
  *  without the owner would be the same on each of their pages. */
@@ -22,8 +22,7 @@ export function sharedRepoNames(skills) {
   return new Set([...counts].filter(([, n]) => n > 1).map(([name]) => name));
 }
 
-/** Stays over the limit only when the question does not fit with the repo's name alone
- *  (or, for a name other audited repos share, with its owner). */
+/** Falls back to a separator-capped owner/repo inside the question when nothing shorter fits. */
 export function auditTitle(skill, sharedNames = new Set()) {
   const { repo_name: repo, repo_full_name: full } = skill;
   const ownName = sharedNames.has(repo.toLowerCase()) ? [] : [repo];
@@ -35,7 +34,8 @@ export function auditTitle(skill, sharedNames = new Set()) {
     question,
     ...ownName.map((name) => `Is ${name} Safe?`),
   ];
-  return candidates.find((title) => displayWidth(title) <= TITLE_MAX_WIDTH) ?? question;
+  const fitted = candidates.find((title) => displayWidth(title) <= TITLE_MAX_WIDTH);
+  return fitted ?? `Is ${fitName(full, TITLE_MAX_WIDTH - "Is  Safe?".length)} Safe?`;
 }
 
 /** A long owner/repo gives up words from the middle, never the result. */
@@ -43,13 +43,17 @@ export function auditDescription(skill, gradeLabel, flagCount) {
   const found = flagCount ? `${flagCount} flag${flagCount > 1 ? "s" : ""} found.` : "No dangerous patterns found.";
   const result = `${found} Quality score ${Math.round(skill.quality_score || 0)}/100.`;
   const subject = `${skill.repo_full_name} security audit: graded ${gradeLabel} by`;
+  const suffix = `: graded ${gradeLabel} by AgentSkillsHub. ${result}`;
   const candidates = [
     `${subject} AgentSkillsHub's rule-based security scan. ${result}`,
     `${subject} AgentSkillsHub's rule-based scan. ${result}`,
     `${subject} AgentSkillsHub. ${result}`,
-    `${skill.repo_full_name}: graded ${gradeLabel} by AgentSkillsHub. ${result}`,
+    `${skill.repo_full_name}${suffix}`,
   ];
-  return candidates.find((text) => text.length <= DESCRIPTION_LIMIT) ?? candidates[candidates.length - 1];
+  const fitted = candidates.find((text) => text.length <= DESCRIPTION_LIMIT);
+  if (fitted) return fitted;
+  const budget = DESCRIPTION_LIMIT - suffix.length;
+  return budget >= 12 ? `${fitName(skill.repo_full_name, budget)}${suffix}` : candidates[candidates.length - 1];
 }
 
 /**

@@ -176,16 +176,16 @@ const SHELLS = [
     // fallback hydrates) but never produces an unfurl card, which kills the
     // whole "share an org's audit" loop. noindex to match the page's own Helmet.
     path: "org-audit",
-    title:
-      "Batch Security Audit — Vet a Whole GitHub Org · Agent Skills Hub",
+    // ≤60 chars (OpenSEO audit 2026-11-21 flagged 64); the React page's Helmet matches.
+    title: "Batch Security Audit — Vet a GitHub Org · Agent Skills Hub",
     description:
       "Enter a GitHub org or user to see the security grade of every skill and MCP server it ships — vet your whole stack at once instead of one repo at a time.",
     noindex: true,
   },
   {
     path: "ci-gate",
-    title:
-      "Team CI Skill Gate — Block Risky AI Skills & MCP Configs in PRs · Agent Skills Hub",
+    // ≤60 chars; the React page's Helmet matches.
+    title: "Team CI Skill Gate — Block Risky AI Skills & MCPs in PRs",
     description:
       "GitHub Action + SARIF security gate for SKILL.md, AGENTS.md, CLAUDE.md, .cursorrules, and .mcp.json. Built on 43 SlowMist & agent-era rules.",
   },

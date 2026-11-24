@@ -140,12 +140,12 @@ export function CiGatePage() {
       <Helmet>
         <title>
           {isZh
-            ? "Team CI Skill Gate — PR 合并前自动拦截危险 AI Skill 与 MCP 配置 · Agent Skills Hub"
-            : "Team CI Skill Gate — Block Risky AI Skills & MCP Configs in PRs · Agent Skills Hub"}
+            ? "Team CI Skill Gate — PR 合并前拦截危险 AI Skill 与 MCP 配置"
+            : "Team CI Skill Gate — Block Risky AI Skills & MCPs in PRs"}
         </title>
         <meta
           name="description"
-          content="GitHub Action + SARIF security gate for SKILL.md, AGENTS.md, CLAUDE.md, .cursorrules, and .mcp.json. Built on 43 SlowMist & agent-era rules. Open-source runner + $49/mo Team Gate."
+          content="GitHub Action + SARIF security gate for SKILL.md, AGENTS.md, CLAUDE.md, .cursorrules, and .mcp.json. Built on 43 SlowMist & agent-era rules."
         />
         <link rel="canonical" href="https://agentskillshub.top/ci-gate/" />
       </Helmet>
