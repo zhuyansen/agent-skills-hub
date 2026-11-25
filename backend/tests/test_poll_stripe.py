@@ -5,12 +5,24 @@ import json
 from pathlib import Path
 import sys
 
+import pytest
+
 POLL_PATH = Path(__file__).resolve().parents[2] / "ops" / "stripe" / "poll_stripe.py"
 SPEC = importlib.util.spec_from_file_location("poll_stripe", POLL_PATH)
 assert SPEC and SPEC.loader
 poll_stripe = importlib.util.module_from_spec(SPEC)
 sys.modules["poll_stripe"] = poll_stripe
 SPEC.loader.exec_module(poll_stripe)
+
+
+@pytest.fixture(autouse=True)
+def no_network(monkeypatch):
+    """Every outbound call in poll_stripe goes through http_json. A test that does not stub it
+    fails here instead of reaching Stripe, Resend, GitHub or the live PostHog project: from
+    2026-11-18 to 11-25 each local run of this file posted a fake $0 `purchase_completed`."""
+    def refuse(url, *args, **kwargs):
+        raise AssertionError(f"unexpected network call in a unit test: {url}")
+    monkeypatch.setattr(poll_stripe, "http_json", refuse)
 
 
 def test_classify_session_skus():
@@ -160,3 +172,9 @@ def test_discounted_standard_price_not_counted_as_early(monkeypatch):
     monkeypatch.setattr(poll_stripe, "http_json", fake_http)
     poll_stripe.issue_member_key({"id": "cs_discount", "payment_link": "plink_1Uci7YC0OZ4h2np2hIc1ZLGo", "amount_total": 2400}, "pro", "a@example.com")
     assert bodies[0]["p_note"] == "pro-usd-49"
+
+
+def test_test_mode_session_never_reaches_posthog():
+    # Unit-test fixtures and Stripe test-mode sessions carry no livemode=True, so they are never revenue.
+    assert poll_stripe.send_posthog_purchase({"id": "cs_test", "client_reference_id": "fasttrack--repo"}, "fasttrack") is False
+    assert poll_stripe.send_posthog_purchase({"id": "cs_test_a1", "livemode": False}, "pro") is False

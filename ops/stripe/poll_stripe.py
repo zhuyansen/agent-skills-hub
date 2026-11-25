@@ -408,7 +408,16 @@ def send_alert(session: dict, sku: str, target: str, issue_url: str, key_status:
 
 
 def send_posthog_purchase(session: dict, sku: str) -> bool:
-    """Server-to-server PostHog `purchase_completed` event (no PII, deduped via $insert_id)."""
+    """Server-to-server PostHog `purchase_completed` event (no PII).
+
+    Only Stripe live-mode sessions count as revenue. A unit-test fixture or a test-mode
+    checkout has no `livemode: true`; before this check, every local run of
+    test_poll_stripe.py posted a $0 `cs_test` purchase to the production project.
+    PostHog does not deduplicate on `$insert_id` (the 12 `cs_test` events all stayed),
+    so the caller must send this once per order; see process_session.
+    """
+    if session.get("livemode") is not True:
+        return False
     if not (POSTHOG_PROJECT_KEY and POSTHOG_CAPTURE_URL):
         return False
     _, ph_id = split_client_ref(session.get("client_reference_id") or "")
