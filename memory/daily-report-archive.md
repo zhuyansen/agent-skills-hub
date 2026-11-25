@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-11-25
+1. qianyiai/kurocat — 🆕 在桌面显示透明可交互的陪伴小猫，并支持为 AI 智能体添加桌面可视化互动功能。（622★ 168.4/day）
+2. Developing-Gamer/agent-sim — 🆕 在 Linux 环境下运行的 iOS 智能体模拟器，为 Agent 提供沙箱环境支持。（560★ 160.0/day）
+3. uxpilot-ai/user-interview-skill — 🆕 为 Claude Code 等工具提供自动生成中立用户访谈指南的技能包。（118★ 72.9/day）
+4. 21stware/bowel — 采用 GPU 渲染界面的高性能网络代理客户端，并内置支持 AI 智能体的 MCP 服务端。（654★ 37.1/day）
+5. MaryCache/tsuzuri — 🆕 配合 Claude Code 使用的日语写作审阅工具，支持逐句分析写作意图并优化文案。（61★ 31.6/day）
+6. ashhart/skills — 🆕 精选收录各类实用的 AI 智能体技能，方便开发者直接集成到工作流中。（98★ 28.1/day）
+7. zou172866/Antigravity-agy-dart — 🆕 优化智能体缓存命中率并保护上下文配额，支持实时监控 Token 用量并自动救援崩溃会话。（135★ 28.0/day）
+8. doop-design/doop — 多人协作设计画布，支持人类与 AI 智能体实时在同一画布中进行 UI 设计。（2299★ 24.3/day）
+9. iflytek/astron-agent — 企业级智能体工作流构建平台，助力快速开发具备复杂逻辑的超级智能体。（8924★ 20.7/day）
+10. alesha-pro/inference-optimization-playbook — 🆕 总结大规模混合专家模型在消费级显卡上的推理优化方案，可作为代码智能体的技能插件。（88★ 19.9/day）
+🎯 今日趋势：近期 MCP 服务端相关插件呈现**高度模块化**趋势，工具正从单纯的功能调用转向深度优化 **Token 效率**与**开发交互体验**。
+> 注：GitHub Actions 自动生成（gemini-4-hydrogen 挑选和撰写，数据和格式由脚本核对）。去重范围＝repo 内 archive 全部 149 个日期段，比对 1,475 个 owner/repo。单连接查询（`connect_timeout=15`、`statement_timeout=30000`、NullPool）一次：`first_seen ≥72h`、stars ≥20 得 150 条；切回 48h 剩 124 条、去重后 117 条，未放宽到 72h。velocity = stars ÷ max(距 created_at 天数, 1)，按 velocity 往下用 `gh api` 抽查 30 个。**代码硬规则剔除**：lucasito92/delta-executor-pc：名字或描述像破解 / 激活 / 外挂类诱饵；Restackerr/jjsploit-v8-executor-cekalan：名字或描述像破解 / 激活 / 外挂类诱饵；Saanvi270/cryptic-executor-pc：名字或描述像破解 / 激活 / 外挂类诱饵；MarcoVolkov43401/zorara-nihon-executor：名字或描述像破解 / 激活 / 外挂类诱饵；pebble-grove/krnl-reborn-executor：名字或描述像破解 / 激活 / 外挂类诱饵；louischavez7324/luna-atlantis-executor：名字或描述像破解 / 激活 / 外挂类诱饵；kevin-codecode20r2/jjsploit-v8-executor：名字或描述像破解 / 激活 / 外挂类诱饵；nikita-berg-io2090h6/celery-executor-roblox：名字或描述像破解 / 激活 / 外挂类诱饵；ryan-lopez-ops2091w4/celery-executor-roblox：名字或描述像破解 / 激活 / 外挂类诱饵；ClaraHakansson4302/arceus-x-neo-pc：名字或描述像破解 / 激活 / 外挂类诱饵；AyushRajSinghParihar/weaponized-curiosity：名字或描述像破解 / 激活 / 外挂类诱饵；RefexaLiq48/argon-valex-executor：名字或描述像破解 / 激活 / 外挂类诱饵；XikorePa85/nezur-external-roblox：名字或描述像破解 / 激活 / 外挂类诱饵；brewer38501/celery-executor-roblox：名字或描述像破解 / 激活 / 外挂类诱饵；robertsmi-codes63/jjsploit-v8-executor-x64：名字或描述像破解 / 激活 / 外挂类诱饵；dovecopper/jjsploit-v8-executor：名字或描述像破解 / 激活 / 外挂类诱饵；vellumlichen/fluxus-executor-pc：名字或描述像破解 / 激活 / 外挂类诱饵；marcusyildirim/personal-capital：刷星嫌疑：作者 0 粉、其余仓库最高 0★，62★ 只有 0 个 fork；Locorreia1992/native-instruments-reaktor-6：刷星嫌疑：作者 1 粉、其余仓库最高 0★，62★ 只有 0 个 fork；ryan-h-lab94s3/nezur-external-roblox：名字或描述像破解 / 激活 / 外挂类诱饵；doughslip/codex-executor-pc：名字或描述像破解 / 激活 / 外挂类诱饵；HaqayaDe25/codex-cli-rotator：名字或描述像破解 / 激活 / 外挂类诱饵；Lukcla3889/postman-agent：刷星嫌疑：作者 0 粉、其余仓库最高 0★，57★ 只有 0 个 fork；bytebuildsmall/claude-desktop：刷星嫌疑：作者 3 粉、其余仓库最高 0★，54★ 只有 0 个 fork；Katherine08246/opencode-token-abuse：名字或描述像破解 / 激活 / 外挂类诱饵；camillestone3496/opencode-sub-abuse：名字或描述像破解 / 激活 / 外挂类诱饵；ShuhuaNowak4134/oc-rotation-tool：名字或描述像破解 / 激活 / 外挂类诱饵；TegevoXi39/ccu-tool：名字或描述像破解 / 激活 / 外挂类诱饵；rafael20136/opencode-token-pool：名字或描述像破解 / 激活 / 外挂类诱饵；DunisoHez13/cursor-token-pool：名字或描述像破解 / 激活 / 外挂类诱饵；KonstantinTorres30399/oc-free-sub-generator：名字或描述像破解 / 激活 / 外挂类诱饵；Kaito67458/oc-multi-account：名字或描述像破解 / 激活 / 外挂类诱饵；CepeneJile34/opencode-free-sub：名字或描述像破解 / 激活 / 外挂类诱饵；KixojeZuq51/opencode-free-tool：名字或描述像破解 / 激活 / 外挂类诱饵；Pelletier73182/windsurf-token-abuse：名字或描述像破解 / 激活 / 外挂类诱饵；Freitas46964/windsurf-token-pool：名字或描述像破解 / 激活 / 外挂类诱饵；Sinan6021/codex-cli-unlimited：名字或描述像破解 / 激活 / 外挂类诱饵；SodovaFo7/claude-code-unlimited：名字或描述像破解 / 激活 / 外挂类诱饵；hAlexander33/cursor-pool-x：名字或描述像破解 / 激活 / 外挂类诱饵；EkaterinaJansen0975/ws-rotation-tool：名字或描述像破解 / 激活 / 外挂类诱饵；ValerieBayrak52/copilot-pool-tool：名字或描述像破解 / 激活 / 外挂类诱饵；amitegorov29/gemini-rotation-tool：名字或描述像破解 / 激活 / 外挂类诱饵；MatteoMorita525/cursor-token-rotator：名字或描述像破解 / 激活 / 外挂类诱饵；usejog/joggernaut：刷星嫌疑：作者 0 粉、其余仓库最高 0★，59★ 只有 1 个 fork。**模型排除项**：无。**轻红旗**（保留）：qianyiai/kurocat：粉丝数较少，但项目有真实开发痕迹及配套站点。🆕 判定＝created_at 距今 14 天内：kurocat（3.7 天）、agent-sim（3.5 天）、user-interview-skill（1.6 天）、tsuzuri（1.9 天）、skills（3.5 天）、Antigravity-agy-dart（4.8 天）、inference-optimization-playbook（4.4 天）。security_grade：入选 10 仓为 safe/unknown。表中 stars 为数据库快照。
+
+---
+
 ## 2026-11-24
 1. erkamyaman/safe-anything — 🆕 扫描代码、依赖 CVE 及 AI 智能体配置漏洞，防范安全风险（442★ 258.1/day）
 2. nickvasilescu/os1-her — 🆕 搭建语音优先的个人智能体系统，融合实时对话与工具编排（55★ 27.3/day）
