@@ -632,6 +632,7 @@ const aiInfoHtml = `<!doctype html>
       ],
       "isAccessibleForFree": true,
       "sameAs": [
+        "https://doi.org/10.5281/zenodo.21292798",
         "https://www.wikidata.org/wiki/Q141735092",
         "https://huggingface.co/datasets/jasonzhuyansen/agent-skills-security-grades",
         "https://www.kaggle.com/datasets/yansenzhu/agent-skills-security-grades"

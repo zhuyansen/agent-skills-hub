@@ -179,7 +179,10 @@
     }
     </script>
     <!-- The census as its own entity (2026-10-14). Its DOI, mirrors and Wikidata item
-         used to sit in the Organization's sameAs, which says they ARE the organization. -->
+         used to sit in the Organization's sameAs, which says they ARE the organization.
+         The concept DOI in sameAs (2026-11-25) is the @id jasonzhu.ai gives this dataset, so the
+         two sites name one node. identifier stays the version DOI 21292799: the only version,
+         and the DOI Wikidata, ORCID and the articles record. -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -199,6 +202,7 @@
       ],
       "isAccessibleForFree": true,
       "sameAs": [
+        "https://doi.org/10.5281/zenodo.21292798",
         "https://www.wikidata.org/wiki/Q141735092",
         "https://huggingface.co/datasets/jasonzhuyansen/agent-skills-security-grades",
         "https://www.kaggle.com/datasets/yansenzhu/agent-skills-security-grades"
