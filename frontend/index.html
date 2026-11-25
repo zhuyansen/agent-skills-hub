@@ -116,33 +116,12 @@
         "@type": "Person",
         "@id": "https://jasonzhu.ai/#person",
         "name": "Jason Zhu",
-        "alternateName": "Zhu Yansen",
-        "identifier": {
-          "@type": "PropertyValue",
-          "propertyID": "ORCID",
-          "value": "0009-0000-2894-6285",
-          "url": "https://orcid.org/0009-0000-2894-6285"
-        },
-        "url": "https://jasonzhu.ai/en",
-        "sameAs": [
-          "https://jasonzhu.ai",
-          "https://orcid.org/0009-0000-2894-6285",
-          "https://x.com/GoSailGlobal",
-          "https://github.com/ZhuYansen",
-          "https://huggingface.co/jasonzhuyansen",
-          "https://www.kaggle.com/yansenzhu",
-          "https://www.youtube.com/@JasonZhuGoSail"
-        ],
-        "description": "Independent AI agent ecosystem researcher, founder of Agent Skills Hub (launched 2026-03-08), and author of the Blue Book of Agent Skills 2026."
+        "url": "https://jasonzhu.ai/en"
       },
-      "legalName": "BRICKAI (GoSailGlobal LLC)",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "30 N Gould St, Ste N",
-        "addressLocality": "Sheridan",
-        "addressRegion": "WY",
-        "postalCode": "82801",
-        "addressCountry": "US"
+      "parentOrganization": {
+        "@type": "Organization",
+        "@id": "https://gosailglobal.com/#organization",
+        "name": "GoSailGlobal LLC"
       },
       "foundingDate": "2026-03-08",
       "knowsAbout": [
@@ -153,8 +132,7 @@
       ],
       "sameAs": [
         "https://github.com/zhuyansen/agent-skills-hub",
-        "https://x.com/GoSailGlobal",
-        "https://www.youtube.com/@JasonZhuGoSail",
+        "https://x.com/agentskillshub",
         "https://www.npmjs.com/package/@agentskillshub/cli",
         "https://www.npmjs.com/package/@agentskillshub/mcp",
         "https://glama.ai/mcp/servers/zhuyansen/agentskillshub-mcp",
@@ -175,6 +153,29 @@
           "contactType": "editorial & founder"
         }
       ]
+    }
+    </script>
+    <!-- The company that runs the site, as its own entity (2026-11-24). It used to be the
+         Organization's legalName, which made the product and the company one entity; the
+         founder's own X account sat in the Organization's sameAs for the same reason. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://gosailglobal.com/#organization",
+      "name": "GoSailGlobal LLC",
+      "legalName": "GoSailGlobal LLC",
+      "alternateName": "BRICKAI",
+      "url": "https://gosailglobal.com/",
+      "founder": { "@id": "https://jasonzhu.ai/#person" },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "30 N Gould St, Ste N",
+        "addressLocality": "Sheridan",
+        "addressRegion": "WY",
+        "postalCode": "82801",
+        "addressCountry": "US"
+      }
     }
     </script>
     <!-- The census as its own entity (2026-10-14). Its DOI, mirrors and Wikidata item
@@ -210,14 +211,28 @@
       "@type": "Person",
       "@id": "https://jasonzhu.ai/#person",
       "name": "Jason Zhu",
-      "alternateName": "Zhu Yansen",
+      "alternateName": ["祝彦森", "Yansen Zhu", "Zhu Yansen", "zhuyansen"],
       "url": "https://jasonzhu.ai/en",
+      "identifier": {
+        "@type": "PropertyValue",
+        "propertyID": "ORCID",
+        "value": "0009-0000-2894-6285",
+        "url": "https://orcid.org/0009-0000-2894-6285"
+      },
+      "description": "Independent AI agent ecosystem researcher, founder of Agent Skills Hub (launched 2026-03-08), and author of the Blue Book of Agent Skills 2026.",
       "sameAs": [
-        "https://jasonzhu.ai",
-        "https://agentskillshub.top/about/",
+        "https://orcid.org/0009-0000-2894-6285",
+        "https://scholar.google.com/citations?user=AlP5JacAAAAJ",
+        "https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=14044888",
+        "https://www.linkedin.com/in/jason-zhu-a52aa73bb/",
+        "https://www.producthunt.com/@yansen_zhu",
         "https://x.com/GoSailGlobal",
-        "https://github.com/ZhuYansen",
-        "https://www.youtube.com/@JasonZhuGoSail"
+        "https://github.com/zhuyansen",
+        "https://huggingface.co/jasonzhuyansen",
+        "https://www.kaggle.com/yansenzhu",
+        "https://www.youtube.com/@JasonZhuGoSail",
+        "https://www.douyin.com/user/MS4wLjABAAAABDQoQfOA67afaoRQ4u79rww04pMm4OoHwwyzJvPWS9E",
+        "https://www.xiaohongshu.com/user/profile/5bffc7d70000000008003b90"
       ],
       "jobTitle": "Independent Researcher · Founder of AgentSkillsHub",
       "knowsAbout": [
@@ -225,10 +240,7 @@
         "Model Context Protocol (MCP)",
         "AI Agent Ecosystem Analysis",
         "Open Source Quality Scoring"
-      ],
-      "worksFor": {
-        "@id": "https://agentskillshub.top/#organization"
-      }
+      ]
     }
     </script>
 

@@ -336,9 +336,15 @@ const aboutHtml = `<!doctype html>
       "@type": "Organization",
       "@id": "https://agentskillshub.top/#organization",
       "name": "Agent Skills Hub",
-      "alternateName": ["AgentSkillsHub", "agentskillshub.top", "BRICKAI"],
-      "legalName": "BRICKAI (GoSailGlobal LLC)",
+      "alternateName": ["AgentSkillsHub", "agentskillshub.top"],
       "url": "https://agentskillshub.top/",
+      "parentOrganization": {
+        "@type": "Organization",
+        "@id": "https://gosailglobal.com/#organization",
+        "name": "GoSailGlobal LLC",
+        "alternateName": "BRICKAI",
+        "url": "https://gosailglobal.com/"
+      },
       "foundingDate": "2026-03-08",
       "founder": {
         "@type": "Person",
@@ -353,13 +359,18 @@ const aboutHtml = `<!doctype html>
         },
         "url": "https://jasonzhu.ai/en",
         "sameAs": [
-          "https://jasonzhu.ai",
           "https://orcid.org/0009-0000-2894-6285",
+          "https://scholar.google.com/citations?user=AlP5JacAAAAJ",
+          "https://papers.ssrn.com/sol3/cf_dev/AbsByAuth.cfm?per_id=14044888",
+          "https://www.linkedin.com/in/jason-zhu-a52aa73bb/",
+          "https://www.producthunt.com/@yansen_zhu",
           "https://x.com/GoSailGlobal",
-          "https://github.com/ZhuYansen",
+          "https://github.com/zhuyansen",
           "https://huggingface.co/jasonzhuyansen",
           "https://www.kaggle.com/yansenzhu",
-          "https://www.youtube.com/@JasonZhuGoSail"
+          "https://www.youtube.com/@JasonZhuGoSail",
+          "https://www.douyin.com/user/MS4wLjABAAAABDQoQfOA67afaoRQ4u79rww04pMm4OoHwwyzJvPWS9E",
+          "https://www.xiaohongshu.com/user/profile/5bffc7d70000000008003b90"
         ],
         "jobTitle": "Founder & Maintainer of Agent Skills Hub"
       },
@@ -558,9 +569,15 @@ const aiInfoHtml = `<!doctype html>
       "@type": "Organization",
       "@id": "${SITE}/#organization",
       "name": "Agent Skills Hub",
-      "alternateName": ["AgentSkillsHub", "agentskillshub.top", "BRICKAI"],
-      "legalName": "BRICKAI (GoSailGlobal LLC)",
+      "alternateName": ["AgentSkillsHub", "agentskillshub.top"],
       "url": "${SITE}/",
+      "parentOrganization": {
+        "@type": "Organization",
+        "@id": "https://gosailglobal.com/#organization",
+        "name": "GoSailGlobal LLC",
+        "alternateName": "BRICKAI",
+        "url": "https://gosailglobal.com/"
+      },
       "description": "AI Agent Skills & MCP Trust Layer — open-source directory and security-grading platform for Claude skills, MCP servers, and AI agent tools.",
       "foundingDate": "2026-03-08",
       "founder": {
@@ -568,12 +585,7 @@ const aiInfoHtml = `<!doctype html>
         "@id": "https://jasonzhu.ai/#person",
         "name": "Jason Zhu",
         "alternateName": "Zhu Yansen",
-        "url": "https://jasonzhu.ai/en",
-        "sameAs": [
-          "https://jasonzhu.ai",
-          "https://x.com/GoSailGlobal",
-          "https://github.com/ZhuYansen"
-        ]
+        "url": "https://jasonzhu.ai/en"
       },
       "contactPoint": [
         {
@@ -589,7 +601,7 @@ const aiInfoHtml = `<!doctype html>
       ],
       "sameAs": [
         "https://github.com/ZhuYansen/agent-skills-hub",
-        "https://x.com/GoSailGlobal",
+        "https://x.com/agentskillshub",
         "https://www.npmjs.com/package/@agentskillshub/cli",
         "https://www.npmjs.com/package/@agentskillshub/mcp",
         "https://www.crunchbase.com/organization/agent-skills-hub",
