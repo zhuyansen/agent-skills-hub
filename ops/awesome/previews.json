@@ -111,6 +111,14 @@
   "type": "image/png",
   "bytes": 175419
  },
+ "4waiz/kanban-motion": {
+  "repo": "4waiz/kanban-motion",
+  "url": "https://raw.githubusercontent.com/4waiz/kanban-motion/HEAD/docs/poster.jpg",
+  "alt": "Kanban Motion demo",
+  "score": 1.95,
+  "type": "image/jpeg",
+  "bytes": 160415
+ },
  "777genius/universal-agent-plugins": {
   "repo": "777genius/universal-agent-plugins",
   "url": "https://github.com/user-attachments/assets/33833cd2-f525-49b2-9181-5a4d643d2f5b",
@@ -1911,6 +1919,14 @@
   "type": "image/gif",
   "bytes": 6377089
  },
+ "OrenFang/orencut": {
+  "repo": "OrenFang/orencut",
+  "url": "https://raw.githubusercontent.com/OrenFang/orencut/HEAD/docs/orencut-showcase.gif",
+  "alt": "OrenCut 动效演示",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 1938057
+ },
  "OrrrGE/autoRecording": {
   "repo": "OrrrGE/autoRecording",
   "url": "https://raw.githubusercontent.com/OrrrGE/autoRecording/HEAD/docs/media/demo-poster.png",
@@ -3262,6 +3278,14 @@
   "score": 2.0,
   "type": "image/webp",
   "bytes": 105882
+ },
+ "brewed-ops/KapeCut": {
+  "repo": "brewed-ops/KapeCut",
+  "url": "https://raw.githubusercontent.com/brewed-ops/KapeCut/HEAD/docs/images/kapecut.png",
+  "alt": "KapeCut with a three-Scene promo open: the Scene list, the viewer on the product",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 433430
  },
  "brookejlacey/boring-tools": {
   "repo": "brookejlacey/boring-tools",
@@ -5175,6 +5199,14 @@
   "type": "image/png",
   "bytes": 212816
  },
+ "jiangyurong609/motion-pages": {
+  "repo": "jiangyurong609/motion-pages",
+  "url": "https://raw.githubusercontent.com/jiangyurong609/motion-pages/HEAD/assets/demo.gif",
+  "alt": "motion-pages demo — scroll journey flythrough and example pages",
+  "score": 4.85,
+  "type": "image/gif",
+  "bytes": 2942730
+ },
  "jingcheng-chen/rhinomcp": {
   "repo": "jingcheng-chen/rhinomcp",
   "url": "https://raw.githubusercontent.com/jingcheng-chen/rhinomcp/HEAD/docs/assets/demo2.jpg",
@@ -6551,6 +6583,14 @@
   "type": "image/gif",
   "bytes": 2423909
  },
+ "renthelautomations/app-launch-video": {
+  "repo": "renthelautomations/app-launch-video",
+  "url": "https://raw.githubusercontent.com/renthelautomations/app-launch-video/HEAD/docs/images/preview.gif",
+  "alt": "A logo outline draws itself, fills from the bottom, becomes an app icon, then mo",
+  "score": 4.7,
+  "type": "image/gif",
+  "bytes": 632086
+ },
  "revfactory/showreel": {
   "repo": "revfactory/showreel",
   "url": "https://raw.githubusercontent.com/revfactory/showreel/HEAD/docs/media/showreel-preview.gif",
@@ -6910,6 +6950,14 @@
   "score": 2.0,
   "type": "image/png",
   "bytes": 968720
+ },
+ "soundza/soundkit": {
+  "repo": "soundza/soundkit",
+  "url": "https://raw.githubusercontent.com/soundza/soundkit/HEAD/assets/banner.png",
+  "alt": "SoundKit: CC0 sound effects and music beds for Remotion and React, each with its",
+  "score": -0.5,
+  "type": "image/png",
+  "bytes": 340208
  },
  "spcaeo/toadstone": {
   "repo": "spcaeo/toadstone",
@@ -7806,6 +7854,14 @@
   "score": 1.65,
   "type": "image/png",
   "bytes": 1922538
+ },
+ "yubraaj11/ffmpeg-mcp": {
+  "repo": "yubraaj11/ffmpeg-mcp",
+  "url": "https://raw.githubusercontent.com/yubraaj11/ffmpeg-mcp/main/statics/ffmpeg-mcp.png",
+  "alt": "ffmpeg-mcp: AI video editor MCP server powered by FFmpeg",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 760459
  },
  "zairuilab/consulting-deck": {
   "repo": "zairuilab/consulting-deck",

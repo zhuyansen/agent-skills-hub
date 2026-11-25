@@ -2234,7 +2234,8 @@
     "felixbfx/MuleCreate",
     "bookwjitchieni1986/blender-ai-mcp-addon",
     "Guten-Morgen1302/prismbox",
-    "yoruuuchan/create-blender-story-video"
+    "yoruuuchan/create-blender-story-video",
+    "jiangyurong609/motion-pages"
    ],
    "exclude_repos": [
     "codepawl/67.js",
@@ -2242,7 +2243,8 @@
     "ezpeezee/beta-version-toon-studio",
     "hitkeeen/blender-ai-mcp-addon",
     "nocodehack/make-short",
-    "bookwjitchieni1986/blender-ai-mcp-addon"
+    "bookwjitchieni1986/blender-ai-mcp-addon",
+    "racdeufindurch198812/Blender-AI-MCP-Studio"
    ]
   },
   "related": [
@@ -3471,7 +3473,8 @@
     "Guan0923/Praxis-RAG",
     "zenoyang-ai/nihaixia-knowledge-graph",
     "Cashara-io/cupel",
-    "substrate-systems/evermatter"
+    "substrate-systems/evermatter",
+    "GoogleCloudPlatform/knowledge-compiler"
    ],
    "exclude_repos": [
     "Laurent00TT/pharos",
@@ -9094,7 +9097,14 @@
     "blotato/contentskills",
     "famfamfam/code-cartoon",
     "Universaljojo/html-to-mp4",
-    "Rudywizz/rudywizz-motion"
+    "Rudywizz/rudywizz-motion",
+    "yubraaj11/ffmpeg-mcp",
+    "renthelautomations/app-launch-video",
+    "brewed-ops/KapeCut",
+    "gitroomhq/postiz-content-skills",
+    "OrenFang/orencut",
+    "soundza/soundkit",
+    "4waiz/kanban-motion"
    ],
    "sub_skills": [
     {

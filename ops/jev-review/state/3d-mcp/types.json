@@ -3518,5 +3518,21 @@
    "gen3d": 0.08
   },
   "kind": "blender"
+ },
+ {
+  "repo": "jiangyurong609/motion-pages",
+  "stars": 5,
+  "description": "Claude Code skill for award-site motion pages — Three.js worlds, liquid-glass shaders, springy poster walls. Single-file, screenshot-verified, one prompt away.",
+  "scores": {
+   "blender": 0.01,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.01,
+   "dcc": 0.01,
+   "web3d": 0.77,
+   "gen3d": 0.08
+  },
+  "kind": "web3d"
  }
 ]

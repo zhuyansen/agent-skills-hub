@@ -10312,5 +10312,131 @@
    "general": 0.85
   },
   "kind": "general"
+ },
+ {
+  "repo": "yubraaj11/ffmpeg-mcp",
+  "stars": 12,
+  "description": "AI video editor MCP server powered by FFmpeg: auto captions, Instagram Reels / YouTube Shorts / TikTok formatting, beat-synced cuts, jump cuts, transitions, music and one-call video production for Claude, Cursor and any MCP client",
+  "scores": {
+   "promo": 0.29,
+   "explainer": 0.19,
+   "music": 0.31,
+   "motion": 0.17,
+   "shorts": 0.89,
+   "editing": 0.93,
+   "demo": 0.18,
+   "story": 0.06,
+   "avatar": 0.06,
+   "general": 0.77
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "renthelautomations/app-launch-video",
+  "stars": 11,
+  "description": "Claude skill for Apple-keynote-style app launch films: real UI components in Remotion, spring-physics motion, synced spatial sound, storyboard + frame-level QA, 16:9/9:16/1:1 delivery.",
+  "scores": {
+   "promo": 0.98,
+   "explainer": 0.14,
+   "music": 0.1,
+   "motion": 0.31,
+   "shorts": 0.28,
+   "editing": 0.05,
+   "demo": 0.79,
+   "story": 0.11,
+   "avatar": 0.02,
+   "general": 0.05
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "brewed-ops/KapeCut",
+  "stars": 8,
+  "description": "A motion design and video editor for Claude Code: Claude writes every Scene as code",
+  "scores": {
+   "promo": 0.66,
+   "explainer": 0.33,
+   "music": 0.11,
+   "motion": 0.41,
+   "shorts": 0.58,
+   "editing": 0.07,
+   "demo": 0.93,
+   "story": 0.25,
+   "avatar": 0.05,
+   "general": 0.25
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "OrenFang/orencut",
+  "stars": 6,
+  "description": "OrenCut · 33 可编辑的静音 Remotion 动效组件，附可视化预览和 Agent Skill。",
+  "scores": {
+   "promo": 0.36,
+   "explainer": 0.23,
+   "music": 0.05,
+   "motion": 0.94,
+   "shorts": 0.47,
+   "editing": 0.28,
+   "demo": 0.77,
+   "story": 0.06,
+   "avatar": 0.04,
+   "general": 0.76
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "soundza/soundkit",
+  "stars": 5,
+  "description": "Free video sound effects for Remotion and React: 250 CC0 sounds and music beds added with one shadcn command, plus an agent skill that places each hit on the exact frame.",
+  "scores": {
+   "promo": 0.86,
+   "explainer": 0.24,
+   "music": 0.07,
+   "motion": 0.4,
+   "shorts": 0.14,
+   "editing": 0.09,
+   "demo": 0.83,
+   "story": 0.08,
+   "avatar": 0.04,
+   "general": 0.46
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "4waiz/kanban-motion",
+  "stars": 5,
+  "description": "Kanban Motion by Kanban Studios: motion graphics as code, locked to a voice. A Claude Code skill for launch videos with local TTS voiceover, word-level sync, music, SFX and a mastered mix.",
+  "scores": {
+   "promo": 0.91,
+   "explainer": 0.33,
+   "music": 0.15,
+   "motion": 0.82,
+   "shorts": 0.34,
+   "editing": 0.12,
+   "demo": 0.8,
+   "story": 0.18,
+   "avatar": 0.05,
+   "general": 0.22
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "gitroomhq/postiz-content-skills",
+  "stars": 8,
+  "description": "Claude Code skills that turn one article into an SEO blog post and a 30s Short with your AI twin, scheduled with Postiz",
+  "scores": {
+   "promo": 0.18,
+   "explainer": 0.36,
+   "music": 0.07,
+   "motion": 0.18,
+   "shorts": 0.96,
+   "editing": 0.27,
+   "demo": 0.21,
+   "story": 0.1,
+   "avatar": 0.96,
+   "general": 0.16
+  },
+  "kind": "shorts"
  }
 ]

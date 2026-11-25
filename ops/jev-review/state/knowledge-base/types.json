@@ -5472,5 +5472,19 @@
    "personal": 0.3
   },
   "kind": "graph"
+ },
+ {
+  "repo": "GoogleCloudPlatform/knowledge-compiler",
+  "stars": 15,
+  "description": "Give AI coding agents persistent, local memory across sessions: compile decks, PDFs, docs, and chats into an OKF v0.3 Markdown wiki and 3D WebGL graph.",
+  "scores": {
+   "llm_wiki": 0.89,
+   "rag_platform": 0.19,
+   "mcp": 0.85,
+   "docs_qa": 0.64,
+   "graph": 0.91,
+   "personal": 0.57
+  },
+  "kind": "graph"
  }
 ]
