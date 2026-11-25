@@ -671,12 +671,15 @@ export function storedScanResult(
 export class GitHubReadError extends Error {
   status: number;
   rateRemaining: string | null;
+  retryAfter: string | null;
 
-  constructor(message: string, status: number, rateRemaining: string | null) {
+  constructor(message: string, status: number, headers: Headers) {
     super(message);
     this.name = "GitHubReadError";
     this.status = status;
-    this.rateRemaining = rateRemaining;
+    // Both are CORS-exposed by api.github.com; together they tell a rate limit from a blocked repo.
+    this.rateRemaining = headers.get("x-ratelimit-remaining");
+    this.retryAfter = headers.get("retry-after");
   }
 }
 
@@ -707,7 +710,7 @@ export async function fetchGitHubRepo(fullName: string): Promise<{
       status === 404 ? `Repository ${fullName} not found`
         : status === 403 ? "GitHub API rate limit exceeded. Try again later."
           : `GitHub API error: ${status}`;
-    throw new GitHubReadError(message, status, repoResp.headers.get("x-ratelimit-remaining"));
+    throw new GitHubReadError(message, status, repoResp.headers);
   }
 
   const repo = await repoResp.json();

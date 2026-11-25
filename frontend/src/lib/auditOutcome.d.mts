@@ -1,16 +1,19 @@
-export type GitHubFailureReason = "rate_limited" | "not_found" | "network" | "github_error";
+export type GitHubFailureReason = "rate_limited" | "not_found" | "blocked" | "network" | "github_error";
 
 export type StoredVerdict = "safe" | "caution" | "unsafe" | "reject";
 
 export interface GitHubFailure {
   status: number;
   rateRemaining: string | null;
+  retryAfter?: string | null;
 }
 
 export type FailedRead = { ok: false } & Partial<GitHubFailure>;
 
 export interface GradedRow {
   security_grade?: string | null;
+  /** 'live' | 'gone' | 'unknown' (migration 022). */
+  repo_status?: string | null;
 }
 
 /** After a failed read: the catalog's verdict stands in, or there is nothing to show. */

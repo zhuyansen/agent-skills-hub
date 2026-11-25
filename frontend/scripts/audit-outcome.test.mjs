@@ -38,12 +38,31 @@ test("with no usable catalog grade the failure stays an error", () => {
   assert.deepEqual(auditOutcome(limited, { security_grade: null }), { kind: "error", reason: "rate_limited" });
 });
 
-test("a 403 is a rate limit only when GitHub says the quota is spent", () => {
+test("a 403 is a rate limit only when GitHub says so; otherwise the repo is blocked", () => {
   assert.equal(githubFailureReason({ status: 403, rateRemaining: "0" }), "rate_limited");
+  assert.equal(githubFailureReason({ status: 403, rateRemaining: "41", retryAfter: "60" }), "rate_limited");
   assert.equal(githubFailureReason({ status: 429, rateRemaining: null }), "rate_limited");
-  assert.equal(githubFailureReason({ status: 403, rateRemaining: "41" }), "github_error");
+  // Quota left and no Retry-After: "Repository access blocked". 451 is a takedown.
+  assert.equal(githubFailureReason({ status: 403, rateRemaining: "41" }), "blocked");
+  assert.equal(githubFailureReason({ status: 451, rateRemaining: "41" }), "blocked");
   assert.equal(githubFailureReason({ status: 404, rateRemaining: null }), "not_found");
   assert.equal(githubFailureReason({ status: 0, rateRemaining: null }), "network");
+  assert.equal(githubFailureReason({ status: 503, rateRemaining: null }), "github_error");
+});
+
+test("a blocked or taken-down repo is not given its old grade", () => {
+  assert.deepEqual(auditOutcome({ ok: false, status: 451 }, graded), { kind: "error", reason: "blocked" });
+  assert.deepEqual(auditOutcome({ ok: false, status: 403, rateRemaining: "12" }, graded), { kind: "error", reason: "blocked" });
+});
+
+test("a repo the catalog marks gone keeps the error, whatever GitHub said", () => {
+  // Review of this change: a deleted repo (repo_status 'gone', migration 022) seen from a
+  // rate-limited IP would otherwise show its old "Safe".
+  const gone = { security_grade: "safe", repo_status: "gone" };
+  assert.deepEqual(auditOutcome({ ok: false, status: 403, rateRemaining: "0" }, gone), { kind: "error", reason: "rate_limited" });
+  assert.deepEqual(auditOutcome({ ok: false, status: 0 }, gone), { kind: "error", reason: "network" });
+  const unchecked = { security_grade: "safe", repo_status: "unknown" };
+  assert.deepEqual(auditOutcome({ ok: false, status: 0 }, unchecked), { kind: "index", reason: "network" });
 });
 
 test("only real verdicts can stand in for a live scan", () => {

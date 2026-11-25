@@ -16,10 +16,19 @@
 
 const VERDICTS = new Set(["safe", "caution", "unsafe", "reject"]);
 
-/** Why the live read failed. `status` is the HTTP status, 0 when no response came back. */
-export function githubFailureReason({ status, rateRemaining }) {
-  if (status === 429 || (status === 403 && rateRemaining === "0")) return "rate_limited";
+// GitHub says the repo is gone or blocked: an old verdict would describe something no one can
+// install, so these keep the error. For a security grade, showing an error beats a stale "Safe".
+const NO_FALLBACK = new Set(["not_found", "blocked"]);
+
+/**
+ * Why the live read failed. `status` is the HTTP status, 0 when no response came back. A 403 is a
+ * rate limit only when GitHub says so (quota 0, or Retry-After on a secondary limit); with quota
+ * left it is "Repository access blocked", like a 451 takedown.
+ */
+export function githubFailureReason({ status, rateRemaining, retryAfter = null }) {
+  if (status === 429 || (status === 403 && (rateRemaining === "0" || retryAfter != null))) return "rate_limited";
   if (status === 404) return "not_found";
+  if (status === 403 || status === 451) return "blocked";
   if (status === 0) return "network";
   return "github_error";
 }
@@ -45,12 +54,17 @@ export function parseStoredFlags(raw) {
 
 /**
  * live, index or error, from the settled GitHub read ({ ok } or { ok: false, status,
- * rateRemaining }) and the catalog row. A repo GitHub calls gone (404) keeps the error: its old
- * grade would describe something that no longer exists.
+ * rateRemaining, retryAfter }) and the catalog row. No fallback for a repo GitHub calls gone or
+ * blocked, nor for one the catalog's liveness check marked gone (repo_status, migration 022).
  */
 export function auditOutcome(github, row) {
   if (github.ok) return { kind: "live" };
-  const reason = githubFailureReason({ status: github.status ?? 0, rateRemaining: github.rateRemaining ?? null });
-  if (reason !== "not_found" && usableIndexedGrade(row)) return { kind: "index", reason };
+  const reason = githubFailureReason({
+    status: github.status ?? 0,
+    rateRemaining: github.rateRemaining ?? null,
+    retryAfter: github.retryAfter ?? null,
+  });
+  const gone = row?.repo_status === "gone";
+  if (!NO_FALLBACK.has(reason) && !gone && usableIndexedGrade(row)) return { kind: "index", reason };
   return { kind: "error", reason };
 }

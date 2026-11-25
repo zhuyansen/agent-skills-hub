@@ -55,7 +55,7 @@ export class AuditFailure extends Error {
 const INDEX_COLUMNS = [
   "category", "quality_score", "quality_completeness", "quality_clarity", "quality_specificity",
   "quality_examples", "quality_agent_readiness", "security_grade", "security_flags",
-  "stars", "description", "license", "repo_url", "author_name",
+  "stars", "description", "license", "repo_url", "author_name", "repo_status",
 ].join(",");
 
 interface IndexRow {
@@ -73,12 +73,14 @@ interface IndexRow {
   license: string | null;
   repo_url: string | null;
   author_name: string | null;
+  /** 'live' | 'gone' | 'unknown' (migration 022); a gone repo never gets the stored verdict. */
+  repo_status: string | null;
 }
 
 type GitHubRepo = Awaited<ReturnType<typeof fetchGitHubRepo>>;
 type GitHubRead =
   | { ok: true; repo: GitHubRepo }
-  | { ok: false; status: number; rateRemaining: string | null; message: string };
+  | { ok: false; status: number; rateRemaining: string | null; retryAfter: string | null; message: string };
 
 async function readIndex(fullName: string): Promise<IndexRow | null> {
   if (!supabase) return null;
@@ -103,6 +105,7 @@ async function readGitHub(fullName: string): Promise<GitHubRead> {
       ok: false,
       status: failed?.status ?? 0, // fetch() rejects without a status when the network fails
       rateRemaining: failed?.rateRemaining ?? null,
+      retryAfter: failed?.retryAfter ?? null,
       message: err instanceof Error ? err.message : "Analysis failed",
     };
   }
