@@ -32,6 +32,14 @@ API_KEY = _read_cred("POSTHOG_API_KEY", ".api_key")
 PROJECT_ID = _read_cred("POSTHOG_PROJECT_ID", ".project_id")
 HOST = _read_cred("POSTHOG_HOST", ".host", "https://us.posthog.com").rstrip("/")
 
+# Only Stripe live-mode orders are revenue: ops/stripe/poll_stripe.py sets $insert_id to the
+# Checkout Session id, which starts with cs_live_ in live mode. From 2026-11-18 to 11-25 a unit
+# test posted 12 fake `cs_test` purchases to this project; they leave the 28-day window ~12-23.
+LIVE_PURCHASES_ONLY = (
+    "(event != 'purchase_completed' "
+    "OR startsWith(toString(properties.$insert_id), 'cs_live_'))"
+)
+
 
 def arg(flag, default):
     return type(default)(sys.argv[sys.argv.index(flag) + 1]) if flag in sys.argv else default
@@ -162,6 +170,7 @@ def main():
                     FROM events
                     WHERE timestamp >= now() - INTERVAL {days} DAY
                       AND event IN ('purchase_completed', 'b2b_deal_won')
+                      AND {LIVE_PURCHASES_ONLY}
                     GROUP BY distinct_id
                 )
             SELECT
@@ -235,6 +244,7 @@ def main():
                 'purchase_completed',
                 'b2b_deal_won'
               )
+              AND {LIVE_PURCHASES_ONLY}
             GROUP BY event
             ORDER BY users_28d DESC
             """,
