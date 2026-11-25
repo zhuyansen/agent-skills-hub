@@ -21,7 +21,9 @@ def no_network(monkeypatch):
     fails here instead of reaching Stripe, Resend, GitHub or the live PostHog project: from
     2026-11-18 to 11-25 each local run of this file posted a fake $0 `purchase_completed`."""
     def refuse(url, *args, **kwargs):
-        raise AssertionError(f"unexpected network call in a unit test: {url}")
+        # pytest.fail raises a BaseException: send_posthog_purchase's best-effort
+        # `except Exception` would swallow an AssertionError and let the test pass.
+        pytest.fail(f"unexpected network call in a unit test: {url}")
     monkeypatch.setattr(poll_stripe, "http_json", refuse)
 
 
