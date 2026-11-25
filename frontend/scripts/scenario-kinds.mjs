@@ -108,15 +108,25 @@ export const KIND_SCRIPT = `<script>
     (function(){
       var bar=document.getElementById('kind-bar'),list=document.getElementById('kind-cards');
       if(!bar||!list)return;
-      var cards=[].slice.call(list.querySelectorAll('.bp-card'));
-      cards.forEach(function(c,i){c.setAttribute('data-order',i)});
+      var cards=[];
+      function syncCards(){
+        cards=[].slice.call(list.querySelectorAll('.bp-card'));
+        cards.forEach(function(c,i){if(!c.hasAttribute('data-order'))c.setAttribute('data-order',i)});
+      }
+      syncCards();
+      document.addEventListener('ash:cards-loaded',syncCards);
       function num(c,k){return Number(c.getAttribute(k))||0}
       function rank(c,i){
         var r=c.querySelector('.bp-rank');
-        if(r){r.textContent=i+1;r.className='bp-rank '+(i<3?'bp-rank--gold':'bp-rank--gray')}
+        if(r){r.textContent=i+1;r.className='bp-rank '+(i<3?'bp-rank--gold':'bp-rank--gray')+' bp-sc-rank'}
       }
       function show(kind){
         var all=kind==='all';
+        if(!all&&typeof window.__ashLoadMoreCards==='function'&&document.getElementById('more-cards-btn')){
+          window.__ashLoadMoreCards(function(){syncCards();show(kind)});
+          return;
+        }
+        syncCards();
         var shown=cards.filter(function(c){return all||c.getAttribute('data-kind')===kind});
         if(!shown.length&&!all)return show('all');
         shown.sort(function(a,b){return all?num(a,'data-order')-num(b,'data-order'):num(b,'data-stars')-num(a,'data-stars')});

@@ -729,3 +729,36 @@
 .bp-ps-text ins { color: #1a7f37; text-decoration: none; background: rgba(26, 127, 55, 0.1); border-radius: 2px; }
 .dark .bp-ps-text del { color: #f85149; }
 .dark .bp-ps-text ins { color: #3fb950; background: rgba(63, 185, 80, 0.14); }
+
+/* Show-all button for windowed scenario cards (scenario-cards.mjs) */
+.bp-more-wrap {
+  margin: 18px 0 8px;
+  text-align: center;
+}
+.bp-more-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid var(--bp-border-accent);
+  background: var(--bp-bg-alt);
+  color: var(--bp-link);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+.bp-more-btn:hover {
+  border-color: var(--bp-link);
+  background: var(--bp-card-bg);
+}
+.bp-more-btn:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+.bp-more-btn:focus-visible {
+  outline: 2px solid var(--bp-link);
+  outline-offset: 2px;
+}

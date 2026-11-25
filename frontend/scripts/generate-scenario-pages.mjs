@@ -32,8 +32,15 @@ import { cautionHtml } from "./scenario-caution.mjs";
 import { withHreflang, withLangSwitch, zhTwin, zhPathOf } from "./scenario-zh-page.mjs";
 import { quickPickHtml, focusAt } from "./scenario-answer.mjs";
 import { localeNotesHtml } from "./scenario-locale-notes.mjs";
-import { comparisonsHtml } from "./scenario-compare-links.mjs";
 import { relatedScenarios } from "./scenario-related.mjs";
+import { buildScenarioTitle } from "./scenario-title.mjs";
+import {
+  INITIAL_CARDS, splitScenarioCards, serializeOverflowCards,
+  moreCardsButtonHtml, MORE_CARDS_SCRIPT,
+} from "./scenario-cards.mjs";
+import {
+  expandedRelatedScenarios, scenarioComparisonsHtml, resourcesHtml,
+} from "./scenario-links.mjs";
 import { extractQuickStart } from "./scenario-quickstart.mjs";
 import {
   MODIFIED_PATH, declaredDateIn, fingerprint, loadLiveModified, nextModified,
@@ -41,7 +48,6 @@ import {
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST = "dist";
-const TITLE_MAX = 60;   // Google shows about 60 characters of a title
 const COMPARE_ROWS = 20; // rows in the comparison table
 // The card's title and body already open the skill page ("View Details" x 209 led the
 // page's n-gram list, 10-05); the footer keeps one link, to GitHub, as an icon.
@@ -125,10 +131,10 @@ function leadLabel(skills) {
   return (s) => (repeats ? s.repo_full_name : s.repo_name);
 }
 
-const CSS_VERSION = "20261107";
+const CSS_VERSION = "20261124";
 /** Bump when a change to this generator changes what every /best/ page says or links
  *  to, so each page's sitemap lastmod moves with it (scenario-modified.mjs). */
-const TEMPLATE_REV = "2026-11-09";
+const TEMPLATE_REV = "2026-11-24";
 
 /* ── Skill matching ──────────────────────────────── */
 
@@ -619,14 +625,6 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
   const h1En = scenario.serp_subject ? `Best ${subjectPhrase(scenario)} in ${year}`
     : titleHasSkillWord ? `Best ${scenario.title} in ${year}` : `Best AI Agent Skills for ${scenario.title} in ${year}`;
   // Lead with the security verdict, not the count.
-  //
-  // The old title and description said "{N} open-source X compared: {three
-  // repo names}. Stars, quality, use cases." Every listicle on the SERP can
-  // write that, and the star count is exactly what Google's rater guidelines
-  // (§20.0) call "usage statistics ... not usually helpful". The one claim no
-  // competing list can make — that every tool here has been independently
-  // security-graded — appeared nowhere. Same fix already applied to skill
-  // pages, same reasoning.
   const graded = [...skills, ...subCards].filter((s) => ["safe", "caution", "unsafe", "reject"].includes(s.security_grade));
   const safeN = graded.filter((s) => s.security_grade === "safe").length;
   const flaggedN = graded.length - safeN;
@@ -638,53 +636,13 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
     ? `${safeN} rated SAFE${flaggedN ? `, ${flaggedN} flagged` : ""}`
     : "";
 
-  // Google shows roughly the first 60 characters of a title. Several scenario
-  // titles are long enough on their own ("browser-use, Playwright MCP & AI
-  // Browser Agents") that a verdict appended after them lands at character 90
-  // and is truncated away — the change would ship and be invisible. Trim the
-  // subject at a comma boundary so the verdict always arrives inside the
-  // visible window, and drop the brand suffix when it would not fit anyway
-  // (Google appends the site name itself).
-  const subjectFull = scenario.title;
-  const subject = (() => {
-    // `serp_subject` names the <title> subject outright, for a title whose
-    // trimmed form would lose the word the page exists for ("Video Skills for
-    // Claude Code & Opus 5.5" trimmed to "... Claude Code": the model was gone).
-    if (scenario.serp_subject) return scenario.serp_subject;
-    if (subjectFull.length <= 34) return subjectFull;
-    // Cut at a word boundary, then drop a dangling conjunction or stub word —
-    // a naive slice produced "browser-use, Playwright MCP & AI B:", which
-    // reads as a typo in the SERP and undoes the credibility the verdict buys.
-    let t = subjectFull.slice(0, 34);
-    t = t.slice(0, t.lastIndexOf(" "));
-    // Peel trailing stubs until the phrase ends on a real word. One pass left
-    // "browser-use, Playwright MCP & AI" — the conjunction was gone but the
-    // two-letter fragment after it was not.
-    for (let i = 0; i < 4; i++) {
-      const next = t
-        .replace(/\s*[,&:+\-|]\s*$/, "")
-        .replace(/\s+(and|or|for|with|the|a|an|ai|to|in|on|of)$/i, "");
-      if (next === t) break;
-      t = next;
-    }
-    return t.trim() || subjectFull.split(/[,:]/)[0].trim();
-  })();
-  // 10-05: "N Compared, X rated SAFE, Y flagged (YYYY)" ran titles to 80+ characters
-  // (seo.web.cafe On Page audit: truncated in results). The SAFE/flagged counts stay in
-  // the meta description; the title keeps the claim that every entry is graded.
-  // The first that fits; the last is the shortest. A page whose new rows are not graded
-  // yet takes the "Compared" forms (claude-code-hooks after a sync added 153 rows, 10-05).
-  // The year outlasts the count (10-26): AI answers search with the year appended
-  // ("best postgres mcp 2026"), so a long subject drops the count before the year.
-  const heads = canClaim
-    ? [`${subject}: ${itemCount} Security-Graded (${year})`, `${subject}: ${itemCount} Graded (${year})`,
-       `${subject}: Graded (${year})`, `${subject}: ${itemCount} Graded`, `${subject} (${year})`]
-    : [`${subject}: ${itemCount} Open-Source ${titleHasToolWord ? "" : "Tools "}Compared (${year})`,
-       `${subject}: ${itemCount} Compared (${year})`, `${subject}: Compared (${year})`,
-       `${subject}: ${itemCount} Compared`, `${subject} (${year})`];
-  const head = heads.find((h) => h.length <= TITLE_MAX) || heads[heads.length - 1];
-  const branded = `${head} | Agent Skills Hub`;
-  const title = (branded.length <= TITLE_MAX ? branded : head).replace(/  +/g, " ");
+  const run = runsFor(scenario.slug);   // end-to-end test results, when the page has them
+  const extraRuns = extraRunsFor(scenario.slug);   // further tests on the page (anti-slop: the interface test)
+  const testedCount = run ? Object.keys(run.runs || {}).length : 0;
+
+  // Buyer-query aligned <title> ("Best ...") within Google's 60-character budget,
+  // preserving hands-on tested / security-graded differentiation (scenario-title.mjs).
+  const title = buildScenarioTitle({ scenario, itemCount, canClaim, testedCount, year });
 
   const metaTopNames = skills.slice(0, 3).map(leadLabel(skills)).join(", ");
   const metaRaw = canClaim
@@ -799,13 +757,22 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
   // No FAQPage JSON-LD: Google stopped showing FAQ results on 2026-05-07 (search/updates, checked
   // 2026-10-17). The questions stay on the page for readers.
 
-  // Skill cards HTML
+  // Skill cards HTML: keep top INITIAL_CARDS in static HTML for focused RAG/SEO
+  // signal; write overflow cards to /best/<slug>/more-cards.json hydrated on demand.
   const twoWeeksAgo = Date.now() - 14 * 24 * 60 * 60 * 1000;
   const scenarioKinds = kindsFor(scenario.slug);
   const cards = [...skills, ...subCards];
-  const run = runsFor(scenario.slug);   // end-to-end test results, when the page has them
-  const extraRuns = extraRunsFor(scenario.slug);   // further tests on the page (anti-slop: the interface test)
-  const skillCardsHtml = cards.map((s, i) => {
+  const { initial: initialCards, overflow: overflowCards } = splitScenarioCards(cards, INITIAL_CARDS);
+  const runLinesOf = (s) => [run, ...extraRuns].map((x) => runLineHtml(x, s)).join("");
+  const moreCards = overflowCards.length
+    ? serializeOverflowCards(overflowCards, {
+        startIndex: initialCards.length,
+        scenarioKinds,
+        twoWeeksAgo,
+        runLines: runLinesOf,
+      })
+    : [];
+  const skillCardsHtml = initialCards.map((s, i) => {
     // A reviewed page labels each card with its reviewed kind, which names the
     // page's topic ("Editable PPTX"), and drops the language tag: repeated on
     // 200+ cards, the catalog category and "Python" outnumbered the page's own
@@ -851,7 +818,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
           </div>
         </div>
         <p class="bp-card-desc bp-sc-desc" data-en="${esc(descEn(s))}" data-zh="${esc(descZh(s))}">${esc(descEn(s))}</p>
-        ${[run, ...extraRuns].map((x) => runLineHtml(x, s)).join("")}
+        ${runLinesOf(s)}
         ${installHtml}
         ${qsHtml}
         <div class="bp-sc-foot">
@@ -873,8 +840,8 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
         </tr>`;
   }).join("\n        ");
 
-  // Related scenarios
-  const relatedHtml = relatedScenarios(scenario, allScenarios)
+  // Related scenarios (direct + bidirectional + 2nd-hop + cluster peers on live pages)
+  const relatedHtml = expandedRelatedScenarios(scenario, allScenarios)
     .map((rel) => `<a href="/best/${esc(rel.slug)}/" class="bp-related-tag" data-en="${esc(rel.title)}" data-zh="${esc(rel.zhTitle || rel.title)}">${esc(rel.title)}</a>`)
     .join("\n        ");
 
@@ -884,7 +851,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
         <p style="margin:8px 0 0;color:var(--bp-text-secondary);line-height:1.6" data-en="${esc(f.a)}" data-zh="${esc(f.aZh || f.a)}">${esc(f.a)}</p>
       </details>`).join("\n      ");
 
-  return `<!doctype html>
+  const html = `<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -984,7 +951,9 @@ ${methodLd(scenario, pageUrl)}
       <div id="kind-cards">
       ${skillCardsHtml}
       </div>
+      ${moreCardsButtonHtml(scenario.slug, cards.length, overflowCards.length)}
       ${CARD_SCRIPT}
+      ${overflowCards.length ? MORE_CARDS_SCRIPT : ""}
       ${scenarioKinds ? KIND_SCRIPT : ""}
       </section>
 
@@ -1015,8 +984,11 @@ ${methodLd(scenario, pageUrl)}
         </div>
       </section>` : ""}
 
-      <!-- Head-to-head comparisons of this page's projects -->
-      ${comparisonsHtml(skills)}
+      <!-- Head-to-head comparisons of this page's projects & topic cluster -->
+      ${scenarioComparisonsHtml(scenario, skills)}
+
+      <!-- Guides, empirical benchmarks & security resources -->
+      ${resourcesHtml(scenario)}
 
       <!-- FAQ -->
       <section style="margin-top:32px" class="bp-faq">
@@ -1052,6 +1024,7 @@ ${methodLd(scenario, pageUrl)}
     </div>
 </body>
 </html>`;
+  return { html, moreCards };
 }
 
 /* ── Main ────────────────────────────────────────── */
@@ -1119,8 +1092,9 @@ async function main() {
 
     scenarioSkillCounts[scenario.slug] = skills.length + subSkillCards(scenario, allSkills).length;
     fps[scenario.slug] = pageFingerprint(scenario, skills, allSkills); // before the build can touch them
-    built.push({ scenario, count: scenarioSkillCounts[scenario.slug], path: `/best/${scenario.slug}/`, html: buildScenarioHtml(scenario, skills, assetTags, scenarios, allSkills) });
-    console.log(`  \u2713 /best/${scenario.slug}/ (${skills.length} skills)`);
+    const { html, moreCards } = buildScenarioHtml(scenario, skills, assetTags, scenarios, allSkills);
+    built.push({ scenario, count: scenarioSkillCounts[scenario.slug], path: `/best/${scenario.slug}/`, html, moreCards });
+    console.log(`  \u2713 /best/${scenario.slug}/ (${skills.length} skills${moreCards.length ? `, +${moreCards.length} lazy` : ""})`);
     generated++;
   }
   built.push({ path: "/best/", html: buildIndexHtml(scenarios, scenarioSkillCounts, assetTags) });
@@ -1159,6 +1133,9 @@ function writeBestPages(built) {
     mkdirSync(dir, { recursive: true });
     const enHtml = twinPaths.has(b.path) ? withLangSwitch(withHreflang(b.html, b.path), b.path) : b.html;
     writeFileSync(join(dir, "index.html"), enHtml);
+    if (b.moreCards?.length) {
+      writeFileSync(join(dir, "more-cards.json"), JSON.stringify(b.moreCards));
+    }
     if (!twinPaths.has(b.path)) continue;
     const zhDir = join(DIST, ...zhPathOf(b.path).split("/").filter(Boolean));
     mkdirSync(zhDir, { recursive: true });
