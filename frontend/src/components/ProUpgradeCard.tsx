@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { USD_PRICING, buildStripeCheckoutUrl } from "../lib/checkout";
 import { isCompleteEmail, submitEnterpriseLead } from "../lib/enterpriseLead";
 import { trackEvent } from "../lib/analytics";
@@ -20,6 +20,23 @@ export function UpgradeCard({
   const [status, setStatus] = useState<"idle" | "submitting" | "sent" | "error">("idle");
   const [errMsg, setErrMsg] = useState("");
   const hasStripe = offer.link.length > 0;
+  const root = useRef<HTMLDivElement>(null);
+  const seen = useRef(false);
+
+  // "Viewed" means the card entered the viewport, as for audit_lead_viewed. 2026-11-18..25:
+  // 47 people opened /pro/ and none clicked checkout, with no way to tell if they saw the price.
+  useEffect(() => {
+    const el = root.current;
+    if (!el || seen.current) return;
+    const io = new IntersectionObserver((entries) => {
+      if (seen.current || !entries.some((e) => e.isIntersecting)) return;
+      seen.current = true;
+      trackEvent("pro_upgrade_viewed", { exhausted, stripe: hasStripe, price: offer.price });
+      io.disconnect();
+    });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [exhausted, hasStripe, offer.price]);
 
   const checkoutHref = hasStripe
     ? buildStripeCheckoutUrl(offer.link, {
@@ -69,6 +86,7 @@ export function UpgradeCard({
 
   return (
     <div
+      ref={root}
       id="pro-checkout"
       className="max-w-xl mx-auto mt-10 p-8 rounded-2xl border border-indigo-200 dark:border-indigo-900 bg-indigo-50 dark:bg-indigo-950/40 text-center"
     >

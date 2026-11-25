@@ -235,6 +235,8 @@ def main():
                 'enterprise_form_started',
                 'enterprise_lead_attempt',
                 'enterprise_lead_submitted',
+                'pro_search_run',
+                'pro_upgrade_viewed',
                 'pro_checkout_click',
                 'cigate_checkout_click',
                 'fasttrack_checkout_click',

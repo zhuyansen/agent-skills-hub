@@ -15,6 +15,7 @@ import {
   type ProSearchEvent, type ProSearchFilters, type ProSearchState,
 } from "../lib/proSearchState.mjs";
 import { UpgradeCard } from "../components/ProUpgradeCard";
+import { trackEvent } from "../lib/analytics";
 
 import { useProOffer } from "../hooks/useProOffer";
 
@@ -324,12 +325,24 @@ export default function ProPage() {
     if (!supabase) return dispatch({ type: "held", reason: "backend_missing" });
     // Own key → unlimited. No key → keyless trial, capped here and on the server.
     const usingTrial = !memberKey;
+    // One pro_search_run per attempt: until 2026-11-25 only autocapture hinted at
+    // whether /pro/ visitors searched at all (about 3 of 47 did, 11-18..25).
+    const report = (outcome: string, results?: number) =>
+      trackEvent("pro_search_run", { trial: usingTrial, outcome, results });
     const limit = TRIAL_LIMIT + (shareClaimed ? SHARE_BONUS : 0);
-    if (usingTrial && trialUsed >= limit) return dispatch({ type: "held", reason: "trial_exhausted" });
+    if (usingTrial && trialUsed >= limit) {
+      report("trial_exhausted");
+      return dispatch({ type: "held", reason: "trial_exhausted" });
+    }
     dispatch({ type: "started" });
     const filters = { query, category, grade };
     const { data, error } = await callSearch(supabase, memberKey, filters);
-    if (error) return dispatch({ type: "refused", reason: classifyProSearchError(error), filters });
+    if (error) {
+      const reason = classifyProSearchError(error);
+      report(reason);
+      return dispatch({ type: "refused", reason, filters });
+    }
+    report(data?.length ? "results" : "empty", data?.length ?? 0);
     dispatch({ type: "succeeded", rows: data ?? [], filters, exportable: !usingTrial });
     if (!usingTrial) return;
     setTrialUsed(trialUsed + 1);
