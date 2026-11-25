@@ -25,6 +25,21 @@ def no_network(monkeypatch):
     monkeypatch.setattr(poll_stripe, "http_json", refuse)
 
 
+def record_http(monkeypatch, replies=None):
+    """Stub http_json; return the list of (url, body) it receives. `replies` maps a URL suffix to a reply."""
+    calls = []
+    def fake_http(url, headers, data=None, method="GET"):
+        calls.append((url, json.loads(data.decode()) if data else None))
+        return next((r for suffix, r in (replies or {}).items() if url.endswith(suffix)), {})
+    monkeypatch.setattr(poll_stripe, "http_json", fake_http)
+    return calls
+
+
+def live_session(**extra):
+    return {"id": "cs_live_a1", "livemode": True, "amount_total": 4900, "currency": "usd",
+            "client_reference_id": "fasttrack--owner--repo", **extra}
+
+
 def test_classify_session_skus():
     assert poll_stripe.classify_session({"client_reference_id": "pro--hub-member"}) == ("pro", "hub-member")
     assert poll_stripe.classify_session({"client_reference_id": "cigate--acme--skills"}) == ("cigate", "acme/skills")
@@ -178,3 +193,27 @@ def test_test_mode_session_never_reaches_posthog():
     # Unit-test fixtures and Stripe test-mode sessions carry no livemode=True, so they are never revenue.
     assert poll_stripe.send_posthog_purchase({"id": "cs_test", "client_reference_id": "fasttrack--repo"}, "fasttrack") is False
     assert poll_stripe.send_posthog_purchase({"id": "cs_test_a1", "livemode": False}, "pro") is False
+
+
+def test_live_purchase_reported_once_after_the_order_is_recorded(monkeypatch):
+    monkeypatch.setattr(poll_stripe, "RESEND_KEY", "re_test")
+    monkeypatch.setattr(poll_stripe, "EMAIL_FROM", "hub@agentskillshub.top")
+    monkeypatch.setattr(poll_stripe, "sync_subscriptions", lambda *a: None)
+    calls = record_http(monkeypatch, {"/issues": {"html_url": "https://github.com/o/r/issues/1"}})
+    poll_stripe.process_session(live_session())
+    urls = [u for u, _ in calls]
+    captures = [i for i, u in enumerate(urls) if u == poll_stripe.POSTHOG_CAPTURE_URL]
+    issue = next(i for i, u in enumerate(urls) if u.endswith("/issues"))
+    assert len(captures) == 1 and captures[0] > issue
+    props = calls[captures[0]][1]["properties"]
+    assert props["$insert_id"] == "cs_live_a1" and props["revenue"] == 49.0
+
+
+def test_failed_alert_sends_no_purchase_event(monkeypatch):
+    # No issue yet means the next run retries this order; reporting it now would count it twice.
+    calls = record_http(monkeypatch)
+    monkeypatch.setattr(poll_stripe, "sync_subscriptions", lambda *a: None)
+    monkeypatch.setattr(poll_stripe, "send_alert", lambda *a: (_ for _ in ()).throw(TimeoutError()))
+    with pytest.raises(TimeoutError):
+        poll_stripe.process_session(live_session())
+    assert poll_stripe.POSTHOG_CAPTURE_URL not in [u for u, _ in calls]

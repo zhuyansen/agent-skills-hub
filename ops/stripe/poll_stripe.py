@@ -449,7 +449,7 @@ def send_posthog_purchase(session: dict, sku: str) -> bool:
             method="POST",
         )
         return True
-    except (urllib.error.URLError, TimeoutError, json.JSONDecodeError) as exc:
+    except Exception as exc:  # best-effort: the order is already recorded and must not be retried
         print(f"WARNING: PostHog S2S capture failed for {session['id']}: {type(exc).__name__}")
         return False
 
@@ -534,9 +534,11 @@ def process_session(session: dict) -> str:
         key_status = "pending_manual_issue"
 
     sync_subscriptions([session])
-    send_posthog_purchase(session, sku)
     send_alert(session, sku, target, "https://dashboard.stripe.com/payments", key_status)
     issue_url = create_issue(session, sku, target, key_status)
+    # The issue marks the order done (main() skips sessions that have one). Sent before
+    # it, a failed alert or issue made every 30-min retry report the purchase again.
+    send_posthog_purchase(session, sku)
     return issue_url
 
 
