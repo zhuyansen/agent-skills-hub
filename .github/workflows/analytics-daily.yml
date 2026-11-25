@@ -86,6 +86,14 @@ jobs:
           TYPESAFE_API_KEY: ${{ secrets.TYPESAFE_API_KEY }}
         run: python ops/health/fetch_health.py || true
 
+      # Entity-audit node 1, relation rules: the founder, Agent Skills Hub and the operating company stay
+      # separate entities in the site's JSON-LD (split 2026-11-24). Four main pages, the blog posts that
+      # carry JSON-LD, and the founder's profiles from jasonzhu.ai. Public pages, no secrets, a few seconds.
+      - name: Entity relations
+        run: |
+          mkdir -p ops/geo/out
+          python ops/geo/entity_edges.py --json > ops/geo/out/entity-edges.json || rm -f ops/geo/out/entity-edges.json
+
       # Entity-audit node 7: do the site, npm, GitHub, Wikidata and Zenodo state the
       # same counts, dates and names? Public pages and free APIs only, no secrets.
       - name: Brand facts

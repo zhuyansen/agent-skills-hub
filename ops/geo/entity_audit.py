@@ -9,6 +9,9 @@ Usage:
   python3 ops/geo/entity_audit.py --mode full              # Layer A + B (GoAnyAPI) + C (AIsa)
   python3 ops/geo/entity_audit.py --mode molecule --no-save
 
+Node 1 also applies the relation rules in entity_edges.py: the founder, Agent Skills Hub and the
+operating company stay separate entities (split 2026-11-24); run them alone with
+`python3 ops/geo/entity_edges.py`.
 Node 7 (fact consistency) checks that the nodes agree on the facts in
 brand-facts.json; run it alone with `python3 ops/geo/fact_consistency.py`.
 Node 8 (academic index) checks that every DOI on the ORCID record resolves and is filed under us at
@@ -109,12 +112,14 @@ def audit_entity_home() -> dict[str, Any]:
     pages = []
     id_map: dict[str, list[str]] = {}
     home_signals: dict[str, bool] = {}
+    html_by_path: dict[str, str] = {}
 
     for url in urls:
         code, _, html = http_get(url)
         if code != 200:
             pages.append({"url": url, "http_status": code, "error": html[:160]})
             continue
+        html_by_path[url[len(SITE):]] = html
         g = extract_jsonld_graph(html)
         for eid in g["at_ids"]:
             id_map.setdefault(eid, []).append(url)
@@ -147,12 +152,22 @@ def audit_entity_home() -> dict[str, Any]:
         and len(shared_ids) >= 2
     ) else "PARTIAL"
 
+    # The graph can be connected and still describe the founder, the product and the company as one
+    # thing; it did until 2026-11-24 and this node said VERIFIED. entity_edges.py holds those rules.
+    from entity_edges import audit_entity_edges  # sibling module; script dir is on sys.path
+    relations = audit_entity_edges(http_get, html_by_path)
+    if relations["issues"]:
+        status = "ISSUES_FOUND"
+    elif relations["status"] != "VERIFIED":
+        status = "PARTIAL"
+
     return {
         "node": "1_Entity_Home_Connected_Graph",
         "status": status,
         "shared_at_ids_across_pages": shared_ids,
         "home_signals": home_signals,
         "pages": pages,
+        "relations": relations,
     }
 
 
@@ -408,6 +423,8 @@ def main() -> int:
     for n in nodes:
         print(f"  [{n['status']:28s}] {n['node']}")
     by_name = {n["node"]: n for n in nodes}
+    for i in by_name["1_Entity_Home_Connected_Graph"].get("relations", {}).get("issues", []):
+        print(f"      - rule {i['rule']} {i['page']} {i['node']}: {i['detail']}")
     for c in by_name["7_Fact_Consistency"].get("conflicts", []):
         print(f"      - {c['fact']} @ {c['source']}: found '{c['found']}' ({c['why']})")
     for i in by_name["8_Academic_Index"].get("issues", []):

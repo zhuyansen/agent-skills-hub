@@ -42,6 +42,35 @@ def print_fact_todos(todos):
             print(f"- {t['source']}「{t['found']}」— {t['note'] or t['then']}")
 
 
+def print_entity_edges():
+    """Entity-audit node 1, relation rules: the founder, Agent Skills Hub and the operating company stay apart.
+
+    Until 2026-11-24 the site's JSON-LD described the three as one thing (the product carried the
+    company's legal name and the founder's own accounts). ops/geo/entity_edges.py checks the live pages
+    against nine rules; a missing file means the check did not run, not that the graph is clean.
+    """
+    ee = load("geo/out/entity-edges.json")
+    if not ee:
+        print("\n## ⚠️ 实体关系没核成\n")
+        print("- 实体关系检查没出结果(查 Actions 日志里 Entity relations 这一步),不代表没问题。")
+        return
+    issues = ee.get("issues") or []
+    if issues:
+        print(f"\n## ⚠️ 实体关系有问题 {len(issues)} 处(人、ASH、运营公司又混到一起了)\n")
+        for i in issues:
+            print(f"- [ ] **第 {i['rule']} 条** `{i['page']}` {i['node']}: {i['detail']}")
+            print(f"  - 怎么修: {i['fix']}")
+        print(f"\n> 规则见 `ops/geo/entity_edges.py` 文件头;来龙去脉在 {ee.get('log', 'jasonzhu.ai 的实体迭代日志')}。")
+    section("🔗 实体关系(人、ASH、运营公司分开)")
+    errs = ee.get("fetch_errors") or {}
+    state = f"✅ {ee.get('rules', 9)} 条都过" if not issues else f"⚠️ {len(issues)} 处不合规"
+    prof = ee.get("profiles")
+    print(f"- {state} · 查了 {ee.get('pages_checked', 0)} 个页面({len(ee.get('blog_pages') or [])} 篇博客)、"
+          f"{ee.get('blocks', 0)} 段 JSON-LD · 本人档案以 jasonzhu.ai 为准"
+          + (f"({prof} 个)" if prof is not None else "(没读到,第 2 条没查)")
+          + (f" · ⚠️ 没抓到: {', '.join(errs)}" if errs else ""))
+
+
 def print_fact_consistency():
     """Entity-audit node 7: do the site, npm, GitHub, Wikidata and Zenodo state the same facts?
 
@@ -187,6 +216,7 @@ def main():
             icon = "🔌" if c.get("ok") else "⚠️"
             print(f"- {icon} **{c['channel']}** ({c['used_by']}): {c.get('status_text', '')}")
 
+    print_entity_edges()
     print_fact_consistency()
     print_academic_index()
 
