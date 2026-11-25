@@ -22,6 +22,15 @@ def load(rel):
         return None
 
 
+# A purchase has the fewest people, so it is the first row a top-N cut drops.
+REVENUE_EVENTS = ("purchase_completed", "b2b_deal_won")
+
+
+def funnel_rows(rows, limit=15):
+    """The top `limit` PostHog funnel rows (sorted by people), plus any revenue row below them."""
+    return rows[:limit] + [r for r in rows[limit:] if r.get("event") in REVENUE_EVENTS]
+
+
 def section(title):
     print(f"\n## {title}\n")
 
@@ -451,7 +460,7 @@ def main():
                 print(f"- {r.get('source')} / {r.get('medium')} — {r.get('sessions')} sessions ({r.get('visitors')} visitors)")
         if ph_fun:
             print("\n**PostHog 产品事件 (7天 / 28天去重人数)**:")
-            for r in ph_fun[:15]:
+            for r in funnel_rows(ph_fun):
                 if r.get("event") == "$pageview":
                     continue
                 rev = float(r.get("revenue_28d_usd") or 0)
