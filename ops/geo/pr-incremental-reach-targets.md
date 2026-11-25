@@ -1,8 +1,38 @@
 # GEO Outreach Priority Table (Max Incremental Reach / Greedy Set Cover) & Local PR Drafts
 
-> **Generated**: 2026-11-19
+> **Generated**: 2026-11-19 · **Landing pages added**: 2026-11-25 (§0)
 > **Methodology**: Greedy Set Cover (Maximum Marginal Reach $\max_j |Q_j \setminus C|$) applied across our two live multi-LLM evaluation panels, plus copy-pasteable minimal-diff PR drafts for the 3 OPEN GitHub issues.
 > **Rule**: Nothing goes out without a yes — all PR drafts and outreach templates below are stored locally for review.
+
+---
+
+## 0. Which page each link points to (added 2026-11-25)
+
+**Rule**: a link from a target goes to the `/best/` guide that answers the question the target covers, not to the homepage. The homepage is right only where the target lists directories (skills.sh, SkillsMP, …); even there, add one deep link to the guide that fits the page.
+
+**Why** (DataForSEO backlinks, 2026-11-25): of our 200 strongest referring domains, **171 link the homepage**. Below the homepage: `/best/claude-video-skills/` has 8 referring domains and is the page that earns 4,019 of the site's 7,572 Search Console clicks (Oct 26 to Nov 22); `/best/ppt-presentation/` has 1; **`/best/claude-code-skills/` has 0**, and it is not in the first 20 Google results for "claude code skills" (12,100 est. US searches a month) or "best claude code skills" (720). Links and rankings moving together is correlation, not proof, but no other page we want to rank has any links of its own.
+
+**Order**: `/best/claude-code-skills/` first. Its page currently ranks skill *collections*; the 2026-11-25 SEO audit (OpenSEO report "SEO audit", move 2) adds a "Best Claude Code skills by job" section first. Pitch it as a "best Claude Code skills" source once that section is live; until then, pitch it as the collections audit it is.
+
+| Target | Their page that matters | Link to | Status |
+|---|---|---|---|
+| `kipt.me` | `/guides/best-claude-code-skills` | [`/best/claude-code-skills/`](https://agentskillshub.top/best/claude-code-skills/) | in §2A #4 (was pitched a code-review table) |
+| `firecrawl.dev` | `/blog/best-claude-code-skills` | `/best/claude-code-skills/` | in §2B #4, §3B #3 |
+| `cubic.dev` | `/blog/best-claude-code-skills`, `/blog/claude-code-hooks` | `/best/claude-code-skills/`, and `/best/claude-code-hooks/` for the hooks post | in §2A #13 |
+| `agentcraft.dev` | `/en/blog/claude-code-skills-rising-2026-11/` | `/best/claude-code-skills/` | in §3B #1 |
+| `allthings.how` | `/claude-code-skills-on-github-how-to-find-install-and-build-them/` | `/best/claude-code-skills/` | in §3B #4 |
+| `shop.zimaspace.com` | `/blogs/tech-ai-hub/top-10-ai-agent-skills-for-claude-code-in-2026` | `/best/claude-code-skills/` | in §2A #11 |
+| `dev.to` (our own posts) | one post per guide | the guide the post is about; the Claude Code skills post first | in §2B #2 |
+| `geeky-gadgets.com` | "100+ Claude Code Skills Tested : 6 Clear Winners" | `/best/claude-code-skills/` | **new**: #1 for "claude code skills" (US, Nov 25, 1 of 3 reads) |
+| `scottmcauley.com` | "The 21 Best Claude Code Skills…" | `/best/claude-code-skills/` | **new**: #5 for "claude code skills" (1 of 3 reads) |
+| `toolsforhumans.ai` | "Best Claude Skills for Coding (2026)" | `/best/claude-code-skills/` | **new**: #2 for "claude code skills" (1 of 3 reads) |
+| `loreto.io` | "The best Claude Code skills" | `/best/claude-code-skills/` | **new**: #5 for "best claude skills" (1 of 3 reads) |
+| `itechguides.com` | one article per scenario | the matching guide: `/best/vibe-coding/`, `/best/ppt-presentation/`, `/best/web-scraping/` … (§2A #1 lists the 10) | in §2A #1 |
+| `mindstudio.ai` | `/blog/claude-ai-video-editing-workflow` | `/best/claude-video-skills/` | in §2A #6 |
+| `agentscamp.com` | voice-agent comparison | `/best/seo-tools/` (the benchmark we pitch) | in §2A #9 |
+| `agensi.io`, `skillsboard.sh`, `skill-sets.md`, `skillselion.com`, `thirtysix/awesome-agent-skills` | lists of directories | homepage, plus `/best/claude-code-skills/` as the one deep link | §3B, §4 |
+
+The four **new** rows come from the live Google results of 2026-11-25 (OpenSEO, US desktop, first 20 results, three reads merged), not from the LLM panels; positions seen in 1 of 3 reads are unstable.
 
 ---
 
@@ -106,7 +136,7 @@ Our PR [`aranticlabs/arantic-docs#67`](https://github.com/aranticlabs/arantic-do
 - **Minimal Markdown Diff for `README.md`** (insert under the top **Directories / Marketplaces / Catalogs** section):
 
 ```markdown
-- **[Agent Skills Hub (agentskillshub.top)](https://agentskillshub.top/)** — Open-source trust layer and searchable directory of 276,000+ AI agent skills, Claude Code skills, Codex skills, and MCP servers synced from GitHub every 8 hours, with 138,000+ entries security-graded (`SAFE` / `CAUTION` / `UNSAFE` / `REJECT`) across [44 static & behavioral rules](https://agentskillshub.top/how-we-grade/) and hands-on scenario benchmarks ([dataset DOI: 10.5281/zenodo.21292799](https://doi.org/10.5281/zenodo.21292799)).
+- **[Agent Skills Hub (agentskillshub.top)](https://agentskillshub.top/)** — Open-source trust layer and searchable directory of 276,000+ AI agent skills, Claude Code skills, Codex skills, and MCP servers synced from GitHub every 8 hours, with 138,000+ entries security-graded (`SAFE` / `CAUTION` / `UNSAFE` / `REJECT`) across [44 static & behavioral rules](https://agentskillshub.top/how-we-grade/) and hands-on scenario benchmarks, such as [the best Claude Code skills, graded](https://agentskillshub.top/best/claude-code-skills/) ([dataset DOI: 10.5281/zenodo.21292799](https://doi.org/10.5281/zenodo.21292799)).
 ```
 
 - **Proposed PR Body**:
@@ -139,7 +169,7 @@ Disclosure: I maintain Agent Skills Hub. Happy to adjust placement or formatting
 <!-- 2. Add concise section alongside skills.sh / SkillsMP / Agensi: -->
 ### [Agent Skills Hub (agentskillshub.top)](https://agentskillshub.top/)
 
-An open-source directory and pre-install trust layer indexing 276,000+ agent skills, MCP servers, and agent tools from public GitHub repositories (synced every 8 hours). Over 138,000 entries carry automated security grades across [44 published rules](https://agentskillshub.top/how-we-grade/) (flagging credential theft, `curl | sh` pipes, reverse shells, and prompt-injection payloads) alongside hands-on scenario benchmarks at [`/best/`](https://agentskillshub.top/best/code-review/). *(Independent project at `agentskillshub.top`, distinct from `agentskillshub.dev`.)*
+An open-source directory and pre-install trust layer indexing 276,000+ agent skills, MCP servers, and agent tools from public GitHub repositories (synced every 8 hours). Over 138,000 entries carry automated security grades across [44 published rules](https://agentskillshub.top/how-we-grade/) (flagging credential theft, `curl | sh` pipes, reverse shells, and prompt-injection payloads) alongside hands-on scenario benchmarks such as [the best Claude Code skills, graded](https://agentskillshub.top/best/claude-code-skills/). *(Independent project at `agentskillshub.top`, distinct from `agentskillshub.dev`.)*
 ```
 
 - **Proposed PR Body / Issue Follow-up Comment**:
