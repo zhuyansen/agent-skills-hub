@@ -14,6 +14,7 @@ from datetime import datetime, timedelta, timezone
 import pytest
 from sqlalchemy import create_engine, event
 from sqlalchemy.dialects.postgresql import ARRAY
+from sqlalchemy.exc import OperationalError
 from sqlalchemy.ext.compiler import compiles
 from sqlalchemy.orm import sessionmaker
 
@@ -27,6 +28,8 @@ OLD_RULES = "0" * grade_refresh.FINGERPRINT_CHARS
 LAST_WEEK = datetime.now(timezone.utc) - timedelta(days=7)
 BATCH = 500
 REAL_SCAN = SecurityScanner.scan_single
+# A database error ends the pass (a README the scanner cannot read does not: see test_grade_refresh_skips).
+_TIMEOUT = OperationalError("UPDATE skills …", {}, Exception("canceling statement due to statement timeout"))
 
 
 @compiles(ARRAY, "sqlite")
@@ -69,11 +72,11 @@ def _interrupted(db, monkeypatch, rows):
 
     def scan(self, skill):
         if next(calls) > rows:
-            raise RuntimeError("canceling statement due to statement timeout")
+            raise _TIMEOUT
         return REAL_SCAN(self, skill)
 
     monkeypatch.setattr(SecurityScanner, "scan_single", scan)
-    with pytest.raises(RuntimeError):
+    with pytest.raises(OperationalError):
         grade_refresh.refresh_grades(db, batch_size=BATCH)
     db.rollback()
     monkeypatch.setattr(SecurityScanner, "scan_single", REAL_SCAN)

@@ -138,15 +138,15 @@ def hard_reject(c: dict, clusters: dict[str, int]) -> str | None:
         return f"同名仓库出现在 {clusters[f'name:{name}']} 个不同账号下，批量账号站群"
     if desc and f"desc:{desc}" in clusters:
         return f"同样的描述出现在 {clusters[f'desc:{desc}']} 个不同账号下，批量账号站群"
+    if c.get("security_grade") != "safe":  # 提示词也只要 safe；没评级的（11-19 起评级中断两天）不推荐
+        return f"security_grade 为 {c.get('security_grade') or '空（还没评级）'}"
     g = c.get("gh")
-    if not g:  # 还没抽查 GitHub：只判站群
+    if not g:  # 还没抽查 GitHub：只判站群和评级
         return None
     if g.get("gone"):
         return "仓库已删除或不可访问"
     if g.get("is_fork"):
         return "是 fork"
-    if c.get("security_grade") not in ("safe", None, "unknown"):
-        return f"security_grade 为 {c.get('security_grade')}"
     if "error" in g:
         return None
     followers, others = g.get("owner_followers") or 0, max(g.get("owner_other_top_stars") or [0])
@@ -295,7 +295,7 @@ def main() -> int:
             base += more
             queue += more
             log(f"  过了硬规则的只有 {len(top)} 个，放宽到 72h（再加 {len(more)} 条）")
-    log(f"硬规则剔除 {len(rejected)} 个（站群 {sum(1 for _, w in rejected if '站群' in w)}）· GitHub 抽查 {checked} 个 · 交给模型 {len(top)} 个")
+    log(f"硬规则剔除 {len(rejected)} 个（站群 {sum(1 for _, w in rejected if '站群' in w)}，评级不是 safe {sum(1 for _, w in rejected if w.startswith('security_grade'))}）· GitHub 抽查 {checked} 个 · 交给模型 {len(top)} 个")
     if not top:
         log("❌ 硬规则之后没有候选")
         return 1
@@ -327,11 +327,15 @@ def main() -> int:
         c = pool[p["repo"].lower()]
         lines.append(f"{i}. {c['repo_full_name']} — {'🆕 ' if c['new'] else ''}{p['desc'].strip()}（{c['stars']}★ {c['velocity']:.1f}/day）")
     excluded = [x for x in (out.get("excluded") or []) if x.get("repo", "").lower() in pool]
-    hard = {}
+    hard, by_grade = {}, {}
     for c, why in rejected:
+        if why.startswith("security_grade"):  # 评级中断时会有几百个，只按评级计数
+            by_grade[why] = by_grade.get(why, 0) + 1
+            continue
         key = why if "站群" in why else f"{c['repo_full_name']}：{why}"
         hard.setdefault(key, []).append(c)
-    hard_txt = "；".join((f"{len(v)} 个 {v[0]['repo_full_name'].split('/')[1]}（{why}）" if "站群" in why else why) for why, v in hard.items()) or "无"
+    hard_txt = "；".join([(f"{len(v)} 个 {v[0]['repo_full_name'].split('/')[1]}（{why}）" if "站群" in why else why) for why, v in hard.items()]
+                        + [f"{n} 个 {why}" for why, n in by_grade.items()]) or "无"
     ex_txt = "；".join(f"{'①②③④⑤⑥⑦⑧⑨⑩'[i] if i < 10 else str(i + 1) + '.'}{x['repo']}（{pool[x['repo'].lower()]['stars']}★ {pool[x['repo'].lower()]['velocity']:.1f}/day）：{x['reason'].strip()}"
                       for i, x in enumerate(excluded)) or "无"
     flags = "；".join(f"{p['repo']}：{p['flag'].strip()}" for p in picks if (p.get("flag") or "").strip())

@@ -35,6 +35,7 @@ import time
 from pathlib import Path
 
 from sqlalchemy import ColumnElement, bindparam, func, or_, true, update
+from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.orm import Session
 
 from app.models.skill import Skill
@@ -50,6 +51,9 @@ FORCED = "SCAN_FULL=1"
 # 2026-10-24) would otherwise all sit in its first query. The incremental pass's queries
 # already span about this many ids (~7,500 matches over ~250K ids, 500 a query).
 ID_WINDOW = 20_000
+# Rows the scanner could not read that the sync log and the alert name; the count covers all.
+FAILED_NAMED = 20
+FAILED_REASON_CHARS = 120
 
 
 def fingerprint(path: Path) -> str:
@@ -114,11 +118,36 @@ def _past(deadline: float | None) -> bool:
     return deadline is not None and time.monotonic() >= deadline
 
 
-def _graded(scanner: security_scanner.SecurityScanner, skill: Skill, stats: dict) -> dict:
-    grade, flags = scanner.scan_single(skill)
+def _graded(scanner: security_scanner.SecurityScanner, skill: Skill, stats: dict) -> dict | None:
+    """The row to write, or None when the scanner raised on this README.
+
+    From 2026-11-19 one README (crbnos/carbon, id 70894) raised ValueError in urlparse, which
+    ended the whole pass, so every repo with a higher id stayed ungraded for two days. Now the
+    row is skipped and named in stats["failed_rows"]; it keeps its changed inputs, so the next
+    sync tries it again. A database error still ends the pass: no later row would fare better.
+    """
+    try:
+        grade, flags = scanner.scan_single(skill)
+    except SQLAlchemyError:
+        raise
+    except Exception as exc:  # noqa: BLE001 - any rule bug in one README must not stop the rest
+        _note_failed(stats, skill, exc)
+        return None
     stats["scanned"] += 1
     stats[grade] = stats.get(grade, 0) + 1
     return {"_id": skill.id, "_grade": grade, "_flags": json.dumps(flags)}
+
+
+def _note_failed(stats: dict, skill: Skill, exc: Exception) -> None:
+    # A row the changed-rows pass skipped is not stamped, so the re-grade backlog meets it again.
+    if skill.id in stats["failed_ids"]:
+        return
+    stats["failed_ids"].add(skill.id)
+    stats["failed"] += 1
+    if len(stats["failed_rows"]) < FAILED_NAMED:
+        reason = str(exc)[:FAILED_REASON_CHARS]
+        stats["failed_rows"].append(f"{skill.id} {skill.repo_full_name}: {type(exc).__name__}: {reason}")
+        logger.warning("Scanner raised on id %d (%s), skipped: %r", skill.id, skill.repo_full_name, exc)
 
 
 def _grade_readme_rows(
@@ -141,8 +170,8 @@ def _grade_readme_rows(
             .filter(Skill.id > last_id, Skill.id <= window_end)
             .order_by(Skill.id.asc()).limit(batch_size).all()
         )
-        rows = [_graded(scanner, skill, stats) for skill in batch]
-        last_id = rows[-1]["_id"] if len(rows) == batch_size else window_end  # a short batch ends the window
+        rows = [row for row in (_graded(scanner, skill, stats) for skill in batch) if row]
+        last_id = batch[-1].id if len(batch) == batch_size else window_end  # a short batch ends the window
         if rows:
             db.execute(_WRITE_GRADE, rows)
             db.commit()
@@ -198,9 +227,23 @@ def _mark_readmeless_unknown(db: Session, stats: dict, batch_size: int) -> None:
         db.commit()
 
 
+def _new_stats() -> dict:
+    return {"scanned": 0, "safe": 0, "caution": 0, "unsafe": 0, "reject": 0, "unknown": 0, "no_readme": 0,
+            "failed": 0, "failed_rows": [], "failed_ids": set()}
+
+
+def _log_summary(stats: dict) -> None:
+    logger.info(
+        "Security scan complete: %d scanned, %d safe, %d caution, %d unsafe, %d reject, %d newly-unknown, "
+        "%d skipped (the scanner raised)",
+        stats["scanned"], stats["safe"], stats["caution"], stats["unsafe"], stats["reject"], stats["no_readme"],
+        stats["failed"],
+    )
+
+
 def refresh_grades(db: Session, batch_size: int = BATCH_SIZE, deadline: float | None = None) -> dict:
     """Grade what changed, then the re-grade backlog until `deadline` (a time.monotonic() value)."""
-    stats = {"scanned": 0, "safe": 0, "caution": 0, "unsafe": 0, "reject": 0, "unknown": 0, "no_readme": 0}
+    stats = _new_stats()
     reason = full_scan_reason(db)
     logger.info(
         "scan mode=%s%s fingerprint=%s",
@@ -213,8 +256,6 @@ def refresh_grades(db: Session, batch_size: int = BATCH_SIZE, deadline: float | 
         if reason:
             _regrade_backlog(db, stats, batch_size, deadline)
     _mark_readmeless_unknown(db, stats, batch_size)
-    logger.info(
-        "Security scan complete: %d scanned, %d safe, %d caution, %d unsafe, %d reject, %d newly-unknown",
-        stats["scanned"], stats["safe"], stats["caution"], stats["unsafe"], stats["reject"], stats["no_readme"],
-    )
+    stats.pop("failed_ids")
+    _log_summary(stats)
     return stats

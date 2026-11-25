@@ -28,9 +28,17 @@ jobs:
     # whose build is skipped (a sync that did not succeed) still joined the group and
     # cancelled the deploy in progress, so nothing shipped (three times on 10-03/05).
     # A skipped job never joins.
+    # A running build is never cancelled (11-25). With cancel-in-progress every push cancelled
+    # the build before it. On 11-21 pushes from several sessions cancelled six builds in a row
+    # (15:44 to 18:48 UTC, four hours with nothing shipped), and that morning the daily report
+    # mailed a link to its page while the build carrying it was still being cancelled.
+    # Now a build runs to the end; of the pushes that land meanwhile, GitHub keeps only the
+    # newest waiting, so the next build ships everything at once.
     concurrency:
       group: pages-build
-      cancel-in-progress: true
+      cancel-in-progress: false
+    outputs:
+      handover: ${{ steps.wait.outputs.handover }}
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -44,14 +52,19 @@ jobs:
         # Next to a sync's writes that saturates the database: on 2026-10-24 from 14:32 to 14:46
         # the sync's score writes and this build's README reads all hit statement_timeout
         # (57014), and the build failed. A run the sync triggered (workflow_run) starts after
-        # it, so only pushes and manual runs wait. When the sync succeeds, the deploy it
-        # triggers cancels this one (same pages-build group) and ships this commit too.
+        # it, so only pushes and manual runs wait. When the sync this run waited for succeeds,
+        # this run hands over: the deploy the sync triggers builds main's newest commit, so it
+        # ships this one too. (Until 11-25 that deploy cancelled this run; builds are no longer
+        # cancelled, and without the handover both would read the whole catalog, ~40 min each.)
+        # A failed sync triggers no build, so then this run builds.
+        id: wait
         if: github.event_name != 'workflow_run' && !inputs.ignore_running_sync
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           # sync.yml's job limit is 180 minutes; past 200 something is stuck, so build anyway.
           give_up_at=$(( $(date +%s) + 200 * 60 ))
+          waited=0
           while :; do
             if ! active=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow sync.yml --limit 5 \
                 --json status --jq '[.[] | select(.status != "completed")] | length'); then
@@ -59,9 +72,17 @@ jobs:
               exit 0
             fi
             if [ "$active" -eq 0 ]; then
-              echo "No sync queued or running; building."
+              last=$(gh run list --repo "$GITHUB_REPOSITORY" --workflow sync.yml --limit 1 \
+                --json conclusion --jq '.[0].conclusion' || echo unknown)
+              if [ "$waited" -eq 1 ] && [ "$last" = "success" ]; then
+                echo "The sync succeeded; the deploy it triggers ships this commit. Handing over."
+                echo "handover=true" >> "$GITHUB_OUTPUT"
+                exit 0
+              fi
+              echo "No sync queued or running (last sync: $last); building."
               exit 0
             fi
+            waited=1
             if [ "$(date +%s)" -ge "$give_up_at" ]; then
               echo "::warning::A sync has been queued or running for over 200 minutes; building anyway."
               exit 0
@@ -71,6 +92,7 @@ jobs:
           done
 
       - name: Setup Node
+        if: steps.wait.outputs.handover != 'true'
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -78,9 +100,11 @@ jobs:
           cache-dependency-path: frontend/package-lock.json
 
       - name: Install dependencies
+        if: steps.wait.outputs.handover != 'true'
         run: npm ci
 
       - name: Build
+        if: steps.wait.outputs.handover != 'true'
         env:
           VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
           VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
@@ -91,11 +115,13 @@ jobs:
         run: npm run build
 
       - name: Create IndexNow key verification file
+        if: steps.wait.outputs.handover != 'true'
         run: |
           INDEXNOW_KEY="a52f1d0890354e5b84d0e4e1ba17bd84"
           echo "$INDEXNOW_KEY" > dist/${INDEXNOW_KEY}.txt
 
       - name: Upload artifact
+        if: steps.wait.outputs.handover != 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: frontend/dist
@@ -109,6 +135,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     needs: build
+    if: needs.build.outputs.handover != 'true'
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

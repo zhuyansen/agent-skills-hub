@@ -15,6 +15,11 @@ concurrency:
 jobs:
   sync:
     runs-on: ubuntu-latest
+    # issues: write for the scan-alert issue (scan_alert.py) and the token-expiry issue;
+    # without it the job token is read-only and both fail ("Resource not accessible by integration").
+    permissions:
+      contents: read
+      issues: write
     # 120 until 10-05: three runs in a row hit it after the upsert (extra_repos had ~1,000
     # queued repos; a README rate-limit wait of 18 min), cutting off grading. 180 still
     # ends before the next run, 8 hours later.
@@ -121,11 +126,31 @@ jobs:
         run: python backfill_extra_repos.py
 
       - name: Run sync
+        id: sync
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
           DATABASE_URL: ${{ secrets.SUPABASE_DB_URL }}
+          SCAN_ALERT_FILE: ${{ runner.temp }}/scan-alert.txt
         run: python sync_runner.py
+
+      - name: Mail a security-scan alert
+        # The scan is non-fatal, so a broken one leaves the sync green. jobs._grade_security
+        # writes this file when the scan stopped with an error or skipped READMEs it could not
+        # read. From 2026-11-19 every scan died on one README and only a WARNING said so; the
+        # first anyone heard was the daily report failing two days later. scan_alert.py mails
+        # once per incident: an open scan-alert issue holds the rest, and a clean scan closes it.
+        if: always()
+        continue-on-error: true
+        env:
+          SCAN_ALERT_FILE: ${{ runner.temp }}/scan-alert.txt
+          SYNC_OUTCOME: ${{ steps.sync.outcome }}
+          GH_TOKEN: ${{ github.token }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO: ${{ secrets.RADAR_EMAIL_TO }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: python scan_alert.py
 
       - name: Record cold-start priors
         # Prospective experiment (supabase/migrations/023_cold_start_priors.sql): score

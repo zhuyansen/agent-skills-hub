@@ -1,5 +1,6 @@
 import asyncio
 import logging
+import os
 import time
 from datetime import datetime, timedelta, timezone
 from typing import Any, Optional
@@ -348,6 +349,22 @@ def _get_last_successful_sync(db: "Session") -> Optional[datetime]:
     return last.finished_at if last else None
 
 
+def _write_scan_alert(text: str) -> None:
+    """Leave a note for sync.yml, which mails it. The sync itself goes on and still succeeds.
+
+    A failed scan used to be only a WARNING in the log: from 2026-11-19 every scan died on one
+    README and nobody knew until the daily report found no graded repos two days later.
+    """
+    path = os.environ.get("SCAN_ALERT_FILE")
+    if not path:
+        return
+    try:
+        with open(path, "a", encoding="utf-8") as f:
+            f.write(text.rstrip() + "\n")
+    except OSError as e:  # the alert is extra; it must not cost the sync
+        logger.warning("Could not write the scan alert to %s: %s", path, e)
+
+
 def _grade_security(db: "Session", deadline: float) -> None:
     """Security grades (non-fatal). A failure is rolled back so the steps after it start clean."""
     try:
@@ -359,6 +376,11 @@ def _grade_security(db: "Session", deadline: float) -> None:
         # The failed statement aborts the transaction. Without this the weekly snapshot after
         # it failed with InFailedSqlTransaction (2026-10-22 23:03, 10-24 07:04).
         db.rollback()
+        _write_scan_alert(f"The security scan stopped with an error, so the rows after it stay ungraded:\n{e!r}")
+        return
+    if sec_stats.get("failed"):
+        _write_scan_alert(f"The scanner raised on {sec_stats['failed']} README(s); they were skipped and stay "
+                          "ungraded until a sync grades them:\n" + "\n".join(sec_stats["failed_rows"]))
 
 
 async def sync_all_skills(sync_log_id: Optional[int] = None, incremental: bool = True) -> None:
