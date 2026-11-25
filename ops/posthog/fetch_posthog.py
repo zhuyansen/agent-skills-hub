@@ -222,6 +222,7 @@ def main():
                 'copy_install',
                 'newsletter_subscribe',
                 'audit_run',
+                'audit_error',
                 'audit_lead_viewed',
                 'audit_lead_started',
                 'audit_lead_attempt',

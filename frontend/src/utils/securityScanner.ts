@@ -654,6 +654,33 @@ function _buildResult(grade: ScanResult["grade"], flags: string[], trustTier: nu
 }
 
 /**
+ * The catalog's stored verdict as a ScanResult, for when the README can't be read live
+ * (GitHub rate limit, network). Same flag details and trust tier as a live scan.
+ */
+export function storedScanResult(
+  grade: ScanResult["grade"],
+  flags: string[],
+  author: string,
+  stars: number,
+  license: string | null,
+): ScanResult {
+  return _buildResult(grade, flags, getTrustTier(author, stars, license));
+}
+
+/** A failed GitHub read, with what the audit page needs to tell a rate limit from a missing repo. */
+export class GitHubReadError extends Error {
+  status: number;
+  rateRemaining: string | null;
+
+  constructor(message: string, status: number, rateRemaining: string | null) {
+    super(message);
+    this.name = "GitHubReadError";
+    this.status = status;
+    this.rateRemaining = rateRemaining;
+  }
+}
+
+/**
  * Fetch repo info + README from GitHub public API (unauthenticated, 60 req/hr).
  */
 export async function fetchGitHubRepo(fullName: string): Promise<{
@@ -675,9 +702,12 @@ export async function fetchGitHubRepo(fullName: string): Promise<{
   ]);
 
   if (!repoResp.ok) {
-    if (repoResp.status === 404) throw new Error(`Repository ${fullName} not found`);
-    if (repoResp.status === 403) throw new Error("GitHub API rate limit exceeded. Try again later.");
-    throw new Error(`GitHub API error: ${repoResp.status}`);
+    const { status } = repoResp;
+    const message =
+      status === 404 ? `Repository ${fullName} not found`
+        : status === 403 ? "GitHub API rate limit exceeded. Try again later."
+          : `GitHub API error: ${status}`;
+    throw new GitHubReadError(message, status, repoResp.headers.get("x-ratelimit-remaining"));
   }
 
   const repo = await repoResp.json();

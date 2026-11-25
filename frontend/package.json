@@ -21,6 +21,7 @@
     "test:agent-file-counts": "node --test scripts/agent-file-counts.test.mjs",
     "test:guides": "node --test scripts/skill-guides.test.mjs",
     "test:featured": "node --test scripts/featured-repos.test.mjs",
+    "test:audit": "node --test scripts/audit-outcome.test.mjs",
     "test:states": "node --test scripts/quick-search-state.test.mjs scripts/skill-page-state.test.mjs scripts/pro-search-state.test.mjs",
     "test:directories": "node --test scripts/directories-content.test.mjs",
     "test:list-chip": "node --test scripts/github-list-chip.test.mjs",

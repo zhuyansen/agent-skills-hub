@@ -4,13 +4,8 @@ import { Helmet } from "react-helmet-async";
 import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { useI18n } from "../i18n/I18nContext";
-import {
-  scanReadme,
-  fetchGitHubRepo,
-  type ScanResult,
-  type FlagDetail,
-} from "../utils/securityScanner";
-import { supabase } from "../lib/supabase";
+import { type FlagDetail } from "../utils/securityScanner";
+import { AuditFailure, runAudit, type FullResult } from "../lib/auditScan";
 import { trackEvent } from "../lib/analytics";
 import { DeepAuditOffer } from "../components/DeepAuditOffer";
 import { AuditLeadCapture } from "../components/AuditLeadCapture";
@@ -114,27 +109,6 @@ const TRUST_TIER_CONFIG: Record<
   },
 };
 
-interface FullResult {
-  repo: {
-    full_name: string;
-    stars: number;
-    description: string;
-    license: string | null;
-    repo_url: string;
-    category: string | null;
-  };
-  indexed: boolean;
-  scan: ScanResult;
-  quality: {
-    score: number;
-    completeness: number;
-    clarity: number;
-    specificity: number;
-    examples: number;
-    agent_readiness: number;
-  } | null;
-}
-
 type HistoryItem = { url: string; grade: string; time: number };
 
 function loadHistory(): HistoryItem[] {
@@ -179,6 +153,7 @@ export function AnalyzerPage() {
     async (inputUrl: string) => {
       const fullName = parseGitHubUrl(inputUrl);
       if (!fullName) {
+        trackEvent("audit_error", { reason: "invalid_url" });
         setError(
           lang === "zh"
             ? "请输入有效的 GitHub 仓库 URL"
@@ -192,80 +167,24 @@ export function AnalyzerPage() {
       setResult(null);
 
       try {
-        // 1. Check if already indexed in Supabase
-        let indexed = false;
-        let quality = null;
-        let category: string | null = null;
-        let existingGrade: string | null = null;
-        let existingFlags: string[] = [];
-
-        try {
-          const sb = supabase;
-          if (sb) {
-            const { data } = await sb
-              .from("skills")
-              .select(
-                "category,quality_score,quality_completeness,quality_clarity,quality_specificity,quality_examples,quality_agent_readiness,security_grade,security_flags",
-              )
-              .eq("repo_full_name", fullName)
-              .maybeSingle();
-            if (data) {
-              indexed = true;
-              category = data.category;
-              quality = {
-                score: data.quality_score || 0,
-                completeness: data.quality_completeness || 0,
-                clarity: data.quality_clarity || 0,
-                specificity: data.quality_specificity || 0,
-                examples: data.quality_examples || 0,
-                agent_readiness: data.quality_agent_readiness || 0,
-              };
-              existingGrade = data.security_grade;
-              try {
-                existingFlags = JSON.parse(data.security_flags || "[]");
-              } catch {
-                /* ignore */
-              }
-            }
-          }
-        } catch {
-          /* Supabase not available, continue */
-        }
-
-        // 2. Fetch from GitHub API
-        const gh = await fetchGitHubRepo(fullName);
-
-        // 3. Run browser-side security scan
-        // Repo + homepage let the scanner tell a project's own installer from an untrusted one.
-        const scan = scanReadme(gh.readme, gh.author, gh.stars, gh.license, {
-          repoFullName: fullName,
-          homepage: gh.homepage,
+        const { result: scanned, liveError } = await runAudit(fullName);
+        setResult(scanned);
+        // source "index": GitHub's live read failed (live_error says why) and the
+        // catalog's stored verdict is shown instead of an error.
+        trackEvent("audit_run", {
+          grade: scanned.scan.grade,
+          source: scanned.source,
+          live_error: liveError,
         });
-
-        // If we had existing scan from DB and README was empty on GitHub, use DB data
-        if (!gh.readme && existingGrade && existingGrade !== "unknown") {
-          scan.grade = existingGrade as ScanResult["grade"];
-          scan.flags = existingFlags;
-        }
-
-        const fullResult: FullResult = {
-          repo: {
-            full_name: fullName,
-            stars: gh.stars,
-            description: gh.description,
-            license: gh.license,
-            repo_url: gh.repoUrl,
-            category,
-          },
-          indexed,
-          scan,
-          quality,
-        };
-
-        setResult(fullResult);
-        trackEvent("audit_run", { grade: scan.grade });
-        saveHistory({ url: inputUrl, grade: scan.grade, time: Date.now() });
+        saveHistory({ url: inputUrl, grade: scanned.scan.grade, time: Date.now() });
       } catch (err: unknown) {
+        // Before 2026-11-25 failures were invisible: 48 of 67 scanning sessions got
+        // no result and nothing recorded why.
+        const failure = err instanceof AuditFailure ? err : null;
+        trackEvent("audit_error", {
+          reason: failure?.reason ?? "unexpected",
+          indexed: failure?.indexed,
+        });
         setError(err instanceof Error ? err.message : "Analysis failed");
       } finally {
         setLoading(false);
@@ -505,6 +424,15 @@ function ResultsDisplay({
 
   return (
     <div className="space-y-6">
+      {result.source === "index" && (
+        <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl p-4">
+          <p className="text-sm text-amber-700 dark:text-amber-300">
+            {isZh
+              ? "GitHub 这次没有响应实时检查（多半是你所在网络的 GitHub 接口额度用完了）。下面是我们收录这个仓库时的扫描结果，稍后再点「开始扫描」可重新实时检查。"
+              : "GitHub didn't answer the live check this time (usually your network's GitHub API quota is used up). Below is the result of our own last scan of this repo. Press Scan Now again later for a live check."}
+          </p>
+        </div>
+      )}
       {/* Grade Card */}
       <div className={`${gc.bg} border ${gc.border} rounded-xl p-6`}>
         <div className="flex items-start gap-4">
