@@ -42,6 +42,7 @@ import {
   expandedRelatedScenarios, scenarioComparisonsHtml, resourcesHtml,
 } from "./scenario-links.mjs";
 import { extractQuickStart } from "./scenario-quickstart.mjs";
+import { displayName } from "../src/lib/repoBrand.mjs";
 import {
   MODIFIED_PATH, declaredDateIn, fingerprint, loadLiveModified, nextModified,
 } from "./scenario-modified.mjs";
@@ -127,14 +128,15 @@ const POPULAR_SCENARIOS = [
  *  three share a name (three of the top collections are all called "skills"). */
 function leadLabel(skills) {
   const lead = skills.slice(0, 3);
-  const repeats = new Set(lead.map((s) => s.repo_name)).size < lead.length;
-  return (s) => (repeats ? s.repo_full_name : s.repo_name);
+  const name = (s) => displayName(s.repo_full_name, s.repo_name);
+  const repeats = new Set(lead.map(name)).size < lead.length;
+  return (s) => (repeats ? s.repo_full_name : name(s));
 }
 
 const CSS_VERSION = "20261124";
 /** Bump when a change to this generator changes what every /best/ page says or links
  *  to, so each page's sitemap lastmod moves with it (scenario-modified.mjs). */
-const TEMPLATE_REV = "2026-11-24";
+const TEMPLATE_REV = "2026-11-25";
 
 /* ── Skill matching ──────────────────────────────── */
 
@@ -809,7 +811,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
         <div class="bp-sc-head">
           <div>
             <span class="bp-rank ${i < 3 ? "bp-rank--gold" : "bp-rank--gray"} bp-sc-rank">${i + 1}</span>
-            <a class="bp-card-title bp-sc-title" href="${esc(titleUrl)}">${esc(s.repo_name)}</a>${isNew ? biSpan("NEW", "新", { attrs: 'class="bp-badge-new"' }) : ""}
+            <a class="bp-card-title bp-sc-title" href="${esc(titleUrl)}">${esc(displayName(s.repo_full_name, s.repo_name))}</a>${isNew ? biSpan("NEW", "新", { attrs: 'class="bp-badge-new"' }) : ""}
             <span class="bp-sc-by" data-en="by ${esc(s.author_name)}" data-zh="作者 ${esc(s.author_name)}">by ${esc(s.author_name)}</span>
           </div>
           <div class="bp-card-meta">
@@ -834,7 +836,7 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
   // so cards no longer show it either.
   const compRows = skills.slice(0, COMPARE_ROWS).map((s) => {
     return `<tr>
-          <td><a href="/skill/${esc(s.repo_full_name)}/" style="font-weight:500">${esc(s.repo_name)}</a></td>
+          <td><a href="/skill/${esc(s.repo_full_name)}/" style="font-weight:500">${esc(displayName(s.repo_full_name, s.repo_name))}</a></td>
           <td style="text-align:right">&#9733; ${starsK(s.stars)}</td>
           <td style="text-align:right">${s.score ? Math.round(s.score) : "\u2014"}</td>
         </tr>`;

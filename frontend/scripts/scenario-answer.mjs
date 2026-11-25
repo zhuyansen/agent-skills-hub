@@ -16,6 +16,7 @@
  */
 import { SITE, esc, starsK } from "./shared-utils.mjs";
 import { descZh, descEn } from "./scenario-kinds.mjs";
+import { displayName } from "../src/lib/repoBrand.mjs";
 
 // The page's answer in one declarative sentence, above everything else in the body.
 // AI answers quote the first part of a page and prefer a plain claim ("the best X is Y")
@@ -63,8 +64,9 @@ function testedPickHtml(verdict, skills, itemCount, subject, scenario, testedCou
   const why = bi(first.why[0], first.why[1], "color:var(--bp-text-secondary);font-size:13px");
   const more = `<a href="#test-results" style="color:var(--bp-link);white-space:nowrap" data-en="${verdict.more?.[0] || "See the test →"}" data-zh="${verdict.more?.[1] || "看实测 →"}">${verdict.more?.[0] || "See the test →"}</a>`;
   // A name other entries share (several collections are called "skills") is shown with its owner.
-  const shared = skills.filter((s) => s.repo_name === pick.repo_name).length > 1;
-  const link = `<a href="${SITE}/skill/${esc(pick.repo_full_name)}/" style="color:var(--bp-link);font-weight:700;text-decoration:none">${esc(shared ? pick.repo_full_name : pick.repo_name)}</a>`;
+  const label = (s) => displayName(s.repo_full_name, s.repo_name);
+  const shared = skills.filter((s) => label(s) === label(pick)).length > 1;
+  const link = `<a href="${SITE}/skill/${esc(pick.repo_full_name)}/" style="color:var(--bp-link);font-weight:700;text-decoration:none">${esc(shared ? pick.repo_full_name : label(pick))}</a>`;
   return `<div class="bp-quick-pick">
         <span style="font-size:20px">⚡</span>
         <p style="flex:1;min-width:200px;margin:0">${lead}${link}${mid}${why} ${more}</p>
@@ -97,7 +99,7 @@ export function quickPickHtml(scenario, skills, itemCount, subject, verdict = nu
   );
   const desc = bi(" " + descEn(pick).slice(0, QUICK_PICK_DESC),
     " " + (descZh(pick) || descEn(pick)).slice(0, QUICK_PICK_DESC), "color:var(--bp-text-secondary);font-size:13px");
-  const link = `<a href="${SITE}/skill/${esc(pick.repo_full_name)}/" style="color:var(--bp-link);font-weight:700;text-decoration:none">${esc(pick.repo_name)}</a>`;
+  const link = `<a href="${SITE}/skill/${esc(pick.repo_full_name)}/" style="color:var(--bp-link);font-weight:700;text-decoration:none">${esc(displayName(pick.repo_full_name, pick.repo_name))}</a>`;
   return `<div class="bp-quick-pick">
         <span style="font-size:20px">⚡</span>
         <p style="flex:1;min-width:200px;margin:0">${lead}${link}${tail}${desc}</p>

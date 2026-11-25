@@ -11,8 +11,8 @@ import {
 } from "../src/lib/skillMeta.mjs";
 
 test("a short repo keeps its owner", () => {
-  const t = skillTitle("anthropics/skills", "skills", "Public repository for Agent Skills");
-  assert.match(t, /^skills by anthropics: /);
+  const t = skillTitle("someone/skills", "skills", "Public repository for Agent Skills");
+  assert.match(t, /^skills by someone: /);
 });
 
 test("an owner that repeats the repo name is dropped", () => {

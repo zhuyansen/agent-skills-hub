@@ -16,6 +16,11 @@ export declare function skillTitle(
 ): string;
 export declare function fallbackTitle(head: string, fallback?: string): string;
 export declare function headingClause(repoName: string, description: string | null | undefined): string;
+export declare function brandedHeading(
+  repoFullName: string,
+  repoName: string,
+  description: string | null | undefined,
+): string | null;
 export declare function skillDescription(
   repoName: string,
   description: string | null | undefined,

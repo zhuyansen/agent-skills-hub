@@ -26,11 +26,12 @@ import { guidesHtml, guidesIndex, guidesMeta } from "./skill-guides.mjs";
 import { catalogCounts, homeCountTexts, stampCatalogCounts, stampHomeCounts } from "./home-counts.mjs";
 import { homeListsHtml, stampHomeLists } from "./home-lists.mjs";
 import { skillPageLang, skillCopy, flagName, findingText } from "./skill-page-copy.mjs";
-import { skillTitle, headingClause, skillDescription, fallbackTitle, TITLE_FALLBACK, DESCRIPTION_LIMIT } from "../src/lib/skillMeta.mjs";
+import { skillTitle, headingClause, brandedHeading, skillDescription, fallbackTitle, TITLE_FALLBACK, DESCRIPTION_LIMIT } from "../src/lib/skillMeta.mjs";
 import { HOW_WE_GRADE_PATH, RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
 import { readFileSync, mkdirSync, writeFileSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
+import { displayName } from "../src/lib/repoBrand.mjs";
 import {
   SUPABASE_URL, SUPABASE_ANON_KEY, SITE, CATEGORY_LABELS,
   esc, starsK, formatDate, stripMarkdown, truncate, parseJsonArray, biAttrs,
@@ -288,6 +289,8 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   // title: /skill/Manavarya09/design-extract/ earns its CTR with it.
   const title = isGone ? fallbackTitle(repo_full_name) : skillTitle(repo_full_name, repo_name, description);
   const h1Clause = isGone ? "" : headingClause(repo_name, description);
+  // A repo named "skills" or "mcp" is headed by its brand: "Remotion Skills (remotion-dev/skills)".
+  const h1Branded = isGone ? null : brandedHeading(repo_full_name, repo_name, description);
   // Lead the snippet with the VERDICT, not the repo's own blurb.
   //
   // Nearly every query these pages win is what Google's rater guidelines call a
@@ -359,7 +362,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   let metaDesc = isGone ? truncate(`${repo_full_name}: ${verdict}`, LIMIT - 3) : "";
   if (isGone && metaDesc.length + clause.length <= LIMIT) metaDesc += clause;
   const descMeta = { grade: security_grade, quality: quality_score };
-  if (!isGone) metaDesc = skillDescription(repo_name, description, installs, descMeta);
+  if (!isGone) metaDesc = skillDescription(displayName(repo_full_name, repo_name), description, installs, descMeta);
   // Copies of a repo keep its name and description word for word, so their pages had the same
   // meta description (OpenSEO audit 2026-11-19: anthropics/claude-code and two copies). Which
   // one is the original cannot be told from stars (clone campaigns buy them), so every page in
@@ -404,7 +407,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   const jsonLd = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "SoftwareSourceCode",
-    name: repo_name,
+    name: displayName(repo_full_name, repo_name),
     url: pageUrl,
     codeRepository: ghUrl,
     description: description || `${catLabel} by ${author_name}`,
@@ -429,7 +432,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Home", item: SITE },
       { "@type": "ListItem", position: 2, name: catLabel, item: `${SITE}/category/${category}/` },
-      { "@type": "ListItem", position: 3, name: repo_name, item: pageUrl },
+      { "@type": "ListItem", position: 3, name: displayName(repo_full_name, repo_name), item: pageUrl },
     ],
   });
 
@@ -478,7 +481,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
           const altDesc = a.description ? esc(a.description.slice(0, 110)) : "";
           return `
           <li style="margin:8px 0;padding:10px 12px;background:#f8fafc;border-radius:8px;border:1px solid #e2e8f0">
-            <a href="/skill/${esc(a.repo_full_name)}/" style="color:#4f46e5;text-decoration:none;font-weight:600">${esc(a.repo_name)}</a>
+            <a href="/skill/${esc(a.repo_full_name)}/" style="color:#4f46e5;text-decoration:none;font-weight:600">${esc(displayName(a.repo_full_name, a.repo_name))}</a>
             <span style="color:#94a3b8;font-size:13px">${c.byAuthor(a.author_name)} · ⭐ ${starsK(a.stars)}</span>
             ${altDesc ? `<p style="margin:4px 0 0;color:#475569;font-size:13px;line-height:1.5">${altDesc}</p>` : ""}
           </li>`;
@@ -493,7 +496,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
         <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">${c.moreCat(catText)}</h2>
         <p style="color:#64748b;font-size:14px;margin-bottom:8px">${c.exploreCat(catText)}</p>
         <ul style="list-style:none;padding:0">${sameCatSkills.map((s) => `
-          <li style="margin:4px 0"><a href="/skill/${esc(s.repo_full_name)}/" style="color:#4f46e5;text-decoration:none">${esc(s.repo_name)}</a> <span style="color:#94a3b8;font-size:13px">⭐ ${starsK(s.stars)}</span></li>`).join("")}
+          <li style="margin:4px 0"><a href="/skill/${esc(s.repo_full_name)}/" style="color:#4f46e5;text-decoration:none">${esc(displayName(s.repo_full_name, s.repo_name))}</a> <span style="color:#94a3b8;font-size:13px">⭐ ${starsK(s.stars)}</span></li>`).join("")}
         </ul>
         <a href="/category/${esc(category)}/" style="color:#4f46e5;font-size:14px">${c.viewAllCat(catText)}</a>
       </section>`
@@ -504,7 +507,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
     ? `<section style="margin-top:20px">
         <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">${c.popularLang(language)}</h2>
         <ul style="list-style:none;padding:0">${sameLangSkills.map((s) => `
-          <li style="margin:4px 0"><a href="/skill/${esc(s.repo_full_name)}/" style="color:#4f46e5;text-decoration:none">${esc(s.repo_name)}</a> <span style="color:#94a3b8;font-size:13px">⭐ ${starsK(s.stars)} · ${esc(c.catLabel(s.category))}</span></li>`).join("")}
+          <li style="margin:4px 0"><a href="/skill/${esc(s.repo_full_name)}/" style="color:#4f46e5;text-decoration:none">${esc(displayName(s.repo_full_name, s.repo_name))}</a> <span style="color:#94a3b8;font-size:13px">⭐ ${starsK(s.stars)} · ${esc(c.catLabel(s.category))}</span></li>`).join("")}
         </ul>
       </section>`
     : "";
@@ -576,9 +579,9 @@ ${breadcrumbLd}
       <!-- Title & Author -->
       <!-- h1 keeps repo_name first so it still matches the query verbatim, then says
            what the repo is in its own words (headingClause), else the page's intent. -->
-      <h1 style="font-size:28px;margin:0 0 8px">${esc(repo_name)}${
+      <h1 style="font-size:28px;margin:0 0 8px">${h1Branded ? esc(h1Branded) : `${esc(repo_name)}${
         isGone ? c.goneHeading : `: ${esc(h1Clause || intent)}`
-      }</h1>
+      }`}</h1>
       ${goneBanner}
       <p style="color:#64748b;margin:0 0 8px">
         ${c.by(creatorLinkHtml(author_name))}
@@ -720,7 +723,7 @@ function buildCategoryHtml(catSlug, catSkills, assetTags, allCategories, hasPage
       : `https://github.com/${esc(s.repo_full_name)}" rel="nofollow noopener" target="_blank`;
     return `<tr>
         <td style="padding:8px 4px;font-size:14px;color:#64748b">${i + 1}</td>
-        <td style="padding:8px"><a href="${href}" style="color:#4f46e5;text-decoration:none;font-weight:500">${esc(s.repo_name)}</a><br><span style="color:#94a3b8;font-size:13px">${desc}</span></td>
+        <td style="padding:8px"><a href="${href}" style="color:#4f46e5;text-decoration:none;font-weight:500">${esc(displayName(s.repo_full_name, s.repo_name))}</a><br><span style="color:#94a3b8;font-size:13px">${desc}</span></td>
         <td style="padding:8px;text-align:right;white-space:nowrap;font-size:14px">&#9733; ${starsK(s.stars)}</td>
         <td style="padding:8px;color:#64748b;font-size:13px">${esc(s.language || "")}</td>
       </tr>`;

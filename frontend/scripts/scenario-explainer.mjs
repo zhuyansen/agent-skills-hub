@@ -19,6 +19,7 @@
  */
 import { SITE, esc, starsK, biAttrs } from "./shared-utils.mjs";
 import { modelsHtml, baselineHtml, pickFigureHtml } from "./scenario-image-test.mjs";
+import { displayName } from "../src/lib/repoBrand.mjs";
 
 const P_STYLE = "color:var(--bp-text-secondary);line-height:1.8;font-size:15px;margin:0 0 12px";
 const H3_STYLE = "font-size:17px;margin:18px 0 6px";
@@ -38,7 +39,7 @@ function whatHtml(w) {
 // `label` overrides the shown name when the repo name alone says nothing (scenario-labs/skills is "skills").
 // With a test run that published pictures (the image page), each pick shows what it drew.
 function itemHtml(item, rank, s, run) {
-  const link = `<a href="${SITE}/skill/${esc(s.repo_full_name)}/" style="color:var(--bp-link);text-decoration:none">${esc(item.label || s.repo_name)}</a>`;
+  const link = `<a href="${SITE}/skill/${esc(s.repo_full_name)}/" style="color:var(--bp-link);text-decoration:none">${esc(item.label || displayName(s.repo_full_name, s.repo_name))}</a>`;
   const meta = `<span style="color:var(--bp-text-muted);font-size:13px;font-weight:400"> ★ ${starsK(s.stars)}</span>`;
   return `<h3 style="${H3_STYLE}">${rank}${link}${meta}</h3>
         ${para(item.line, item.line_zh)}${pickFigureHtml(run, s.repo_full_name)}`;

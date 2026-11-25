@@ -16,6 +16,7 @@ import { fileURLToPath } from "url";
 import { esc, biAttrs } from "./shared-utils.mjs";
 import { passagesFor, passagesHtml } from "./scenario-passages.mjs";
 import { imageTableHtml } from "./scenario-image-test.mjs";
+import { displayName } from "../src/lib/repoBrand.mjs";
 
 const RUNS_PATH = join(dirname(fileURLToPath(import.meta.url)), "scenario-runs.json");
 const RUNS = existsSync(RUNS_PATH) ? JSON.parse(readFileSync(RUNS_PATH, "utf-8")) : {};
@@ -146,7 +147,7 @@ export function runLineHtml(run, skill) {
 
 const REWORK_RANK = { "touch-ups": 0, "one round": 1, substantial: 2 };
 // r.name: a skill inside a bigger repo shows its own name ("pptx (anthropics/skills)", not "skills").
-const name = (repo, r = {}) => r.name || repo.split("/")[1];
+const name = (repo, r = {}) => r.name || displayName(repo);
 const cell = (en, zh = en, cls = "") => `<td${cls ? ` class="${cls}"` : ""} ${biAttrs(String(en), String(zh))}>${esc(String(en))}</td>`;
 const cellC = (cls, en, zh = en) => cell(en, zh, cls);
 const head = (cols) => `<tr>${cols.map(([en, zh]) => `<th ${biAttrs(en, zh)}>${esc(en)}</th>`).join("")}</tr>`;

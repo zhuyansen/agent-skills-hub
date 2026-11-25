@@ -9,6 +9,7 @@
  */
 import { esc, starsK, CATEGORY_LABELS, CATEGORY_LABELS_ZH } from "./shared-utils.mjs";
 import { kindLabel, descEn, descZh } from "./scenario-kinds.mjs";
+import { displayName } from "../src/lib/repoBrand.mjs";
 
 export const INITIAL_CARDS = 20;
 
@@ -45,7 +46,7 @@ export function serializeOverflowCards(
 
     const item = {
       i: idx,
-      n: s.repo_name,
+      n: displayName(s.repo_full_name, s.repo_name),
       f: s.repo_full_name,
       a: s.author_name || "",
       s: s.sub_path ? 0 : Number(s.stars) || 0,

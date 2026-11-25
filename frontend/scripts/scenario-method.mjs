@@ -11,6 +11,7 @@
  * Every text field has a `_zh` twin.
  */
 import { esc, biAttrs } from "./shared-utils.mjs";
+import { displayName } from "../src/lib/repoBrand.mjs";
 
 // Rules a skill trips by how it is installed, not by what it does once running.
 const INSTALL_RULES = new Set(["sudo_usage", "curl_pipe_shell", "wget_pipe_shell", "fenced_download_exec"]);
@@ -50,7 +51,7 @@ function routeRow(route, cards, scenarioKinds) {
   let sub = "";
   if (route.kinds) {
     const { count, top } = routeStats(route, cards, scenarioKinds);
-    const links = top.map((s) => `<a href="/skill/${esc(s.repo_full_name)}/">${esc(s.repo_name)}</a>`).join(", ");
+    const links = top.map((s) => `<a href="/skill/${esc(s.repo_full_name)}/">${esc(displayName(s.repo_full_name, s.repo_name))}</a>`).join(", ");
     sub = `<br><span style="color:var(--bp-text-muted);font-size:12px">${count} · ${links}</span>`;
   }
   return `<tr>

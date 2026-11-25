@@ -15,6 +15,7 @@ import { RepoSubSkills } from "../components/SubSkillList";
 import { TestedByUs } from "../components/TestedByUs";
 import { FeaturedInGuides } from "../components/FeaturedInGuides";
 import { skillTitle, skillDescription, fallbackTitle } from "../lib/skillMeta.mjs";
+import { displayName } from "../lib/repoBrand.mjs";
 import { prerenderedDescription, prerenderedInstalls, prerenderedShell } from "../lib/prerenderedMeta";
 import { BadgeEmbed } from "../components/BadgeEmbed";
 import { FavoriteButton } from "../components/FavoriteButton";
@@ -136,7 +137,7 @@ export function SkillDetailPage() {
       : skillTitle(detail.repo_full_name, detail.repo_name, detail.description);
   const metaDescription =
     prerenderedDescription() ??
-    skillDescription(detail.repo_name, detail.description, [], {
+    skillDescription(displayName(detail.repo_full_name, detail.repo_name), detail.description, [], {
       grade: detail.security_grade,
       quality: detail.quality_score,
     });
@@ -205,7 +206,7 @@ export function SkillDetailPage() {
                 </div>
               </div>
               <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-                {detail.repo_name}
+                {displayName(detail.repo_full_name, detail.repo_name)}
                 <span className="text-base font-normal text-gray-400 dark:text-gray-500 ml-2">
                   — {detail.category} by {detail.author_name}
                 </span>

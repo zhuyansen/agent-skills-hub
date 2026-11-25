@@ -31,6 +31,7 @@ import { HOW_WE_GRADE_PATH, RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
 import { TITLE_MAX_WIDTH, displayWidth } from "../src/lib/skillMeta.mjs";
 import { auditDescription, auditSitemap, auditTitle, sharedRepoNames } from "./audit-meta.mjs";
 import { fetchSkillRedirects, redirectStubHtml, stubsToWrite } from "./skill-redirects.mjs";
+import { displayName } from "../src/lib/repoBrand.mjs";
 
 const GRADES = {
   safe: {
@@ -164,7 +165,7 @@ ${analyticsTags()}
       <span>${esc(repo_full_name)}</span>
     </nav>
 
-    <h1 style="font-size:26px;margin:0 0 6px">Is ${esc(repo_name)} safe to install?</h1>
+    <h1 style="font-size:26px;margin:0 0 6px">Is ${esc(displayName(repo_full_name, repo_name))} safe to install?</h1>
     <p style="color:#64748b;margin:0 0 20px">
       Security audit of <a href="https://github.com/${esc(repo_full_name)}" rel="noopener" style="color:#4f46e5;text-decoration:none">${esc(repo_full_name)}</a>
       &middot; ${esc(catLabel)} by ${creatorLinkHtml(author_name)} &middot; ★ ${starsK(stars)}
@@ -210,7 +211,7 @@ ${analyticsTags()}
 ${related.length ? `
     <h2 style="font-size:18px;margin:24px 0 8px">Related ${esc(catLabel)} audits</h2>
     <ul style="line-height:1.9;color:#475569;padding-left:20px;font-size:14px">
-      ${related.map((r) => `<li><a href="/audit/${esc(r.repo_full_name)}/" style="color:#4f46e5;text-decoration:none">Is ${esc(r.repo_name)} safe?</a> <span style="color:#94a3b8">— ${GRADES[r.security_grade]?.label || "?"} · ★ ${starsK(r.stars)}</span></li>`).join("\n      ")}
+      ${related.map((r) => `<li><a href="/audit/${esc(r.repo_full_name)}/" style="color:#4f46e5;text-decoration:none">Is ${esc(displayName(r.repo_full_name, r.repo_name))} safe?</a> <span style="color:#94a3b8">— ${GRADES[r.security_grade]?.label || "?"} · ★ ${starsK(r.stars)}</span></li>`).join("\n      ")}
     </ul>
     <p style="font-size:13px;margin:4px 0 0"><a href="${esc(categoryUrl)}" style="color:#4f46e5;text-decoration:none">Browse all ${esc(catLabel)} skills &rarr;</a></p>
 ` : ""}

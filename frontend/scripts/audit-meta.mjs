@@ -10,6 +10,7 @@
  * stay; the site name goes (a results page shows it above the title).
  */
 import { DESCRIPTION_LIMIT, TITLE_MAX_WIDTH, displayWidth, fitName } from "../src/lib/skillMeta.mjs";
+import { brandedName } from "../src/lib/repoBrand.mjs";
 
 /** Lowercased repo names that more than one of these repos has ("skills", "mcp"): a title
  *  without the owner would be the same on each of their pages. */
@@ -27,7 +28,10 @@ export function auditTitle(skill, sharedNames = new Set()) {
   const { repo_name: repo, repo_full_name: full } = skill;
   const ownName = sharedNames.has(repo.toLowerCase()) ? [] : [repo];
   const question = `Is ${full} Safe?`;
+  // "Is Remotion Skills Safe?": the brand is what people search for a repo named "skills".
+  const branded = brandedName(full);
   const candidates = [
+    ...(branded ? [`Is ${branded} Safe? Security Audit of ${full}`, `Is ${branded} Safe? Security Audit`] : []),
     `Is ${repo} Safe? Security Audit of ${full}`,
     `Is ${full} Safe? Security Audit`,
     ...ownName.map((name) => `Is ${name} Safe? Security Audit`),

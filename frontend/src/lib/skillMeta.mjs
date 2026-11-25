@@ -17,6 +17,7 @@
  * rate (253 clicks on 19,968 impressions), and queries written as owner/repo were 5%
  * of their impressions: people search the name, and "owner/repo:" read like a path.
  */
+import { brandedName } from "./repoBrand.mjs";
 
 /** What a results page shows before cutting (~580px, about 60 Latin characters); a CJK
  *  character takes about two Latin widths. 68 until 2026-11-19, when the OpenSEO audit found
@@ -140,7 +141,11 @@ export function fitClause(clause, budget) {
 // above; the 6% beyond it were long repo names, where " by <owner>" pushed the minimum clause
 // past the results page ("datamodel-code-generator by datamodel-code-generator: …", 81).
 // The owner goes when it repeats the repo name or leaves the clause no room.
+// A repo named only for its kind ("skills", "mcp") leads with its brand instead: "Remotion
+// Skills", not "skills by remotion-dev" (see repoBrand.mjs).
 function titleHead(repoFullName) {
+  const branded = brandedName(repoFullName);
+  if (branded) return branded;
   const [owner, repo] = repoFullName.split("/");
   if (!repo) return repoFullName;
   const full = `${repo} by ${owner}`;
@@ -168,9 +173,21 @@ export function skillTitle(repoFullName, repoName, description, fallback = TITLE
   const remaining = TITLE_MAX_WIDTH - displayWidth(`${head}: `);
   if (remaining >= MIN_CLAUSE_WIDTH) {
     const clause = fitClause(cleanDescription(description, repoName), remaining);
-    if (displayWidth(clause) >= MIN_CLAUSE_WIDTH) return `${head}: ${clause}`;
+    if (displayWidth(clause) >= MIN_CLAUSE_WIDTH && !(brandedName(repoFullName) && repeatsHead(clause, head))) return `${head}: ${clause}`;
   }
   return fallbackTitle(head, fallback);
+}
+
+// Words a description can add to a brand's name without saying anything ("Agent Skills").
+const FILLER_WORDS = new Set(["a", "an", "the", "of", "for", "and", "official", "agent", "agents", "skill", "skills",
+  "collection", "repository", "repo"]);
+
+/** "Remotion Skills: Agent Skills" says the name twice; the fallback says what the page has. */
+function repeatsHead(clause, head) {
+  if (/[^\x00-\u024f\s]/.test(clause)) return false; // CJK and other scripts: the check reads Latin words only
+  const named = new Set(head.toLowerCase().split(/\s+/));
+  const words = clause.toLowerCase().match(/[a-z0-9.]+/g) || [];
+  return words.length > 0 && words.every((w) => named.has(w) || FILLER_WORDS.has(w));
 }
 
 /** "<head>: what it is & alternatives", or ": alternatives" when that would run past the
@@ -182,6 +199,16 @@ export function fallbackTitle(head, fallback = TITLE_FALLBACK) {
   const short = `${head}: alternatives`;
   if (displayWidth(short) <= TITLE_MAX_WIDTH) return short;
   return fitName(head, TITLE_MAX_WIDTH);
+}
+
+/** The h1 of a repo named only for its kind: "Remotion Skills (remotion-dev/skills)", then
+ *  its description unless that only repeats the name. null for every other repo. */
+export function brandedHeading(repoFullName, repoName, description) {
+  const branded = brandedName(repoFullName);
+  if (!branded) return null;
+  const head = `${branded} (${repoFullName})`;
+  const clause = headingClause(repoName, description);
+  return clause && !repeatsHead(clause, branded) ? `${head}: ${clause}` : head;
 }
 
 /** The h1 clause from the same description: all of it when it fits, else its first sentence. */
