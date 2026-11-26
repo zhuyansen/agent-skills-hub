@@ -180,8 +180,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # scenario-desc-en.json too: rename-curated.mjs rewrites all four curated files, and one
+          # left unstaged makes the `git pull --rebase` below refuse, so the day's review is lost.
           git add frontend/scripts/scenario-keywords.json frontend/scripts/scenario-desc-zh.json \
-                  frontend/scripts/scenario-kinds.json ops/awesome/previews.json ops/jev-review/state
+                  frontend/scripts/scenario-desc-en.json frontend/scripts/scenario-kinds.json \
+                  ops/awesome/previews.json ops/jev-review/state
           if git diff --cached --quiet; then echo "changed=false" >> "$GITHUB_OUTPUT"; exit 0; fi
           git commit -q -m "content(best): daily video review $(date -u +%F)"
           git pull -q --rebase origin main
