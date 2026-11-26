@@ -12211,5 +12211,40 @@
   "days": 1,
   "stars_per_day": 68.0,
   "verdict": "off_topic"
+ },
+ {
+  "repo": "Jerome1337/ccc",
+  "name": "ccc",
+  "stars": 7,
+  "description": "Config manager for Claude Code. One Go binary installs and updates your CLAUDE.md, rules, skills, MCP servers and plugins on every machine and project, and asks before overwriting your edits.",
+  "topics": [
+   "anthropic",
+   "claude",
+   "claude-code",
+   "cli",
+   "developer-tools",
+   "dotfiles",
+   "go",
+   "mcp"
+  ],
+  "created": "2026-02-25",
+  "pushed": "2026-11-26",
+  "source": "topic",
+  "readme_chars": 9651,
+  "names_model": false,
+  "on_subject": 0.5,
+  "is_software": 0.99,
+  "shows_result": 0.05,
+  "one_command_start": 0.88,
+  "specific_outcome": 0.88,
+  "complete_docs": 0.76,
+  "novel_angle": 0.66,
+  "shareable_output": 0.69,
+  "quality": 0.6425,
+  "tier": "中",
+  "hit_prior": 0.4666666666666666,
+  "days": 274,
+  "stars_per_day": 0.025547445255474453,
+  "verdict": "admit"
  }
 ]

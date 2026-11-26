@@ -3534,5 +3534,53 @@
    "gen3d": 0.08
   },
   "kind": "web3d"
+ },
+ {
+  "repo": "Moh4696/inkworks-skill",
+  "stars": 97,
+  "description": "Inkworks: an agent skill for interactive 3D how-it-works pages drawn like an engineering sheet.",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.07,
+   "dcc": 0.02,
+   "web3d": 0.97,
+   "gen3d": 0.07
+  },
+  "kind": "web3d"
+ },
+ {
+  "repo": "Students-of-Local/smoothstone",
+  "stars": 82,
+  "description": "A skill and CLI that lets small local models like LFM3-1.7B make 3D printable parts, from words or a picture, even through context compaction.",
+  "scores": {
+   "blender": 0.05,
+   "unity": 0.01,
+   "godot": 0.01,
+   "unreal": 0.01,
+   "cad": 0.93,
+   "dcc": 0.02,
+   "web3d": 0.01,
+   "gen3d": 0.74
+  },
+  "kind": "cad"
+ },
+ {
+  "repo": "wonseokjung/connect-ai-xr",
+  "stars": 6,
+  "description": "Your AI XR employee: one line gives your agent the skill to build WebXR apps that open on Meta Quest. CONNECT AI LAB",
+  "scores": {
+   "blender": 0.02,
+   "unity": 0.02,
+   "godot": 0.01,
+   "unreal": 0.02,
+   "cad": 0.02,
+   "dcc": 0.03,
+   "web3d": 0.9,
+   "gen3d": 0.09
+  },
+  "kind": "web3d"
  }
 ]

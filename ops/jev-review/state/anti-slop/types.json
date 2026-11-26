@@ -4310,5 +4310,47 @@
    "rules": 0.18
   },
   "kind": "detector"
+ },
+ {
+  "repo": "LCY000/zh-tw-writing",
+  "stars": 103,
+  "description": "讓 AI 寫出的中文讀起來像人寫的，像是減少分號和句號出現頻率、避開 AI 腔和翻譯腔等功能，附檢查腳本。支援 Claude、Codex 與 ChatGPT。",
+  "scores": {
+   "writing": 0.8,
+   "detector": 0.75,
+   "chinese": 0.97,
+   "code": 0.06,
+   "design": 0.05,
+   "rules": 0.96
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "Logiaweb/limora-unslop",
+  "stars": 70,
+  "description": "Free Claude skill: unslop your project with its own icons and banner drawn by Limora AI, plus a shareable before/after video.",
+  "scores": {
+   "writing": 0.05,
+   "detector": 0.08,
+   "chinese": 0.02,
+   "code": 0.09,
+   "design": 0.92,
+   "rules": 0.16
+  },
+  "kind": "design"
+ },
+ {
+  "repo": "Yan-W-u/zh-novel-writing-toolkit",
+  "stars": 5,
+  "description": "中文长篇小说写作工具集：写作教练（立意/结构/场景/对话/视角/改稿定位）+ 去 AI 味（通用 A–F 组、DeepSeek DS1–DS13）+ 标点句长检查 MCP。装进编辑器即用。",
+  "scores": {
+   "writing": 0.23,
+   "detector": 0.98,
+   "chinese": 0.94,
+   "code": 0.07,
+   "design": 0.04,
+   "rules": 0.64
+  },
+  "kind": "detector"
  }
 ]

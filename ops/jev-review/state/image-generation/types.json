@@ -3862,5 +3862,19 @@
    "mcp": 0.15
   },
   "kind": "nano_banana"
+ },
+ {
+  "repo": "hatchlight/hatchlight",
+  "stars": 9,
+  "description": "Make pictures and videos with many AI models side by side, on your own GPU or your own API keys. Desktop app, CLI, Docker server and MCP server. Open source, no account.",
+  "scores": {
+   "gpt_image": 0.04,
+   "nano_banana": 0.05,
+   "open_models": 0.79,
+   "editing": 0.11,
+   "design": 0.02,
+   "mcp": 0.82
+  },
+  "kind": "mcp"
  }
 ]

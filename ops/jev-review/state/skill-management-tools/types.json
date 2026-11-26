@@ -2868,5 +2868,19 @@
    "general": 0.09
   },
   "kind": "registry"
+ },
+ {
+  "repo": "Jerome1337/ccc",
+  "stars": 7,
+  "description": "Config manager for Claude Code. One Go binary installs and updates your CLAUDE.md, rules, skills, MCP servers and plugins on every machine and project, and asks before overwriting your edits.",
+  "scores": {
+   "cli": 0.69,
+   "sync": 0.17,
+   "app": 0.03,
+   "registry": 0.03,
+   "team": 0.19,
+   "general": 0.84
+  },
+  "kind": "general"
  }
 ]

@@ -3050,5 +3050,61 @@
    "review": 0.14
   },
   "kind": "system"
+ },
+ {
+  "repo": "refinist/lanhu-context-mcp",
+  "stars": 51,
+  "description": "把蓝湖设计稿整理成让 AI 生成代码还原页面的上下文",
+  "scores": {
+   "ui": 0.34,
+   "system": 0.28,
+   "tool_mcp": 0.8,
+   "to_code": 0.85,
+   "graphics": 0.09,
+   "review": 0.1
+  },
+  "kind": "to_code"
+ },
+ {
+  "repo": "sergiobanhos/generate-icons",
+  "stars": 20,
+  "description": "Agent skill that draws an original icon library matching your design system (React, Vue, Svelte, React Native, SVG).",
+  "scores": {
+   "ui": 0.73,
+   "system": 0.89,
+   "tool_mcp": 0.05,
+   "to_code": 0.49,
+   "graphics": 0.89,
+   "review": 0.32
+  },
+  "kind": "system"
+ },
+ {
+  "repo": "pycodebr/hedesign",
+  "stars": 15,
+  "description": "Design system de CSS e JavaScript puros para sistemas web com IA presente: estúdio calmo, seis tons que dizem o estado, tema claro e escuro, com DESIGN.md e skills para agentes de IA.",
+  "scores": {
+   "ui": 0.93,
+   "system": 0.98,
+   "tool_mcp": 0.04,
+   "to_code": 0.2,
+   "graphics": 0.8,
+   "review": 0.09
+  },
+  "kind": "system"
+ },
+ {
+  "repo": "yashh1323/atelier-ui",
+  "stars": 5,
+  "description": "Frontend design SKILL.md for Claude Code, Cursor & Codex: stops AI slop UI with modular routing, CSS lint, and zero-dep Chrome CDP visual checks.",
+  "scores": {
+   "ui": 0.94,
+   "system": 0.49,
+   "tool_mcp": 0.04,
+   "to_code": 0.23,
+   "graphics": 0.16,
+   "review": 0.76
+  },
+  "kind": "ui"
  }
 ]

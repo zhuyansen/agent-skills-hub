@@ -2059,7 +2059,8 @@
     "scumble-app/scumble",
     "adamd9/skill-image-gen",
     "guilhermealvestech/codex-imagegen",
-    "grandamenium/nano-banana-2-skill"
+    "grandamenium/nano-banana-2-skill",
+    "hatchlight/hatchlight"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -2235,7 +2236,10 @@
     "bookwjitchieni1986/blender-ai-mcp-addon",
     "Guten-Morgen1302/prismbox",
     "yoruuuchan/create-blender-story-video",
-    "jiangyurong609/motion-pages"
+    "jiangyurong609/motion-pages",
+    "Moh4696/inkworks-skill",
+    "Students-of-Local/smoothstone",
+    "wonseokjung/connect-ai-xr"
    ],
    "exclude_repos": [
     "codepawl/67.js",
@@ -2244,7 +2248,8 @@
     "hitkeeen/blender-ai-mcp-addon",
     "nocodehack/make-short",
     "bookwjitchieni1986/blender-ai-mcp-addon",
-    "racdeufindurch198812/Blender-AI-MCP-Studio"
+    "racdeufindurch198812/Blender-AI-MCP-Studio",
+    "baney75/smoothstone"
    ]
   },
   "related": [
@@ -2509,7 +2514,8 @@
     "LerianStudio/ring",
     "SkylarKitchen/skills",
     "cbrock84/headcount",
-    "replicate/skills"
+    "replicate/skills",
+    "explorium-ai/gtm-skills"
    ]
   },
   "related": [
@@ -3842,7 +3848,8 @@
     "DBAAZzz/skill-stow",
     "kheif/quiver",
     "enulus/OpenPackage",
-    "nodemode-dev/formskills"
+    "nodemode-dev/formskills",
+    "Jerome1337/ccc"
    ],
    "featured": [
     "zhuyansen/skills-manager"
@@ -4774,7 +4781,10 @@
     "hikariming/anti-slop",
     "JacobJNilsson/anti-slop-go",
     "antonellof/s0-cli",
-    "SadhvikChirunomula/measured-humanizer"
+    "SadhvikChirunomula/measured-humanizer",
+    "LCY000/zh-tw-writing",
+    "Logiaweb/limora-unslop",
+    "Yan-W-u/zh-novel-writing-toolkit"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -5308,7 +5318,8 @@
     "cheng-sir-0038/seo-diagnosis-agent",
     "gitroomhq/postiz-content-skills",
     "omerbatutandogan/seekwide",
-    "koihq/koi"
+    "koihq/koi",
+    "ifyour/gefei-seo-skill"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -5830,7 +5841,11 @@
     "JimLiu/open-artifacts",
     "diego3g/craft",
     "jakob-meyer/unaverage",
-    "maxritter/open-claude-artifacts"
+    "maxritter/open-claude-artifacts",
+    "refinist/lanhu-context-mcp",
+    "sergiobanhos/generate-icons",
+    "pycodebr/hedesign",
+    "yashh1323/atelier-ui"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -6955,7 +6970,13 @@
     "techwithtk/nopurple",
     "khalil-wu/academic-image-to-editable-ppt",
     "isatimur/presentation-md",
-    "IpinZhu/es-ppt-skill"
+    "IpinZhu/es-ppt-skill",
+    "oil-oil/oil-ppt",
+    "marekkirejczyk/skills",
+    "realihang/academic-ppt-skill",
+    "jeonghun-app/pptx-deck-skill",
+    "jialiruo-png/economics-empirical-ppt-skill",
+    "przntperfect/prznt-deck"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -8412,7 +8433,8 @@
     "ddfeyes/jev-mode",
     "Todmy/jevqa",
     "glud123/jev-assist",
-    "caiovicentino/jev-shield"
+    "caiovicentino/jev-shield",
+    "mmornati/system-one-router"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -9104,7 +9126,11 @@
     "gitroomhq/postiz-content-skills",
     "OrenFang/orencut",
     "soundza/soundkit",
-    "4waiz/kanban-motion"
+    "4waiz/kanban-motion",
+    "ishu86/after-effects-mcp",
+    "davidalfasunarna/3d-engineering-video-claude-skills",
+    "iamaanahmad/agents-video-editing-skills",
+    "AmirMakir/papertalk"
    ],
    "sub_skills": [
     {

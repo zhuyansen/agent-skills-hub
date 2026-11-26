@@ -5118,5 +5118,21 @@
    "marketing": 0.12
   },
   "kind": "geo"
+ },
+ {
+  "repo": "ifyour/gefei-seo-skill",
+  "stars": 5,
+  "description": "📚 An agent skill turning gefei's hands-on Google SEO experience into an AI-ready knowledge base: KGR, on-page/technical SEO, link building, programmatic SEO & AI search.",
+  "scores": {
+   "suite": 0.87,
+   "audit": 0.23,
+   "research": 0.31,
+   "data_mcp": 0.03,
+   "geo": 0.23,
+   "content": 0.45,
+   "links": 0.12,
+   "marketing": 0.05
+  },
+  "kind": "suite"
  }
 ]

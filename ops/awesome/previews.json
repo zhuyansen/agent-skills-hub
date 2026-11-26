@@ -391,6 +391,14 @@
   "type": "image/gif",
   "bytes": 1395451
  },
+ "AmirMakir/papertalk": {
+  "repo": "AmirMakir/papertalk",
+  "url": "https://raw.githubusercontent.com/AmirMakir/papertalk/HEAD/docs/media/vp-vnp.gif",
+  "alt": "A maths paper explained with pictures drawn from numbers: a three by three grid ",
+  "score": 3.0,
+  "type": "image/gif",
+  "bytes": 242311
+ },
  "AmirSbss/spotlight": {
   "repo": "AmirSbss/spotlight",
   "url": "https://raw.githubusercontent.com/AmirSbss/spotlight/HEAD/examples/demo/preview.gif",
@@ -1607,6 +1615,14 @@
   "type": "image/gif",
   "bytes": 3419441
  },
+ "Logiaweb/limora-unslop": {
+  "repo": "Logiaweb/limora-unslop",
+  "url": "https://raw.githubusercontent.com/Logiaweb/limora-unslop/HEAD/docs/before-after.jpg",
+  "alt": "A vibecoded bakery dashboard before and after limora-unslop",
+  "score": -2.5,
+  "type": "image/jpeg",
+  "bytes": 193923
+ },
  "LordVayron/video-factory": {
   "repo": "LordVayron/video-factory",
   "url": "https://raw.githubusercontent.com/LordVayron/video-factory/HEAD/docs/media/hero.jpg",
@@ -1774,6 +1790,14 @@
   "score": 1.85,
   "type": "image/webp",
   "bytes": 1871336
+ },
+ "Moh4696/inkworks-skill": {
+  "repo": "Moh4696/inkworks-skill",
+  "url": "https://raw.githubusercontent.com/Moh4696/inkworks-skill/HEAD/examples/engine-walkthrough.webp",
+  "alt": "A cursor steps an inline-4 engine through its strokes on a white drafting sheet,",
+  "score": -0.15,
+  "type": "image/webp",
+  "bytes": 2266740
  },
  "Moh4696/open-3d-skills": {
   "repo": "Moh4696/open-3d-skills",
@@ -2302,6 +2326,14 @@
   "score": 4.9,
   "type": "image/gif",
   "bytes": 2394819
+ },
+ "Students-of-Local/smoothstone": {
+  "repo": "Students-of-Local/smoothstone",
+  "url": "https://raw.githubusercontent.com/Students-of-Local/smoothstone/HEAD/docs/gallery.jpg",
+  "alt": "Twelve parts built by stone from its recipes, rendered in Blender",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 177587
  },
  "SunandBean/paper2video": {
   "repo": "SunandBean/paper2video",
@@ -3719,6 +3751,14 @@
   "type": "image/gif",
   "bytes": 470418
  },
+ "davidalfasunarna/3d-engineering-video-claude-skills": {
+  "repo": "davidalfasunarna/3d-engineering-video-claude-skills",
+  "url": "https://raw.githubusercontent.com/davidalfasunarna/3d-engineering-video-claude-skills/HEAD/examples/video03-crv-engine-id/preview/contact_sheet_1.jpg",
+  "alt": "How a CR-V engine reaches 1,000 hp",
+  "score": 0.0,
+  "type": "image/jpeg",
+  "bytes": 325076
+ },
  "davidcervinka/vibe-editing": {
   "repo": "davidcervinka/vibe-editing",
   "url": "https://raw.githubusercontent.com/davidcervinka/vibe-editing/HEAD/demo.gif",
@@ -4535,6 +4575,14 @@
   "type": "image/png",
   "bytes": 90274
  },
+ "hatchlight/hatchlight": {
+  "repo": "hatchlight/hatchlight",
+  "url": "https://raw.githubusercontent.com/hatchlight/hatchlight/HEAD/apps/web/public/samples/sdxl-turbo.webp",
+  "alt": "Fox by SDXL Turbo",
+  "score": -0.35,
+  "type": "image/webp",
+  "bytes": 21808
+ },
  "hdduytran/one-studio-skill": {
   "repo": "hdduytran/one-studio-skill",
   "url": "https://img.youtube.com/vi/gMq24d6SKpc/mqdefault.jpg",
@@ -5183,6 +5231,14 @@
   "type": "image/jpeg",
   "bytes": 34284
  },
+ "jeonghun-app/pptx-deck-skill": {
+  "repo": "jeonghun-app/pptx-deck-skill",
+  "url": "https://raw.githubusercontent.com/jeonghun-app/pptx-deck-skill/HEAD/docs/images/sample-neutral-contact.png",
+  "alt": "Sample deck, neutral default brand",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 266626
+ },
  "jernejk/talk-deck-template": {
   "repo": "jernejk/talk-deck-template",
   "url": "https://raw.githubusercontent.com/jernejk/talk-deck-template/HEAD/docs/scooter.jpg",
@@ -5198,6 +5254,14 @@
   "score": 1.75,
   "type": "image/png",
   "bytes": 212816
+ },
+ "jialiruo-png/economics-empirical-ppt-skill": {
+  "repo": "jialiruo-png/economics-empirical-ppt-skill",
+  "url": "https://raw.githubusercontent.com/jialiruo-png/economics-empirical-ppt-skill/HEAD/docs/preview-2-empirical.png",
+  "alt": "研究设计 + 实证结果（含 DID 模型、Model 1–5 表格、机制解释、州层异质性）",
+  "score": 1.95,
+  "type": "image/png",
+  "bytes": 816286
  },
  "jiangyurong609/motion-pages": {
   "repo": "jiangyurong609/motion-pages",
@@ -5815,6 +5879,14 @@
   "type": "image/gif",
   "bytes": 1094315
  },
+ "marekkirejczyk/skills": {
+  "repo": "marekkirejczyk/skills",
+  "url": "https://raw.githubusercontent.com/marekkirejczyk/skills/HEAD/docs/media/explain-with-video-demo.gif",
+  "alt": "explain-with-video explaining this repository: four build stages appearing one b",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 305272
+ },
  "matheusfillipe/diffler": {
   "repo": "matheusfillipe/diffler",
   "url": "https://raw.githubusercontent.com/matheusfillipe/diffler/HEAD/assets/demo.gif",
@@ -5966,6 +6038,14 @@
   "score": 2.2,
   "type": "image/gif",
   "bytes": 5553518
+ },
+ "mmornati/system-one-router": {
+  "repo": "mmornati/system-one-router",
+  "url": "https://raw.githubusercontent.com/mmornati/system-one-router/HEAD/docs/dashboard.png",
+  "alt": "Router dashboard: spend, savings, per-model cost and routing reasons",
+  "score": -2.7,
+  "type": "image/png",
+  "bytes": 155448
  },
  "mografy/mografy": {
   "repo": "mografy/mografy",
@@ -6247,6 +6327,14 @@
   "type": "image/png",
   "bytes": 752614
  },
+ "oil-oil/oil-ppt": {
+  "repo": "oil-oil/oil-ppt",
+  "url": "https://raw.githubusercontent.com/oil-oil/oil-ppt/HEAD/assets/readme/readme-showcase.png",
+  "alt": "01 先看效果：oil-ppt 生成的四套不同配色演示文稿，共十五张页面",
+  "score": 1.95,
+  "type": "image/png",
+  "bytes": 895062
+ },
  "oil-oil/oil-ui": {
   "repo": "oil-oil/oil-ui",
   "url": "https://raw.githubusercontent.com/oil-oil/oil-ui/HEAD/assets/readme/proof-mona-lisa.webp",
@@ -6511,6 +6599,14 @@
   "type": "image/gif",
   "bytes": 473256
  },
+ "pycodebr/hedesign": {
+  "repo": "pycodebr/hedesign",
+  "url": "https://raw.githubusercontent.com/pycodebr/hedesign/HEAD/docs/img/exemplo-resultados-light.webp",
+  "alt": "Resultados",
+  "score": 0.6,
+  "type": "image/webp",
+  "bytes": 60254
+ },
  "qiniu/reviewbot": {
   "repo": "qiniu/reviewbot",
   "url": "https://raw.githubusercontent.com/qiniu/reviewbot/HEAD/docs/static/issue-comment.png",
@@ -6574,6 +6670,14 @@
   "score": -3.3,
   "type": "image/png",
   "bytes": 72314
+ },
+ "realihang/academic-ppt-skill": {
+  "repo": "realihang/academic-ppt-skill",
+  "url": "https://raw.githubusercontent.com/realihang/academic-ppt-skill/HEAD/asset/layout-selection.png",
+  "alt": "版式选择：没有精炼概括句用版式1，一行概括用版式2，两行概括用版式3",
+  "score": -0.25,
+  "type": "image/png",
+  "bytes": 108351
  },
  "reedodev/explainer-studio": {
   "repo": "reedodev/explainer-studio",
@@ -6798,6 +6902,14 @@
   "score": 2.0,
   "type": "image/png",
   "bytes": 372167
+ },
+ "sergiobanhos/generate-icons": {
+  "repo": "sergiobanhos/generate-icons",
+  "url": "https://raw.githubusercontent.com/sergiobanhos/generate-icons/HEAD/docs/real-example-library.png",
+  "alt": "Real example: a 38-icon duotone library generated for CvPorVaga",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 357449
  },
  "sethblack/black-seo-analyzer": {
   "repo": "sethblack/black-seo-analyzer",
@@ -7679,6 +7791,14 @@
   "type": "image/png",
   "bytes": 200896
  },
+ "wonseokjung/connect-ai-xr": {
+  "repo": "wonseokjung/connect-ai-xr",
+  "url": "https://raw.githubusercontent.com/wonseokjung/connect-ai-xr/HEAD/docs/demo.gif",
+  "alt": "The orrery and xr-room apps running in a browser",
+  "score": 4.75,
+  "type": "image/gif",
+  "bytes": 7716643
+ },
  "wp-a/paper2ppt": {
   "repo": "wp-a/paper2ppt",
   "url": "https://raw.githubusercontent.com/wp-a/paper2ppt/HEAD/examples/showcase/slide-05-results.png",
@@ -7790,6 +7910,14 @@
   "score": -0.25,
   "type": "image/png",
   "bytes": 1686524
+ },
+ "yashh1323/atelier-ui": {
+  "repo": "yashh1323/atelier-ui",
+  "url": "https://raw.githubusercontent.com/yashh1323/atelier-ui/HEAD/docs/assets/nordhavn-desktop.png",
+  "alt": "Nordhavn Timber Works desktop render",
+  "score": -0.3,
+  "type": "image/png",
+  "bytes": 618296
  },
  "ybuild-ai/ai-game-art-pipeline-skill": {
   "repo": "ybuild-ai/ai-game-art-pipeline-skill",

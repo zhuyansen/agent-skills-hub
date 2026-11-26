@@ -3890,5 +3890,89 @@
    "general": 0.07
   },
   "kind": "pptx"
+ },
+ {
+  "repo": "oil-oil/oil-ppt",
+  "stars": 121,
+  "description": "创建、修改和检查 16:9 HTML 演示文稿，支持逐页编辑、离线演示和混合可编辑 PPTX 导出。",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.58,
+   "html": 0.97,
+   "business": 0.67,
+   "convert": 0.84,
+   "general": 0.16
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "marekkirejczyk/skills",
+  "stars": 63,
+  "description": "Agent skills: repo-presentation turns a codebase into an onboarding slide deck. Installable as a Claude Code plugin or with npx skills.",
+  "scores": {
+   "image": 0.1,
+   "pptx": 0.08,
+   "html": 0.43,
+   "business": 0.09,
+   "convert": 0.08,
+   "general": 0.78
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "realihang/academic-ppt-skill",
+  "stars": 6,
+  "description": "Academic PPT: native PowerPoint templates, editable layout library, evidence-led academic presentations and speaker notes for Codex.",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.91,
+   "html": 0.02,
+   "business": 0.05,
+   "convert": 0.93,
+   "general": 0.1
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "jeonghun-app/pptx-deck-skill",
+  "stars": 5,
+  "description": "Agent skills that build native, editable PowerPoint decks in your organization's own design (brand profile + company template), with planning, rendering and layout QA.",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.97,
+   "html": 0.02,
+   "business": 0.9,
+   "convert": 0.14,
+   "general": 0.06
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "jialiruo-png/economics-empirical-ppt-skill",
+  "stars": 5,
+  "description": "经管/金融/实证论文 PPT 生成 Claude Code Skill：基于 PptxGenJS，支持有讲稿/无讲稿两种路径，交互式选页数 / 字数 / 风格",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.93,
+   "html": 0.02,
+   "business": 0.05,
+   "convert": 0.97,
+   "general": 0.08
+  },
+  "kind": "convert"
+ },
+ {
+  "repo": "przntperfect/prznt-deck",
+  "stars": 5,
+  "description": "Build fully editable PowerPoint decks in the Prznt Perfect design system. Turns content or a topic into a structured .pptx using defined grids, typography, spacing, layouts, charts and tables without the usual AI slop.",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.96,
+   "html": 0.01,
+   "business": 0.84,
+   "convert": 0.52,
+   "general": 0.05
+  },
+  "kind": "pptx"
  }
 ]

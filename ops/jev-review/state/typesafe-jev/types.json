@@ -5443,5 +5443,20 @@
    "general": 0.11
   },
   "kind": "devtool"
+ },
+ {
+  "repo": "mmornati/system-one-router",
+  "stars": 5,
+  "description": "A fast System One decision model (Jev or local Laya) picks which LLM answers each prompt: OpenAI-compatible Go gateway + decision benchmark",
+  "scores": {
+   "replica": 0.41,
+   "agent": 0.05,
+   "devtool": 0.9,
+   "sdk": 0.54,
+   "business": 0.04,
+   "consumer": 0.11,
+   "general": 0.17
+  },
+  "kind": "devtool"
  }
 ]

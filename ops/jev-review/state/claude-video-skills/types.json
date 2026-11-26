@@ -10438,5 +10438,77 @@
    "general": 0.16
   },
   "kind": "shorts"
+ },
+ {
+  "repo": "ishu86/after-effects-mcp",
+  "stars": 53,
+  "description": "MCP server that enables AI assistants like Claude to automate Adobe After Effects. Features 70+ tools covering compositions, layers, keyframes, expressions, effects, and pre-built motion graphics templates (lower thirds, title cards, transitions)",
+  "scores": {
+   "promo": 0.12,
+   "explainer": 0.06,
+   "music": 0.08,
+   "motion": 0.76,
+   "shorts": 0.12,
+   "editing": 0.26,
+   "demo": 0.12,
+   "story": 0.06,
+   "avatar": 0.04,
+   "general": 0.14
+  },
+  "kind": "motion"
+ },
+ {
+  "repo": "davidalfasunarna/3d-engineering-video-claude-skills",
+  "stars": 26,
+  "description": "",
+  "scores": {
+   "promo": 0.05,
+   "explainer": 0.98,
+   "music": 0.02,
+   "motion": 0.17,
+   "shorts": 0.85,
+   "editing": 0.09,
+   "demo": 0.16,
+   "story": 0.04,
+   "avatar": 0.03,
+   "general": 0.07
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "iamaanahmad/agents-video-editing-skills",
+  "stars": 7,
+  "description": "AI Video editing skills for agents: Claude Code, Codex, Kiro, Copilot, Antigravity, Windsurf, Cursor, Zed. FFmpeg, Remotion, moviepy, captions, voiceover, export.",
+  "scores": {
+   "promo": 0.15,
+   "explainer": 0.26,
+   "music": 0.06,
+   "motion": 0.19,
+   "shorts": 0.64,
+   "editing": 0.77,
+   "demo": 0.17,
+   "story": 0.04,
+   "avatar": 0.08,
+   "general": 0.9
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "AmirMakir/papertalk",
+  "stars": 6,
+  "description": "Paper, blog post or X post in → a short explainer video where the picture shows what the voice says. Claude Code skill + MCP.",
+  "scores": {
+   "promo": 0.08,
+   "explainer": 0.98,
+   "music": 0.02,
+   "motion": 0.23,
+   "shorts": 0.04,
+   "editing": 0.04,
+   "demo": 0.16,
+   "story": 0.06,
+   "avatar": 0.03,
+   "general": 0.12
+  },
+  "kind": "explainer"
  }
 ]
