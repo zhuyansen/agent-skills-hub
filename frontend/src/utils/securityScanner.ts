@@ -683,6 +683,18 @@ export class GitHubReadError extends Error {
   }
 }
 
+/** The visitor-facing text for a failed repo read. A 403 is a rate limit only when GitHub says
+ *  so (no quota left, or a Retry-After), the same rule as githubFailureReason; otherwise
+ *  GitHub refuses this repo, and "rate limit" would send the visitor to wait for nothing. */
+function githubErrorMessage(fullName: string, resp: Response): string {
+  const { status, headers } = resp;
+  if (status === 404) return `Repository ${fullName} not found`;
+  const limited = status === 429 || (status === 403 && (headers.get("x-ratelimit-remaining") === "0" || headers.get("retry-after") != null));
+  if (limited) return "GitHub API rate limit exceeded. Try again later.";
+  if (status === 403 || status === 451) return `GitHub blocks access to ${fullName}`;
+  return `GitHub API error: ${status}`;
+}
+
 /**
  * Fetch repo info + README from GitHub public API (unauthenticated, 60 req/hr).
  */
@@ -706,11 +718,7 @@ export async function fetchGitHubRepo(fullName: string): Promise<{
 
   if (!repoResp.ok) {
     const { status } = repoResp;
-    const message =
-      status === 404 ? `Repository ${fullName} not found`
-        : status === 403 ? "GitHub API rate limit exceeded. Try again later."
-          : `GitHub API error: ${status}`;
-    throw new GitHubReadError(message, status, repoResp.headers);
+    throw new GitHubReadError(githubErrorMessage(fullName, repoResp), status, repoResp.headers);
   }
 
   const repo = await repoResp.json();

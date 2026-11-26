@@ -75,6 +75,15 @@ function searchArgs(f: SearchFilters, limit: number) {
   };
 }
 
+/** What one search came to: the label pro_search_run records, and the refusal, if any. */
+function searchOutcome(data: ProRow[] | null, error: SearchResult["error"]) {
+  if (error) {
+    const refused = classifyProSearchError(error);
+    return { label: refused as string, results: undefined, refused };
+  }
+  return { label: data?.length ? "results" : "empty", results: data?.length ?? 0, refused: null };
+}
+
 // Members search with their own key; everyone else gets the capped trial RPC.
 async function callSearch(
   client: NonNullable<typeof supabase>,
@@ -337,12 +346,9 @@ export default function ProPage() {
     dispatch({ type: "started" });
     const filters = { query, category, grade };
     const { data, error } = await callSearch(supabase, memberKey, filters);
-    if (error) {
-      const reason = classifyProSearchError(error);
-      report(reason);
-      return dispatch({ type: "refused", reason, filters });
-    }
-    report(data?.length ? "results" : "empty", data?.length ?? 0);
+    const outcome = searchOutcome(data, error);
+    report(outcome.label, outcome.results);
+    if (outcome.refused) return dispatch({ type: "refused", reason: outcome.refused, filters });
     dispatch({ type: "succeeded", rows: data ?? [], filters, exportable: !usingTrial });
     if (!usingTrial) return;
     setTrialUsed(trialUsed + 1);
