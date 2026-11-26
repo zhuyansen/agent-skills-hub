@@ -2,6 +2,7 @@
 import { createHash } from "node:crypto";
 import type { Deps, KeyResult } from "./process.ts";
 import { EARLY_BIRD_LINK, splitClientRef, type Session, type Sku } from "./fulfil.ts";
+import { sealKey } from "../_shared/claim.ts";
 
 const env = (name: string, fallback = "") => Deno.env.get(name) ?? fallback;
 const REPO = env("GH_REPO", "zhuyansen/agent-skills-hub");
@@ -52,6 +53,29 @@ async function sendEmail(to: string, subject: string, html: string): Promise<boo
   }
 }
 
+const serviceHeaders = () => {
+  const service = env("SUPABASE_SERVICE_ROLE_KEY");
+  return { apikey: service, Authorization: `Bearer ${service}`, "Content-Type": "application/json" };
+};
+
+/** order_key_claims (046): drop expired rows, then keep this one. Best-effort, as the email is. */
+async function storeClaim(orderId: string, key: string, note: string): Promise<boolean> {
+  try {
+    const base = `${env("SUPABASE_URL")}/rest/v1/order_key_claims`;
+    await fetch(`${base}?expires_at=lt.${new Date().toISOString()}`, { method: "DELETE", headers: serviceHeaders() });
+    const sealed = await sealKey(key, env("CLAIM_KEY"));
+    const res = await fetch(base, {
+      method: "POST", headers: { ...serviceHeaders(), Prefer: "resolution=ignore-duplicates" },
+      body: JSON.stringify({ order_id: orderId, note, ...sealed }),
+    });
+    if (!res.ok) throw new Error(`answered ${res.status}`);
+    return true;
+  } catch (err) {
+    console.warn(`claim store failed for ${orderId}: ${(err as Error).message}`);
+    return false;
+  }
+}
+
 /** Early-bird keys issued so far, counted from member_keys (null when the count fails). */
 async function earlyBirdSold(): Promise<number | null> {
   const service = env("SUPABASE_SERVICE_ROLE_KEY");
@@ -89,6 +113,6 @@ async function capturePurchase(s: Session, sku: Sku): Promise<boolean> {
 }
 
 export const liveDeps: Deps = {
-  orderRecorded, issueKey, sendEmail, earlyBirdSold, createIssue, capturePurchase,
+  orderRecorded, issueKey, storeClaim, sendEmail, earlyBirdSold, createIssue, capturePurchase,
   alertEmail: env("ALERT_EMAIL", "m17551076169@gmail.com"),
 };

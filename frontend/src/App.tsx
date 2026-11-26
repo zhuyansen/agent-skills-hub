@@ -71,6 +71,7 @@ const DirectoriesPage = lazy(() =>
   import("./pages/DirectoriesPage").then((m) => ({ default: m.DirectoriesPage })),
 );
 const ProPage = lazy(() => import("./pages/ProPage"));
+const ProSuccessPage = lazy(() => import("./pages/ProSuccessPage"));
 const ProBoardPage = lazy(() => import("./pages/ProBoardPage"));
 const CiGatePage = lazy(() =>
   import("./pages/CiGatePage").then((m) => ({ default: m.CiGatePage })),
@@ -139,6 +140,8 @@ function App() {
                     path="/verified-creator/apply/"
                     element={<VerifiedCreatorApplicationPage />}
                   />
+                  <Route path="/pro/success" element={<ProSuccessPage />} />
+                  <Route path="/pro/success/" element={<ProSuccessPage />} />
                   <Route path="/pro/board" element={<ProBoardPage />} />
                   <Route path="/pro/board/" element={<ProBoardPage />} />
                   <Route path="/pro" element={<ProPage />} />

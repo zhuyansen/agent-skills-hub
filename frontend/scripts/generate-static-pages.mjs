@@ -213,6 +213,14 @@ const SHELLS = [
     noindex: true,
   },
   {
+    // Stripe's "after payment" redirect for Pro and CI Gate (?session_id=...). The page shows
+    // the key the buyer just paid for; it must answer 200 on the first load from Stripe.
+    path: "pro/success",
+    title: "Your Pro key — Agent Skills Hub",
+    description: "Your Agent Skills Hub access key, shown right after payment.",
+    noindex: true,
+  },
+  {
     path: "pro/board",
     title: "Pro Picks — Member Curation Board · Agent Skills Hub",
     description:

@@ -53,6 +53,7 @@ function stubDeps(over: Partial<Deps> = {}) {
   const deps: Deps = {
     orderRecorded: () => (calls.push("recorded?"), Promise.resolve(false)),
     issueKey: (_e, note, id) => (calls.push(`key ${note} ${id}`), Promise.resolve({ status: "issued", key: "ash_pro_X" })),
+    storeClaim: (id, key, note) => (calls.push(`claim ${id} ${key} ${note}`), Promise.resolve(true)),
     sendEmail: (to, subject) => (calls.push(`mail ${to} ${subject}`), Promise.resolve(true)),
     alertEmail: "ops@example.com",
     earlyBirdSold: () => Promise.resolve(1),
@@ -67,7 +68,8 @@ Deno.test("a Pro order: key, buyer email, alert, issue, then one purchase event"
   const { deps, calls } = stubDeps();
   const out = await processSession(order(), deps);
   assertEquals(out, { done: true, sku: "pro", keyStatus: "issued_and_emailed", issueUrl: "https://github.com/o/r/issues/9" });
-  assertEquals(calls, ["recorded?", "key pro-usd-29 cs_live_a1", "mail buyer@example.com Your Agent Skills Hub Pro Access Key",
+  assertEquals(calls, ["recorded?", "key pro-usd-29 cs_live_a1", "claim cs_live_a1 ash_pro_X pro-usd-29",
+    "mail buyer@example.com Your Agent Skills Hub Pro Access Key",
     "mail ops@example.com 💰 29.00 USD [pro] 成交:web", "issue ⚡ Pro Membership — web", "posthog"]);
 });
 
@@ -103,4 +105,20 @@ Deno.test("a failed alert stops before the issue and the purchase event, so Stri
   const { deps, calls } = stubDeps({ sendEmail: (to) => Promise.resolve(to !== "ops@example.com") });
   await assertRejects(() => processSession(order(), deps));
   assert(!calls.some((c) => c.startsWith("issue") || c === "posthog"));
+});
+
+Deno.test("the key is kept for the success page even when the email fails", async () => {
+  const { deps, calls } = stubDeps({ sendEmail: (to) => Promise.resolve(to === "ops@example.com") });
+  const out = await processSession(order(), deps);
+  assert(out.done && out.keyStatus === "issued_manual_email_needed");
+  assert(calls.includes("claim cs_live_a1 ash_pro_X pro-usd-29"));
+});
+
+Deno.test("a sealed key opens with the same secret only", async () => {
+  const { sealKey, openKey } = await import("../_shared/claim.ts");
+  const secret = btoa(String.fromCharCode(...crypto.getRandomValues(new Uint8Array(32))));
+  const other = btoa(String.fromCharCode(...crypto.getRandomValues(new Uint8Array(32))));
+  const sealed = await sealKey("ash_pro_secret", secret);
+  assertEquals(await openKey(sealed, secret), "ash_pro_secret");
+  await assertRejects(() => openKey(sealed, other));
 });

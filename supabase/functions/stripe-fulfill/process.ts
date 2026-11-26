@@ -8,6 +8,8 @@ export interface Deps {
   /** True when a GitHub issue labelled `order` already names this session (either path did it). */
   orderRecorded(sessionId: string): Promise<boolean>;
   issueKey(email: string, note: string, orderId: string): Promise<KeyResult>;
+  /** Keep the key, encrypted, for the buyer's success page (order_key_claims). False on failure. */
+  storeClaim(orderId: string, key: string, note: string): Promise<boolean>;
   sendEmail(to: string, subject: string, html: string): Promise<boolean>;
   alertEmail: string;
   earlyBirdSold(): Promise<number | null>;
@@ -46,6 +48,8 @@ async function deliverKey(s: Session, sku: Sku, deps: Deps): Promise<string> {
   const res = await deps.issueKey(email, keyNote(s, sku), s.id);
   if (!res) return "pending_manual_issue";
   if (res.status !== "issued" || !res.key) return String(res.status || "unknown");
+  // Before the email: the key is returned only once, and an email can fail to arrive (11-26).
+  await deps.storeClaim(s.id, res.key, keyNote(s, sku));
   const mail = buyerEmail(sku, res.key);
   return (await deps.sendEmail(email, mail.subject, mail.html)) ? "issued_and_emailed" : "issued_manual_email_needed";
 }
