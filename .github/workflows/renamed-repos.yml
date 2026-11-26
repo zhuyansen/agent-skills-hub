@@ -15,10 +15,17 @@ name: Renamed repositories
 # rows (659 old names that day) wait for their own decision: run it by hand with
 # min_stars 50 once they are approved.
 #
-# Writes only when the repository variable RENAMED_REPOS_APPLY is "true" or a manual run
-# asks for it; otherwise it reports what it would do. Then the curated /best/ files are
-# checked for old names (frontend/scripts/rename-curated.mjs --check), which fails the run
-# until someone renames them and commits the files.
+# A scheduled run writes when the repository variable RENAMED_REPOS_APPLY is "true"; a
+# manual run writes only when its apply box is ticked. Otherwise it reports what it would
+# do. (Until 2026-11-26 the variable made every manual run write, box or not.)
+#
+# A run that writes also renames those repositories in the curated /best/ files
+# (frontend/scripts/rename-curated.mjs), commits them to main and starts a deploy: the step
+# above removes the old-name row, so a featured repository under its old name would
+# otherwise drop off its page. Until 2026-11-26 the run only checked the files and failed,
+# and video-daily renamed them hours later: 11 of the 12 failures from 11-06 to 11-25 were
+# that check. Every run still ends with the check (--check writes nothing), so a name the
+# script cannot fix, or a failed push, still fails the run and opens an issue.
 
 on:
   schedule:
@@ -45,6 +52,11 @@ jobs:
   detect:
     runs-on: ubuntu-latest
     timeout-minutes: 45
+    permissions:
+      contents: write  # commit the renamed curated files
+      actions: write   # read running syncs (renamed_repos.py), dispatch the deploy
+    env:
+      APPLY: ${{ (github.event_name == 'schedule' && vars.RENAMED_REPOS_APPLY == 'true') || inputs.apply == true }}
     steps:
       - uses: actions/checkout@v4
 
@@ -63,7 +75,6 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
           ACTIONS_TOKEN: ${{ github.token }}
-          APPLY: ${{ inputs.apply == true || vars.RENAMED_REPOS_APPLY == 'true' }}
         run: |
           python renamed_repos.py --min-stars "${{ inputs.min_stars || '500' }}" \
             $([ "$APPLY" = "true" ] && echo --apply)
@@ -71,6 +82,37 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
+
+      # Same commit-and-deploy pattern as video-daily.yml. A report-only run skips this.
+      # It also runs when the step above failed part-way: renamed_repos.py writes one
+      # transaction per repository and then exits 1 (11-08: two rows merged, then a 403), and
+      # rename-curated.mjs only follows redirects that were committed. Only from main, so a
+      # manual run from a branch never rebases that branch onto main.
+      - name: Rename them in the curated files and commit
+        id: curated
+        if: ${{ !cancelled() && env.APPLY == 'true' && github.ref == 'refs/heads/main' }}
+        run: |
+          set -o pipefail  # the default `bash -e` would let tee hide a failed lookup
+          node frontend/scripts/rename-curated.mjs | tee "$RUNNER_TEMP/rename.log"
+          # Every tracked file the script rewrote (its CURATED_FILES live in frontend/scripts/).
+          git add -u frontend/scripts
+          if git diff --cached --quiet; then echo "changed=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -q -m "content(best): curated pages use the renamed repositories' new names" \
+                        -m "$(grep -- ' -> ' "$RUNNER_TEMP/rename.log")"
+          git pull -q --rebase origin main
+          # The same rename may have reached main first (video-daily): the rebase then drops ours.
+          if [ "$(git rev-parse HEAD)" = "$(git rev-parse FETCH_HEAD)" ]; then echo "changed=false" >> "$GITHUB_OUTPUT"; exit 0; fi
+          git push -q origin HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      # A push made with GITHUB_TOKEN does not start other workflows; dispatch the deploy.
+      - name: Deploy the renamed pages
+        if: ${{ !cancelled() && steps.curated.outputs.changed == 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref main
 
       - name: Curated files name no old repository names
         run: node frontend/scripts/rename-curated.mjs --check
@@ -89,5 +131,5 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               title: "Renamed repositories job failed",
-              body: `Either the lookups or writes failed, or a curated /best/ file names an old repository name (run \`node frontend/scripts/rename-curated.mjs\` and commit the files). [View run](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`,
+              body: `Either the lookups or writes failed, or renaming the curated /best/ files failed (a push conflict, or a name the script could not fix: run \`node frontend/scripts/rename-curated.mjs\` and commit the files). [View run](https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`,
             });
