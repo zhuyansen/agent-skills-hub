@@ -46,6 +46,8 @@ import { displayName } from "../src/lib/repoBrand.mjs";
 import {
   MODIFIED_PATH, declaredDateIn, fingerprint, loadLiveModified, nextModified,
 } from "./scenario-modified.mjs";
+import { scenarioCtaHtml } from "./scenario-cta.mjs";
+import { buildScenarioMetaDesc } from "./scenario-meta.mjs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DIST = "dist";
@@ -83,6 +85,14 @@ const GITHUB_ICON = '<svg width="16" height="16" fill="currentColor" aria-hidden
 // onclick on each; links inside a card keep their own target.
 const CARD_SCRIPT = `<script>
 document.addEventListener("click", function (e) {
+  var cta = e.target.closest("[data-cta]");
+  if (cta) {
+    var ev = cta.dataset.cta;
+    var props = { scenario: cta.dataset.scenario || "" };
+    if (window.gtag) window.gtag("event", ev, props);
+    if (window.posthog && typeof window.posthog.capture === "function") window.posthog.capture(ev, props);
+    return;
+  }
   var copy = e.target.closest(".bp-copy");
   if (copy) {
     var text = copy.dataset.copy;
@@ -133,10 +143,10 @@ function leadLabel(skills) {
   return (s) => (repeats ? s.repo_full_name : name(s));
 }
 
-const CSS_VERSION = "20261124";
+const CSS_VERSION = "20261126";
 /** Bump when a change to this generator changes what every /best/ page says or links
  *  to, so each page's sitemap lastmod moves with it (scenario-modified.mjs). */
-const TEMPLATE_REV = "2026-11-25";
+const TEMPLATE_REV = "2026-11-26";
 
 /* ── Skill matching ──────────────────────────────── */
 
@@ -634,9 +644,6 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
   // SAFE" headline over a mostly-ungraded list would be the kind of overstated
   // number this whole change exists to remove.
   const canClaim = graded.length >= Math.max(3, Math.ceil(itemCount * 0.6));
-  const verdict = canClaim
-    ? `${safeN} rated SAFE${flaggedN ? `, ${flaggedN} flagged` : ""}`
-    : "";
 
   const run = runsFor(scenario.slug);   // end-to-end test results, when the page has them
   const extraRuns = extraRunsFor(scenario.slug);   // further tests on the page (anti-slop: the interface test)
@@ -647,15 +654,18 @@ function buildScenarioHtml(scenario, skills, assetTags, allScenarios, allSkills 
   const title = buildScenarioTitle({ scenario, itemCount, canClaim, testedCount, year });
 
   const metaTopNames = skills.slice(0, 3).map(leadLabel(skills)).join(", ");
-  const metaRaw = canClaim
-    ? `${itemCount} ${descSubject}, independently security-graded: ${verdict}. ` +
-      `Scanned against ${RULE_COUNT} published rules. ${metaTopNames}.`
-    : `${itemCount} open-source ${descSubject} compared: ${metaTopNames}. ` +
-      `Quality-scored and refreshed every 8h.`;
-  const metaDesc =
-    metaRaw.length <= 155
-      ? metaRaw
-      : metaRaw.slice(0, 155).replace(/\s+\S*$/, "") + "…";
+  const metaDesc = buildScenarioMetaDesc({
+    scenario,
+    descSubject,
+    itemCount,
+    canClaim,
+    safeN,
+    flaggedN,
+    ruleCount: RULE_COUNT,
+    topNames: metaTopNames,
+    run,
+    year,
+  });
   const ogImage = `${SITE}/og-image.png`;
 
   const { scriptTags, linkTags } = assetTags;
@@ -944,6 +954,9 @@ ${methodLd(scenario, pageUrl)}
       ${cautionHtml(scenario)}
 
       ${focusAt("caution", scenario, skills)}
+
+      <!-- Intent-matched conversion strip -->
+      ${scenarioCtaHtml(scenario, { itemCount, safeN, flaggedN })}
 
       <!-- Skill Cards -->
       <section>

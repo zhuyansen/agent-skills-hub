@@ -183,11 +183,24 @@ function findAlternatives(skill, categoryIndex, topicIndex, limit = 6) {
 
 /* ── build HTML for one skill ──────────────────── */
 
-/** How many repos with a page share a name and description (filled in main()). */
+/** How many repos with a page share a rendered meta description (filled in main()). */
 const SHARED_DESCRIPTION = new Map();
-// Two pages collide when their meta descriptions would read the same: same repo name, and a
-// description that is equal, missing, or only differs past the cut at DESCRIPTION_LIMIT.
-const descriptionKey = (name, d) => skillDescription(name || "", d || "");
+const skillDescMeta = (skill, installs) => ({
+  grade: skill.security_grade,
+  quality: skill.quality_score,
+  hasInstall: installs.length > 0,
+});
+// Two pages collide when their meta descriptions would read the same: same display name,
+// grade/quality, and a description that is equal, missing, or only differs past DESCRIPTION_LIMIT.
+const descriptionKey = (skill) => {
+  const installs = skill.repo_status === "gone" ? [] : skill.install_commands || [];
+  return skillDescription(
+    displayName(skill.repo_full_name || "", skill.repo_name || ""),
+    skill.description || "",
+    installs,
+    skillDescMeta(skill, installs),
+  );
+};
 
 function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex, languageIndex, topicIndex) {
   const {
@@ -361,13 +374,13 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   // deleted repos shared one description (OpenSEO audit 2026-11-19). The name goes first.
   let metaDesc = isGone ? truncate(`${repo_full_name}: ${verdict}`, LIMIT - 3) : "";
   if (isGone && metaDesc.length + clause.length <= LIMIT) metaDesc += clause;
-  const descMeta = { grade: security_grade, quality: quality_score };
+  const descMeta = skillDescMeta(skill, installs);
   if (!isGone) metaDesc = skillDescription(displayName(repo_full_name, repo_name), description, installs, descMeta);
   // Copies of a repo keep its name and description word for word, so their pages had the same
   // meta description (OpenSEO audit 2026-11-19: anthropics/claude-code and two copies). Which
   // one is the original cannot be told from stars (clone campaigns buy them), so every page in
   // such a group names its owner instead of the bare repo name.
-  if (!isGone && (SHARED_DESCRIPTION.get(descriptionKey(repo_name, description)) || 0) > 1) {
+  if (!isGone && (SHARED_DESCRIPTION.get(descriptionKey(skill)) || 0) > 1) {
     metaDesc = skillDescription(repo_full_name, description, installs, descMeta);
   }
 
@@ -888,8 +901,9 @@ async function main() {
   const hasPage = skillPageRule(scenarioDefs);
 
   for (const s of skills) {
-    const k = descriptionKey(s.repo_name, s.description);
-    if (hasPage(s)) SHARED_DESCRIPTION.set(k, (SHARED_DESCRIPTION.get(k) || 0) + 1);
+    if (s.repo_status === "gone" || !hasPage(s)) continue;
+    const k = descriptionKey(s);
+    SHARED_DESCRIPTION.set(k, (SHARED_DESCRIPTION.get(k) || 0) + 1);
   }
 
   // Generate skill pages

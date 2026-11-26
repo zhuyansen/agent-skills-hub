@@ -136,6 +136,12 @@
     "a": "The-PR-Agent/pr-agent reviews pull requests on GitHub, GitLab and others; alibaba/open-code-review is a code review engine used at Alibaba's scale; kodustech/kodus-ai is self-hosted and works with your own LLM. They are listed on this page under PR bots & CI, Local & CLI and Platforms.",
     "qZh": "有哪些开源的 AI 代码审查工具能审 Pull Request?",
     "aZh": "The-PR-Agent/pr-agent 在 GitHub、GitLab 等平台审查 PR;alibaba/open-code-review 是在阿里规模上用过的审查引擎;kodustech/kodus-ai 可自托管,接你自己的大模型。本页把它们归在「PR 机器人与 CI」「本地与命令行」「自托管平台」几类。"
+   },
+   {
+    "q": "What is the best code review skill for Claude Code PRs in 2026?",
+    "a": "In our 2026-10-10 test of 16 review tools across 12 pull requests (8 with planted defects and 4 clean), Claude Code with no skill already caught all 8 defects in about 1 minute with 0 false alarms, and 6 tools matched it. For a structured SKILL.md checklist and fixed report format, awesome-skills/code-review-skill matched 8/8 in 1 minute (1.8 findings/PR), while vikingmute/review-forge (1.3 findings/PR, 2 min) and amElnagdy/guard-skills (1.4 findings/PR, 2 min) also caught 8/8 with 0 false alarms. For background commit reviews, kenn-io/roborev caught 8/8 at 0.9 findings/PR (13 min); for lowest noise, adamjgmiller/adamsreview averaged 0.5 findings/PR (7/7 completed within 30 min). Watch test diffs yourself: 4 of 13 tools missed a weakened test assertion.",
+    "qZh": "2026 年 Claude Code 审 PR 最好用的 code review skill 是哪个？",
+    "aZh": "在我们 2026-10-10 用 12 个 PR（8 个各埋入一个缺陷、4 个干净）对 16 个审查工具的实测里，什么都不装的 Claude Code 约 1 分钟就找全了 8 个缺陷且零误报，6 个工具与它打平。想要成文的 SKILL.md 检查清单和固定报告格式，awesome-skills/code-review-skill 约 1 分钟找全 8/8（每个 PR 1.8 条发现），vikingmute/review-forge（1.3 条/PR，2 分钟）和 amElnagdy/guard-skills（1.4 条/PR，2 分钟）同样 8/8 且零误报。需要提交后后台自动审查可选 kenn-io/roborev（8/8，0.9 条/PR，13 分钟）；追求最低噪音可选 adamjgmiller/adamsreview（0.5 条/PR，30 分钟内审完的 7 个全中）。注意自己核对测试改动：13 个跑成的工具里有 4 个放过了被削弱的测试断言。"
    }
   ],
   "method": {
@@ -1733,7 +1739,8 @@
   "slug": "refactoring",
   "seo_keyword": "code refactoring tool",
   "title": "Code Refactoring",
-  "description": "Discover AI tools for automated code refactoring, optimization, and architectural improvements.",
+  "serp_subject": "AI Code Refactoring Skills for Claude",
+  "description": "AI code refactoring skills and MCP tools for Claude Code, Codex and AI coding agents: automated cleanup, modernization and architecture refactoring, every repo security-graded before you install.",
   "match": {
    "categories": [],
    "keywords": [
@@ -3646,9 +3653,9 @@
   "slug": "skill-management-tools",
   "title": "Skill & Agent Management",
   "github_list": "https://github.com/zhuyansen/awesome-agent-skills-managers",
-  "serp_subject": "Claude Skills Managers & CLIs",
+  "serp_subject": "Claude Skill Managers & Alternatives",
   "seo_keyword": "claude skills manager",
-  "description": "Claude skills managers and skills CLIs that install Claude skills, keep them updated and sync them across Claude Code, Codex and 15+ other AI coding tools: desktop apps, package managers, registries.",
+  "description": "Open-source Claude skill managers, CLIs and desktop apps — practical alternatives to skills.rest and qaskills.sh for installing, auditing and syncing skills across Claude Code, Codex and 15+ AI coding agents.",
   "match": {
    "categories": [],
    "primary_keywords": [
@@ -3880,6 +3887,12 @@
     "a": "Use a manager that installs to every agent from one place: runkids/skillshare manages skills, agents, rules, MCP connections and hooks across tools; microsoft/apm is a package manager for agents; shanliuling/skills-link syncs local skills to 41+ coding agents with one command.",
     "qZh": "怎么在 Claude Code、Codex 等多个 agent 之间统一管理 skill?",
     "aZh": "用能一处安装、分发到所有 agent 的管理工具:runkids/skillshare 跨工具管理 skill、agent、规则、MCP 和 hooks;microsoft/apm 是 agent 的包管理器;shanliuling/skills-link 一条命令把本地 skill 同步到 41 个以上的编程 agent。"
+   },
+   {
+    "q": "What are the best alternatives to skills.rest and qaskills.sh?",
+    "a": "For a security-graded directory instead of hosted registries like skills.rest or qaskills.sh, Agent Skills Hub indexes 282,000+ open-source skills and MCP servers with automated security grades and hands-on tests. Pair it with an open-source local skill manager: luongnv89/asm (the only manager of 14 we tested that refused a curl | sh script by default), runkids/skillshare (audits installs and syncs across agents), shanliuling/skills-link (syncs local skills to 41+ coding agents), or xingkongliang/skills-manager for a desktop GUI.",
+    "qZh": "skills.rest 和 qaskills.sh 有哪些开源替代品？",
+    "aZh": "如果想找 skills.rest 或 qaskills.sh 的开源替代方案，可以先用 Agent Skills Hub 按安全评级和实测结果检索 282,000+ 开源 skill 与 MCP 服务，再配合本地开源管理器安装同步：命令行推荐 luongnv89/asm（我们实测 14 个工具里唯一默认拦截 curl | sh 危险脚本的）、跨 agent 同步推荐 runkids/skillshare（安装时审计并支持跨工具同步）或 shanliuling/skills-link（一条命令同步到 41+ 编程 agent），偏爱桌面图形界面可选 xingkongliang/skills-manager。"
    }
   ],
   "method": {
@@ -5073,7 +5086,7 @@
   "slug": "seo-tools",
   "seo_keyword": "claude seo skill",
   "title": "Claude SEO Skills & SEO MCP Servers",
-  "serp_subject": "Claude SEO Skills & SEO MCP Servers",
+  "serp_subject": "SEO MCP Servers & Claude SEO Skills",
   "github_list": "https://github.com/zhuyansen/awesome-claude-seo-skills",
   "description": "Open-source Claude SEO skills and SEO MCP servers, security-graded: claude-seo, geo-seo-claude, audit and keyword-research skills, GEO tools, and MCP servers for Google Search Console, Ahrefs and DataForSEO. Vet before you install.",
   "quick_pick": "AgriciDaniel/claude-seo",
@@ -5373,6 +5386,12 @@
     "a": "Use a Google Search Console MCP server. AminForou/mcp-gsc signs in with a browser OAuth login or a service account. saurabhsharma2u/search-console-mcp is set up with npx search-console-mcp setup and also reads Bing Webmaster Tools and GA4. ahonn/mcp-server-gsc uses a service-account key. Each one can read only the properties your Google account or service account has access to.",
     "qZh": "怎么把 Google Search Console 接到 Claude？",
     "aZh": "用 Google Search Console 的 MCP 服务。AminForou/mcp-gsc 支持浏览器 OAuth 登录或服务账号；saurabhsharma2u/search-console-mcp 用 npx search-console-mcp setup 完成设置，还能读 Bing Webmaster Tools 和 GA4；ahonn/mcp-server-gsc 用服务账号密钥。它们都只能读你的 Google 账号或服务账号有权限的资源。"
+   },
+   {
+    "q": "What is the best SEO MCP server for Claude Code in 2026?",
+    "a": "Pick by data source. For Google Search Console data directly in Claude Code, AminForou/mcp-gsc (browser OAuth or service account), saurabhsharma2u/search-console-mcp (also reads Bing Webmaster Tools and GA4 via npx search-console-mcp setup) and ahonn/mcp-server-gsc (service-account key) are the top open-source SEO MCP servers. Pair an MCP server with a Claude SEO skill for audits: in our 2026-11-11 test of 13 SEO tools on a 16-issue test shop, aaron-he-zhu/aaron-marketing-skills was the only tool to catch all 16 planted issues with 0 false claims (5 min), while AgriciDaniel/claude-seo offers 26 sub-skills and 19 specialist agents across technical SEO, schema and GEO (12/16 in our sandbox because it obeyed robots.txt on the blocked blog).",
+    "qZh": "2026 年 Claude Code 最好用的 SEO MCP Server 是哪个？",
+    "aZh": "按你要接的数据源来选。在 Claude Code 里直接查 Google Search Console 数据，主流开源 SEO MCP Server 有 AminForou/mcp-gsc（支持浏览器 OAuth 或服务账号）、saurabhsharma2u/search-console-mcp（用 npx search-console-mcp setup 配置，同时支持 Bing Webmaster Tools 和 GA4）以及 ahonn/mcp-server-gsc（服务账号密钥）。再配合 SEO 审计 skill 使用：在我们 2026-11-11 用 16 个埋入问题的测试网店对 13 个工具的实测里，aaron-he-zhu/aaron-marketing-skills 是唯一找全 16/16 且零误报的工具（5 分钟）；AgriciDaniel/claude-seo 则提供 26 个子 skill 和 19 个专家 agent 覆盖技术 SEO、Schema 与 GEO（因遵守 robots.txt 跳过屏蔽博客，沙箱检出 12/16）。"
    }
   ],
   "method": {
@@ -7023,6 +7042,12 @@
     "a": "guizang-ppt-skill (op7418/guizang-ppt-skill) is an agent skill by Guizang (歸藏) that generates polished HTML slide decks in editorial-magazine and Swiss layouts, with image prompts and social-media covers. It outputs web slides rather than a .pptx file; projects such as wangzan101/html-to-ppt-pdf convert its decks to PDF and PPTX for presenting offline. It is listed on this page under Web slides.",
     "qZh": "歸藏(guizang)PPT skill 是什么?",
     "aZh": "guizang-ppt-skill(op7418/guizang-ppt-skill)是歸藏做的 agent skill,生成杂志风、瑞士风排版的精美 HTML 幻灯片,并附带配图提示词和社交平台封面。它输出的是网页幻灯片而不是 .pptx 文件;wangzan101/html-to-ppt-pdf 这类项目可以把它的幻灯片转成 PDF 和 PPTX,方便离线演示。本页把它归在「网页幻灯片」一类。"
+   },
+   {
+    "q": "Which Codex PPT skill is best for PowerPoint decks in 2026?",
+    "a": "Choose by whether you need to edit the slides afterward. In our 2026-10-07 test of 32 PPT skills (28 ran), hugohe3/ppt-master produced the best native, editable .pptx (editability L3, 100% on our 30-item content rubric, touch-ups only, 11 min). For browser-based HTML decks, zarazhangrui/frontend-slides scored 100% in 6.2 minutes (L1) and op7418/guizang-ppt-skill delivered editorial and Swiss-grid animated HTML slides at L5 (100%, 10.3 min). ningzimu/codex-ppt-skill generates image-based slides with GPT Image 2 in 4.5 minutes (92.7% rubric), but its all-image pages needed substantial rework unless paired with ningzimu/image-to-editable-ppt-skill (which converted them to 2,224 editable characters and 78 icons).",
+    "qZh": "2026 年 Codex 做 PPT 最好用的 skill 是哪个？",
+    "aZh": "按做完之后还要不要改来选。在我们 2026-10-07 对 32 个 PPT skill（跑成 28 个）的实测里：要交付同事继续改的原生 .pptx，首选 hugohe3/ppt-master（L3 级可编辑、30 项内容检查单 100%、只需小修，11 分钟）；做浏览器放映的 HTML 幻灯片，zarazhangrui/frontend-slides 6.2 分钟拿下 100%（L1），op7418/guizang-ppt-skill 做杂志风和瑞士网格风动效 HTML 达到最高的 L5 级可编辑（100%，10.3 分钟）。ningzimu/codex-ppt-skill 4.5 分钟用 GPT Image 2 出图式 PPT（检查单 92.7%），但整页图片需要大改，通常要配合 ningzimu/image-to-editable-ppt-skill 还原为可编辑对象（实测还原出 2,224 个可编辑字符和 78 个独立图标）。"
    }
   ],
   "focus": {
@@ -8459,6 +8484,11 @@
   "title": "Claude Video Editing & Remotion Skills",
   "serp_subject": "Claude Video Editing & Remotion Skills",
   "seo_keyword": "claude video editing skill",
+  "see_also": {
+   "slug": "animation-skills",
+   "en": "Pure UI / motion / Lottie animation skills →",
+   "zh": "纯动效 / Lottie / GSAP 动画 Skill →"
+  },
   "focus": {
    "id": "remotion-skill",
    "h2": "Remotion Skills for Claude Code and Codex",
@@ -10344,6 +10374,11 @@
   "title": "Animation Skills",
   "serp_subject": "Claude Animation & Motion Graphics Skills",
   "seo_keyword": "claude animation skill",
+  "see_also": {
+   "slug": "claude-video-skills",
+   "en": "Video editing & Remotion pipelines →",
+   "zh": "视频剪辑与 Remotion 管线 →"
+  },
   "description": "Claude animation skills for cinematic animated video and motion graphics (Remotion), GSAP web motion, Lottie, game sprite sheets, 3D characters and Manim. Every one is security-graded before you install it, and the top ones were tested against Claude Code on its own.",
   "match": {
    "categories": [],
