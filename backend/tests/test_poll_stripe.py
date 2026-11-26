@@ -221,3 +221,20 @@ def test_failed_alert_sends_no_purchase_event(monkeypatch):
     with pytest.raises(TimeoutError):
         poll_stripe.process_session(live_session())
     assert poll_stripe.POSTHOG_CAPTURE_URL not in [u for u, _ in calls]
+
+
+def test_an_order_inside_the_webhook_window_is_left_to_the_webhook():
+    # The Stripe webhook fulfils within seconds; acting at the same time, both could record one order.
+    now = 1_800_000_000
+    newest = now - poll_stripe.WEBHOOK_WINDOW_SECONDS
+    fresh = {"id": "cs_live_new", "created": now - 60}
+    ripe = {"id": "cs_live_old", "created": now - 900}
+    done = {"id": "cs_live_done", "created": now - 900}
+    old = {"id": "cs_live_ancient", "created": now - 10 * 86400}
+    cutoff = now - poll_stripe.LOOKBACK_SECONDS
+    assert poll_stripe.pending_orders([fresh, ripe, done, old], {"cs_live_done"}, cutoff, newest) == [ripe]
+
+
+def test_the_poll_and_the_webhook_agree_on_the_window():
+    fn = POLL_PATH.parents[2] / "supabase" / "functions" / "stripe-fulfill" / "fulfil.ts"
+    assert f"WEBHOOK_WINDOW_SECONDS = {poll_stripe.WEBHOOK_WINDOW_SECONDS};" in fn.read_text()

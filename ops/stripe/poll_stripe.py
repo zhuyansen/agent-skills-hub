@@ -68,6 +68,10 @@ SUPABASE_ANON_KEY = (
 ISSUE_SECRET = os.environ.get("AGENTSKILLSHUB_ISSUE_SECRET", "")
 
 LOOKBACK_SECONDS = int(os.environ.get("LOOKBACK_HOURS") or 48) * 3600
+# Orders younger than this belong to the Stripe webhook (supabase/functions/stripe-fulfill),
+# which fulfils within seconds; this poll is the fallback. Same value as its
+# WEBHOOK_WINDOW_SECONDS. Acting sooner, both could record the same order at once.
+WEBHOOK_WINDOW_SECONDS = 600
 SESSION_PAGE = 100
 GRACE_SECONDS = 3 * 24 * 3600
 EARLY_BIRD_LIMIT = 100
@@ -561,6 +565,11 @@ def send_test_notification() -> int:
     return 0
 
 
+def pending_orders(sessions: list[dict], seen: set[str], cutoff: int, newest: int) -> list[dict]:
+    """Paid sessions with no order issue yet, from the lookback window, leaving the webhook its window."""
+    return [s for s in sessions if s["id"] not in seen and cutoff <= s.get("created", 0) <= newest]
+
+
 def main() -> int:
     global EARLY_BIRD_SOLD
     if not STRIPE_KEY:
@@ -581,7 +590,7 @@ def main() -> int:
     sync_subscriptions(sessions)
     seen = existing_order_ids() if sessions else set()
     cutoff = int(time.time()) - LOOKBACK_SECONDS
-    new = [s for s in sessions if s["id"] not in seen and s.get("created", 0) >= cutoff]
+    new = pending_orders(sessions, seen, cutoff, int(time.time()) - WEBHOOK_WINDOW_SECONDS)
     for session in new:
         issue_url = process_session(session)
         print(f"NEW ORDER: {session['id']} → {issue_url}")
