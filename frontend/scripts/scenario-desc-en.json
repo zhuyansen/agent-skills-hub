@@ -319,7 +319,7 @@
  "sdyckjq-lab/llm-wiki-skill": "A skill for building a personal knowledge base based on Karpathy's llm-wiki methodology, supporting multiple platforms.",
  "sharptoolbox/code-walkthrough-ppt-video": "An agent skill for generating product explanation HTML PPTs or Chinese explainer videos from source code",
  "sharptoolbox/consulting-html-ppt": "Consulting-style HTML + SVG presentation generation skill (Agent Skill); McKinsey/BCG-style PPT; three-form classification, two template libraries, and ECharts.",
- "shengjidaguai-china/goutoujunshi-jev-chat": "Goutou Junshi Chat: a floating window for reading Mac WeChat, analyzing relationships, and drafting replies",
+ "shengjidaguai-china/goutoujunshi-chat": "Goutou Junshi Chat: a floating window for reading Mac WeChat, analyzing relationships, and drafting replies",
  "shenxiaofeng-pro/jiarui-svg-skills": "A Jiarui-style PPT image creation skill package that generates SVGs with company logos, primary colors, and clear structures, convertible to PPT images by ungr…",
  "shuyicc/MathLens": "MathLens is an Agent skill for math videos. Paste image or text; analyzes, shows, scripts narration, creates Manim video. 1–10 min; costs 0.2–1 yuan.",
  "sixtysevenlf/dsh-skill-blender-modeling": "DSH skill v1.0: Blender modeling/assembly workflow, multi-agent roles, reconstruction, 6 pitfalls, 10 audit gates, 23 recipes; dsh-blender-plugin v1.0.0",
