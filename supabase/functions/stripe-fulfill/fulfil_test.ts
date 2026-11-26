@@ -122,3 +122,9 @@ Deno.test("a sealed key opens with the same secret only", async () => {
   assertEquals(await openKey(sealed, secret), "ash_pro_secret");
   await assertRejects(() => openKey(sealed, other));
 });
+
+Deno.test("a key that could not be kept for the success page is called out in the alert and issue", async () => {
+  const { deps } = stubDeps({ storeClaim: () => Promise.resolve(false) });
+  const out = await processSession(order(), deps);
+  assert(out.done && out.keyStatus === "issued_and_emailed+success_page_failed");
+});

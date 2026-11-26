@@ -12,6 +12,10 @@ export type ClaimResult =
 export const POLL_MS = 2000;
 export const MAX_POLLS = 30;
 export const KEY_STORAGE = "pro_key";
+export const NOTE_STORAGE = "pro_key_note";
+/** Where index.html's first script puts the session id it takes out of the address bar. */
+export const CLAIM_SESSION_STORAGE = "ash_claim_session";
+// Same pattern as SESSION_ID in supabase/functions/_shared/claim.ts.
 const SESSION_ID = /^cs_(live|test)_[A-Za-z0-9]{20,100}$/;
 
 const claimUrl = () => `${import.meta.env?.VITE_SUPABASE_URL || ""}/functions/v1/claim-key`;
@@ -27,8 +31,11 @@ export async function claimOnce(sessionId: string, fetcher: typeof fetch = fetch
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ session_id: sessionId }),
     });
-    const body = (await res.json()) as ClaimResult;
-    return body.status === "ready" || body.status === "invalid" ? body : { status: "pending" };
+    const body = (await res.json()) as Partial<{ status: string; key: unknown; note: unknown }>;
+    if (body.status === "ready" && typeof body.key === "string" && typeof body.note === "string") {
+      return { status: "ready", key: body.key, note: body.note };
+    }
+    return body.status === "invalid" || body.status === "expired" ? { status: "invalid" } : { status: "pending" };
   } catch {
     return { status: "pending" };
   }

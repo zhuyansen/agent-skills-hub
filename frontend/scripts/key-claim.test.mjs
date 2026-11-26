@@ -34,3 +34,13 @@ test("it gives up after MAX_POLLS and says so", async () => {
   assert.deepEqual(r, { status: "timeout" });
   assert.equal(calls, MAX_POLLS);
 });
+
+test("index.html takes the session id out of the address bar before any analytics loads", async () => {
+  const { readFile } = await import("node:fs/promises");
+  const html = await readFile(new URL("../index.html", import.meta.url), "utf8");
+  const strip = html.indexOf('window.__ashClaimSession=s');
+  assert.ok(strip > 0, "claim-strip script missing");
+  for (const later of ["googletagmanager.com/gtag/js", 'src="/ph.js"']) {
+    assert.ok(html.indexOf(later) > strip, `${later} must load after the strip`);
+  }
+});

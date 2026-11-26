@@ -49,7 +49,9 @@ async function deliverKey(s: Session, sku: Sku, deps: Deps): Promise<string> {
   if (!res) return "pending_manual_issue";
   if (res.status !== "issued" || !res.key) return String(res.status || "unknown");
   // Before the email: the key is returned only once, and an email can fail to arrive (11-26).
-  await deps.storeClaim(s.id, res.key, keyNote(s, sku));
+  const kept = await deps.storeClaim(s.id, res.key, keyNote(s, sku));
   const mail = buyerEmail(sku, res.key);
-  return (await deps.sendEmail(email, mail.subject, mail.html)) ? "issued_and_emailed" : "issued_manual_email_needed";
+  const status = (await deps.sendEmail(email, mail.subject, mail.html)) ? "issued_and_emailed" : "issued_manual_email_needed";
+  // Shown in the operator alert and the issue: with both failed, the key exists nowhere.
+  return kept ? status : `${status}+success_page_failed`;
 }

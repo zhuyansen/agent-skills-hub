@@ -4,6 +4,11 @@
     <script>
       (function(){var t=localStorage.getItem("theme");if(t==="dark"||(t!=="light"&&window.matchMedia("(prefers-color-scheme:dark)").matches)){document.documentElement.classList.add("dark")}})();
     </script>
+    <script>
+      // /pro/success/?session_id=cs_...: the Checkout Session id claims the buyer's key (claim-key).
+      // Moved out of the address bar here, before gtag and PostHog read the URL (2026-11-26 review).
+      (function(){var l=window.location;if(l.pathname.indexOf("/pro/success")!==0)return;var s=new URLSearchParams(l.search).get("session_id");if(!s)return;window.__ashClaimSession=s;try{sessionStorage.setItem("ash_claim_session",s)}catch(e){}history.replaceState(history.state,"",l.pathname)})();
+    </script>
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
