@@ -359,7 +359,7 @@ def main() -> int:
     m, d = int(TODAY[5:7]), int(TODAY[8:10])
     plain = lambda s: re.sub(r"\*\*(.+?)\*\*", r"\1", s.strip())
     nums = "1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣ 🔟".split()
-    post = [f"🔥 今日新鲜 Skills 精选 Top {len(picks)}（{m}月{d}日）", f"📋 完整榜单 + 安全评级：agentskillshub.top/daily/{TODAY}/", "",
+    post = [f"🔥 今日新鲜 Skills 精选 Top {len(picks)}（{m}月{d}日）", f"📋 完整榜单 + 安全评级：agentskillshub.top/daily/{TODAY}/?utm_source=x&utm_medium=social&utm_campaign=daily", "",
             "由 Agent Skills Hub（agentskillshub.top）整理！发现 256,000+ AI Agent 工具，每日更新 🚀", "", f"{plain(out['hook']).rstrip('！!。.')}！！！", ""]
     for i, p in enumerate(picks):
         c = pool[p["repo"].lower()]

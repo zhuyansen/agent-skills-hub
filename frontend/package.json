@@ -35,6 +35,7 @@
     "test:zh-twin": "node --test scripts/scenario-zh-page.test.mjs",
     "test:audit-meta": "node --test scripts/audit-meta.test.mjs",
     "test:repo-brand": "node --test scripts/repo-brand.test.mjs scripts/skill-title.test.mjs",
+    "test:analytics": "node --test scripts/analytics-instant.test.mjs",
     "test:author-meta": "node --test scripts/author-meta.test.mjs",
     "test:skill-page-rule": "node --test scripts/skill-page-rule.test.mjs"
   },

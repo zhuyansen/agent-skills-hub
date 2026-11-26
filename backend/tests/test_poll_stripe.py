@@ -209,6 +209,8 @@ def test_live_purchase_reported_once_after_the_order_is_recorded(monkeypatch):
     assert len(captures) == 1 and captures[0] > issue
     props = calls[captures[0]][1]["properties"]
     assert props["$insert_id"] == "cs_live_a1" and props["revenue"] == 49.0
+    # Sent from a GitHub runner, so a GeoIP lookup would place the buyer at the runner.
+    assert props["$geoip_disable"] is True
 
 
 def test_failed_alert_sends_no_purchase_event(monkeypatch):

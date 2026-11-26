@@ -139,6 +139,16 @@ def _velocity_rows_html(trending_skills: list, max_items: int = 20) -> str:
     return rows
 
 
+# Links from the weekly email to our own pages. A click in a mail app arrives with no referrer,
+# so without these PostHog files it under "direct" (2026-11-26: the first Pro buyer's visit
+# could not be traced to any source).
+NEWSLETTER_UTM = "utm_source=newsletter&utm_medium=email&utm_campaign=weekly"
+
+
+def _newsletter_link(url: str) -> str:
+    return f"{url}{'&' if '?' in url else '?'}{NEWSLETTER_UTM}"
+
+
 def _new_skills_rows_html(new_skills: list, max_items: int = 20) -> str:
     """Build New This Week ranking rows for newsletter."""
     rows = ""
@@ -151,7 +161,7 @@ def _new_skills_rows_html(new_skills: list, max_items: int = 20) -> str:
         category = skill.get("category", "")
         site_url = settings.site_url or "https://agentskillshub.top"
         full_name = skill.get("repo_full_name", "")
-        skill_page_url = f"{site_url}/skill/{full_name}/"
+        skill_page_url = _newsletter_link(f"{site_url}/skill/{full_name}/")
 
         if stars >= 1000:
             stars_str = f"&#11088; {stars/1000:.1f}k"
@@ -360,7 +370,7 @@ def _newsletter_email_html(
   <tr><td style="padding:0 40px 32px;text-align:center;">
     <table cellpadding="0" cellspacing="0" style="margin:0 auto;">
     <tr><td style="background:#4f46e5;border-radius:8px;">
-      <a href="{site_url}" style="display:inline-block;padding:14px 32px;color:#fff;text-decoration:none;font-weight:600;font-size:15px;">
+      <a href="{_newsletter_link(site_url + '/')}" style="display:inline-block;padding:14px 32px;color:#fff;text-decoration:none;font-weight:600;font-size:15px;">
         Explore All Skills &#8594;
       </a>
     </td></tr>

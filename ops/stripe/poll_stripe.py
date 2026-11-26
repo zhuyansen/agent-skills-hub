@@ -438,6 +438,9 @@ def send_posthog_purchase(session: dict, sku: str) -> bool:
             "is_early_bird": session.get("payment_link") == EARLY_BIRD_LINK,
             "attributed_to_session": bool(ph_id),
             "source": "stripe_s2s",
+            # Sent from a GitHub runner: PostHog would place every purchase at the runner (it
+            # put the first early-bird buyer, in the UK, in the United States).
+            "$geoip_disable": True,
             "$insert_id": session["id"],
         },
     }
