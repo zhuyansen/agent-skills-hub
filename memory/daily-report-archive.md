@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-11-26
+1. usetuff/tuff — 🆕 整合项目管理、文档与聊天，让你的团队与 AI 智能体在同一个平台上协作完成任务。（215★ 17.4/day）
+2. byttrade/bytx-skills — 🆕 为 AI 智能体提供加密货币交易技能，通过 MCP 服务与 CLI 实现安全可控的量化操作。（90★ 11.6/day）
+3. db-branch/db-branch — 🆕 基于 ZFS 克隆实现 MySQL 数据库分支，通过 ProxySQL 路由支持智能体快速环境隔离。（114★ 8.9/day）
+4. pktq/lasik — 还原被 BLA 机制屏蔽的代码可见性，使编码智能体能重新读取并分析受限的项目源代码。（146★ 8.8/day）
+5. dissolve-ui/dissolve — 🆕 提供一套 React Native 动画组件库，支持智能体直接调用并快速构建高质量交互界面。（92★ 8.7/day）
+6. exilemoulei/pob4agents — 🆕 实现《流放之路》PoB 构建导入与实时计算，让 AI 智能体直接分析流派数据与装备价值。（118★ 8.5/day）
+7. fkubota/understand-mode — 🆕 利用白板与付条模式辅助理解 Claude Code 的输出与代码提交，让复杂逻辑梳理更直观。（106★ 8.1/day）
+8. yang0/magpie-gptfree — 实现 GPT 号池管理，支持网页 OAuth 授权、批量导入与自动续期，优化多账号调用体验。（131★ 7.6/day）
+9. yapengl490-cmd/order-policy-assistant — 🆕 自动核对电商平台的退款金额与适用政策，为商户与买家提供准确的售后核查与决策依据。（49★ 7.0/day）
+10. eliransu/enterplace — 🆕 部署自托管 AI 网关，为每个请求添加预算控制与审核日志，确保智能体调用的合规性。（46★ 4.2/day）
+🎯 今日趋势：近期 MCP 服务与 **AI 工作流集成工具** 成为主流，开发者致力于让智能体在 **电商售后**、**代码分析** 与 **数据库管理** 等专业领域实现落地。
+> 注：GitHub Actions 自动生成（gemini-4-hydrogen 挑选和撰写，数据和格式由脚本核对）。去重范围＝repo 内 archive 全部 150 个日期段，比对 1,485 个 owner/repo。单连接查询（`connect_timeout=15`、`statement_timeout=30000`、NullPool）一次：`first_seen ≥72h`、stars ≥20 得 150 条；切回 48h 剩 88 条、去重后 82 条，过了硬规则的不足 20 个，放宽到 72h（去重后共 133 条）。velocity = stars ÷ max(距 created_at 天数, 1)，按 velocity 往下用 `gh api` 抽查 27 个。**代码硬规则剔除**：AyushRajSinghParihar/weaponized-curiosity：名字或描述像破解 / 激活 / 外挂类诱饵；HaqayaDe25/codex-cli-rotator：名字或描述像破解 / 激活 / 外挂类诱饵；Katherine08246/opencode-token-abuse：名字或描述像破解 / 激活 / 外挂类诱饵；camillestone3496/opencode-sub-abuse：名字或描述像破解 / 激活 / 外挂类诱饵；ShuhuaNowak4134/oc-rotation-tool：名字或描述像破解 / 激活 / 外挂类诱饵；rafael20136/opencode-token-pool：名字或描述像破解 / 激活 / 外挂类诱饵；DunisoHez13/cursor-token-pool：名字或描述像破解 / 激活 / 外挂类诱饵；KonstantinTorres30399/oc-free-sub-generator：名字或描述像破解 / 激活 / 外挂类诱饵；Kaito67458/oc-multi-account：名字或描述像破解 / 激活 / 外挂类诱饵；CepeneJile34/opencode-free-sub：名字或描述像破解 / 激活 / 外挂类诱饵；TegevoXi39/ccu-tool：名字或描述像破解 / 激活 / 外挂类诱饵；Sinan6021/codex-cli-unlimited：名字或描述像破解 / 激活 / 外挂类诱饵；KixojeZuq51/opencode-free-tool：名字或描述像破解 / 激活 / 外挂类诱饵；Pelletier73182/windsurf-token-abuse：名字或描述像破解 / 激活 / 外挂类诱饵；Freitas46964/windsurf-token-pool：名字或描述像破解 / 激活 / 外挂类诱饵；SodovaFo7/claude-code-unlimited：名字或描述像破解 / 激活 / 外挂类诱饵；usejog/joggernaut：刷星嫌疑：作者 0 粉、其余仓库最高 0★，62★ 只有 1 个 fork；CoMemor/CoMemor：刷星嫌疑：作者 0 粉、其余仓库最高 0★，63★ 只有 0 个 fork；lucasito92/delta-executor-pc：名字或描述像破解 / 激活 / 外挂类诱饵；Restackerr/jjsploit-v8-executor-cekalan：名字或描述像破解 / 激活 / 外挂类诱饵；Saanvi270/cryptic-executor-pc：名字或描述像破解 / 激活 / 外挂类诱饵；kevin-codecode20r2/jjsploit-v8-executor：名字或描述像破解 / 激活 / 外挂类诱饵；nikita-berg-io2090h6/celery-executor-roblox：名字或描述像破解 / 激活 / 外挂类诱饵；ryan-lopez-ops2091w4/celery-executor-roblox：名字或描述像破解 / 激活 / 外挂类诱饵；MarcoVolkov43401/zorara-nihon-executor：名字或描述像破解 / 激活 / 外挂类诱饵；robertsmi-codes63/jjsploit-v8-executor-x64：名字或描述像破解 / 激活 / 外挂类诱饵；pebble-grove/krnl-reborn-executor：名字或描述像破解 / 激活 / 外挂类诱饵；ryan-h-lab94s3/nezur-external-roblox：名字或描述像破解 / 激活 / 外挂类诱饵；louischavez7324/luna-atlantis-executor：名字或描述像破解 / 激活 / 外挂类诱饵；ClaraHakansson4302/arceus-x-neo-pc：名字或描述像破解 / 激活 / 外挂类诱饵；brewer38501/celery-executor-roblox：名字或描述像破解 / 激活 / 外挂类诱饵；dovecopper/jjsploit-v8-executor：名字或描述像破解 / 激活 / 外挂类诱饵；XikorePa85/nezur-external-roblox：名字或描述像破解 / 激活 / 外挂类诱饵；RefexaLiq48/argon-valex-executor：名字或描述像破解 / 激活 / 外挂类诱饵；vellumlichen/fluxus-executor-pc：名字或描述像破解 / 激活 / 外挂类诱饵；doughslip/codex-executor-pc：名字或描述像破解 / 激活 / 外挂类诱饵；49 个 security_grade 为 unknown。**模型排除项**：①biTQ-m/awesome-antigravity-plugins（58★ 17.8/day）：仓库名称含有疑似刷星关键词且描述空泛，疑似为规避监管或 SEO 堆砌词库。。**轻红旗**（保留）：yapengl490-cmd/order-policy-assistant：轻红旗：作者仅有 1 个项目且粉丝数为 0，但在智能体场景下有具体业务功能实现。。🆕 判定＝created_at 距今 14 天内：tuff（12.4 天）、bytx-skills（7.7 天）、db-branch（12.9 天）、dissolve（10.6 天）、pob4agents（13.8 天）、understand-mode（13.2 天）、order-policy-assistant（7.0 天）、enterplace（11.1 天）。security_grade：入选 10 仓为 safe。表中 stars 为数据库快照。
+
+---
+
 ## 2026-11-25
 1. qianyiai/kurocat — 🆕 在桌面显示透明可交互的陪伴小猫，并支持为 AI 智能体添加桌面可视化互动功能。（622★ 168.4/day）
 2. Developing-Gamer/agent-sim — 🆕 在 Linux 环境下运行的 iOS 智能体模拟器，为 Agent 提供沙箱环境支持。（560★ 160.0/day）
