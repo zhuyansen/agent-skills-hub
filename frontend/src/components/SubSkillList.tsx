@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { fetchRepoSubSkillList, type SubSkillListItem } from "../api/subSkills";
 import { githubFolderUrl, subSkillPath } from "../lib/subSkillMeta.mjs";
+import { prerenderedHasSubSkills } from "../lib/prerenderedMeta";
 import { useSubSkillStrings } from "../i18n/subSkillStrings";
 
 const LIST_SHOWN = 50; // PARENT_LIST_SHOWN in scripts/sub-skills.mjs
@@ -41,6 +42,13 @@ export function RepoSubSkills({ repoFullName }: { repoFullName: string }) {
   const s = useSubSkillStrings();
   const [list, setList] = useState<SubSkillListItem[] | null>(null);
   useEffect(() => {
+    // On a pre-rendered /skill/ page, generate-sub-skill-pages.mjs writes both sub-skills.json
+    // and the static section together. If the static section is absent, sub-skills.json does
+    // not exist — skip the probe to avoid 404s for AI & search crawlers (~3.2k/week).
+    if (prerenderedHasSubSkills() === false) {
+      setList(null);
+      return;
+    }
     let live = true;
     fetchRepoSubSkillList(repoFullName).then((l) => live && setList(l ?? null)).catch(() => live && setList(null));
     return () => { live = false; };

@@ -11,6 +11,7 @@ import { SiteFooter } from "../components/SiteFooter";
 import { useI18n } from "../i18n/I18nContext";
 import { isVerifiedOrgAuthor } from "../data/verifiedOrgs";
 import { authorDescription, authorTitle } from "../lib/authorMeta.mjs";
+import { isUnprerenderedDirectLoad } from "../lib/prerenderedMeta";
 import type { PaginatedSkills, Skill } from "../types/skill";
 
 const PAGE_SIZE = 30;
@@ -45,8 +46,15 @@ export function AuthorPage() {
   useEffect(() => {
     if (!username) return;
     let cancelled = false;
-    setStaticState("unknown");
     setStaticItems(null);
+    // generate-author-pages.mjs writes the static HTML and /creator-data/{name}.json
+    // for the exact same set of creators. On a direct load via 404.html fallback,
+    // the JSON does not exist — jump straight to Supabase without firing a 404.
+    if (isUnprerenderedDirectLoad()) {
+      setStaticState("miss");
+      return;
+    }
+    setStaticState("unknown");
     // Static-first: build-time snapshot for the ~500 generated creators.
     // Live Supabase (observed 6.5s/request, dropped connections) becomes a
     // fallback for the long tail only.

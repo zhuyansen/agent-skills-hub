@@ -34,6 +34,7 @@ let tested: TestedEntry[] = [];
 let guides: GuideLink[] = [];
 let related: RelatedLinks = { recent: [], random: [] };
 let path: string | null = null;
+let initialPath: string | null = null;
 let shell: string | null = null;
 
 function parseList(json: string | null): unknown[] {
@@ -94,6 +95,10 @@ function parseRelated(json: string | null): RelatedLinks {
   }
 }
 
+function normalizePathname(p: string): string {
+  return p.length > 1 && p.endsWith("/") ? p.slice(0, -1) : p;
+}
+
 /** Called once in main.tsx, before the static tags are removed. */
 export function rememberPrerenderedPage(
   content: string | null,
@@ -106,6 +111,7 @@ export function rememberPrerenderedPage(
 ): void {
   description = content;
   shell = shellHtml;
+  initialPath = window.location.pathname;
   installs = parseList(installJson).filter((v): v is string => typeof v === "string");
   tested = parseList(testedJson).filter(isTestedEntry);
   guides = parseList(guidesJson).filter(isGuideLink);
@@ -116,6 +122,37 @@ export function rememberPrerenderedPage(
 }
 
 const onPrerenderedPage = () => path !== null && path === window.location.pathname;
+
+/** True when the browser landed directly on a URL served via the 404.html/index.html SPA
+ *  fallback (not a pre-rendered static page). Used to skip probing build-time JSON files
+ *  like /creator-data/<name>.json that only exist for pre-rendered pages, eliminating
+ *  hundreds of AI crawler 404s per week. */
+export function isUnprerenderedDirectLoad(): boolean {
+  return (
+    initialPath !== null
+    && normalizePathname(window.location.pathname) === normalizePathname(initialPath)
+    && !onPrerenderedPage()
+  );
+}
+
+/** Whether the pre-rendered /skill/ page carries a build-time sub-skills section.
+ *  false: build emitted no sub-skills.json for this repo (skip fetch to avoid 404).
+ *  true: sub-skills.json exists. null: client-side SPA nav or dev server (unknown). */
+export function prerenderedHasSubSkills(): boolean | null {
+  if (!onPrerenderedPage() || shell === null) return null;
+  return shell.includes("<!--sub-skills:start-->") || shell.includes("data-ash-sub-skills");
+}
+
+const CREATOR_HREF_RE = /href="(\/(?:author|organization)\/[^"]+\/)"/;
+
+/** The internal /author/ or /organization/ path from the pre-rendered /skill/ page.
+ *  string: static creator page exists. null: pre-rendered page linked GitHub instead (no
+ *  static creator page — mark React link nofollow so crawlers skip 404s). undefined: SPA nav. */
+export function prerenderedCreatorPath(): string | null | undefined {
+  if (!onPrerenderedPage() || shell === null) return undefined;
+  const match = CREATOR_HREF_RE.exec(shell);
+  return match ? match[1] : null;
+}
 
 /** The pre-rendered description while the browser is still on that page, else null. */
 export function prerenderedDescription(): string | null {

@@ -16,7 +16,7 @@ import { TestedByUs } from "../components/TestedByUs";
 import { FeaturedInGuides } from "../components/FeaturedInGuides";
 import { skillTitle, skillDescription, fallbackTitle } from "../lib/skillMeta.mjs";
 import { displayName } from "../lib/repoBrand.mjs";
-import { prerenderedDescription, prerenderedInstalls, prerenderedShell } from "../lib/prerenderedMeta";
+import { prerenderedCreatorPath, prerenderedDescription, prerenderedInstalls, prerenderedShell } from "../lib/prerenderedMeta";
 import { BadgeEmbed } from "../components/BadgeEmbed";
 import { FavoriteButton } from "../components/FavoriteButton";
 import { ShareButtons } from "../components/ShareButtons";
@@ -185,12 +185,18 @@ export function SkillDetailPage() {
                   alt={detail.author_name}
                   className="w-6 h-6 rounded-full"
                 />
-                <Link
-                  to={`/author/${detail.author_name}/`}
-                  className="text-sm text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-                >
-                  {detail.author_name}
-                </Link>
+                {(() => {
+                  const creatorPath = prerenderedCreatorPath();
+                  return (
+                    <Link
+                      to={creatorPath ?? `/author/${detail.author_name}/`}
+                      rel={creatorPath === null ? "nofollow" : undefined}
+                      className="text-sm text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                    >
+                      {detail.author_name}
+                    </Link>
+                  );
+                })()}
                 {isVerifiedCreator(detail.author_name) && (
                   <VerifiedBadge
                     size="sm"
