@@ -18,6 +18,7 @@
  * of their impressions: people search the name, and "owner/repo:" read like a path.
  */
 import { brandedName } from "./repoBrand.mjs";
+import { RULE_COUNT } from "./howWeGradeMeta.mjs";
 
 /** What a results page shows before cutting (~580px, about 60 Latin characters); a CJK
  *  character takes about two Latin widths. 68 until 2026-11-19, when the OpenSEO audit found
@@ -47,6 +48,7 @@ const UNCLOSED_PAREN = /\s*[(（][^)）]*$/u;
 const SENTENCE_END = /[.!?。！？](?:\s|$)/u;
 const WIDE_CHAR = /[ᄀ-ᅟ⺀-꓏가-힣豈-﫿︰-﹏＀-｠￠-￦]/u;
 const LATIN_WORD_CHAR = /[A-Za-z0-9À-ɏ]/u;
+const WORD_JOINER = /[-/'’]/;
 const TRAILING = /[\s.,;:!?|\-–—。，；：、！？]+$/u;
 const DANGLING =
   /\s+(?:and|or|for|with|to|of|the|a|an|in|on|at|as|by|via|from|into|using|your|its|their|that|which|who|is|are|&|\+)$/iu;
@@ -110,14 +112,25 @@ function prefixWithin(text, budget) {
   return out;
 }
 
-function cutPoint(head, nextChar, budget) {
+/** True when cutting between `head` and `tail` would split a Latin word or compound ("AI-looking", "CI/CD", "don't"). */
+function splitsLatinWord(head, tail) {
+  const last = head.slice(-1);
+  const next = tail.charAt(0);
+  const afterNext = tail.charAt(1);
+  return (
+    (LATIN_WORD_CHAR.test(last) && LATIN_WORD_CHAR.test(next)) ||
+    (WORD_JOINER.test(last) && LATIN_WORD_CHAR.test(next)) ||
+    (LATIN_WORD_CHAR.test(last) && WORD_JOINER.test(next) && LATIN_WORD_CHAR.test(afterNext))
+  );
+}
+
+function cutPoint(head, tail, budget) {
   const atBreak = Math.max(...PHRASE_BREAKS.map((b) => head.lastIndexOf(b)));
   const keep = Math.max(MIN_CLAUSE_WIDTH, budget * PHRASE_KEEP_RATIO);
   if (atBreak > 0 && displayWidth(head.slice(0, atBreak)) >= keep) return atBreak;
-  // Back up only when the cut would split a Latin word; CJK text can end at any character.
-  const splitsWord = LATIN_WORD_CHAR.test(head.slice(-1)) && LATIN_WORD_CHAR.test(nextChar);
+  // Back up only when the cut would split a Latin word or compound; CJK text can end at any character.
   const atSpace = head.lastIndexOf(" ");
-  return splitsWord && atSpace > 0 ? atSpace : head.length;
+  return splitsLatinWord(head, tail) && atSpace > 0 ? atSpace : head.length;
 }
 
 function tidyEnd(text) {
@@ -133,7 +146,7 @@ export function fitClause(clause, budget) {
   const lean = clause.replace(PARENTHETICAL, "");
   if (displayWidth(lean) <= budget) return lean;
   const head = prefixWithin(lean, budget);
-  return tidyEnd(head.slice(0, cutPoint(head, lean.charAt(head.length), budget)).replace(UNCLOSED_PAREN, ""));
+  return tidyEnd(head.slice(0, cutPoint(head, lean.slice(head.length), budget)).replace(UNCLOSED_PAREN, ""));
 }
 
 /** "theclaymethod/unslop" -> "unslop by theclaymethod": the name people search for comes first. */
@@ -220,38 +233,103 @@ export function headingClause(repoName, description) {
   return displayWidth(clause) >= MIN_CLAUSE_WIDTH ? clause : "";
 }
 
-/** The first `n` UTF-16 units, one fewer if the cut would split an emoji (it left a "�" in snippets). */
+/** The first `n` UTF-16 units, one fewer if the cut would split an emoji (it left a "" in snippets). */
 function cutUnits(text, n) {
   const last = text.charCodeAt(n - 1);
   return last >= 0xd800 && last <= 0xdbff ? text.slice(0, n - 1) : text.slice(0, n);
 }
 
+const fitsDesc = (text, limit = DESCRIPTION_LIMIT) => text.length <= limit && displayWidth(text) <= limit;
+
+/** Trim a description body to `budget` (both chars and display width) on a clean word boundary, emoji-safe. */
+function trimDescription(text, budget) {
+  if (fitsDesc(text, budget)) return text;
+  if (budget <= 1) return "";
+  let head = prefixWithin(text, budget - 1);
+  if (head.length > budget - 1) head = cutUnits(head, budget - 1);
+  if (splitsLatinWord(head, text.slice(head.length))) {
+    const atSpace = head.lastIndexOf(" ");
+    if (atSpace > 0) head = head.slice(0, atSpace);
+  }
+  const cleaned = head.replace(TRAILING, "");
+  return cleaned ? `${cleaned}…` : "";
+}
+
 /**
- * Meta description for a live repo: what it is, then the install command when the
- * README gave one, then the alternatives the page compares, cut at what a results
- * page shows. When a short upstream description leaves a non-CJK snippet below
- * DESCRIPTION_MIN_WIDTH, security grade / audit context fills the gap. The React
- * page never sees the README, so it reuses the description the pre-rendered page
- * shipped with (src/lib/prerenderedMeta.ts) and only builds one here, without the
- * install command, after a client-side navigation.
+ * Meta description for a live repo: leads with our independent security audit verdict
+ * (`[SAFE · 44-rule audit]`) rather than raw `git clone` / install commands, then what the
+ * repo does (plain-text sanitized), then setup & alternatives. Kept within DESCRIPTION_LIMIT
+ * (both length and display width) and padded above DESCRIPTION_MIN_WIDTH when short.
  */
 export function skillDescription(repoName, description, installs = [], meta = {}) {
-  const what = description ? `${repoName}: ${description.trim().replace(/\.$/, "")}.` : `${repoName}, an open-source agent tool.`;
-  const parts = [installs[0] ? ` Install: ${installs[0]}.` : "", " Alternatives compared."];
-  let out = what.length > DESCRIPTION_LIMIT ? `${cutUnits(what, DESCRIPTION_LIMIT - 1).trim()}…` : what;
-  for (const part of parts) if (part && out.length + part.length <= DESCRIPTION_LIMIT) out += part;
-  if (displayWidth(out) < DESCRIPTION_MIN_WIDTH) {
-    const rawGrade = typeof meta.grade === "string" ? meta.grade.toLowerCase() : "";
-    const grade = VALID_GRADES.has(rawGrade) ? rawGrade.toUpperCase() : "";
-    const q = typeof meta.quality === "number" && Number.isFinite(meta.quality) ? Math.round(meta.quality) : null;
-    const extras = [
-      grade ? ` Security grade: ${grade}${q !== null ? ` (${q}/100)` : ""}.` : "",
-      grade ? " Audited on Agent Skills Hub." : " Independent security check & quality score on Agent Skills Hub.",
-    ];
-    for (const extra of extras) {
-      if (displayWidth(out) >= DESCRIPTION_MIN_WIDTH) break;
-      if (extra && out.length + extra.length <= DESCRIPTION_LIMIT) out += extra;
+  const rawGrade = typeof meta?.grade === "string" ? meta.grade.toLowerCase() : "";
+  const grade = VALID_GRADES.has(rawGrade) ? rawGrade.toUpperCase() : "";
+  const q = typeof meta?.quality === "number" && Number.isFinite(meta.quality) ? Math.round(meta.quality) : null;
+  const hasInstall = typeof meta?.hasInstall === "boolean" ? meta.hasInstall : Array.isArray(installs) && installs.length > 0;
+
+  const name = (repoName || "").trim();
+  const baseName = name.includes("/") ? name.slice(name.lastIndexOf("/") + 1) : name;
+  const clean = cleanDescription(description, baseName);
+  const body = clean
+    ? (name ? `${name}: ${clean}.` : `${clean}.`)
+    : (name ? `${name}, an open-source agent tool.` : "An open-source agent tool.");
+  const minBodyRoom = Math.max(displayWidth(name) + 24, 48);
+
+  let out = "";
+  if (grade) {
+    const auditPrefix = `[${grade} · ${RULE_COUNT}-rule audit] `;
+    const richPrefixes = q !== null
+      ? [`[${grade} · ${q}/100 · ${RULE_COUNT}-rule audit] `, auditPrefix]
+      : [auditPrefix];
+    const compactPrefixes = q !== null ? [`[${grade} · ${q}/100] `, `[${grade}] `] : [`[${grade}] `];
+    const suffix = hasInstall ? " Setup & alternatives." : " Alternatives compared.";
+
+    for (const p of richPrefixes) {
+      if (fitsDesc(`${p}${body}${suffix}`)) { out = `${p}${body}${suffix}`; break; }
     }
+    if (!out) {
+      for (const p of richPrefixes) {
+        if (fitsDesc(`${p}${body}`)) { out = `${p}${body}`; break; }
+      }
+    }
+    if (!out) {
+      const budgetWithSuffix = DESCRIPTION_LIMIT - auditPrefix.length - suffix.length;
+      if (budgetWithSuffix >= minBodyRoom) {
+        const trimmed = trimDescription(body, budgetWithSuffix);
+        if (trimmed) out = `${auditPrefix}${trimmed}${suffix}`;
+      }
+    }
+    if (!out) {
+      for (const p of [auditPrefix, ...compactPrefixes]) {
+        const budget = DESCRIPTION_LIMIT - p.length;
+        if (budget >= Math.max(displayWidth(name) + 12, 36) || p === `[${grade}] `) {
+          const trimmed = trimDescription(body, budget);
+          out = trimmed ? `${p}${trimmed}` : p.trim();
+          break;
+        }
+      }
+    }
+  } else {
+    const primarySuffix = hasInstall
+      ? " Independent security audit, setup & alternatives."
+      : " Independent security audit & alternatives.";
+    const shortSuffix = hasInstall ? " Setup & alternatives." : " Alternatives compared.";
+
+    if (fitsDesc(`${body}${primarySuffix}`)) out = `${body}${primarySuffix}`;
+    else if (fitsDesc(`${body}${shortSuffix}`)) out = `${body}${shortSuffix}`;
+    else if (fitsDesc(body)) out = body;
+    else {
+      const budgetPrimary = DESCRIPTION_LIMIT - primarySuffix.length;
+      const budgetShort = DESCRIPTION_LIMIT - shortSuffix.length;
+      if (budgetPrimary >= minBodyRoom) out = `${trimDescription(body, budgetPrimary)}${primarySuffix}`;
+      else if (budgetShort >= minBodyRoom) out = `${trimDescription(body, budgetShort)}${shortSuffix}`;
+      else out = trimDescription(body, DESCRIPTION_LIMIT);
+    }
+  }
+
+  if (displayWidth(out) < DESCRIPTION_MIN_WIDTH) {
+    const pad = " Audited on Agent Skills Hub.";
+    if (fitsDesc(`${out}${pad}`)) out += pad;
   }
   return out;
 }

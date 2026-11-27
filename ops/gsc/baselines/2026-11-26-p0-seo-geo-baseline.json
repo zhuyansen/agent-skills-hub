@@ -1,0 +1,496 @@
+{
+  "schema_version": 1,
+  "captured_on": "2026-11-26",
+  "site": "sc-domain:agentskillshub.top",
+  "release_tag": "seo-geo-p0-1126",
+  "note": "Frozen pre-change baseline for P0-1 (/best/* intent-matched Pro/CI-Gate/Analyzer CTA strip + GA4/PostHog tracking), P0-2 (/skill/* hyphen-safe title + audit-verdict meta descriptions without raw git clone), and P0-3 (/best/* verdict-led meta descriptions + scenario upgrades for skill-management-tools, seo-tools, refactoring, claude-video-skills/animation-skills cross-links, and ppt-presentation/code-review GEO FAQs).",
+  "gsc": {
+    "cur_28d_window": ["2026-10-28", "2026-11-24"],
+    "prev_28d_window": ["2026-09-30", "2026-10-27"],
+    "last_14d_window": ["2026-11-11", "2026-11-24"],
+    "lifetime_window": ["2026-04-13", "2026-11-24"],
+    "operator_noise_excluded_28d": {
+      "queries": 106,
+      "impressions": 431,
+      "clicks": 3
+    },
+    "site_totals_28d": {
+      "clicks": 8530,
+      "prev_clicks": 2250,
+      "clicks_delta_pct": 279.1,
+      "impressions": 464423,
+      "prev_impressions": 122780,
+      "impressions_delta_pct": 278.3,
+      "ctr_pct": 1.84,
+      "prev_ctr_pct": 1.83,
+      "weighted_position": 7.73,
+      "prev_weighted_position": 8.1
+    },
+    "site_totals_last_14d": {
+      "days": 14,
+      "clicks": 5373,
+      "impressions": 287621,
+      "ctr_pct": 1.87,
+      "weighted_position": 7.64
+    },
+    "site_totals_lifetime": {
+      "days": 226,
+      "clicks": 13700,
+      "impressions": 920484,
+      "ctr_pct": 1.49
+    },
+    "countries_28d": {
+      "usa": {
+        "clicks": 657,
+        "impressions": 68908,
+        "ctr_pct": 0.95,
+        "position": 9.2
+      },
+      "ind": {
+        "clicks": 1554,
+        "impressions": 57351,
+        "ctr_pct": 2.71,
+        "position": 7.5
+      },
+      "idn": {
+        "clicks": 540,
+        "impressions": 22450,
+        "ctr_pct": 2.41,
+        "position": 7.5
+      },
+      "deu": {
+        "clicks": 318,
+        "impressions": 14137,
+        "ctr_pct": 2.25,
+        "position": 8.0
+      },
+      "chn": {
+        "clicks": 211,
+        "impressions": 11828,
+        "ctr_pct": 1.78,
+        "position": 6.9
+      }
+    },
+    "devices_28d": {
+      "DESKTOP": {
+        "clicks": 6580,
+        "impressions": 385796,
+        "ctr_pct": 1.71,
+        "position": 7.7
+      },
+      "MOBILE": {
+        "clicks": 1904,
+        "impressions": 77051,
+        "ctr_pct": 2.47,
+        "position": 7.9
+      },
+      "TABLET": {
+        "clicks": 46,
+        "impressions": 1576,
+        "ctr_pct": 2.92,
+        "position": 7.9
+      }
+    },
+    "page_types_28d": {
+      "best": {
+        "pages": 62,
+        "top20_pages": 59,
+        "clicks": 6381,
+        "clicks_delta_pct": 272,
+        "impressions": 259153,
+        "ctr_pct": 2.46,
+        "weighted_position": 8.0
+      },
+      "skill": {
+        "pages": 2008,
+        "top20_pages": 1963,
+        "clicks": 1839,
+        "clicks_delta_pct": 639,
+        "impressions": 190475,
+        "ctr_pct": 0.97,
+        "weighted_position": 7.4
+      },
+      "home": {
+        "pages": 2,
+        "top20_pages": 2,
+        "clicks": 146,
+        "clicks_delta_pct": 19,
+        "impressions": 3472,
+        "ctr_pct": 4.21,
+        "weighted_position": 8.1
+      },
+      "audit": {
+        "pages": 858,
+        "top20_pages": 841,
+        "clicks": 95,
+        "clicks_delta_pct": -11,
+        "impressions": 4380,
+        "ctr_pct": 2.17,
+        "weighted_position": 7.4
+      }
+    },
+    "brand_queries_28d": {
+      "total_brand_queries": 12,
+      "brand_clicks": 78,
+      "brand_click_share_pct": 2.5,
+      "brand_impressions": 540,
+      "brand_ctr_pct": 14.44,
+      "non_brand_queries": 9206,
+      "non_brand_clicks": 3103,
+      "non_brand_impressions": 205361,
+      "non_brand_ctr_pct": 1.51,
+      "top_queries": [
+        {
+          "query": "agent skills hub",
+          "clicks": 48,
+          "impressions": 336,
+          "ctr_pct": 14.3,
+          "position": 3.0
+        },
+        {
+          "query": "agent skill hub",
+          "clicks": 21,
+          "impressions": 96,
+          "ctr_pct": 21.9,
+          "position": 3.0
+        },
+        {
+          "query": "agentskillshub",
+          "clicks": 4,
+          "impressions": 43,
+          "ctr_pct": 9.3,
+          "position": 2.6
+        },
+        {
+          "query": "agentskillshub.top",
+          "clicks": 0,
+          "impressions": 23,
+          "ctr_pct": 0.0,
+          "position": 1.0
+        }
+      ]
+    },
+    "top_10_best_pages_28d": [
+      {
+        "path": "/best/claude-video-skills/",
+        "clicks": 4337,
+        "prev_clicks_delta": 3675,
+        "impressions": 136264,
+        "ctr_pct": 3.18,
+        "position": 7.7
+      },
+      {
+        "path": "/best/ppt-presentation/",
+        "clicks": 753,
+        "prev_clicks_delta": -3,
+        "impressions": 25962,
+        "ctr_pct": 2.9,
+        "position": 6.4
+      },
+      {
+        "path": "/best/refactoring/",
+        "clicks": 2,
+        "prev_clicks_delta": -3,
+        "impressions": 19220,
+        "ctr_pct": 0.01,
+        "position": 8.0
+      },
+      {
+        "path": "/best/image-generation/",
+        "clicks": 203,
+        "prev_clicks_delta": 175,
+        "impressions": 11620,
+        "ctr_pct": 1.75,
+        "position": 6.8
+      },
+      {
+        "path": "/best/animation-skills/",
+        "clicks": 527,
+        "prev_clicks_delta": 527,
+        "impressions": 7768,
+        "ctr_pct": 6.78,
+        "position": 6.9
+      },
+      {
+        "path": "/best/ai-design/",
+        "clicks": 54,
+        "prev_clicks_delta": 39,
+        "impressions": 7378,
+        "ctr_pct": 0.73,
+        "position": 7.7
+      },
+      {
+        "path": "/best/code-review/",
+        "clicks": 79,
+        "prev_clicks_delta": 46,
+        "impressions": 6552,
+        "ctr_pct": 1.21,
+        "position": 7.7
+      },
+      {
+        "path": "/best/browser-automation/",
+        "clicks": 10,
+        "prev_clicks_delta": 5,
+        "impressions": 6340,
+        "ctr_pct": 0.16,
+        "position": 11.2
+      },
+      {
+        "path": "/best/claude-code-skills/",
+        "clicks": 30,
+        "prev_clicks_delta": 21,
+        "impressions": 5762,
+        "ctr_pct": 0.52,
+        "position": 7.7
+      },
+      {
+        "path": "/best/anti-slop/",
+        "clicks": 77,
+        "prev_clicks_delta": 33,
+        "impressions": 4626,
+        "ctr_pct": 1.66,
+        "position": 6.7
+      }
+    ],
+    "p0_3_watched_best_pages_28d": [
+      {
+        "path": "/best/seo-tools/",
+        "clicks": 7,
+        "prev_clicks_delta": 3,
+        "impressions": 2819,
+        "ctr_pct": 0.25,
+        "position": 28.6,
+        "watched_cluster": {
+          "name": "mcp + seo",
+          "queries": 64,
+          "clicks": 0,
+          "impressions": 1174,
+          "ctr_pct": 0.0,
+          "weighted_position": 43.1,
+          "sample_queries": [
+            { "query": "best seo mcp servers", "clicks": 0, "impressions": 180, "position": 45.5 },
+            { "query": "best seo mcp server", "clicks": 0, "impressions": 162, "position": 47.3 },
+            { "query": "best mcp server for seo", "clicks": 0, "impressions": 129, "position": 46.8 },
+            { "query": "best mcp for seo", "clicks": 0, "impressions": 110, "position": 54.9 }
+          ]
+        }
+      },
+      {
+        "path": "/best/skill-management-tools/",
+        "clicks": 24,
+        "prev_clicks": 36,
+        "prev_clicks_delta": -12,
+        "impressions": 2352,
+        "prev_impressions": 2075,
+        "ctr_pct": 1.02,
+        "position": 10.0,
+        "prev_position": 11.7,
+        "watched_queries": [
+          { "query": "qaskills.sh alternatives", "clicks": 0, "impressions": 66, "position": 7.7 },
+          { "query": "skills.rest alternatives", "clicks": 0, "impressions": 34, "position": 2.5 },
+          { "query": "claude skill manager", "clicks": 0, "impressions": 10, "position": 9.4 }
+        ]
+      }
+    ],
+    "p0_1_watched_skill_pages_28d": [
+      {
+        "path": "/skill/heydamir/unslop/",
+        "clicks": 355,
+        "impressions": 34788,
+        "ctr_pct": 1.02,
+        "position": 7.3
+      },
+      {
+        "path": "/skill/lemomo-ai/lemo-opuscar/",
+        "clicks": 163,
+        "impressions": 22351,
+        "ctr_pct": 0.73,
+        "position": 8.0
+      },
+      {
+        "path": "/skill/Vibha-Ramprakash/claude-video-effects/",
+        "clicks": 69,
+        "impressions": 6592,
+        "ctr_pct": 1.05,
+        "position": 5.6
+      },
+      {
+        "path": "/skill/ethanplusai/sellbird/",
+        "clicks": 44,
+        "impressions": 5499,
+        "ctr_pct": 0.8,
+        "position": 7.3
+      },
+      {
+        "path": "/skill/Jakeschincariol/day-trader-skill/",
+        "clicks": 29,
+        "impressions": 4525,
+        "ctr_pct": 0.64,
+        "position": 7.9
+      }
+    ],
+    "cannibalization_watched_28d": [
+      {
+        "query": "claude animation skill",
+        "total_impressions": 985,
+        "split": [
+          { "path": "/best/claude-video-skills/", "impressions": 694, "clicks": 13, "position": 9.7 },
+          { "path": "/best/animation-skills/", "impressions": 291, "clicks": 12, "position": 8.2 }
+        ]
+      },
+      {
+        "query": "claude animation skills",
+        "total_impressions": 280,
+        "split": [
+          { "path": "/best/animation-skills/", "impressions": 167, "clicks": 13, "position": 7.6 },
+          { "path": "/best/claude-video-skills/", "impressions": 113, "clicks": 3, "position": 10.3 }
+        ]
+      }
+    ],
+    "duplicate_url_variants_28d": {
+      "normalized_paths_with_gt1_variant": 20,
+      "impressions_on_duplicate_paths": 178830,
+      "utm_awesome_list_examples": [
+        {
+          "canonical": "/skill/bangtutorial/bang-motion/",
+          "canonical_impressions": 4145,
+          "utm_impressions": 4491,
+          "utm_clicks": 11
+        },
+        {
+          "canonical": "/skill/calesthio/OpenMontage/",
+          "canonical_impressions": 1177,
+          "utm_impressions": 237,
+          "utm_clicks": 2
+        },
+        {
+          "canonical": "/skill/alexgreensh/anidoodle/",
+          "canonical_impressions": 213,
+          "utm_impressions": 222,
+          "utm_clicks": 3
+        },
+        {
+          "canonical": "/skill/leancoderkavy/premiere-pro-mcp/",
+          "canonical_impressions": 365,
+          "utm_impressions": 152,
+          "utm_clicks": 1
+        }
+      ]
+    }
+  },
+  "ga4_human_28d": {
+    "property_id": "485523739",
+    "host": "agentskillshub.top",
+    "bot_filter": "AUTOMATION_SCREENS (1366x1366, 1280x1200, 1280x1280, 800x600) + (1440x900 Linux Chrome)",
+    "sessions": 30496,
+    "pageviews": 65133,
+    "engaged_sessions": 15456,
+    "engagement_rate_pct": 50.7,
+    "top_sources": [
+      { "source_medium": "google/organic", "sessions": 11239, "engaged": 6304 },
+      { "source_medium": "(direct)/(none)", "sessions": 9518, "engaged": 3627 },
+      { "source_medium": "github.com/referral", "sessions": 6220, "engaged": 3894 },
+      { "source_medium": "github/awesome-list", "sessions": 1189, "engaged": 612 },
+      { "source_medium": "t.co/referral", "sessions": 763, "engaged": 371 }
+    ],
+    "ai_referral_sessions_28d": {
+      "ai_assistants_total": 161,
+      "ai_plus_bing_total": 223,
+      "breakdown": [
+        { "source_medium": "chatgpt.com/ai-assistant", "sessions": 70, "engaged": 38 },
+        { "source_medium": "gemini.google.com/ai-assistant", "sessions": 69, "engaged": 39 },
+        { "source_medium": "doubao.com/referral", "sessions": 9, "engaged": 5 },
+        { "source_medium": "perplexity.ai/ai-assistant", "sessions": 9, "engaged": 5 },
+        { "source_medium": "claude.ai/ai-assistant", "sessions": 2, "engaged": 1 },
+        { "source_medium": "perplexity/(not set)", "sessions": 1, "engaged": 1 },
+        { "source_medium": "yuanbao.tencent.com/referral", "sessions": 1, "engaged": 1 }
+      ],
+      "bing_breakdown": [
+        { "source_medium": "bing/organic", "sessions": 32, "engaged": 15 },
+        { "source_medium": "cn.bing.com/referral", "sessions": 30, "engaged": 22 }
+      ]
+    },
+    "funnel_events_28d": {
+      "copy_install": { "count": 542, "users": 161 },
+      "hero_guide_click": { "count": 454, "users": 315 },
+      "audit_run": { "count": 303, "users": 228 },
+      "view_search_results": { "count": 259, "users": 143 },
+      "audit_lead_viewed": { "count": 114, "users": 106 },
+      "enterprise_form_viewed": { "count": 36, "users": 32 },
+      "newsletter_subscribe": { "count": 25, "users": 25 },
+      "enterprise_cta_click": { "count": 18, "users": 15 },
+      "pro_upgrade_viewed": { "count": 12, "users": 11 },
+      "audit_pro_upsell_click": { "count": 8, "users": 8 },
+      "audit_cigate_upsell_click": { "count": 1, "users": 1 },
+      "pro_checkout_click": { "count": 1, "users": 1 },
+      "enterprise_lead_submitted": { "count": 1, "users": 1 },
+      "best_pro_cta_click": { "count": 0, "users": 0, "note": "New P0-1 event" },
+      "best_cigate_cta_click": { "count": 0, "users": 0, "note": "New P0-1 event" },
+      "best_analyzer_cta_click": { "count": 0, "users": 0, "note": "New P0-1 event" }
+    }
+  },
+  "geo_panel_2026_11_24": {
+    "panel_date": "2026-11-24",
+    "prior_baseline_date": "2026-11-17",
+    "total_runs": 130,
+    "domain_citations_total": 23,
+    "domain_citations_rank": 2,
+    "prior_domain_citations_total": 36,
+    "prior_domain_citations_rank": 3,
+    "engines": {
+      "perplexity": {
+        "model": "sonar",
+        "questions": 40,
+        "page_cited": 14,
+        "site_cited": 15,
+        "in_search_results": 15,
+        "named": 2,
+        "first_pick": 6,
+        "prior_site_cited": 9
+      },
+      "chatgpt": {
+        "model": "gpt-6",
+        "questions": 40,
+        "page_cited": 1,
+        "site_cited": 2,
+        "in_search_results": 2,
+        "named": 3,
+        "first_pick": 1,
+        "prior_site_cited": 2
+      },
+      "claude": {
+        "model": "sonnet-4-5",
+        "questions": 10,
+        "page_cited": 2,
+        "site_cited": 2,
+        "in_search_results": 2,
+        "named": 3,
+        "first_pick": 0,
+        "prior_site_cited": 2
+      },
+      "gemini": {
+        "model": "4 Hydrogen (32/40 switched from 3.5 Flash-Lite)",
+        "questions": 40,
+        "page_cited": 0,
+        "site_cited": 0,
+        "in_search_results": 0,
+        "named": 1,
+        "first_pick": 0,
+        "prior_site_cited": 5,
+        "note": "Model switch caused 15/40 zero-citation responses (total citations dropped 657 -> 203); exclude Gemini from before/after attribution."
+      }
+    },
+    "owned_external_assets_cited": {
+      "github_zhuyansen": 16,
+      "zenodo": 2,
+      "dev_to": 1
+    },
+    "target_pages_citation_baseline": {
+      "/best/ppt-presentation/": { "perplexity": 0, "chatgpt": 0, "claude": 0 },
+      "/best/code-review/": { "perplexity": 1, "chatgpt": 0, "claude": 0 },
+      "/best/claude-video-skills/": { "perplexity": 1, "chatgpt": 0, "claude": 0 },
+      "/best/seo-tools/": { "perplexity": 0, "chatgpt": 0, "claude": 0 },
+      "/best/skill-management-tools/": { "perplexity": 1, "chatgpt": 0, "claude": 0 }
+    }
+  }
+}

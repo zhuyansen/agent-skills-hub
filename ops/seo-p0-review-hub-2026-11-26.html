@@ -1,0 +1,1642 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent Skills Hub · SEO & GEO P0 冻结基线与三阶段复盘手册 (2026-11-26)</title>
+<style>
+  :root {
+    --r: var(--radius, 10px);
+    --c-fg: var(--foreground, #0f172a);
+    --c-muted: var(--muted-foreground, #64748b);
+    --c-card: var(--card, #f8fafc);
+    --c-sec: var(--secondary, #f1f5f9);
+    --c-border: var(--border, #e2e8f0);
+    --c-primary: var(--primary, #2563eb);
+    --c-primary-fg: var(--primary-foreground, #ffffff);
+    --c-success: var(--success, #16a34a);
+    --c-warning: var(--warning, #d97706);
+    --c-danger: var(--destructive, #dc2626);
+    --c-info: var(--info, #0284c7);
+    --c-code: var(--code-background, #0f172a);
+    --c-chart1: var(--chart-1, #2563eb);
+    --c-chart2: var(--chart-2, #16a34a);
+    --c-chart3: var(--chart-3, #d97706);
+    --c-chart4: var(--chart-4, #7c3aed);
+    --c-chart5: var(--chart-5, #dc2626);
+    --sans: var(--font-sans, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", sans-serif);
+    --mono: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--sans);
+    color: var(--c-fg);
+    font-size: 13px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { width: 100%; max-width: 1120px; margin: 0 auto; }
+
+  /* Top compact meta bar */
+  .topbar {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 10px; padding-bottom: 12px; margin-bottom: 12px;
+    border-bottom: 1px solid var(--c-border);
+  }
+  .title-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+  .title-row h1 { font-size: 16px; font-weight: 700; margin: 0; letter-spacing: -0.01em; }
+  .pill {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600;
+    background: var(--c-sec); border: 1px solid var(--c-border); color: var(--c-fg);
+    font-family: var(--mono);
+  }
+  .pill.primary { background: color-mix(in srgb, var(--c-primary) 15%, transparent); border-color: color-mix(in srgb, var(--c-primary) 40%, transparent); color: var(--c-primary); }
+  .pill.ok { background: color-mix(in srgb, var(--c-success) 15%, transparent); border-color: color-mix(in srgb, var(--c-success) 40%, transparent); color: var(--c-success); }
+  .pill.warn { background: color-mix(in srgb, var(--c-warning) 15%, transparent); border-color: color-mix(in srgb, var(--c-warning) 40%, transparent); color: var(--c-warning); }
+  .pill.bad { background: color-mix(in srgb, var(--c-danger) 15%, transparent); border-color: color-mix(in srgb, var(--c-danger) 40%, transparent); color: var(--c-danger); }
+
+  .milestones { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ms-btn {
+    cursor: pointer; border: 1px solid var(--c-border); background: var(--c-card);
+    color: var(--c-fg); border-radius: 8px; padding: 4px 9px; font-size: 11px;
+    font-family: var(--mono); display: inline-flex; align-items: center; gap: 5px;
+    transition: border-color .15s, background .15s;
+  }
+  .ms-btn:hover { border-color: var(--c-primary); }
+  .ms-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--c-primary); }
+  .ms-dot.d14 { background: var(--c-warning); }
+  .ms-dot.d28 { background: var(--c-success); }
+
+  /* Primary Tabs */
+  .tabs {
+    display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px;
+    border-bottom: 1px solid var(--c-border); padding-bottom: 8px;
+  }
+  .tab-btn {
+    cursor: pointer; border: 1px solid transparent; background: transparent;
+    color: var(--c-muted); font-size: 12.5px; font-weight: 600;
+    padding: 6px 12px; border-radius: 8px; transition: all .15s;
+  }
+  .tab-btn:hover { color: var(--c-fg); background: var(--c-sec); }
+  .tab-btn.active {
+    background: var(--c-primary); color: var(--c-primary-fg);
+    border-color: var(--c-primary);
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* Sub-tabs */
+  .subtabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+  .subtab-btn {
+    cursor: pointer; border: 1px solid var(--c-border); background: var(--c-card);
+    color: var(--c-muted); font-size: 12px; font-weight: 600;
+    padding: 5px 10px; border-radius: 7px; transition: all .15s;
+  }
+  .subtab-btn:hover { color: var(--c-fg); }
+  .subtab-btn.active {
+    border-color: var(--c-primary); color: var(--c-primary);
+    background: color-mix(in srgb, var(--c-primary) 12%, var(--c-card));
+  }
+  .subpanel { display: none; }
+  .subpanel.active { display: block; }
+
+  /* Grid & Cards */
+  .kpi-grid {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px; margin-bottom: 14px;
+  }
+  @media (max-width: 640px) { .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  .card {
+    background: var(--c-card); border: 1px solid var(--c-border);
+    border-radius: var(--r); padding: 14px 16px;
+  }
+  .kpi-label { font-size: 11px; color: var(--c-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.02em; }
+  .kpi-val { font-size: 20px; font-weight: 700; font-family: var(--mono); margin: 3px 0 2px; letter-spacing: -0.02em; }
+  .kpi-sub { font-size: 11.5px; color: var(--c-muted); }
+  .up { color: var(--c-success); font-weight: 600; }
+  .down { color: var(--c-danger); font-weight: 600; }
+  .warn-txt { color: var(--c-warning); font-weight: 600; }
+
+  .two-col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-bottom: 14px; }
+  @media (max-width: 680px) { .two-col { grid-template-columns: 1fr; } }
+
+  .sec-title {
+    font-size: 13px; font-weight: 700; margin: 0 0 10px;
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  }
+  .sec-note { font-size: 11px; color: var(--c-muted); font-weight: 400; }
+
+  /* Visual bars */
+  .bar-list { display: flex; flex-direction: column; gap: 8px; }
+  .bar-row { display: grid; grid-template-columns: 76px 1fr 106px; align-items: center; gap: 8px; font-size: 12px; }
+  .bar-name { font-family: var(--mono); font-size: 11.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bar-track { height: 10px; border-radius: 999px; background: var(--c-sec); overflow: hidden; position: relative; }
+  .bar-fill { height: 100%; border-radius: 999px; background: var(--c-chart1); }
+  .bar-fill.c2 { background: var(--c-chart2); }
+  .bar-fill.c3 { background: var(--c-chart3); }
+  .bar-fill.c4 { background: var(--c-chart4); }
+  .bar-fill.c5 { background: var(--c-chart5); }
+  .bar-num { font-family: var(--mono); font-size: 11.5px; text-align: right; color: var(--c-fg); white-space: nowrap; }
+
+  /* Tables */
+  .tbl-wrap { overflow-x: auto; border: 1px solid var(--c-border); border-radius: var(--r); background: var(--c-card); }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  th, td { padding: 7px 10px; text-align: left; border-bottom: 1px solid var(--c-border); }
+  th { font-size: 11px; font-weight: 600; color: var(--c-muted); background: var(--c-sec); white-space: nowrap; }
+  tr:last-child td { border-bottom: none; }
+  td.num, th.num { text-align: right; font-family: var(--mono); white-space: nowrap; }
+  td.mono { font-family: var(--mono); font-size: 11.5px; }
+
+  /* Code / Commands */
+  .cmd-box {
+    position: relative; background: var(--c-code); color: #e2e8f0;
+    border: 1px solid var(--c-border); border-radius: var(--r);
+    padding: 12px 14px; margin: 10px 0 14px; overflow-x: auto;
+  }
+  .cmd-box pre { margin: 0; font-family: var(--mono); font-size: 11.5px; line-height: 1.55; white-space: pre; }
+  .copy-btn {
+    cursor: pointer; border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.08); color: #f8fafc;
+    border-radius: 6px; padding: 3px 8px; font-size: 11px; font-family: var(--sans);
+    transition: background .15s;
+  }
+  .copy-btn:hover { background: rgba(255,255,255,0.18); }
+  .cmd-box .copy-btn { position: absolute; top: 8px; right: 8px; }
+
+  .btn {
+    cursor: pointer; border: 1px solid var(--c-border); background: var(--c-sec);
+    color: var(--c-fg); border-radius: 7px; padding: 5px 10px; font-size: 12px; font-weight: 600;
+  }
+  .btn:hover { border-color: var(--c-primary); color: var(--c-primary); }
+  .btn.primary { background: var(--c-primary); color: var(--c-primary-fg); border-color: var(--c-primary); }
+
+  /* Checklist */
+  .chk-list { display: flex; flex-direction: column; gap: 7px; margin: 10px 0 14px; }
+  .chk-item {
+    display: flex; align-items: flex-start; gap: 8px; padding: 8px 10px;
+    border-radius: 8px; border: 1px solid var(--c-border); background: var(--c-card); cursor: pointer;
+  }
+  .chk-item input { margin-top: 2px; accent-color: var(--c-primary); }
+  .chk-item.done { opacity: 0.68; }
+  .chk-item.done .chk-txt { text-decoration: line-through; }
+
+  /* Calculator */
+  .calc-input {
+    width: 92px; padding: 4px 7px; border-radius: 6px;
+    border: 1px solid var(--c-border); background: var(--c-sec); color: var(--c-fg);
+    font-family: var(--mono); font-size: 12px; text-align: right;
+  }
+  .calc-input:focus { outline: 2px solid var(--c-primary); border-color: var(--c-primary); }
+
+  /* JSON Viewer */
+  .json-toolbar {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 8px; margin-bottom: 10px;
+  }
+  .json-search {
+    padding: 5px 10px; border-radius: 7px; border: 1px solid var(--c-border);
+    background: var(--c-card); color: var(--c-fg); font-size: 12px; min-width: 210px;
+  }
+  .json-pre {
+    background: var(--c-code); color: #e2e8f0; border: 1px solid var(--c-border);
+    border-radius: var(--r); padding: 14px; font-family: var(--mono); font-size: 11.5px;
+    line-height: 1.5; max-height: 540px; overflow: auto; margin: 0; white-space: pre;
+  }
+  .callout {
+    border-left: 3px solid var(--c-info); background: var(--c-card);
+    border-top: 1px solid var(--c-border); border-right: 1px solid var(--c-border); border-bottom: 1px solid var(--c-border);
+    border-radius: 8px; padding: 10px 12px; margin-bottom: 12px; font-size: 12px;
+  }
+  .callout.warn { border-left-color: var(--c-warning); }
+  .rule-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: 10px; }
+  @media (max-width: 720px) { .rule-grid { grid-template-columns: 1fr; } }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 6px; }
+  .mini-code { font-family: var(--mono); font-size: 11px; background: var(--c-sec); padding: 1px 5px; border-radius: 4px; border: 1px solid var(--c-border); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div class="title-row">
+      <h1>Agent Skills Hub · SEO &amp; GEO P0 复盘中心</h1>
+      <span class="pill primary" id="tag-release">seo-geo-p0-1126</span>
+      <span class="pill" id="tag-window">2026-10-28 .. 11-24</span>
+    </div>
+    <div class="milestones">
+      <button class="ms-btn" data-jump-stage="d7"><span class="ms-dot"></span>D+7 · 12-03</button>
+      <button class="ms-btn" data-jump-stage="d14"><span class="ms-dot d14"></span>D+14 · 12-10</button>
+      <button class="ms-btn" data-jump-stage="d28"><span class="ms-dot d28"></span>D+28 · 12-24</button>
+    </div>
+  </div>
+
+  <div class="tabs" role="tablist">
+    <button class="tab-btn active" data-tab="baseline">1. 冻结基线总览</button>
+    <button class="tab-btn" data-tab="playbook">2. 三阶段复盘手册</button>
+    <button class="tab-btn" data-tab="calc">3. 归因对比计算器</button>
+    <button class="tab-btn" data-tab="rawjson">4. 原始基线 JSON</button>
+  </div>
+
+  <!-- TAB 1: FROZEN BASELINE -->
+  <section class="tab-panel active" id="tab-baseline">
+    <div class="kpi-grid" id="kpi-grid"></div>
+
+    <div class="two-col">
+      <div class="card">
+        <div class="sec-title"><span>GSC 页面类型 28d（曝光 vs CTR）</span><span class="sec-note">464,423 总曝光</span></div>
+        <div class="bar-list" id="bars-pagetypes"></div>
+      </div>
+      <div class="card">
+        <div class="sec-title"><span>Top 5 国家 28d CTR 对比</span><span class="sec-note">US 0.95% 为核心短板</span></div>
+        <div class="bar-list" id="bars-countries"></div>
+      </div>
+    </div>
+
+    <div class="subtabs">
+      <button class="subtab-btn active" data-bsub="pages">Top 10 /best/* &amp; 重点监测页</button>
+      <button class="subtab-btn" data-bsub="ga4">GA4 转化漏斗 &amp; AI 来源</button>
+      <button class="subtab-btn" data-bsub="geo">GEO 11-24 面板 &amp; 竞食/UTM</button>
+    </div>
+
+    <div class="subpanel active" id="bsub-pages">
+      <div class="tbl-wrap" style="margin-bottom:12px;">
+        <table>
+          <thead>
+            <tr>
+              <th>页面路径（Top 10 /best/* + P0-3 重点）</th>
+              <th class="num">28d Clicks</th>
+              <th class="num">Δ Clicks</th>
+              <th class="num">28d Impr</th>
+              <th class="num">CTR</th>
+              <th class="num">Pos</th>
+              <th>P0 关注点</th>
+            </tr>
+          </thead>
+          <tbody id="tbl-best-pages"></tbody>
+        </table>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>P0-2 重点监测 /skill/* 页</th>
+              <th class="num">28d Clicks</th>
+              <th class="num">28d Impr</th>
+              <th class="num">CTR</th>
+              <th class="num">Pos</th>
+              <th>修复目标</th>
+            </tr>
+          </thead>
+          <tbody id="tbl-skill-pages"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="subpanel" id="bsub-ga4">
+      <div class="two-col">
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>GA4 人类事件（28d）</th><th class="num">Count</th><th class="num">Users</th></tr></thead>
+            <tbody id="tbl-ga-events"></tbody>
+          </table>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>来源 / 媒介（Top + AI 助手）</th><th class="num">Sessions</th><th class="num">Engaged</th></tr></thead>
+            <tbody id="tbl-ga-sources"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="subpanel" id="bsub-geo">
+      <div class="callout warn" id="geo-gemini-note"></div>
+      <div class="two-col">
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>GEO 引擎（11-24）</th><th class="num">题数</th><th class="num">Site Cited</th><th class="num">1st Pick</th><th class="num">11-17</th></tr></thead>
+            <tbody id="tbl-geo-engines"></tbody>
+          </table>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>重点页引用基线</th><th class="num">PPLX</th><th class="num">ChatGPT</th><th class="num">Claude</th></tr></thead>
+            <tbody id="tbl-geo-targets"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="two-col">
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>同类词竞食（claude animation skill）</th><th class="num">Impr</th><th class="num">Clicks</th><th class="num">Pos</th></tr></thead>
+            <tbody id="tbl-cannib"></tbody>
+          </table>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>UTM 重复曝光样本（共 20 路径 / 178.8K）</th><th class="num">规范页</th><th class="num">UTM 变体</th></tr></thead>
+            <tbody id="tbl-utm"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 2: 3-STAGE REVIEW PLAYBOOK -->
+  <section class="tab-panel" id="tab-playbook">
+    <div class="subtabs">
+      <button class="subtab-btn active" data-stage="d7">D+7 快速验证 · 2026-12-03</button>
+      <button class="subtab-btn" data-stage="d14">D+14 CTR 验收 · 2026-12-10</button>
+      <button class="subtab-btn" data-stage="d28">D+28 完整归因 · 2026-12-24</button>
+      <button class="subtab-btn" data-stage="scope">发布范围 &amp; 回滚规则</button>
+    </div>
+
+    <!-- D+7 -->
+    <div class="subpanel active" id="stage-d7">
+      <div class="callout">
+        <strong>目标（2026-12-03）</strong>：验证 P0-1 新 CTA 埋点已正常上报、`pro_upgrade_viewed` 起量，以及 Google 已重抓 P0-2 / P0-3 新 Title/Meta（无截断、无流量异常下跌）。
+      </div>
+      <div class="sec-title"><span>1. 可执行检查命令（在主仓根目录运行）</span><span class="sec-note">使用 backend/venv/bin/python3</span></div>
+      <div class="cmd-box"><button class="copy-btn" data-copy="cmd-d7">复制命令</button><pre id="cmd-d7"># 1. 核对 GA4 新 CTA 事件与 7 天转化漏斗（2026-11-27..2026-12-03）
+backend/venv/bin/python3 ops/ga/fetch_ga.py events --days 7
+backend/venv/bin/python3 ops/ga/fetch_ga.py pages --days 7
+
+# 2. 抽检线上 HTML 的 Title / Meta Description / data-cta 渲染
+for path in \
+  /skill/heydamir/unslop/ \
+  /skill/lemomo-ai/lemo-opuscar/ \
+  /best/skill-management-tools/ \
+  /best/seo-tools/ \
+  /best/refactoring/ \
+  /best/claude-video-skills/ \
+  /best/animation-skills/ \
+  /best/ppt-presentation/ \
+  /best/code-review/; do
+  echo "=== $path ==="
+  curl -sS "https://agentskillshub.top${path}" | grep -oE '&lt;title&gt;[^&lt;]+&lt;/title&gt;|&lt;meta name="description" content="[^"]+"|data-cta="[^"]+"'
+done
+
+# 3. 7 天 GSC 健康度巡检（防索引异常或点击骤降）
+backend/venv/bin/python3 ops/gsc/fetch_gsc.py pages --days 7</pre></div>
+
+      <div class="sec-title"><span>2. D+7 验收清单（点击勾选，本地自动保存）</span><span class="pill" id="prog-d7">0/4</span></div>
+      <div class="chk-list" data-chk-group="d7">
+        <label class="chk-item"><input type="checkbox" data-chk-id="d7-1"><span class="chk-txt"><strong>埋点通过</strong>：<code>best_pro_cta_click</code>、<code>best_cigate_cta_click</code>、<code>best_analyzer_cta_click</code> 三个新事件在 7d 人类流量中均 &gt; 0。</span></label>
+        <label class="chk-item"><input type="checkbox" data-chk-id="d7-2"><span class="chk-txt"><strong>漏斗起量</strong>：7d <code>pro_upgrade_viewed</code> ≥ <strong>15</strong>（对比改版前 28 天仅 12，即周速率 ≥ 5x）。</span></label>
+        <label class="chk-item"><input type="checkbox" data-chk-id="d7-3"><span class="chk-txt"><strong>零回归</strong>：抽检 9 个页面无断词标题（≤ 60 chars）、无双语错乱；7d GSC 总点击周环比跌幅 ≤ 15%。</span></label>
+        <label class="chk-item"><input type="checkbox" data-chk-id="d7-4"><span class="chk-txt"><strong>重抓确认</strong>：在 GSC URL Inspection 查 4 个代表页（<code>unslop</code> / <code>skill-management-tools</code> / <code>seo-tools</code> / <code>ppt-presentation</code>），至少 3/4 显示 <code>lastCrawlTime ≥ 2026-11-26</code>（否则手动 Request Indexing）。</span></label>
+      </div>
+    </div>
+
+    <!-- D+14 -->
+    <div class="subpanel" id="stage-d14">
+      <div class="callout">
+        <strong>窗口说明（建议 2026-12-12 运行以避开 GSC 2 天延迟）</strong>：对比 14d 后（<code>2026-11-27..12-10</code>）vs 14d 冻结基线（<code>2026-11-11..11-24</code>：<code>5,373</code> clicks / <code>287,621</code> impr / <code>1.87%</code> CTR / <code>7.64</code> wPos）。
+      </div>
+      <div class="sec-title"><span>1. 可执行对比命令</span><span class="sec-note">GSC 14d + 目标页 Query + UTM 排查</span></div>
+      <div class="cmd-box"><button class="copy-btn" data-copy="cmd-d14">复制命令</button><pre id="cmd-d14"># 1. 14 天 GSC 前后对比与全量导出
+backend/venv/bin/python3 ops/gsc/fetch_gsc.py compare --days 14
+backend/venv/bin/python3 ops/gsc/fetch_gsc.py dump --days 14
+
+# 2. 重点页 Query 级表现
+backend/venv/bin/python3 ops/gsc/fetch_gsc.py page-queries "/best/skill-management-tools/"
+backend/venv/bin/python3 ops/gsc/fetch_gsc.py page-queries "/best/seo-tools/"
+backend/venv/bin/python3 ops/gsc/fetch_gsc.py page-queries "/best/refactoring/"
+backend/venv/bin/python3 ops/gsc/fetch_gsc.py page-queries "/skill/heydamir/unslop/"
+
+# 3. 检查 UTM 重复 URL 曝光占比（基线：20 路径，bang-motion UTM 4,491 impr）
+backend/venv/bin/python3 ops/gsc/fetch_gsc.py pages --days 14 | grep -i "utm_" || echo "No UTM URLs in top 500"
+
+# 4. GA4 14 天转化漏斗
+backend/venv/bin/python3 ops/ga/fetch_ga.py events --days 14</pre></div>
+
+      <div class="sec-title"><span>2. D+14 红绿灯验收门槛</span><span class="pill" id="prog-d14">0/6</span></div>
+      <div class="tbl-wrap" style="margin-bottom:12px;">
+        <table>
+          <thead><tr><th>检查项</th><th class="num">冻结基线</th><th>绿灯（达标）</th><th>黄灯（观察）</th><th>红灯（回滚/修复）</th></tr></thead>
+          <tbody>
+            <tr><td><code>/skill/*</code> CTR</td><td class="num">0.97%</td><td class="up">≥ 1.25% (+29%)</td><td class="warn-txt">1.05% – 1.24%</td><td class="down">&lt; 0.90% 且 wPos ≤ 8.0</td></tr>
+            <tr><td>美国区 CTR</td><td class="num">0.95%</td><td class="up">≥ 1.20%</td><td class="warn-txt">1.00% – 1.19%</td><td class="down">&lt; 0.85%</td></tr>
+            <tr><td><code>skill-management-tools</code></td><td class="num">~12c / 14d</td><td class="up">≥ 18c 且 alternatives 词 ≥ 2c</td><td class="warn-txt">12 – 17c</td><td class="down">&lt; 10c 或 Pos &gt; 12.0</td></tr>
+            <tr><td><code>seo-tools</code> (mcp+seo)</td><td class="num">wPos 43.1</td><td class="up">wPos ≤ 30.0 (+13 位)</td><td class="warn-txt">wPos 31 – 40</td><td class="down">wPos &gt; 48 或旧词掉 &gt; 50%</td></tr>
+            <tr><td><code>refactoring</code></td><td class="num">0.01% (19.2K)</td><td class="up">.net 噪词下降且 CTR ≥ 0.15%</td><td class="warn-txt">CTR 0.05% – 0.14%</td><td class="down">0 点击且无 Claude 词曝光</td></tr>
+            <tr><td>UTM 重复曝光</td><td class="num">4,491i (bang)</td><td class="up">下降 ≥ 25% 或已排期 P1-2</td><td class="warn-txt">持平</td><td class="down">上升 → 立即升级 P1-2 处理</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="chk-list" data-chk-group="d14">
+        <label class="chk-item"><input type="checkbox" data-chk-id="d14-1"><span class="chk-txt">完成 GSC 14d 对比导出并与 11-11..11-24 基线逐项核对</span></label>
+        <label class="chk-item"><input type="checkbox" data-chk-id="d14-2"><span class="chk-txt">检查 <code>/skill/*</code> 与 US CTR 是否达绿灯（≥ 1.25% / ≥ 1.20%）</span></label>
+        <label class="chk-item"><input type="checkbox" data-chk-id="d14-3"><span class="chk-txt">核对 <code>skills.rest</code> / <code>qaskills.sh</code> alternatives 与 <code>best seo mcp server</code> 位次变化</span></label>
+        <label class="chk-item"><input type="checkbox" data-chk-id="d14-4"><span class="chk-txt">核对 <code>best_pro_cta_click</code> 在 <code>/best/*</code> 上的点击率是否 ≥ 0.5%</span></label>
+        <label class="chk-item"><input type="checkbox" data-chk-id="d14-5"><span class="chk-txt">核对 UTM 重复 URL 曝光占比并确认 P1-2（canonical/301）排期</span></label>
+        <label class="chk-item"><input type="checkbox" data-chk-id="d14-6"><span class="chk-txt">将 14d 实测值填入「3. 归因对比计算器」存档</span></label>
+      </div>
+    </div>
+
+    <!-- D+28 -->
+    <div class="subpanel" id="stage-d28">
+      <div class="callout">
+        <strong>终期归因窗口（建议 2026-12-26 运行以避开 GSC 延迟）</strong>：完整 28d 后（<code>2026-11-27..12-24</code>）vs 冻结 28d 基线（<code>2026-10-28..11-24</code>），并重跑 40 题 / 130 次 GEO 面板。
+      </div>
+      <div class="sec-title"><span>1. D+28 全量归因 &amp; GEO 面板命令</span><span class="sec-note">GSC + GA4 + 40 题 GEO 面板</span></div>
+      <div class="cmd-box"><button class="copy-btn" data-copy="cmd-d28">复制命令</button><pre id="cmd-d28"># 1. 全量 28d GSC 导出与 CTR 分桶分析
+backend/venv/bin/python3 ops/gsc/fetch_gsc.py dump --days 28
+backend/venv/bin/python3 ops/gsc/ctr_buckets.py
+
+# 2. 全量 28d GA4 归因（人类会话、AI 引荐、Pro/CI 漏斗）
+backend/venv/bin/python3 ops/ga/fetch_ga.py dump --days 28
+
+# 3. 重跑 40 题 / 130 次 GEO 引用面板（沿用 2026-11-24 AIsa 配置，排除 Gemini 模型切换干扰）
+#    脚本位置: ~/出海/specs/ash-panel-tools/ash_panel.py -> ops/geo/panel/results-2026-12-24.json
+python3 ops/geo/panel_score.py
+
+# 4. 对照冻结基线 JSON 输出完整 28d 归因报告
+#    ops/gsc/baselines/2026-11-26-p0-seo-geo-baseline.json</pre></div>
+
+      <div class="sec-title"><span>2. D+28 终期目标清单</span><span class="pill" id="prog-d28">0/8</span></div>
+      <div class="chk-list" data-chk-group="d28">
+        <label class="chk-item"><input type="checkbox" data-chk-id="d28-1"><span class="chk-txt"><strong>SEO /skill/* CTR</strong>：0.97% → <strong>≥ 1.35%</strong>（按当前曝光约 +720 次/月自然点击）。</span></label>
+        <label class="chk-item"><input type="checkbox" data-chk-id="d28-2"><span class="chk-txt"><strong>SEO 美国区 CTR</strong>：0.95% → <strong>≥ 1.30%</strong>；<code>skill-management-tools</code> 恢复 ≥ <strong>36</strong> clicks/28d。</span></label>
+        <label class="chk-item"><input type="checkbox" data-chk-id="d28-3"><span class="chk-txt"><strong>SEO mcp+seo 破局</strong>：<code>/best/seo-tools/</code> 冲进 Top 20（wPos ≤ 20）且 ≥ <strong>20</strong> clicks/28d（基线 7）。</span></label>
+        <label class="chk-item"><input type="checkbox" data-chk-id="d28-4"><span class="chk-txt"><strong>竞食收敛</strong>：<code>claude animation skill(s)</code> 曝光向 <code>/best/animation-skills/</code> 集中至 ≥ <strong>60%</strong>（基线 36%）。</span></label>
+        <label class="chk-item"><input type="checkbox" data-chk-id="d28-5"><span class="chk-txt"><strong>商业漏斗</strong>：<code>best_pro_cta_click + best_cigate_cta_click</code> ≥ <strong>150</strong>；<code>pro_upgrade_viewed</code> 12 → <strong>≥ 80</strong>；<code>pro_checkout_click</code> 1 → <strong>≥ 8</strong>（核对 Stripe 实收）。</span></label>
+        <label class="chk-item"><input type="checkbox" data-chk-id="d28-6"><span class="chk-txt"><strong>GEO Perplexity</strong>：保持或超过 <code>site_cited ≥ 15/40</code>、<code>first_pick ≥ 6/40</code>。</span></label>
+        <label class="chk-item"><input type="checkbox" data-chk-id="d28-7"><span class="chk-txt"><strong>GEO ChatGPT &amp; Claude 破零</strong>：ChatGPT 2/40 → <strong>≥ 5/40</strong>（且 <code>ppt-presentation</code> / <code>code-review</code> / <code>claude-video-skills</code> / <code>seo-tools</code> 至少 1 页破零）；Claude 2/10 → <strong>≥ 4/10</strong>。</span></label>
+        <label class="chk-item"><input type="checkbox" data-chk-id="d28-8"><span class="chk-txt"><strong>AI 引荐流量</strong>：GA4 AI 助手会话 161 → <strong>≥ 240</strong> / 28d（+50%）；启动 P1-1 / P1-2 下轮迭代决策。</span></label>
+      </div>
+    </div>
+
+    <!-- SCOPE & ROLLBACK -->
+    <div class="subpanel" id="stage-scope">
+      <div class="rule-grid">
+        <div class="card">
+          <div class="sec-title"><span>P0-1 · /best/* 意图匹配 CTA</span><span class="pill primary">变现漏斗</span></div>
+          <div style="font-size:12px;color:var(--c-muted);">
+            在所有 <code>/best/&lt;slug&gt;/</code> Skill Cards 上方插入双语转化条：11 个安全/治理场景主推 <code>/ci-gate/</code>，其余场景主推 <code>/pro/</code> + <code>/analyzer/</code>（引用真实 <code>flaggedN</code>），同步上报 GA4 &amp; PostHog。
+          </div>
+          <div class="tag-list">
+            <span class="mini-code">scenario-cta.mjs</span><span class="mini-code">generate-scenario-pages.mjs</span><span class="mini-code">best-pages.css</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="sec-title"><span>P0-2 · /skill/* 审计型 Meta</span><span class="pill ok">CTR 修复</span></div>
+          <div style="font-size:12px;color:var(--c-muted);">
+            修复连字符复合词断词（<code>AI-looking</code>）；移除原始 <code>git clone</code> 安装串，统一输出 <code>[SAFE · 92/100 · 44-rule audit]</code> 结论型摘要（≤155 字），静态页与 SPA 完全一致，保留高 CTR <code>isGone</code> 逻辑。
+          </div>
+          <div class="tag-list">
+            <span class="mini-code">skillMeta.mjs</span><span class="mini-code">generate-skill-pages.mjs</span><span class="mini-code">SkillDetailPage.tsx</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="sec-title"><span>P0-3 · 场景实测 Meta &amp; GEO FAQ</span><span class="pill warn">排位 + 引用</span></div>
+          <div style="font-size:12px;color:var(--c-muted);">
+            <code>buildScenarioMetaDesc()</code> 将实测 #1 结论前置；升级 <code>skill-management-tools</code>、<code>seo-tools</code>、<code>refactoring</code>，补齐 <code>claude-video-skills ↔ animation-skills</code> 互链，为 <code>ppt-presentation</code> &amp; <code>code-review</code> 补实测双语 FAQ。
+          </div>
+          <div class="tag-list">
+            <span class="mini-code">scenario-meta.mjs</span><span class="mini-code">scenario-keywords.json</span><span class="mini-code">scenario-zh.json</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:12px;">
+        <div class="sec-title"><span>回滚与下轮迭代决策规则</span><span class="sec-note">数据驱动，不凭感觉回滚</span></div>
+        <ul style="margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:12px;">
+          <li><strong>迭代 P0-1（CTA）</strong>：若 D+14 <code>best_pro_cta_click</code> 点击率 &lt; 0.5%，不删模块，改为将精简 CTA 移入顶部 Verdict 卡片或把文案软化为 <code>Filter by license &amp; zero-flag skills</code>。</li>
+          <li><strong>回滚 P0-2（skillMeta）</strong>：仅当 D+14 <code>/skill/*</code> CTR &lt; 0.85% 且平均位次稳定（≤ 8.0），同时确认 Google 展示的是新摘要（非改写）时才回滚。</li>
+          <li><strong>迭代 P0-3（场景页）</strong>：① D+28 <code>seo-tools</code> 的 <code>best seo mcp server</code> 仍 &gt; 30 位 → 独立新建 <code>/best/seo-mcp-servers/</code>；② <code>ppt-presentation</code> / <code>code-review</code> 在 ChatGPT 仍为 0 → 强化站外 Bing/OpenAI 信号（dev.to + Zenodo + README 对比表回链）；③ <code>refactoring</code> 若 28d 曝光 &lt; 100 且 0 点击 → 标为 <code>retired: true</code>（noindex）集中抓取预算。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAB 3: LIVE ATTRIBUTION CALCULATOR -->
+  <section class="tab-panel" id="tab-calc">
+    <div class="callout">
+      填入 D+7 / D+14 / D+28 拉回的真实数据，自动计算相对 <code>2026-11-26</code> 冻结基线的变化量与绿/黄/红灯判定（输入值自动保存在本地浏览器，并可一键导出 Markdown 复盘表）。
+    </div>
+    <div class="tbl-wrap" style="margin-bottom:12px;">
+      <table>
+        <thead>
+          <tr>
+            <th>核心指标</th>
+            <th class="num">冻结基线 (28d)</th>
+            <th class="num">D+28 目标</th>
+            <th class="num">填入实测值</th>
+            <th class="num">Δ vs 基线</th>
+            <th>判定</th>
+          </tr>
+        </thead>
+        <tbody id="calc-body"></tbody>
+      </table>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <button class="btn primary" id="btn-export-md">复制 Markdown 对比表</button>
+      <button class="btn" id="btn-reset-calc">清空实测输入</button>
+      <span id="calc-msg" style="font-size:12px;color:var(--c-success);"></span>
+    </div>
+  </section>
+
+  <!-- TAB 4: RAW FROZEN JSON -->
+  <section class="tab-panel" id="tab-rawjson">
+    <div class="json-toolbar">
+      <div style="display:flex;flex-wrap:wrap;gap:6px;align-items:center;">
+        <input class="json-search" id="json-search" type="text" placeholder="过滤 JSON 键或值（如 usa / unslop / perplexity）">
+        <button class="btn" data-jsec="all">全部</button>
+        <button class="btn" data-jsec="gsc">gsc</button>
+        <button class="btn" data-jsec="ga4_human_28d">ga4_human_28d</button>
+        <button class="btn" data-jsec="geo_panel_2026_11_24">geo_panel_2026_11_24</button>
+      </div>
+      <div style="display:flex;gap:6px;">
+        <button class="btn primary" id="btn-copy-json">复制完整 JSON</button>
+        <button class="btn" id="btn-dl-json">下载 .json</button>
+      </div>
+    </div>
+    <pre class="json-pre" id="json-pre"></pre>
+  </section>
+</div>
+
+<script>
+const BASELINE = {
+  "schema_version": 1,
+  "captured_on": "2026-11-26",
+  "site": "sc-domain:agentskillshub.top",
+  "release_tag": "seo-geo-p0-1126",
+  "note": "Frozen pre-change baseline for P0-1 (/best/* intent-matched Pro/CI-Gate/Analyzer CTA strip + GA4/PostHog tracking), P0-2 (/skill/* hyphen-safe title + audit-verdict meta descriptions without raw git clone), and P0-3 (/best/* verdict-led meta descriptions + scenario upgrades for skill-management-tools, seo-tools, refactoring, claude-video-skills/animation-skills cross-links, and ppt-presentation/code-review GEO FAQs).",
+  "gsc": {
+    "cur_28d_window": [
+      "2026-10-28",
+      "2026-11-24"
+    ],
+    "prev_28d_window": [
+      "2026-09-30",
+      "2026-10-27"
+    ],
+    "last_14d_window": [
+      "2026-11-11",
+      "2026-11-24"
+    ],
+    "lifetime_window": [
+      "2026-04-13",
+      "2026-11-24"
+    ],
+    "operator_noise_excluded_28d": {
+      "queries": 106,
+      "impressions": 431,
+      "clicks": 3
+    },
+    "site_totals_28d": {
+      "clicks": 8530,
+      "prev_clicks": 2250,
+      "clicks_delta_pct": 279.1,
+      "impressions": 464423,
+      "prev_impressions": 122780,
+      "impressions_delta_pct": 278.3,
+      "ctr_pct": 1.84,
+      "prev_ctr_pct": 1.83,
+      "weighted_position": 7.73,
+      "prev_weighted_position": 8.1
+    },
+    "site_totals_last_14d": {
+      "days": 14,
+      "clicks": 5373,
+      "impressions": 287621,
+      "ctr_pct": 1.87,
+      "weighted_position": 7.64
+    },
+    "site_totals_lifetime": {
+      "days": 226,
+      "clicks": 13700,
+      "impressions": 920484,
+      "ctr_pct": 1.49
+    },
+    "countries_28d": {
+      "usa": {
+        "clicks": 657,
+        "impressions": 68908,
+        "ctr_pct": 0.95,
+        "position": 9.2
+      },
+      "ind": {
+        "clicks": 1554,
+        "impressions": 57351,
+        "ctr_pct": 2.71,
+        "position": 7.5
+      },
+      "idn": {
+        "clicks": 540,
+        "impressions": 22450,
+        "ctr_pct": 2.41,
+        "position": 7.5
+      },
+      "deu": {
+        "clicks": 318,
+        "impressions": 14137,
+        "ctr_pct": 2.25,
+        "position": 8.0
+      },
+      "chn": {
+        "clicks": 211,
+        "impressions": 11828,
+        "ctr_pct": 1.78,
+        "position": 6.9
+      }
+    },
+    "devices_28d": {
+      "DESKTOP": {
+        "clicks": 6580,
+        "impressions": 385796,
+        "ctr_pct": 1.71,
+        "position": 7.7
+      },
+      "MOBILE": {
+        "clicks": 1904,
+        "impressions": 77051,
+        "ctr_pct": 2.47,
+        "position": 7.9
+      },
+      "TABLET": {
+        "clicks": 46,
+        "impressions": 1576,
+        "ctr_pct": 2.92,
+        "position": 7.9
+      }
+    },
+    "page_types_28d": {
+      "best": {
+        "pages": 62,
+        "top20_pages": 59,
+        "clicks": 6381,
+        "clicks_delta_pct": 272,
+        "impressions": 259153,
+        "ctr_pct": 2.46,
+        "weighted_position": 8.0
+      },
+      "skill": {
+        "pages": 2008,
+        "top20_pages": 1963,
+        "clicks": 1839,
+        "clicks_delta_pct": 639,
+        "impressions": 190475,
+        "ctr_pct": 0.97,
+        "weighted_position": 7.4
+      },
+      "home": {
+        "pages": 2,
+        "top20_pages": 2,
+        "clicks": 146,
+        "clicks_delta_pct": 19,
+        "impressions": 3472,
+        "ctr_pct": 4.21,
+        "weighted_position": 8.1
+      },
+      "audit": {
+        "pages": 858,
+        "top20_pages": 841,
+        "clicks": 95,
+        "clicks_delta_pct": -11,
+        "impressions": 4380,
+        "ctr_pct": 2.17,
+        "weighted_position": 7.4
+      }
+    },
+    "brand_queries_28d": {
+      "total_brand_queries": 12,
+      "brand_clicks": 78,
+      "brand_click_share_pct": 2.5,
+      "brand_impressions": 540,
+      "brand_ctr_pct": 14.44,
+      "non_brand_queries": 9206,
+      "non_brand_clicks": 3103,
+      "non_brand_impressions": 205361,
+      "non_brand_ctr_pct": 1.51,
+      "top_queries": [
+        {
+          "query": "agent skills hub",
+          "clicks": 48,
+          "impressions": 336,
+          "ctr_pct": 14.3,
+          "position": 3.0
+        },
+        {
+          "query": "agent skill hub",
+          "clicks": 21,
+          "impressions": 96,
+          "ctr_pct": 21.9,
+          "position": 3.0
+        },
+        {
+          "query": "agentskillshub",
+          "clicks": 4,
+          "impressions": 43,
+          "ctr_pct": 9.3,
+          "position": 2.6
+        },
+        {
+          "query": "agentskillshub.top",
+          "clicks": 0,
+          "impressions": 23,
+          "ctr_pct": 0.0,
+          "position": 1.0
+        }
+      ]
+    },
+    "top_10_best_pages_28d": [
+      {
+        "path": "/best/claude-video-skills/",
+        "clicks": 4337,
+        "prev_clicks_delta": 3675,
+        "impressions": 136264,
+        "ctr_pct": 3.18,
+        "position": 7.7
+      },
+      {
+        "path": "/best/ppt-presentation/",
+        "clicks": 753,
+        "prev_clicks_delta": -3,
+        "impressions": 25962,
+        "ctr_pct": 2.9,
+        "position": 6.4
+      },
+      {
+        "path": "/best/refactoring/",
+        "clicks": 2,
+        "prev_clicks_delta": -3,
+        "impressions": 19220,
+        "ctr_pct": 0.01,
+        "position": 8.0
+      },
+      {
+        "path": "/best/image-generation/",
+        "clicks": 203,
+        "prev_clicks_delta": 175,
+        "impressions": 11620,
+        "ctr_pct": 1.75,
+        "position": 6.8
+      },
+      {
+        "path": "/best/animation-skills/",
+        "clicks": 527,
+        "prev_clicks_delta": 527,
+        "impressions": 7768,
+        "ctr_pct": 6.78,
+        "position": 6.9
+      },
+      {
+        "path": "/best/ai-design/",
+        "clicks": 54,
+        "prev_clicks_delta": 39,
+        "impressions": 7378,
+        "ctr_pct": 0.73,
+        "position": 7.7
+      },
+      {
+        "path": "/best/code-review/",
+        "clicks": 79,
+        "prev_clicks_delta": 46,
+        "impressions": 6552,
+        "ctr_pct": 1.21,
+        "position": 7.7
+      },
+      {
+        "path": "/best/browser-automation/",
+        "clicks": 10,
+        "prev_clicks_delta": 5,
+        "impressions": 6340,
+        "ctr_pct": 0.16,
+        "position": 11.2
+      },
+      {
+        "path": "/best/claude-code-skills/",
+        "clicks": 30,
+        "prev_clicks_delta": 21,
+        "impressions": 5762,
+        "ctr_pct": 0.52,
+        "position": 7.7
+      },
+      {
+        "path": "/best/anti-slop/",
+        "clicks": 77,
+        "prev_clicks_delta": 33,
+        "impressions": 4626,
+        "ctr_pct": 1.66,
+        "position": 6.7
+      }
+    ],
+    "p0_3_watched_best_pages_28d": [
+      {
+        "path": "/best/seo-tools/",
+        "clicks": 7,
+        "prev_clicks_delta": 3,
+        "impressions": 2819,
+        "ctr_pct": 0.25,
+        "position": 28.6,
+        "watched_cluster": {
+          "name": "mcp + seo",
+          "queries": 64,
+          "clicks": 0,
+          "impressions": 1174,
+          "ctr_pct": 0.0,
+          "weighted_position": 43.1,
+          "sample_queries": [
+            {
+              "query": "best seo mcp servers",
+              "clicks": 0,
+              "impressions": 180,
+              "position": 45.5
+            },
+            {
+              "query": "best seo mcp server",
+              "clicks": 0,
+              "impressions": 162,
+              "position": 47.3
+            },
+            {
+              "query": "best mcp server for seo",
+              "clicks": 0,
+              "impressions": 129,
+              "position": 46.8
+            },
+            {
+              "query": "best mcp for seo",
+              "clicks": 0,
+              "impressions": 110,
+              "position": 54.9
+            }
+          ]
+        }
+      },
+      {
+        "path": "/best/skill-management-tools/",
+        "clicks": 24,
+        "prev_clicks": 36,
+        "prev_clicks_delta": -12,
+        "impressions": 2352,
+        "prev_impressions": 2075,
+        "ctr_pct": 1.02,
+        "position": 10.0,
+        "prev_position": 11.7,
+        "watched_queries": [
+          {
+            "query": "qaskills.sh alternatives",
+            "clicks": 0,
+            "impressions": 66,
+            "position": 7.7
+          },
+          {
+            "query": "skills.rest alternatives",
+            "clicks": 0,
+            "impressions": 34,
+            "position": 2.5
+          },
+          {
+            "query": "claude skill manager",
+            "clicks": 0,
+            "impressions": 10,
+            "position": 9.4
+          }
+        ]
+      }
+    ],
+    "p0_1_watched_skill_pages_28d": [
+      {
+        "path": "/skill/heydamir/unslop/",
+        "clicks": 355,
+        "impressions": 34788,
+        "ctr_pct": 1.02,
+        "position": 7.3
+      },
+      {
+        "path": "/skill/lemomo-ai/lemo-opuscar/",
+        "clicks": 163,
+        "impressions": 22351,
+        "ctr_pct": 0.73,
+        "position": 8.0
+      },
+      {
+        "path": "/skill/Vibha-Ramprakash/claude-video-effects/",
+        "clicks": 69,
+        "impressions": 6592,
+        "ctr_pct": 1.05,
+        "position": 5.6
+      },
+      {
+        "path": "/skill/ethanplusai/sellbird/",
+        "clicks": 44,
+        "impressions": 5499,
+        "ctr_pct": 0.8,
+        "position": 7.3
+      },
+      {
+        "path": "/skill/Jakeschincariol/day-trader-skill/",
+        "clicks": 29,
+        "impressions": 4525,
+        "ctr_pct": 0.64,
+        "position": 7.9
+      }
+    ],
+    "cannibalization_watched_28d": [
+      {
+        "query": "claude animation skill",
+        "total_impressions": 985,
+        "split": [
+          {
+            "path": "/best/claude-video-skills/",
+            "impressions": 694,
+            "clicks": 13,
+            "position": 9.7
+          },
+          {
+            "path": "/best/animation-skills/",
+            "impressions": 291,
+            "clicks": 12,
+            "position": 8.2
+          }
+        ]
+      },
+      {
+        "query": "claude animation skills",
+        "total_impressions": 280,
+        "split": [
+          {
+            "path": "/best/animation-skills/",
+            "impressions": 167,
+            "clicks": 13,
+            "position": 7.6
+          },
+          {
+            "path": "/best/claude-video-skills/",
+            "impressions": 113,
+            "clicks": 3,
+            "position": 10.3
+          }
+        ]
+      }
+    ],
+    "duplicate_url_variants_28d": {
+      "normalized_paths_with_gt1_variant": 20,
+      "impressions_on_duplicate_paths": 178830,
+      "utm_awesome_list_examples": [
+        {
+          "canonical": "/skill/bangtutorial/bang-motion/",
+          "canonical_impressions": 4145,
+          "utm_impressions": 4491,
+          "utm_clicks": 11
+        },
+        {
+          "canonical": "/skill/calesthio/OpenMontage/",
+          "canonical_impressions": 1177,
+          "utm_impressions": 237,
+          "utm_clicks": 2
+        },
+        {
+          "canonical": "/skill/alexgreensh/anidoodle/",
+          "canonical_impressions": 213,
+          "utm_impressions": 222,
+          "utm_clicks": 3
+        },
+        {
+          "canonical": "/skill/leancoderkavy/premiere-pro-mcp/",
+          "canonical_impressions": 365,
+          "utm_impressions": 152,
+          "utm_clicks": 1
+        }
+      ]
+    }
+  },
+  "ga4_human_28d": {
+    "property_id": "485523739",
+    "host": "agentskillshub.top",
+    "bot_filter": "AUTOMATION_SCREENS (1366x1366, 1280x1200, 1280x1280, 800x600) + (1440x900 Linux Chrome)",
+    "sessions": 30496,
+    "pageviews": 65133,
+    "engaged_sessions": 15456,
+    "engagement_rate_pct": 50.7,
+    "top_sources": [
+      {
+        "source_medium": "google/organic",
+        "sessions": 11239,
+        "engaged": 6304
+      },
+      {
+        "source_medium": "(direct)/(none)",
+        "sessions": 9518,
+        "engaged": 3627
+      },
+      {
+        "source_medium": "github.com/referral",
+        "sessions": 6220,
+        "engaged": 3894
+      },
+      {
+        "source_medium": "github/awesome-list",
+        "sessions": 1189,
+        "engaged": 612
+      },
+      {
+        "source_medium": "t.co/referral",
+        "sessions": 763,
+        "engaged": 371
+      }
+    ],
+    "ai_referral_sessions_28d": {
+      "ai_assistants_total": 161,
+      "ai_plus_bing_total": 223,
+      "breakdown": [
+        {
+          "source_medium": "chatgpt.com/ai-assistant",
+          "sessions": 70,
+          "engaged": 38
+        },
+        {
+          "source_medium": "gemini.google.com/ai-assistant",
+          "sessions": 69,
+          "engaged": 39
+        },
+        {
+          "source_medium": "doubao.com/referral",
+          "sessions": 9,
+          "engaged": 5
+        },
+        {
+          "source_medium": "perplexity.ai/ai-assistant",
+          "sessions": 9,
+          "engaged": 5
+        },
+        {
+          "source_medium": "claude.ai/ai-assistant",
+          "sessions": 2,
+          "engaged": 1
+        },
+        {
+          "source_medium": "perplexity/(not set)",
+          "sessions": 1,
+          "engaged": 1
+        },
+        {
+          "source_medium": "yuanbao.tencent.com/referral",
+          "sessions": 1,
+          "engaged": 1
+        }
+      ],
+      "bing_breakdown": [
+        {
+          "source_medium": "bing/organic",
+          "sessions": 32,
+          "engaged": 15
+        },
+        {
+          "source_medium": "cn.bing.com/referral",
+          "sessions": 30,
+          "engaged": 22
+        }
+      ]
+    },
+    "funnel_events_28d": {
+      "copy_install": {
+        "count": 542,
+        "users": 161
+      },
+      "hero_guide_click": {
+        "count": 454,
+        "users": 315
+      },
+      "audit_run": {
+        "count": 303,
+        "users": 228
+      },
+      "view_search_results": {
+        "count": 259,
+        "users": 143
+      },
+      "audit_lead_viewed": {
+        "count": 114,
+        "users": 106
+      },
+      "enterprise_form_viewed": {
+        "count": 36,
+        "users": 32
+      },
+      "newsletter_subscribe": {
+        "count": 25,
+        "users": 25
+      },
+      "enterprise_cta_click": {
+        "count": 18,
+        "users": 15
+      },
+      "pro_upgrade_viewed": {
+        "count": 12,
+        "users": 11
+      },
+      "audit_pro_upsell_click": {
+        "count": 8,
+        "users": 8
+      },
+      "audit_cigate_upsell_click": {
+        "count": 1,
+        "users": 1
+      },
+      "pro_checkout_click": {
+        "count": 1,
+        "users": 1
+      },
+      "enterprise_lead_submitted": {
+        "count": 1,
+        "users": 1
+      },
+      "best_pro_cta_click": {
+        "count": 0,
+        "users": 0,
+        "note": "New P0-1 event"
+      },
+      "best_cigate_cta_click": {
+        "count": 0,
+        "users": 0,
+        "note": "New P0-1 event"
+      },
+      "best_analyzer_cta_click": {
+        "count": 0,
+        "users": 0,
+        "note": "New P0-1 event"
+      }
+    }
+  },
+  "geo_panel_2026_11_24": {
+    "panel_date": "2026-11-24",
+    "prior_baseline_date": "2026-11-17",
+    "total_runs": 130,
+    "domain_citations_total": 23,
+    "domain_citations_rank": 2,
+    "prior_domain_citations_total": 36,
+    "prior_domain_citations_rank": 3,
+    "engines": {
+      "perplexity": {
+        "model": "sonar",
+        "questions": 40,
+        "page_cited": 14,
+        "site_cited": 15,
+        "in_search_results": 15,
+        "named": 2,
+        "first_pick": 6,
+        "prior_site_cited": 9
+      },
+      "chatgpt": {
+        "model": "gpt-6",
+        "questions": 40,
+        "page_cited": 1,
+        "site_cited": 2,
+        "in_search_results": 2,
+        "named": 3,
+        "first_pick": 1,
+        "prior_site_cited": 2
+      },
+      "claude": {
+        "model": "sonnet-4-5",
+        "questions": 10,
+        "page_cited": 2,
+        "site_cited": 2,
+        "in_search_results": 2,
+        "named": 3,
+        "first_pick": 0,
+        "prior_site_cited": 2
+      },
+      "gemini": {
+        "model": "4 Hydrogen (32/40 switched from 3.5 Flash-Lite)",
+        "questions": 40,
+        "page_cited": 0,
+        "site_cited": 0,
+        "in_search_results": 0,
+        "named": 1,
+        "first_pick": 0,
+        "prior_site_cited": 5,
+        "note": "Model switch caused 15/40 zero-citation responses (total citations dropped 657 -> 203); exclude Gemini from before/after attribution."
+      }
+    },
+    "owned_external_assets_cited": {
+      "github_zhuyansen": 16,
+      "zenodo": 2,
+      "dev_to": 1
+    },
+    "target_pages_citation_baseline": {
+      "/best/ppt-presentation/": {
+        "perplexity": 0,
+        "chatgpt": 0,
+        "claude": 0
+      },
+      "/best/code-review/": {
+        "perplexity": 1,
+        "chatgpt": 0,
+        "claude": 0
+      },
+      "/best/claude-video-skills/": {
+        "perplexity": 1,
+        "chatgpt": 0,
+        "claude": 0
+      },
+      "/best/seo-tools/": {
+        "perplexity": 0,
+        "chatgpt": 0,
+        "claude": 0
+      },
+      "/best/skill-management-tools/": {
+        "perplexity": 1,
+        "chatgpt": 0,
+        "claude": 0
+      }
+    }
+  }
+};
+
+const fmt = (n) => typeof n === "number" ? n.toLocaleString("en-US") : String(n ?? "—");
+const pct = (n) => typeof n === "number" ? n.toFixed(2).replace(/\.00$/, "") + "%" : "—";
+
+// Populate header badges
+document.getElementById("tag-release").textContent = BASELINE.release_tag;
+document.getElementById("tag-window").textContent = BASELINE.gsc.cur_28d_window.join(" .. ");
+
+// 1. KPI Cards
+const g = BASELINE.gsc;
+const ga = BASELINE.ga4_human_28d;
+const geo = BASELINE.geo_panel_2026_11_24;
+const kpis = [
+  {
+    label: "GSC 28d Clicks",
+    val: fmt(g.site_totals_28d.clicks),
+    sub: `<span class="up">+${g.site_totals_28d.clicks_delta_pct}%</span> vs 前28d (${fmt(g.site_totals_28d.prev_clicks)}) · 14d: ${fmt(g.site_totals_last_14d.clicks)}`
+  },
+  {
+    label: "GSC 28d Impressions",
+    val: fmt(g.site_totals_28d.impressions),
+    sub: `<span class="up">+${g.site_totals_28d.impressions_delta_pct}%</span> · CTR ${g.site_totals_28d.ctr_pct}% · wPos ${g.site_totals_28d.weighted_position}`
+  },
+  {
+    label: "US CTR（重点短板）",
+    val: `${g.countries_28d.usa.ctr_pct}%`,
+    sub: `<span class="down">${fmt(g.countries_28d.usa.clicks)}c / ${fmt(g.countries_28d.usa.impressions)}i</span> · Pos ${g.countries_28d.usa.position}（全站第1曝光国）`
+  },
+  {
+    label: "/skill/* 28d CTR",
+    val: `${g.page_types_28d.skill.ctr_pct}%`,
+    sub: `<span class="warn-txt">${fmt(g.page_types_28d.skill.clicks)}c / ${fmt(g.page_types_28d.skill.impressions)}i</span> · Pos ${g.page_types_28d.skill.weighted_position}（P0-2 主战场）`
+  },
+  {
+    label: "GA4 人类商业漏斗",
+    val: `${ga.funnel_events_28d.pro_upgrade_viewed.count} → ${ga.funnel_events_28d.pro_checkout_click.count}`,
+    sub: `${fmt(ga.sessions)} sessions (${ga.engagement_rate_pct}% engaged) · copy ${ga.funnel_events_28d.copy_install.count} · AI ${ga.ai_referral_sessions_28d.ai_assistants_total}`
+  },
+  {
+    label: "GEO 引用排名（11-24）",
+    val: `#${geo.domain_citations_rank} (${geo.domain_citations_total})`,
+    sub: `PPLX ${geo.engines.perplexity.site_cited}/40 · ChatGPT <span class="warn-txt">${geo.engines.chatgpt.site_cited}/40</span> · Claude ${geo.engines.claude.site_cited}/10`
+  }
+];
+document.getElementById("kpi-grid").innerHTML = kpis.map(k => `
+  <div class="card">
+    <div class="kpi-label">${k.label}</div>
+    <div class="kpi-val">${k.val}</div>
+    <div class="kpi-sub">${k.sub}</div>
+  </div>
+`).join("");
+
+// 2. Bars: Page Types & Countries
+const ptOrder = ["best", "skill", "audit", "home"];
+const maxPtImpr = Math.max(...ptOrder.map(k => g.page_types_28d[k].impressions));
+document.getElementById("bars-pagetypes").innerHTML = ptOrder.map((k, idx) => {
+  const row = g.page_types_28d[k];
+  const w = Math.max(4, Math.round(row.impressions / maxPtImpr * 100));
+  const cls = k === "skill" ? "c3" : (k === "best" ? "c2" : (idx === 2 ? "c4" : ""));
+  return `<div class="bar-row">
+    <span class="bar-name">/${k === "home" ? "" : k + "/*"}</span>
+    <div class="bar-track"><div class="bar-fill ${cls}" style="width:${w}%"></div></div>
+    <span class="bar-num">${row.ctr_pct}% · ${Math.round(row.impressions/1000)}K</span>
+  </div>`;
+}).join("");
+
+const cOrder = ["ind", "idn", "deu", "chn", "usa"];
+const maxCtr = Math.max(...cOrder.map(k => g.countries_28d[k].ctr_pct));
+document.getElementById("bars-countries").innerHTML = cOrder.map(k => {
+  const row = g.countries_28d[k];
+  const w = Math.max(6, Math.round(row.ctr_pct / maxCtr * 100));
+  const cls = k === "usa" ? "c5" : "c1";
+  return `<div class="bar-row">
+    <span class="bar-name">${k.toUpperCase()} (${Math.round(row.impressions/1000)}K)</span>
+    <div class="bar-track"><div class="bar-fill ${cls}" style="width:${w}%"></div></div>
+    <span class="bar-num ${k === "usa" ? "down" : ""}">${row.ctr_pct}% · P${row.position}</span>
+  </div>`;
+}).join("");
+
+// 3. Tables: Best pages + watched pages
+const bestNotes = {
+  "/best/claude-video-skills/": "P0-1 主流量变现 + 互链 animation-skills",
+  "/best/ppt-presentation/": "P0-3 32-skill 实测 FAQ 破 ChatGPT 0 引用",
+  "/best/refactoring/": "P0-3 收窄 AI Code Refactoring 去 .net 噪词",
+  "/best/animation-skills/": "P0-3 互链 claude-video-skills 消竞食",
+  "/best/code-review/": "P0-1 CI-Gate CTA + P0-3 16-tool FAQ",
+  "/best/seo-tools/": "P0-3 SEO MCP Server 词群 (wPos 43.1→≤20)",
+  "/best/skill-management-tools/": "P0-3 唯一跌幅页 (-33%) + alternatives FAQ"
+};
+const allBestRows = [
+  ...g.top_10_best_pages_28d,
+  ...g.p0_3_watched_best_pages_28d
+];
+document.getElementById("tbl-best-pages").innerHTML = allBestRows.map(r => {
+  const d = r.prev_clicks_delta;
+  const dStr = d > 0 ? `<span class="up">+${fmt(d)}</span>` : (d < 0 ? `<span class="down">${fmt(d)}</span>` : "0");
+  return `<tr>
+    <td class="mono">${r.path}</td>
+    <td class="num">${fmt(r.clicks)}</td>
+    <td class="num">${dStr}</td>
+    <td class="num">${fmt(r.impressions)}</td>
+    <td class="num ${r.ctr_pct < 0.5 ? "down" : ""}">${r.ctr_pct}%</td>
+    <td class="num">${r.position}</td>
+    <td style="color:var(--c-muted);font-size:11.5px;">${bestNotes[r.path] || "P0-1 CTA + P0-3 实测 Meta"}</td>
+  </tr>`;
+}).join("");
+
+const skillNotes = {
+  "/skill/heydamir/unslop/": "修复 AI-looking 断词 + 审计型 Meta",
+  "/skill/lemomo-ai/lemo-opuscar/": "去 raw git clone + 44-rule 结论前置",
+  "/skill/Vibha-Ramprakash/claude-video-effects/": "Pos 5.6 仅 1.05% CTR 提效样本",
+  "/skill/ethanplusai/sellbird/": "审计结论型 Meta 提效样本",
+  "/skill/Jakeschincariol/day-trader-skill/": "高风险垂类 0.64% CTR 提效样本"
+};
+document.getElementById("tbl-skill-pages").innerHTML = g.p0_1_watched_skill_pages_28d.map(r => `
+  <tr>
+    <td class="mono">${r.path}</td>
+    <td class="num">${fmt(r.clicks)}</td>
+    <td class="num">${fmt(r.impressions)}</td>
+    <td class="num warn-txt">${r.ctr_pct}%</td>
+    <td class="num">${r.position}</td>
+    <td style="color:var(--c-muted);font-size:11.5px;">${skillNotes[r.path] || "P0-2"}</td>
+  </tr>
+`).join("");
+
+// 4. GA4 Tables
+document.getElementById("tbl-ga-events").innerHTML = Object.entries(ga.funnel_events_28d).map(([name, v]) => `
+  <tr>
+    <td class="mono">${name}${v.note ? ` <span class="pill primary" style="font-size:10px;padding:1px 5px;">${v.note}</span>` : ""}</td>
+    <td class="num">${fmt(v.count)}</td>
+    <td class="num">${fmt(v.users)}</td>
+  </tr>
+`).join("");
+
+const srcRows = [
+  ...ga.top_sources.map(s => ({ ...s, grp: "Top" })),
+  ...ga.ai_referral_sessions_28d.breakdown.map(s => ({ ...s, grp: "AI" })),
+  ...ga.ai_referral_sessions_28d.bing_breakdown.map(s => ({ ...s, grp: "Bing" }))
+];
+document.getElementById("tbl-ga-sources").innerHTML = srcRows.map(s => `
+  <tr>
+    <td class="mono">${s.source_medium} <span class="pill" style="font-size:10px;padding:0 5px;">${s.grp}</span></td>
+    <td class="num">${fmt(s.sessions)}</td>
+    <td class="num">${fmt(s.engaged)}</td>
+  </tr>
+`).join("");
+
+// 5. GEO, Cannibalization & UTM Tables
+document.getElementById("geo-gemini-note").innerHTML =
+  `<strong>口径提示</strong>：Gemini 在 11-24 面板有 32/40 题切换至 4 Hydrogen，导致 15/40 零引用（总引用 657 → 203），<strong>复盘归因时排除 Gemini，聚焦 Perplexity / ChatGPT / Claude</strong>。外链资产被引用：GitHub zhuyansen (${geo.owned_external_assets_cited.github_zhuyansen}) · Zenodo (${geo.owned_external_assets_cited.zenodo}) · dev.to (${geo.owned_external_assets_cited.dev_to})。`;
+
+document.getElementById("tbl-geo-engines").innerHTML = Object.entries(geo.engines).map(([k, e]) => `
+  <tr>
+    <td class="mono">${k} <span style="color:var(--c-muted);font-size:11px;">(${e.model.split(" ")[0]})</span></td>
+    <td class="num">${e.questions}</td>
+    <td class="num ${e.site_cited === 0 ? "down" : (e.site_cited >= 10 ? "up" : "warn-txt")}">${e.site_cited}/${e.questions}</td>
+    <td class="num">${e.first_pick}</td>
+    <td class="num">${e.prior_site_cited}/${e.questions}</td>
+  </tr>
+`).join("");
+
+document.getElementById("tbl-geo-targets").innerHTML = Object.entries(geo.target_pages_citation_baseline).map(([p, v]) => `
+  <tr>
+    <td class="mono">${p}</td>
+    <td class="num">${v.perplexity}</td>
+    <td class="num ${v.chatgpt === 0 ? "down" : "up"}">${v.chatgpt}</td>
+    <td class="num ${v.claude === 0 ? "down" : "up"}">${v.claude}</td>
+  </tr>
+`).join("");
+
+document.getElementById("tbl-cannib").innerHTML = g.cannibalization_watched_28d.flatMap(c =>
+  c.split.map((s, i) => `<tr>
+    <td class="mono">${i === 0 ? `<strong>${c.query}</strong><br>` : ""}${s.path}</td>
+    <td class="num">${fmt(s.impressions)}</td>
+    <td class="num">${fmt(s.clicks)}</td>
+    <td class="num">${s.position}</td>
+  </tr>`)
+).join("");
+
+document.getElementById("tbl-utm").innerHTML = g.duplicate_url_variants_28d.utm_awesome_list_examples.map(u => `
+  <tr>
+    <td class="mono">${u.canonical}</td>
+    <td class="num">${fmt(u.canonical_impressions)}</td>
+    <td class="num warn-txt">${fmt(u.utm_impressions)} (${u.utm_clicks}c)</td>
+  </tr>
+`).join("");
+
+// Tabs switching
+function activateTab(id) {
+  document.querySelectorAll(".tab-btn").forEach(b => b.classList.toggle("active", b.dataset.tab === id));
+  document.querySelectorAll(".tab-panel").forEach(p => p.classList.toggle("active", p.id === "tab-" + id));
+}
+document.querySelectorAll(".tab-btn").forEach(b => b.addEventListener("click", () => activateTab(b.dataset.tab)));
+
+document.querySelectorAll("[data-bsub]").forEach(b => b.addEventListener("click", () => {
+  const t = b.dataset.bsub;
+  document.querySelectorAll("[data-bsub]").forEach(x => x.classList.toggle("active", x.dataset.bsub === t));
+  document.querySelectorAll("#tab-baseline .subpanel").forEach(p => p.classList.toggle("active", p.id === "bsub-" + t));
+}));
+
+function activateStage(st) {
+  document.querySelectorAll("[data-stage]").forEach(x => x.classList.toggle("active", x.dataset.stage === st));
+  document.querySelectorAll("#tab-playbook .subpanel").forEach(p => p.classList.toggle("active", p.id === "stage-" + st));
+}
+document.querySelectorAll("[data-stage]").forEach(b => b.addEventListener("click", () => activateStage(b.dataset.stage)));
+document.querySelectorAll("[data-jump-stage]").forEach(b => b.addEventListener("click", () => {
+  activateTab("playbook");
+  activateStage(b.dataset.jumpStage);
+}));
+
+// Copy command buttons
+document.querySelectorAll("[data-copy]").forEach(btn => {
+  btn.addEventListener("click", async () => {
+    const txt = document.getElementById(btn.dataset.copy).textContent;
+    try { await navigator.clipboard.writeText(txt); } catch {}
+    const orig = btn.textContent;
+    btn.textContent = "已复制 ✓";
+    setTimeout(() => btn.textContent = orig, 1400);
+  });
+});
+
+// Interactive checklists with localStorage
+const CHK_KEY = "ash_seo_p0_1126_checks_v1";
+let chkState = {};
+try { chkState = JSON.parse(localStorage.getItem(CHK_KEY) || "{}"); } catch {}
+
+function refreshProgress() {
+  ["d7", "d14", "d28"].forEach(grp => {
+    const box = document.querySelector(`[data-chk-group="${grp}"]`);
+    if (!box) return;
+    const inputs = [...box.querySelectorAll("input[type=checkbox]")];
+    const done = inputs.filter(i => i.checked).length;
+    const pill = document.getElementById("prog-" + grp);
+    if (pill) {
+      pill.textContent = `${done}/${inputs.length}`;
+      pill.className = "pill " + (done === inputs.length ? "ok" : (done > 0 ? "primary" : ""));
+    }
+  });
+}
+
+document.querySelectorAll("[data-chk-id]").forEach(inp => {
+  const id = inp.dataset.chkId;
+  if (chkState[id]) {
+    inp.checked = true;
+    inp.closest(".chk-item").classList.add("done");
+  }
+  inp.addEventListener("change", () => {
+    chkState[id] = inp.checked;
+    inp.closest(".chk-item").classList.toggle("done", inp.checked);
+    try { localStorage.setItem(CHK_KEY, JSON.stringify(chkState)); } catch {}
+    refreshProgress();
+  });
+});
+refreshProgress();
+
+// 6. Live Attribution Delta Calculator
+const CALC_KEY = "ash_seo_p0_1126_calc_v1";
+let calcState = {};
+try { calcState = JSON.parse(localStorage.getItem(CALC_KEY) || "{}"); } catch {}
+
+const calcMetrics = [
+  { id: "skill_ctr", name: "/skill/* 28d CTR (%)", base: g.page_types_28d.skill.ctr_pct, target: 1.35, yellow: 1.15, lowerBetter: false, unit: "%" },
+  { id: "us_ctr", name: "美国区 28d CTR (%)", base: g.countries_28d.usa.ctr_pct, target: 1.30, yellow: 1.10, lowerBetter: false, unit: "%" },
+  { id: "smt_clicks", name: "/best/skill-management-tools/ Clicks", base: 24, target: 36, yellow: 28, lowerBetter: false, unit: "" },
+  { id: "seo_wpos", name: "/best/seo-tools/ (mcp+seo) wPos", base: 43.1, target: 20.0, yellow: 30.0, lowerBetter: true, unit: "" },
+  { id: "best_cta", name: "best_pro + best_cigate CTA Clicks", base: 0, target: 150, yellow: 60, lowerBetter: false, unit: "" },
+  { id: "pro_view", name: "GA4 pro_upgrade_viewed (28d)", base: ga.funnel_events_28d.pro_upgrade_viewed.count, target: 80, yellow: 35, lowerBetter: false, unit: "" },
+  { id: "pro_chk", name: "GA4 pro_checkout_click (28d)", base: ga.funnel_events_28d.pro_checkout_click.count, target: 8, yellow: 3, lowerBetter: false, unit: "" },
+  { id: "ai_ref", name: "GA4 AI 助手引荐 Sessions (28d)", base: ga.ai_referral_sessions_28d.ai_assistants_total, target: 240, yellow: 190, lowerBetter: false, unit: "" },
+  { id: "geo_gpt", name: "GEO ChatGPT site_cited (/40)", base: geo.engines.chatgpt.site_cited, target: 5, yellow: 3, lowerBetter: false, unit: "" },
+  { id: "geo_cld", name: "GEO Claude site_cited (/10)", base: geo.engines.claude.site_cited, target: 4, yellow: 3, lowerBetter: false, unit: "" }
+];
+
+function renderCalc() {
+  document.getElementById("calc-body").innerHTML = calcMetrics.map(m => {
+    const val = calcState[m.id] ?? "";
+    const num = val === "" ? NaN : parseFloat(val);
+    let deltaHtml = "—", statusHtml = `<span class="pill">待填入</span>`;
+    if (!Number.isNaN(num)) {
+      const diff = num - m.base;
+      const sign = diff > 0 ? "+" : "";
+      const goodDelta = m.lowerBetter ? diff < 0 : diff > 0;
+      deltaHtml = `<span class="${goodDelta ? "up" : (diff === 0 ? "" : "down")}">${sign}${diff.toFixed(m.unit === "%" || m.id === "seo_wpos" ? 2 : 0)}${m.unit}</span>`;
+      const pass = m.lowerBetter ? num <= m.target : num >= m.target;
+      const warn = m.lowerBetter ? num <= m.yellow : num >= m.yellow;
+      statusHtml = pass
+        ? `<span class="pill ok">绿灯达标</span>`
+        : (warn ? `<span class="pill warn">黄灯推进中</span>` : `<span class="pill bad">红灯/待排查</span>`);
+    }
+    return `<tr>
+      <td>${m.name}</td>
+      <td class="num">${m.base}${m.unit}</td>
+      <td class="num">${m.lowerBetter ? "≤ " : "≥ "}${m.target}${m.unit}</td>
+      <td class="num"><input class="calc-input" type="number" step="any" data-calc-id="${m.id}" value="${val}" placeholder="实测"></td>
+      <td class="num" id="delta-${m.id}">${deltaHtml}</td>
+      <td id="status-${m.id}">${statusHtml}</td>
+    </tr>`;
+  }).join("");
+
+  document.querySelectorAll("[data-calc-id]").forEach(inp => {
+    inp.addEventListener("input", () => {
+      calcState[inp.dataset.calcId] = inp.value;
+      try { localStorage.setItem(CALC_KEY, JSON.stringify(calcState)); } catch {}
+      updateCalcRow(inp.dataset.calcId);
+    });
+  });
+}
+
+function updateCalcRow(id) {
+  const m = calcMetrics.find(x => x.id === id);
+  const val = calcState[id] ?? "";
+  const num = val === "" ? NaN : parseFloat(val);
+  const dEl = document.getElementById("delta-" + id);
+  const sEl = document.getElementById("status-" + id);
+  if (Number.isNaN(num)) {
+    dEl.innerHTML = "—";
+    sEl.innerHTML = `<span class="pill">待填入</span>`;
+    return;
+  }
+  const diff = num - m.base;
+  const sign = diff > 0 ? "+" : "";
+  const goodDelta = m.lowerBetter ? diff < 0 : diff > 0;
+  dEl.innerHTML = `<span class="${goodDelta ? "up" : (diff === 0 ? "" : "down")}">${sign}${diff.toFixed(m.unit === "%" || m.id === "seo_wpos" ? 2 : 0)}${m.unit}</span>`;
+  const pass = m.lowerBetter ? num <= m.target : num >= m.target;
+  const warn = m.lowerBetter ? num <= m.yellow : num >= m.yellow;
+  sEl.innerHTML = pass
+    ? `<span class="pill ok">绿灯达标</span>`
+    : (warn ? `<span class="pill warn">黄灯推进中</span>` : `<span class="pill bad">红灯/待排查</span>`);
+}
+renderCalc();
+
+document.getElementById("btn-export-md").addEventListener("click", async () => {
+  const lines = [
+    `| 指标 | 冻结基线 (28d) | 目标 | 实测值 | Δ | 状态 |`,
+    `|---|---:|---:|---:|---:|---|`
+  ];
+  calcMetrics.forEach(m => {
+    const raw = calcState[m.id] ?? "";
+    const num = raw === "" ? NaN : parseFloat(raw);
+    const d = Number.isNaN(num) ? "—" : `${num - m.base > 0 ? "+" : ""}${(num - m.base).toFixed(2)}${m.unit}`;
+    const st = Number.isNaN(num) ? "待填" : ((m.lowerBetter ? num <= m.target : num >= m.target) ? "绿灯" : ((m.lowerBetter ? num <= m.yellow : num >= m.yellow) ? "黄灯" : "红灯"));
+    lines.push(`| ${m.name} | ${m.base}${m.unit} | ${m.lowerBetter ? "≤" : "≥"}${m.target}${m.unit} | ${raw === "" ? "—" : raw + m.unit} | ${d} | ${st} |`);
+  });
+  try { await navigator.clipboard.writeText(lines.join("\n")); } catch {}
+  document.getElementById("calc-msg").textContent = "已复制 Markdown 对比表 ✓";
+  setTimeout(() => document.getElementById("calc-msg").textContent = "", 1800);
+});
+
+document.getElementById("btn-reset-calc").addEventListener("click", () => {
+  calcState = {};
+  try { localStorage.removeItem(CALC_KEY); } catch {}
+  renderCalc();
+});
+
+// 7. Raw Frozen JSON Inspector
+let activeJsonSec = "all";
+const fullJsonStr = JSON.stringify(BASELINE, null, 2);
+
+function renderJson() {
+  const q = document.getElementById("json-search").value.trim().toLowerCase();
+  const obj = activeJsonSec === "all" ? BASELINE : { [activeJsonSec]: BASELINE[activeJsonSec] };
+  let txt = JSON.stringify(obj, null, 2);
+  if (q) {
+    const matched = txt.split("\n").filter(line => line.toLowerCase().includes(q));
+    txt = matched.length ? matched.join("\n") : "// 无匹配行";
+  }
+  document.getElementById("json-pre").textContent = txt;
+}
+renderJson();
+
+document.getElementById("json-search").addEventListener("input", renderJson);
+document.querySelectorAll("[data-jsec]").forEach(btn => btn.addEventListener("click", () => {
+  activeJsonSec = btn.dataset.jsec;
+  renderJson();
+}));
+document.getElementById("btn-copy-json").addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText(fullJsonStr); } catch {}
+  const b = document.getElementById("btn-copy-json");
+  b.textContent = "已复制完整 JSON ✓";
+  setTimeout(() => b.textContent = "复制完整 JSON", 1500);
+});
+document.getElementById("btn-dl-json").addEventListener("click", () => {
+  const blob = new Blob([fullJsonStr], { type: "application/json" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "2026-11-26-p0-seo-geo-baseline.json";
+  a.click();
+});
+</script>
+</body>
+</html>

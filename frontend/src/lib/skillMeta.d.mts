@@ -25,5 +25,5 @@ export declare function skillDescription(
   repoName: string,
   description: string | null | undefined,
   installs?: string[],
-  meta?: { grade?: string | null; quality?: number | null },
+  meta?: { grade?: string | null; quality?: number | null; hasInstall?: boolean },
 ): string;

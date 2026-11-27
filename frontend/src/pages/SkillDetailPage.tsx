@@ -129,8 +129,8 @@ export function SkillDetailPage() {
 
   // Same title and description as the static page (scripts/generate-skill-pages.mjs).
   // Google renders this page, so these are what it indexes; deleted repos keep the old
-  // title on both. On a direct load the description is the static page's own (it has the
-  // install command found in the README); after a client-side hop it is rebuilt without it.
+  // title on both. On a direct load the description is the static page's own; after a
+  // client-side hop it is rebuilt from detail + security grade.
   const pageTitle =
     detail.repo_status === "gone"
       ? fallbackTitle(detail.repo_full_name)
@@ -140,6 +140,7 @@ export function SkillDetailPage() {
     skillDescription(displayName(detail.repo_full_name, detail.repo_name), detail.description, [], {
       grade: detail.security_grade,
       quality: detail.quality_score,
+      hasInstall: prerenderedInstalls().length > 0,
     });
 
   return (

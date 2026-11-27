@@ -202,9 +202,9 @@
     "d": "自动定位、诊断并修复代码 bug 的 AI 调试工具。"
   },
   "refactoring": {
-    "t": "代码重构",
+    "t": "AI 代码重构 Skill（Claude Code & Codex）",
     "k": ["重构", "整理代码", "代码结构", "优化代码", "屎山代码"],
-    "d": "用于自动化代码重构、优化与架构改进的 AI 工具。"
+    "d": "面向 Claude Code、Codex 等 AI 编程 agent 的开源代码重构 skill 与工具，覆盖自动化代码清理、架构优化与重构，每个仓库安装前均已完成安全评级。"
   },
   "container-management": {
     "t": "容器与 Docker 工具",
@@ -347,7 +347,7 @@
   "skill-management-tools": {
     "t": "技能与 Agent 管理",
     "k": ["技能管理", "agent 管理"],
-    "d": "跨 15+ AI 编程工具组织 Claude/Codex 技能与多智能体工作流的桌面应用、CLI 与会话管理器。"
+    "d": "skills.rest 与 qaskills.sh 的开源替代方案：跨 15+ AI 编程工具安装、审计与同步 Claude/Codex skill 的桌面应用、CLI 与会话管理器，16 款实测并附安全评级。"
   },
   "free-mcp-servers": {
     "t": "免费 MCP 服务器",
@@ -403,7 +403,7 @@
     "d": "主流 SaaS 平台的官方 MCP 服务器——Box、Stripe、Notion、GitHub、Slack 等企业级集成。"
   },
   "seo-tools": {
-    "t": "Claude SEO Skill 与 SEO MCP",
+    "t": "SEO MCP Server 与 Claude SEO Skill",
     "k": ["SEO", "搜索引擎优化", "SEO skill", "GEO", "关键词研究", "Search Console"],
     "d": "开源的 Claude SEO skill 与 SEO MCP 服务,带安全评级:claude-seo、geo-seo-claude、站点审计与关键词研究 skill、GEO 工具,以及接 Google Search Console、Ahrefs、DataForSEO 的 MCP 服务。安装前先核查。"
   },
