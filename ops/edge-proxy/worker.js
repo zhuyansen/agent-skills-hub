@@ -7,8 +7,9 @@
  *   2. Content negotiation for `Accept: text/markdown` on `/` (serves /index.md
  *      with `Content-Type: text/markdown; charset=utf-8` and `Vary: Accept`).
  *   3. Lightweight AI crawler & AI referral edge telemetry (inspired by
- *      yaojingang/GEOInflow, MIT) with official IPv4 CIDR verification and
- *      daily deduplicated KV logging for Sitemap blind-spot auditing.
+ *      yaojingang/GEOInflow, MIT) with official IPv4 CIDR verification logged
+ *      to Cloudflare Workers Analytics Engine (`AI_CRAWL_AE`, dataset
+ *      `ash_ai_crawl_log`) for core pages (skipping `/audit/*`, zero KV writes).
  *   4. A 301 from an audit page the build no longer writes to the repo's skill
  *      page, which carries the same grade (auditGoneRedirect, 2026-11).
  */
@@ -20,8 +21,6 @@ const HOME_LINK_HEADER = [
   '</index.md>; rel="alternate"; type="text/markdown"',
   '</.well-known/mcp/server-card.json>; rel="service-desc"; type="application/json"',
 ].join(", ");
-
-const THIRTY_DAYS_SECONDS = 60 * 60 * 24 * 30;
 
 const AI_CRAWLER_RULES = [
   { pattern: /OAI-SearchBot/i, bot: "OAI-SearchBot", provider: "OpenAI", purpose: "ai_search" },
@@ -134,22 +133,54 @@ function normalizePath(pathname) {
   return clean === "/index.html" ? "/" : clean;
 }
 
-function utcDay(now = new Date()) {
-  return now.toISOString().slice(0, 10);
+/**
+ * Only core GEO/Sitemap routes emit edge telemetry. `/audit/*` stays routed on
+ * the Worker exclusively for `auditGoneRedirect` (301 -> /skill/*) and is
+ * skipped here so bulk crawler sweeps of audit pages never flood telemetry.
+ */
+export function isTelemetryPath(pathname) {
+  const path = normalizePath(pathname);
+  if (path === "/audit" || path.startsWith("/audit/")) return false;
+  return (
+    path === "/" ||
+    path === "/best" ||
+    path.startsWith("/best/") ||
+    path.startsWith("/how-we-grade") ||
+    path.startsWith("/ai-info") ||
+    path.startsWith("/llms") ||
+    path.startsWith("/sitemap")
+  );
 }
 
 /**
- * Deduplicated daily KV logging: checks KV.get() first (100K/day free reads)
- * before KV.put() (1K/day free writes), guaranteeing at most 1 write per
- * (day, bot/engine, path) while preserving exact Sitemap coverage & blind spots.
+ * Writes a structured edge telemetry point to Cloudflare Workers Analytics Engine.
+ * Schema (dataset: ash_ai_crawl_log):
+ *   indexes[0]: "<kind>:<actor>" (sampling key)
+ *   blob1: kind ("crawl" | "ref")
+ *   blob2: actor (bot name or referral engine)
+ *   blob3: normalized path
+ *   blob4: provider (crawl) or referer host (ref)
+ *   blob5: purpose (training | ai_search | user_triggered | search_engine | referral)
+ *   blob6: ip_status (verified | unverified_ip | no_cidr_list | ipv6_unchecked | unknown_ip | "")
+ *   blob7: content-type
+ *   double1: HTTP status code
+ *   double2: 1 (hit counter)
  */
-export async function logEdgeSignal(kv, signal) {
-  if (!kv) return false;
+export function writeTelemetryPoint(ae, point) {
+  if (!ae || typeof ae.writeDataPoint !== "function") return false;
   try {
-    const existing = await kv.get(signal.key);
-    if (existing !== null) return false;
-    await kv.put(signal.key, JSON.stringify(signal.payload), {
-      expirationTtl: THIRTY_DAYS_SECONDS,
+    ae.writeDataPoint({
+      indexes: [`${point.kind}:${point.actor}`.slice(0, 96)],
+      blobs: [
+        point.kind,
+        point.actor,
+        point.path,
+        point.providerOrHost || "",
+        point.purpose || "",
+        point.ipStatus || "",
+        point.ct || "",
+      ],
+      doubles: [Number(point.status) || 0, 1],
     });
     return true;
   } catch {
@@ -157,58 +188,44 @@ export async function logEdgeSignal(kv, signal) {
   }
 }
 
-function scheduleTelemetry(env, ctx, request, url, response) {
-  const kv = env && env.AI_CRAWL_KV;
-  if (!kv) return;
+function scheduleTelemetry(env, _ctx, request, url, response) {
+  const ae = env && env.AI_CRAWL_AE;
+  if (!ae) return;
+  const path = normalizePath(url.pathname);
+  if (!isTelemetryPath(path)) return;
+
   const ua = request.headers.get("User-Agent") || "";
   const referer = request.headers.get("Referer") || "";
   const clientIp = request.headers.get("CF-Connecting-IP") || "";
-  const day = utcDay();
-  const path = normalizePath(url.pathname);
   const status = response.status;
   const ct = (response.headers.get("Content-Type") || "").split(";")[0].trim();
 
-  const tasks = [];
   const crawler = classifyAiCrawler(ua);
   if (crawler) {
-    const ipStatus = verifyBotIp(crawler.bot, clientIp);
-    const key = `crawl|${day}|${crawler.bot}|${path}`;
-    tasks.push(
-      logEdgeSignal(kv, {
-        key,
-        payload: {
-          ts: new Date().toISOString(),
-          bot: crawler.bot,
-          provider: crawler.provider,
-          purpose: crawler.purpose,
-          ip_status: ipStatus,
-          status,
-          ct,
-          path,
-        },
-      }),
-    );
+    writeTelemetryPoint(ae, {
+      kind: "crawl",
+      actor: crawler.bot,
+      path,
+      providerOrHost: crawler.provider,
+      purpose: crawler.purpose,
+      ipStatus: verifyBotIp(crawler.bot, clientIp),
+      ct,
+      status,
+    });
   }
 
   const ref = classifyAiReferral(referer);
   if (ref) {
-    const key = `ref|${day}|${ref.engine}|${path}`;
-    tasks.push(
-      logEdgeSignal(kv, {
-        key,
-        payload: {
-          ts: new Date().toISOString(),
-          engine: ref.engine,
-          host: ref.host,
-          status,
-          path,
-        },
-      }),
-    );
-  }
-
-  if (tasks.length > 0 && ctx && typeof ctx.waitUntil === "function") {
-    ctx.waitUntil(Promise.allSettled(tasks));
+    writeTelemetryPoint(ae, {
+      kind: "ref",
+      actor: ref.engine,
+      path,
+      providerOrHost: ref.host,
+      purpose: "referral",
+      ipStatus: "",
+      ct,
+      status,
+    });
   }
 }
 
