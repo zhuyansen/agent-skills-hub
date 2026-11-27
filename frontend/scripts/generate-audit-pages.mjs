@@ -19,7 +19,7 @@
  * Run: node scripts/generate-audit-pages.mjs  (after vite build)
  */
 
-import { existsSync, mkdirSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "fs";
 import { join } from "path";
 import {
   SITE, CATEGORY_LABELS, esc, starsK, formatDate, parseJsonArray,
@@ -29,9 +29,13 @@ import {
 } from "./shared-utils.mjs";
 import { HOW_WE_GRADE_PATH, RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
 import { TITLE_MAX_WIDTH, displayWidth } from "../src/lib/skillMeta.mjs";
-import { auditDescription, auditSitemap, auditTitle, sharedRepoNames } from "./audit-meta.mjs";
+import {
+  auditDescription, auditSitemap, auditTitle, auditTitleVariant, loadTitleTest, sharedRepoNames, titleTestGroup,
+} from "./audit-meta.mjs";
 import { fetchSkillRedirects, redirectStubHtml, stubsToWrite } from "./skill-redirects.mjs";
 import { displayName } from "../src/lib/repoBrand.mjs";
+import { AUDIT_LINKS, buildDay, firstPicks, linkRing, randomPicks, recentByCategory } from "./related-links.mjs";
+import { auditLinkBlocks, browseFooter } from "./related-links-html.mjs";
 
 const GRADES = {
   safe: {
@@ -99,7 +103,37 @@ function flagLabel(f) {
   return String(f).replace(/[_-]+/g, " ");
 }
 
-function pageHtml(skill, related = [], sharedNames = new Set()) {
+const gradeLabel = (r) => GRADES[r.security_grade]?.label || "?";
+
+/** Recently added and random audit pages for one page (related-links.mjs), minus what it already links. */
+function rotatingAudits(skill, links, related) {
+  const shown = new Set([skill.repo_full_name, ...related.map((r) => r.repo_full_name)]);
+  const skip = (s) => shown.has(s.repo_full_name);
+  const recent = firstPicks(links.recent.get(skill.category || "other"), AUDIT_LINKS.recent, skip);
+  for (const s of recent) shown.add(s.repo_full_name);
+  return { recent, random: randomPicks(links.ring, links.day, skill.repo_full_name, AUDIT_LINKS.random, skip) };
+}
+
+/** The /audit/ title test (audit-meta.mjs): which group each page is in, read once per run. */
+const TITLE_TEST = loadTitleTest(JSON.parse(readFileSync(new URL("./audit-title-test.json", import.meta.url), "utf-8")));
+
+/** The page's title: the test's variant on a treated page once the test has started, else the usual one. */
+function titleFor(skill, sharedNames, day) {
+  const live = day >= TITLE_TEST.start && titleTestGroup(skill, TITLE_TEST) === "treated";
+  return (live && auditTitleVariant(skill, GRADES[skill.security_grade].label, sharedNames)) || auditTitle(skill, sharedNames);
+}
+
+/** Pages per title-test group, and how many treated pages carry the variant in this build. */
+function titleTestCounts(graded, titles, sharedNames) {
+  const counts = { treated: 0, control: 0, excluded: 0, variantLive: 0 };
+  graded.forEach((s, i) => {
+    counts[titleTestGroup(s, TITLE_TEST)]++;
+    if (titles[i] !== auditTitle(s, sharedNames)) counts.variantLive++;
+  });
+  return counts;
+}
+
+function pageHtml(skill, related = [], sharedNames = new Set(), rotating = { recent: [], random: [] }, pageTitle = null) {
   const {
     repo_full_name, repo_name, author_name, description, stars, category,
     language, license, last_commit_at, quality_score, security_grade,
@@ -112,7 +146,7 @@ function pageHtml(skill, related = [], sharedNames = new Set()) {
   const analyzerUrl = `/analyzer/?repo=${encodeURIComponent(`https://github.com/${repo_full_name}`)}`;
   const flags = parseJsonArray(skill.security_flags);
 
-  const title = auditTitle(skill, sharedNames);
+  const title = pageTitle || auditTitle(skill, sharedNames);
   const metaDesc = auditDescription(skill, g.label, flags.length);
 
   const breadcrumbLd = JSON.stringify({
@@ -211,10 +245,10 @@ ${analyticsTags()}
 ${related.length ? `
     <h2 style="font-size:18px;margin:24px 0 8px">Related ${esc(catLabel)} audits</h2>
     <ul style="line-height:1.9;color:#475569;padding-left:20px;font-size:14px">
-      ${related.map((r) => `<li><a href="/audit/${esc(r.repo_full_name)}/" style="color:#4f46e5;text-decoration:none">Is ${esc(displayName(r.repo_full_name, r.repo_name))} safe?</a> <span style="color:#94a3b8">— ${GRADES[r.security_grade]?.label || "?"} · ★ ${starsK(r.stars)}</span></li>`).join("\n      ")}
+      ${related.map((r) => `<li><a href="/audit/${esc(r.repo_full_name)}/" style="color:#4f46e5;text-decoration:none">Is ${esc(displayName(r.repo_full_name, r.repo_name))} safe?</a> <span style="color:#94a3b8">— ${gradeLabel(r)} · ★ ${starsK(r.stars)}</span></li>`).join("\n      ")}
     </ul>
     <p style="font-size:13px;margin:4px 0 0"><a href="${esc(categoryUrl)}" style="color:#4f46e5;text-decoration:none">Browse all ${esc(catLabel)} skills &rarr;</a></p>
-` : ""}
+` : ""}${auditLinkBlocks(rotating, catLabel, gradeLabel)}
     <p style="font-size:12px;color:#94a3b8;line-height:1.6;border-top:1px solid #e2e8f0;padding-top:16px;margin-top:28px">
       This is AgentSkillsHub's free basic audit: an automated rule-based scan with <a href="${HOW_WE_GRADE_PATH}" style="color:#94a3b8">${RULE_COUNT} published
       rules</a> built on SlowMist's agent-security taxonomy (credential theft, obfuscated payloads, privilege escalation, covert instructions to the agent, and more),
@@ -223,6 +257,7 @@ ${related.length ? `
       supply-chain &middot; operational) are available for <a href="/enterprise/" style="color:#4f46e5">enterprise</a>.
       ${skill.security_scanned_at ? `Audited: <time datetime="${skill.security_scanned_at}">${formatDate(skill.security_scanned_at)}</time>.` : ""}
     </p>
+    ${browseFooter(["Every skill page, A–Z", "Every security audit, A–Z"], ";border-top:0;padding-top:0;margin-top:8px")}
   </div>
 </body>
 </html>`;
@@ -240,8 +275,9 @@ async function main() {
 
   // Index audit-eligible skills by category so each audit page can link to its
   // category's strongest siblings — turns the 7,900 dead-end audit pages into a
-  // connected mesh (internal-link equity flows instead of orphaning).
-  const RELATED_COUNT = 6;
+  // connected mesh (internal-link equity flows instead of orphaning). Since 2026-11 only the top
+  // three; the recently-added and random blocks (related-links.mjs) reach the rest.
+  const RELATED_COUNT = AUDIT_LINKS.popular;
   const byCategory = new Map();
   for (const s of graded) {
     const c = s.category || "other";
@@ -255,20 +291,26 @@ async function main() {
   // Repo names used by more than one audited repo: their titles keep the owner.
   const sharedNames = sharedRepoNames(graded);
 
+  const day = buildDay();
+  const links = { day, ring: linkRing(graded, day, (s) => s.repo_full_name), recent: recentByCategory(graded) };
+
   const distDir = "dist";
+  const titles = graded.map((s) => titleFor(s, sharedNames, day));
   let written = 0;
-  for (const skill of graded) {
+  for (const [i, skill] of graded.entries()) {
     const related = (byCategory.get(skill.category || "other") || [])
       .filter((s) => s.repo_full_name !== skill.repo_full_name)
       .slice(0, RELATED_COUNT);
     const dir = join(distDir, "audit", ...skill.repo_full_name.split("/"));
     mkdirSync(dir, { recursive: true });
-    writeFileSync(join(dir, "index.html"), pageHtml(skill, related, sharedNames));
+    writeFileSync(join(dir, "index.html"), pageHtml(skill, related, sharedNames, rotatingAudits(skill, links, related), titles[i]));
     written++;
   }
   console.log(`  ✓ ${written} audit pages → dist/audit/`);
+  const test = titleTestCounts(graded, titles, sharedNames);
+  console.log(`  title test ${TITLE_TEST.id} (from ${TITLE_TEST.start}): ${test.treated} treated, ${test.control} control, `
+    + `${test.excluded} excluded; ${test.variantLive} pages carry the variant title in this build`);
   // A title only stays over the limit when the owner/repo alone does not fit.
-  const titles = graded.map((s) => auditTitle(s, sharedNames));
   const tooLong = titles.filter((t) => displayWidth(t) > TITLE_MAX_WIDTH).length;
   const repeated = titles.length - new Set(titles.map((t) => t.toLowerCase())).size;
   console.log(`  titles: ${tooLong} over ${TITLE_MAX_WIDTH} characters, ${repeated} repeated`);

@@ -1,6 +1,9 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { auditDescription, auditTitle, sharedRepoNames } from "./audit-meta.mjs";
+import { readFileSync } from "node:fs";
+import {
+  auditDescription, auditTitle, auditTitleVariant, loadTitleTest, scanMonth, sharedRepoNames, titleBucket, titleTestGroup,
+} from "./audit-meta.mjs";
 import { DESCRIPTION_LIMIT, TITLE_MAX_WIDTH, displayWidth } from "../src/lib/skillMeta.mjs";
 
 const skill = (full, quality = 70) => ({ repo_full_name: full, repo_name: full.split("/")[1], quality_score: quality });
@@ -94,4 +97,51 @@ test("the audit sitemap lists every page once, most-starred first, with no dates
   assert.deepEqual(locs, ["https://agentskillshub.top/audit/b/big/", "https://agentskillshub.top/audit/a/small/"]);
   assert.ok(!xml.includes("<lastmod>"));
   assert.match(xml, /^<\?xml version="1.0" encoding="UTF-8"\?>\n<urlset xmlns="http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9">/);
+});
+
+// ── title test (audit-title-test.json) ────────────────────────────────────────
+
+const TEST_ID = "audit-title-grade-date";
+const scanned = (full, at = "2026-11-25T08:00:00Z") => ({ ...skill(full), security_scanned_at: at });
+
+test("the bucket of a page is pinned (ops/gsc/test_audit_title_test.py checks the same numbers)", () => {
+  assert.equal(titleBucket("0xJacky/nginx-ui", TEST_ID), 17);
+  assert.equal(titleBucket("anthropics/skills", TEST_ID), 80);
+  assert.equal(titleBucket("langgenius/dify", TEST_ID), 33);
+  assert.equal(titleBucket("MorDavid/BruteForceAI", TEST_ID), 20);
+  assert.equal(titleBucket("mordavid/bruteforceai", TEST_ID), 20, "case does not move a page");
+});
+
+test("about one page in ten is treated", () => {
+  const test10 = loadTitleTest({ id: TEST_ID, share_percent: 10, excluded: [] });
+  const n = 20000;
+  const treated = Array.from({ length: n }, (_, i) => titleTestGroup(scanned(`owner${i}/repo${i}`), test10)).filter((g) => g === "treated").length;
+  assert.ok(treated / n > 0.09 && treated / n < 0.11, `${treated} of ${n}`);
+});
+
+test("a listed or never-scanned page is in neither group", () => {
+  const t = loadTitleTest({ id: TEST_ID, share_percent: 100, excluded: ["Langgenius/Dify"] });
+  assert.equal(titleTestGroup(scanned("langgenius/dify"), t), "excluded");
+  assert.equal(titleTestGroup(scanned("x/y", null), t), "excluded");
+  assert.equal(titleTestGroup(scanned("x/y"), t), "treated");
+});
+
+test("the test file names its start, share and exclusions", () => {
+  const file = JSON.parse(readFileSync(new URL("./audit-title-test.json", import.meta.url), "utf-8"));
+  assert.equal(file.id, TEST_ID);
+  assert.match(file.start, /^\d{4}-\d{2}-\d{2}$/);
+  assert.equal(file.share_percent, 10);
+  assert.ok(file.excluded.length > 100 && file.excluded.every((n) => n === n.toLowerCase() && n.includes("/")));
+});
+
+test("the variant names the grade and the month of the scan, within the title width", () => {
+  assert.equal(scanMonth("2026-11-25T08:00:00Z"), "Nov 2026");
+  assert.equal(scanMonth(null), null);
+  assert.equal(auditTitleVariant(scanned("0xJacky/nginx-ui"), "SAFE"), "Is nginx-ui Safe? Graded SAFE, Scanned Nov 2026");
+  const shared = sharedRepoNames([scanned("a/skills"), scanned("anthropics/skills")]);
+  assert.equal(auditTitleVariant(scanned("anthropics/skills"), "CAUTION", shared), "Is Anthropic Skills Safe? Graded CAUTION, Scanned Nov 2026");
+  const long = auditTitleVariant(scanned("decodingai-magazine/building-a-coding-agent-from-scratch-course"), "UNSAFE", new Set(["building-a-coding-agent-from-scratch-course"]));
+  assert.ok(displayWidth(long) <= TITLE_MAX_WIDTH, long);
+  assert.match(long, /UNSAFE, Nov 2026$/);
+  assert.equal(auditTitleVariant(scanned("x/y", null), "SAFE"), null);
 });

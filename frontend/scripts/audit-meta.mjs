@@ -11,6 +11,54 @@
  */
 import { DESCRIPTION_LIMIT, TITLE_MAX_WIDTH, displayWidth, fitName } from "../src/lib/skillMeta.mjs";
 import { brandedName } from "../src/lib/repoBrand.mjs";
+import { hash32, seeded } from "./related-links.mjs";
+
+/*
+ * Title test (2026-11, audit-title-test.json; logged in ops/geo/experiments.json before it went
+ * live). A stable 10% of audit pages put the grade and the month of the scan in the title; the
+ * rest keep the title below. Search Console clicks and CTR per group are the result
+ * (ops/gsc/audit_title_test.py). Product-Led SEO (p. 192): test a template on a share of its
+ * pages, decided by the page, and keep both groups alike in everything else.
+ */
+
+/** 0–99 for a page, from its lowercased owner/repo; the same in ops/gsc/audit_title_test.py. */
+export function titleBucket(fullName, testId) {
+  return seeded(hash32(`${testId}|${fullName.toLowerCase()}`))() % 100;
+}
+
+/** "treated", "control" or "excluded" (listed in the test file, or never scanned). */
+export function titleTestGroup(skill, test) {
+  const name = skill.repo_full_name.toLowerCase();
+  if (test.excludedSet.has(name) || !skill.security_scanned_at) return "excluded";
+  return titleBucket(name, test.id) < test.share_percent ? "treated" : "control";
+}
+
+/** The test file with its exclusion list as a Set. */
+export function loadTitleTest(json) {
+  return { ...json, excludedSet: new Set(json.excluded.map((n) => n.toLowerCase())) };
+}
+
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+/** "Nov 2026" for an ISO timestamp, or null. */
+export function scanMonth(iso) {
+  const m = /^(\d{4})-(\d{2})/.exec(String(iso || ""));
+  return m ? `${MONTHS[Number(m[2]) - 1]} ${m[1]}` : null;
+}
+
+/** The treated title: "Is nginx-ui Safe? Graded SAFE, Scanned Nov 2026"; null without a scan date. */
+export function auditTitleVariant(skill, gradeLabel, sharedNames = new Set()) {
+  const month = scanMonth(skill.security_scanned_at);
+  if (!month) return null;
+  const { repo_name: repo, repo_full_name: full } = skill;
+  const names = [brandedName(full), sharedNames.has(repo.toLowerCase()) ? null : repo, full].filter(Boolean);
+  const short = `${gradeLabel}, ${month}`;
+  for (const tail of [`Graded ${gradeLabel}, Scanned ${month}`, short]) {
+    const fitted = names.map((name) => `Is ${name} Safe? ${tail}`).find((t) => displayWidth(t) <= TITLE_MAX_WIDTH);
+    if (fitted) return fitted;
+  }
+  return `Is ${fitName(full, TITLE_MAX_WIDTH - displayWidth(`Is  Safe? ${short}`))} Safe? ${short}`;
+}
 
 /** Lowercased repo names that more than one of these repos has ("skills", "mcp"): a title
  *  without the owner would be the same on each of their pages. */

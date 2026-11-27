@@ -1,0 +1,91 @@
+{
+ "_说明": "agentskillshub.top 的改动记录和对照实验，格式照 jasonzhu.ai 的 ops/geo/experiments.json（ops/seo-watersystem-model.md 也指向这个文件名）。改页面之前先在这里记一笔：实验写清楚哪些页改（treated）、哪些同类页故意不改（control）、看什么指标、哪天读数；events 是全站改动，没有对照组，只记日期，读别的实验（比如 GIGALinks 12-01 / 12-15 / 01-01 复测）时要扣掉它们的影响。GIGALinks 本身的分组记在 jasonzhu.ai 的 ops/geo/citations/gigalinks-controlled-experiment-queue.md，这里只记它冻结了哪些页面。",
+ "experiments": [
+  {
+   "id": "gigalinks-agentskillshub",
+   "kind": "geo-citation",
+   "note": "GIGALinks 无链接品牌提及稿（账号 1 全部投给 agentskillshub.top），用 ops/geo/questions.json 的 40 题复测。只在这里登记冻结范围，分组和稿件以 jasonzhu.ai 的队列文档为准。",
+   "started": "2026-11-17",
+   "readout": [
+    "2026-12-01",
+    "2026-12-15",
+    "2027-01-01"
+   ],
+   "treated": [
+    "brand-directory",
+    "brand-safe",
+    "brand-analyzer",
+    "brand-dataset",
+    "brand-compare",
+    "best-secret-detection",
+    "best-code-review",
+    "best-mcp-database"
+   ],
+   "control": [
+    "brand-new",
+    "best-image-generation",
+    "best-content-syndication",
+    "best-knowledge-base",
+    "best-cli-tools",
+    "best-3d-mcp",
+    "best-browser-automation",
+    "best-web-scraping",
+    "best-codex-skills",
+    "best-multi-agent",
+    "best-mcp-for-github",
+    "best-voice-agent",
+    "best-ppt-presentation",
+    "best-vibe-coding",
+    "best-obsidian-second-brain",
+    "best-local-llm"
+   ],
+   "frozen_pages": "到 2027-01-01 都不改：所有 /best/ 页（中英文，未投稿的场景也算总对照池），品牌题的目标页 /、/zh/、/how-we-grade/、/analyzer/、/blog/securing-117k-ai-skills/、/agent-skills-directories/、/daily/，以及稿件正文提到的 /stats/（稿件提到的网址：/analyzer/ 77 次、/how-we-grade/ 55、/blog/securing-117k-ai-skills/ 28、/best/code-review/ 22、/best/secret-detection/ 18、/best/mcp-database/ 17、/stats/ 3，2026-11-26 统计 ops/geo/citations/ 下的稿件）。",
+   "来源": "jasonzhu.ai ops/geo/citations/gigalinks-controlled-experiment-queue.md（2026-11-20 版）"
+  },
+  {
+   "id": "audit-title-grade-date",
+   "kind": "seo-title",
+   "note": "/audit/ 页标题加上安全评级和扫描月份，看 Google 的点击和 CTR 会不会变。依据 Eli Schwartz《Product-Led SEO》p.192：模板页按页面稳定分组做标题测试，其余保持一样。",
+   "logged": "2026-11-26",
+   "started": "2026-11-30",
+   "start_rule": "构建按日期开关：构建日（UTC）>= 2026-11-30 时处理组才换标题，之前所有页面都是原标题。分支要在 11-30 之前合并上线，start 才是 11-30；晚于 11-30 合并，start 改成第一次带这个提交的部署日期，并确认一个处理组页面的线上标题。",
+   "assignment": "bucket = mulberry32(fnv1a32('audit-title-grade-date|' + 小写 owner/repo)) 的第一个输出 % 100；bucket < 10 为 treated，其余为 control。frontend/scripts/audit-meta.mjs 的 titleBucket()，ops/gsc/audit_title_test.py 用同一算法（两边测试钉了同一组桶值）。",
+   "excluded": "frontend/scripts/audit-title-test.json 里的 624 个仓库（2026-11-26 任何 /best/ 页链接到的仓库，GIGALinks 冻结范围），以及没有 security_scanned_at 的页面；它们不进任何一组，标题不变。",
+   "treated_title": "Is <name> Safe? Graded <SAFE|CAUTION|UNSAFE|REJECT>, Scanned <Mon YYYY>（放不下时退到 Is <name> Safe? <GRADE>, <Mon YYYY>），og:title 同步",
+   "control_title": "不变：Is <name> Safe? Security Audit of <owner/repo> 等（audit-meta.mjs auditTitle）",
+   "counts_at_logging": {
+    "date": "2026-11-26",
+    "total_audit_pages": 4782,
+    "treated": 399,
+    "control": 3892,
+    "excluded": 491,
+    "share_actual_percent": 9.3
+   },
+   "primary_metric": "Google Search Console：每组的点击、展示、CTR、平均排名。比较开始前 28 天和开始后，只算开始前有展示的页面（两期同一批页面），估计量是 CTR 的双重差分（处理组变化 − 对照组变化），按页面 bootstrap 给 95% 区间。读数：python ops/gsc/audit_title_test.py --end <日期>（复用 ops/gsc/token.json，和 seo-scoreboard 同一套授权）。",
+   "secondary_metric": "GA4：referrer 是 /audit/ 页的 /analyzer/ 页面浏览（Run a live scan）和 /skill/ 页面浏览（Full details & install），按组、按期计数，同一个脚本输出（没有 ops/ga/adc.json 就跳过并注明）。/audit/ 页没有安装命令复制按钮，所以不看 install_command_copied。",
+   "readout": {
+    "interim": "2026-12-31 读 11-30 到 12-27（4 周），只看不决定",
+    "final": "2027-01-14 读 11-30 到 2027-01-10（6 周），按这次结果决定全量换还是撤回"
+   },
+   "aa_check": {
+    "date": "2026-11-26",
+    "window": "同一分组规则套在 10-26 之前 28 天 vs 10-26 到 11-22（那时没有任何改动）",
+    "audit": "有展示的页面：treated 69、control 810、excluded 93；点击 treated 5→3、control 89→61；CTR 双重差分 +1.32 个百分点，95% 区间 −3.50 到 +5.28",
+    "skill_for_comparison": "同样做法套在 /skill/ 页：treated 123、control 1,199 页；双重差分 −0.22 个百分点，95% 区间 −1.19 到 +0.64（基线 CTR 约 0.9%）"
+   },
+   "power_note": "按 A/A 区间，10% 分组跑 4–6 周，/audit/ 只有处理组 CTR 变化超过约 ±4 个百分点（基线 2.5%）才看得出来；正常的标题效果测不出，大概率读出「区间含 0」。要测出来得把 share_percent 提到 50（区间约缩小到 0.6 倍）或拉长时间。改 share_percent 必须在开始前改，并在这里重记。",
+   "decision_rule": "最终读数的 95% 区间整体在 0 以上才全量换；整体在 0 以下撤回；含 0 记为「测不出」，不按点估计做决定。",
+   "来源": "frontend/scripts/audit-title-test.json、frontend/scripts/audit-meta.mjs、ops/gsc/audit_title_test.py"
+  }
+ ],
+ "events": [
+  {
+   "date": "部署日（待填）",
+   "note": "全站内链（无对照组）：/skill/ 和 /audit/ 页的热门链接减少（同分类 10→5、同语言 5→3、审计同分类 6→3），新增「最近收录」和按构建日期换的「随机」两个区块（只连可索引页）；React 版 /skill/ 页显示同样两块。分支 feat/links-dir-titles。"
+  },
+  {
+   "date": "部署日（待填）",
+   "note": "新增 /browse/ A–Z 目录：列出全部可索引 /skill/ 页和全部 /audit/ 页，每页最多 500 条，进 sitemap-top.xml；/skill/、/audit/、/category/ 静态页底部和 React 页脚加链接（React 页脚在 GIGALinks 冻结页上不显示）。"
+  }
+ ]
+}
