@@ -189,7 +189,7 @@ function socialTags(title, desc, url) {
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${esc(title)}" />
   <meta name="twitter:description" content="${esc(desc)}" />
-  <meta name="twitter:site" content="@GoSailGlobal" />`;
+  <meta name="twitter:site" content="@agentskillshub" />`;
 }
 
 function headHtml(sub, parent, assetTags, tested) {

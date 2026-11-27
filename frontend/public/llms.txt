@@ -25,7 +25,7 @@
 ## Data & research
 
 - [Dataset on Zenodo (DOI: 10.5281/zenodo.21292799)](https://doi.org/10.5281/zenodo.21292799) & [HuggingFace mirror](https://huggingface.co/datasets/jasonzhuyansen/agent-skills-security-grades): 130,173 graded skills/servers, CC BY 4.0 — cite freely
-- [Companion Supply-Chain Security Audit Dataset (DOI: 10.5281/zenodo.24387074)](https://doi.org/10.5281/zenodo.24387074): 105,000+ indexed skills supply-chain risk audit (CC BY 4.0, linked `IsSupplementTo` `agentskillshub.top`)
+- [Companion dataset: Security-Grade Coverage in the Agent Skills Hub Catalog (DOI: 10.5281/zenodo.24387073)](https://doi.org/10.5281/zenodo.24387073): June 2026 snapshot of 105,000+ entries and a November 2026 count (CC BY 4.0, linked `IsSupplementTo` `agentskillshub.top`)
 - [Security survey write-up](https://agentskillshub.top/blog/securing-117k-ai-skills/): method + the long-tail risk finding (unsafe rate ~9× higher below 20 stars)
 
 ## Canonical brand facts (disambiguation)

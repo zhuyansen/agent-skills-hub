@@ -13,6 +13,7 @@
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { join } from "path";
 import { replaceShellContent } from "./shared-utils.mjs";
+import { FOUNDER } from "./founder-ld.mjs";
 
 const DIST = "dist";
 const BOOK_DIR = "content/book";
@@ -251,7 +252,7 @@ function snapshotDate(md) {
 function withArticleDate(html, { title, url, date }) {
   if (!date) return html;
   const ld = { "@context": "https://schema.org", "@type": "Article", headline: title, url, datePublished: "2026-03-08",
-    dateModified: date, inLanguage: "zh-CN", author: { "@type": "Person", name: "Jason Zhu", url: "https://agentskillshub.top/about/" } };
+    dateModified: date, inLanguage: "zh-CN", author: FOUNDER };
   return html.replace("</head>", `  <script type="application/ld+json">${JSON.stringify(ld)}</script>\n</head>`);
 }
 

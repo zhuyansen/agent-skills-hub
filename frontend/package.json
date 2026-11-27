@@ -38,6 +38,7 @@
     "test:analytics": "node --test scripts/analytics-instant.test.mjs",
     "test:key-claim": "node --test scripts/key-claim.test.mjs",
     "test:author-meta": "node --test scripts/author-meta.test.mjs",
+    "test:founder-ld": "node --test scripts/founder-ld.test.mjs",
     "test:skill-page-rule": "node --test scripts/skill-page-rule.test.mjs",
     "test:related-links": "node --test scripts/related-links.test.mjs",
     "test:browse": "node --test scripts/browse-pages.test.mjs"

@@ -35,12 +35,12 @@ references:
     publisher:
       name: Zenodo
   - type: data
-    title: "Open-Source AI Agent Skills and MCP Servers Supply-Chain Security Audit Dataset (105,000+ Indexed Skills, 2026)"
+    title: "Security-Grade Coverage in the Agent Skills Hub Catalog: June 2026 Snapshot (105,000+ Entries) and November 2026 Count"
     authors:
       - family-names: Zhu
         given-names: Jason
         orcid: "https://orcid.org/0009-0000-2894-6285"
-    doi: 10.5281/zenodo.24387074
+    doi: 10.5281/zenodo.24387073
     year: 2026
     publisher:
       name: Zenodo

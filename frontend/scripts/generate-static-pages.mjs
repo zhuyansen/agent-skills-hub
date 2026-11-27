@@ -332,7 +332,7 @@ const aboutHtml = `<!doctype html>
   <meta property="og:url" content="https://agentskillshub.top/about/" />
   <meta property="og:image" content="https://agentskillshub.top/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@GoSailGlobal" />
+  <meta name="twitter:site" content="@agentskillshub" />
 
   <script type="application/ld+json">
   {
@@ -358,7 +358,7 @@ const aboutHtml = `<!doctype html>
         "@type": "Person",
         "@id": "https://jasonzhu.ai/#person",
         "name": "Jason Zhu",
-        "alternateName": "Zhu Yansen",
+        "alternateName": ["祝彦森", "Yansen Zhu", "zhuyansen", "JasonZhu.AI"],
         "identifier": {
           "@type": "PropertyValue",
           "propertyID": "ORCID",
@@ -542,8 +542,10 @@ console.log(`  ✓ /about/index.html (standalone E-E-A-T page)`);
 // ────────────────────────────────────────────────────────────────
 // ≤60 / ≤160 chars (OpenSEO audit 2026-11-18 flagged 61 / 248).
 const aiInfoTitle = "AI Info — Official Platform Facts | Agent Skills Hub";
+// The number is the index total: home-counts.mjs stamps every X,000+ in the three summary tags with it. Until
+// 2026-11-27 the sentence called it graded, which 146,000+ were (the table below says so).
 const aiInfoDesc =
-  `Machine-readable facts for AI answer engines: operated by BRICKAI / GoSailGlobal LLC, 267,000+ skills & MCP servers graded on ${RULE_COUNT} public rules.`;
+  `Machine-readable facts for AI answer engines: operated by BRICKAI / GoSailGlobal LLC; 267,000+ skills & MCP servers indexed; grades follow ${RULE_COUNT} public rules.`;
 const aiInfoUrl = `${SITE}/ai-info/`;
 
 const aiInfoHtml = `<!doctype html>
@@ -565,7 +567,7 @@ const aiInfoHtml = `<!doctype html>
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${aiInfoTitle}" />
   <meta name="twitter:description" content="${aiInfoDesc}" />
-  <meta name="twitter:site" content="@GoSailGlobal" />
+  <meta name="twitter:site" content="@agentskillshub" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -592,7 +594,6 @@ const aiInfoHtml = `<!doctype html>
         "@type": "Person",
         "@id": "https://jasonzhu.ai/#person",
         "name": "Jason Zhu",
-        "alternateName": "Zhu Yansen",
         "url": "https://jasonzhu.ai/en"
       },
       "contactPoint": [
@@ -636,7 +637,7 @@ const aiInfoHtml = `<!doctype html>
       },
       "isBasedOn": "${SITE}/how-we-grade/",
       "citation": [
-        "https://doi.org/10.5281/zenodo.24387074"
+        "https://doi.org/10.5281/zenodo.24387073"
       ],
       "isAccessibleForFree": true,
       "sameAs": [

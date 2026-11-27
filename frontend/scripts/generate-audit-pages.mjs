@@ -182,7 +182,7 @@ function pageHtml(skill, related = [], sharedNames = new Set(), rotating = { rec
   <meta property="og:site_name" content="Agent Skills Hub" />
   <meta property="og:image" content="${SITE}/og-image.png" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@GoSailGlobal" />
+  <meta name="twitter:site" content="@agentskillshub" />
   <link rel="canonical" href="${esc(pageUrl)}" />
   <script type="application/ld+json">
 ${breadcrumbLd}
