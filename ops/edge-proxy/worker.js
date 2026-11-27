@@ -9,6 +9,8 @@
  *   3. Lightweight AI crawler & AI referral edge telemetry (inspired by
  *      yaojingang/GEOInflow, MIT) with official IPv4 CIDR verification and
  *      daily deduplicated KV logging for Sitemap blind-spot auditing.
+ *   4. A 301 from an audit page the build no longer writes to the repo's skill
+ *      page, which carries the same grade (auditGoneRedirect, 2026-11).
  */
 
 import { OFFICIAL_BOT_CIDRS } from "./bot-ranges.js";
@@ -245,6 +247,28 @@ async function serveMarkdownHome(request, url) {
   return new Response(body, { status: mdResp.status, headers });
 }
 
+/** /skill/<owner>/<repo>/ for an /audit/<owner>/<repo>/ path, else null. */
+export function auditFallbackPath(pathname) {
+  const m = /^\/audit\/([^/]+)\/([^/]+)\/?$/.exec(pathname);
+  return m ? `/skill/${m[1]}/${m[2]}/` : null;
+}
+
+/**
+ * GitHub Pages answers 404 for an audit page the build stopped writing: since 2026-07-28 a repo
+ * needs 500+ stars or a flagged grade to keep one, and grades move with every scan. Bingbot keeps
+ * asking for those URLs: in the edge KV log for 11-22 to 11-25, 86 of its 293 audit fetches were
+ * 404s, and 85 of those 86 repos still had a live skill page. Send a 301 to that
+ * skill page, which shows the same grade, when it exists; otherwise the 404 stands.
+ */
+export async function auditGoneRedirect(url, originResponse) {
+  if (originResponse.status !== 404) return null;
+  const target = auditFallbackPath(url.pathname);
+  if (!target) return null;
+  const targetUrl = new URL(target, url.origin).toString();
+  const probe = await fetch(targetUrl, { method: "HEAD", redirect: "manual" });
+  return probe.status === 200 ? Response.redirect(targetUrl, 301) : null;
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -259,8 +283,10 @@ export default {
 
     const originResponse = await fetch(request);
     if (!isHomepagePath(url.pathname)) {
-      scheduleTelemetry(env, ctx, request, url, originResponse);
-      return originResponse;
+      const moved = isRead ? await auditGoneRedirect(url, originResponse) : null;
+      const response = moved || originResponse;
+      scheduleTelemetry(env, ctx, request, url, response);
+      return response;
     }
 
     const headers = new Headers(originResponse.headers);
