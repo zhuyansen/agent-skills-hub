@@ -1,0 +1,11 @@
+I can't code. This is what I want, in my own words:
+
+{BRIEF}
+
+A tool from ~/src has been installed on this machine (look in ~/.claude and ~/work/.claude for its skills, commands, agents and plugins, run `claude mcp list` and `claude plugin list`, and check ~/work for files it set up; a command-line tool may be on the PATH). Do it with that tool, following the tool's own README and workflow, the way its author says to use it. You are working in ~/work, my folder: it is already a git repository and holds the meeting record I mean, 会议记录.txt.
+
+- If the tool's workflow asks me a question or needs my approval, stop and ask me; I will answer. Do not ask me anything the tool does not ask.
+- If the tool cannot be used here (it needs another paid key, an account or a desktop app), stop and say why. Do not do it some other way instead.
+- Do not send it to anyone, upload it or put it online.
+- When it is finished I must be able to open it myself, so put it in ~/work/output/ as one document I can open: a Markdown, text or Word file. If you leave more than one file there, write in ~/work/output/说明.txt which one to open.
+- When it is finished, print one line: DELIVERABLE: ~/work/output/

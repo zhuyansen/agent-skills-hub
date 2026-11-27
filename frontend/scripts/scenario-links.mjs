@@ -48,7 +48,7 @@ const TOPIC_CLUSTERS = [
   {
     id: "writing-growth",
     slugs: [
-      "anti-slop", "seo-tools", "content-writing", "content-syndication",
+      "anti-slop", "seo-tools", "content-writing", "content-syndication", "summarization",
     ],
     bridges: ["claude-code-skills", "ai-design", "ppt-presentation", "image-generation", "prompt-engineering", "knowledge-base"],
     comparisons: ["claude-code-vs-claude-skills", "official-mcp-vs-awesome-mcp"],

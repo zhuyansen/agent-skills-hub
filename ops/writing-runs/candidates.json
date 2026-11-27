@@ -1,0 +1,74 @@
+[
+ {
+  "repo": "octocat/Hello-World",
+  "kind": "control",
+  "stars": 0,
+  "grade": "safe",
+  "source": "control",
+  "skill_md": "",
+  "install": "nothing",
+  "why": "不装任何工具的 Claude Code，对照组。"
+ },
+ {
+  "repo": "anthropics/skills",
+  "only": "skills/internal-comms",
+  "kind": "writing",
+  "skill_md": "skills/internal-comms/SKILL.md",
+  "install": "把 skills/internal-comms（含 examples/）放进 ~/.claude/skills/（只装这一个，和 site-runs 只装 frontend-design 同一做法）",
+  "stars": 188983,
+  "grade": "safe",
+  "source": "hub sub_skills: skills/internal-comms (safe)；按话题选（状态汇报、领导汇报），描述不命中 content-writing 的关键词",
+  "why": "Anthropic 官方的「写内部材料」skill：状态汇报、领导汇报、项目进展都归它管，按 3P（进展 / 计划 / 问题）的格式写。大家说「写材料装官方 skill」最可能装的就是它。"
+ },
+ {
+  "repo": "op7418/Humanizer-zh",
+  "kind": "deslop",
+  "skill_md": "SKILL.md",
+  "install": "git clone https://github.com/op7418/Humanizer-zh.git ~/.claude/skills/humanizer-zh（README 方法二；方法一是 npx skills add）",
+  "stars": 22242,
+  "grade": "safe",
+  "source": "hub anti-slop 场景（content-writing 的相关场景）关键词命中 humanizer；仓库 safe",
+  "why": "星最多的中文去 AI 味 skill，31 条模式就是这次 AI 味检查参考的那份清单。用法是先写稿再按它改：看「写完再去味」能不能把套话、排比和拔高去掉，又不改动数字。anti-slop 那期它改写英中文都是 3.0/5。"
+ },
+ {
+  "repo": "larashero3-dotcom/lieflat-less-ai-tone",
+  "kind": "deslop",
+  "skill_md": "SKILL.md",
+  "install": "npx skills add larashero3-dotcom/lieflat-less-ai-tone，或把仓库放进 ~/.claude/skills/（脚本只用 Python 标准库）",
+  "stars": 6829,
+  "grade": "safe",
+  "source": "hub anti-slop 场景（content-writing 的相关场景）关键词命中「去 AI 味」；仓库 safe",
+  "why": "用 520 万字语料统计出指标的去 AI 味 skill：先跑脚本出检测报告，等用户回复「按建议改」再改写、复测。正好测中途停下来问、拿到「你按你推荐的来」以后怎么做，以及脚本化检测能不能压住套话。"
+ },
+ {
+  "repo": "MrGeDiao/shuorenhua",
+  "kind": "deslop",
+  "skill_md": "skills/shuorenhua/SKILL.md",
+  "install": "claude plugin marketplace add MrGeDiao/shuorenhua; claude plugin install shuorenhua@shuorenhua（README 的 Claude Code 装法）",
+  "stars": 2532,
+  "grade": "safe",
+  "source": "hub content-writing 关键词命中 writing（描述 Chinese-first rewrite skill）；仓库 safe",
+  "why": "「说人话」：中文优先的改写 skill，主打保事实、保条件、保承诺，README 的示例正好是一段周报汇报。看它改「材料腔」时数字和问题是不是原样留下。"
+ },
+ {
+  "repo": "duyunzhoudyz/dyz-gongwen-skills",
+  "kind": "official-writing",
+  "plugin": "gongwen",
+  "skill_md": "skills/gongwen-report/SKILL.md（核心插件 gongwen 共 17 个 skill：gongwen 总入口、gongwen-report 总结汇报、gongwen-humanize、gongwen-review、gongwen-format 等）",
+  "install": "claude plugin marketplace add duyunzhoudyz/dyz-gongwen-skills; claude plugin install gongwen@dyz-gongwen-skills；pip install python-docx openpyxl（README 方式二）",
+  "stars": 438,
+  "grade": "safe",
+  "source": "hub content-writing 关键词命中 writing / 写作；仓库 safe（Hub 里的 duyunzhoudyz/gongwen-skills 是同一个仓库改名前的旧条目）",
+  "why": "专写「材料」的中文公文 skill 套件：总结、汇报、述职都走 gongwen-report，主打防编造（README 里的示例就是「写一篇年度工作总结，不要编数据」），还会出国标排版的 Word。最对口，看它在不是机关单位的团队总结上表现如何。"
+ },
+ {
+  "repo": "Liuxiangjian-ai/official-document-skill",
+  "kind": "official-writing",
+  "skill_md": "SKILL.md",
+  "install": "把仓库（一个 SKILL.md）放进 ~/.claude/skills/official-document-skill",
+  "stars": 437,
+  "grade": "safe",
+  "source": "hub content-writing 中文关键词命中「写作」；仓库 safe",
+  "why": "另一个公文写作 skill，蒸馏了 100 多篇人民日报文章，文种里有工作总结和汇报材料，V1.3 加了 humanizer 式二次审稿，README 开头就在批「凝心聚力、走深走实」这种 AI 味。看「像体制内笔杆子」的写法在大白话检查里怎么样。"
+ }
+]

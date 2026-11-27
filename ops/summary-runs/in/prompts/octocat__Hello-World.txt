@@ -1,0 +1,9 @@
+I can't code. This is what I want, in my own words:
+
+{BRIEF}
+
+This is the control run: no tool is installed. Do it yourself in ~/work, my folder (already a git repository, holding the meeting record I mean, 会议记录.txt), with whatever you would normally use on this machine. Do not ask me anything; decide yourself.
+
+- Do not send it to anyone, upload it or put it online.
+- When it is finished I must be able to open it myself, so put it in ~/work/output/ as one document I can open: a Markdown, text or Word file. If you leave more than one file there, write in ~/work/output/说明.txt which one to open.
+- When it is finished, print one line: DELIVERABLE: ~/work/output/

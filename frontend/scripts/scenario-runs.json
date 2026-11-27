@@ -22794,5 +22794,1020 @@
     "note_zh": "米白底、细线条：这里最克制的一条，也是做得最慢的，23.5 分钟。"
    }
   }
+ },
+ "summarization": {
+  "type": "table",
+  "date": "2026-11-08",
+  "dir": "/best-runs/summary/",
+  "results": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/summary-runs/RESULTS.md",
+  "title": [
+   "Meeting summary tools tested: one made-up meeting, two ways of asking",
+   "实测对比：同一份虚构会议记录，两种问法"
+  ],
+  "intro": [
+   "On 2026-11-08 we gave 6 of these tools the same made-up meeting record: the automatic transcript of a product team's weekly meeting, about 5,000 字, with 7 decisions, 6 tasks with an owner and a due date, 3 points left open, 7 figures the meeting replaced, loose remarks that are not tasks, and small talk. Each was installed from its README in a throwaway sandbox and used by Claude Code (Claude Opus 5.5) from two requests in the person's words: one line, 「帮我总结一下这个会议记录。」 (\"Summarise this meeting record for me\"), and one paragraph asking for 800 字 or fewer, the conclusion first, every decision and every task with its owner and due date, figures as written, open points marked 没定, and nothing made up. A tester session with no tool loaded checked every summary against the same 7 checks, fixed before the runs: six scripted against an answer key, and one, anything the record does not support, read sentence by sentence. Claude Code with nothing installed did the same as a control.",
+   "2026-11-08，我们给其中 6 个工具同一份虚构的会议记录：一个产品团队周会的自动转写稿，约 5,000 字，里面有 7 个拍板的决定、6 个有负责人和截止日期的待办、3 件没定的事、7 个会上被推翻的旧数字，还有不算待办的随口一提和闲聊。每个工具在用完即删的沙箱里照 README 安装，由 Claude Code（Claude Opus 5.5）按两种说法使用：一句话，「帮我总结一下这个会议记录。」；一段话，要求 800 字以内、先写结论、列全决定和待办（谁负责、哪天之前）、数字照原文、没定的标「没定」、原文没有的一个字都别编。另起一个不装工具的测试会话，用开跑前定好的同一套 7 项检查核对每份总结：6 项由脚本对照答案判定，1 项（有没有原文不支持的内容）由测试员逐句读。不装任何工具的 Claude Code 做同样的事，作为对照。"
+  ],
+  "finding": [
+   "The request mattered more than the tool. Asked in one line, every build ran past 800 字 and 6 of 7 made something up, the control included (2 statements); the tools made up 4 (pm-skills), 3 (genoffice), 10 (awesome-codex-skills), 7 (hermes-agent) and 7 (awesome-copilot), and only summarize made up nothing. Asked in one paragraph, Claude Code with nothing installed passed all 7 checks, as 3 of the 6 tools did; none passed more. What was made up was most often an owner or a due date for a remark nobody was given as a task.",
+   "问法比工具管用。只说一句话时，每一份都超过 800 字，7 份里 6 份编了东西，对照组也编了 2 处；各工具编的处数：pm-skills 4 处、genoffice 3 处、awesome-codex-skills 10 处、hermes-agent 7 处、awesome-copilot 7 处，只有 summarize 一处没编。按那段话问时，什么都不装的 Claude Code 7 项全过，6 个工具里有 3 个也全过，没有更好的。编出来的东西，最常见的是给一句没人领的随口话安上负责人或截止日期。"
+  ],
+  "name_col": [
+   "Tool",
+   "工具"
+  ],
+  "columns": [
+   [
+    "One line (7 checks)",
+    "一句话（7 项）"
+   ],
+   [
+    "Made up (line)",
+    "编了几处（一句话）"
+   ],
+   [
+    "One paragraph (7 checks)",
+    "一段话（7 项）"
+   ],
+   [
+    "Made up (paragraph)",
+    "编了几处（一段话）"
+   ],
+   [
+    "字 (line / paragraph)",
+    "字数（一句话 / 一段话）"
+   ],
+   [
+    "Usage vs no tool",
+    "用量（不装工具 = 1）"
+   ]
+  ],
+  "see": [
+   "See both summaries →",
+   "看两份总结 →"
+  ],
+  "evidence": [
+   "Both summaries",
+   "两份总结"
+  ],
+  "line_label": [
+   "Meeting summary test, 2026-11-08:",
+   "2026-11-08 会议总结实测："
+  ],
+  "control": {
+   "sheet": "octocat__Hello-World.html",
+   "label": [
+    "See the no-tool run →",
+    "看不装工具的对照 →"
+   ]
+  },
+  "verdict": {
+   "title": [
+    "Which one to install",
+    "到底装哪个"
+   ],
+   "rule": [
+    "Ranked by checks passed on both requests, then statements made up, then build time. One run per tool and request, on one made-up meeting record; the same 7 checks for both requests, the 800-字 limit included, which only the paragraph asks for.",
+    "排名规则：先看两种问法一共过了几项，再看编了几处，最后看做了多久。每个工具每种问法只跑一次，用的是一份虚构的会议记录；两种问法用同一套 7 项检查，800 字的上限也算在内，虽然只有那段话提了这个要求。"
+   ],
+   "picks": [
+    {
+     "repo": "phuryn/pm-skills",
+     "role": [
+      "If you want a meeting summary skill at all",
+      "真要装一个会议总结 skill"
+     ],
+     "why": [
+      "On the one-paragraph request it passed all 7 checks and made nothing up, in 0.9 minutes of building; Claude Code with nothing installed did the same in 1.5. On the one-line request it passed 4 of 7 and made up 4 statements, against the control's 5 of 7 and 2.",
+      "一段话的问法下 7 项全过、没编一处，做了 0.9 分钟；什么都不装的 Claude Code 也是 7 项全过，用了 1.5 分钟。一句话的问法下它过 4 项、编了 4 处，对照组是过 5 项、编 2 处。"
+     ]
+    },
+    {
+     "repo": "steipete/summarize",
+     "role": [
+      "If you will only ever type one line",
+      "只打算说一句话"
+     ],
+     "why": [
+      "The only build that made nothing up on the one-line request, and the shortest at 942 字; every other ran past 2,000. With the paragraph it passed 5 of 7: one open point became a task with no 没定 mark, and one remark got an owner the record does not give.",
+      "一句话的问法下唯一一个没编任何东西的，也最短，942 字；其他都超过 2,000 字。按那段话问，它过 5 项：一件没定的事被写成了待办、没标没定，一句随口的话被安上了原文没有的负责人。"
+     ]
+    },
+    {
+     "repo": "genspark-ai/genoffice",
+     "role": [
+      "If the summary must be a Word file",
+      "必须交 Word 文件"
+     ],
+     "why": [
+      "The only tool that delivered a .docx both times. 6 of 7 on the paragraph, with 2 additions the record does not support (a note-taker 「待定」, an agenda 「待定」); 5 of 7 on the one line, with 3.",
+      "唯一两次都交 Word 文件的。一段话问法过 6 项，多写了两处原文没有的（「记录人 待定」「议程待定」）；一句话问法过 5 项，编了 3 处。"
+     ]
+    }
+   ],
+   "avoid_label": [
+    "Made up the most on the one-line request:",
+    "一句话问法下编得最多："
+   ],
+   "avoid": [
+    {
+     "repo": "composio-community/awesome-codex-skills",
+     "why": [
+      "10 statements, mostly 「建议」 due dates the record does not give",
+      "编了 10 处，大多是原文没有的「建议」截止日期"
+     ]
+    },
+    {
+     "repo": "github/awesome-copilot",
+     "why": [
+      "7 statements, and 2 of 7 checks, in a 12-section formal minutes template of 2,826 字",
+      "编了 7 处，7 项只过 2 项，是一份 12 个部分、2,826 字的正式纪要"
+     ]
+    },
+    {
+     "repo": "NousResearch/hermes-agent",
+     "why": [
+      "7 statements, although its skill says never to invent a due date",
+      "编了 7 处，尽管它的 skill 写明截止日期绝不编"
+     ]
+    }
+   ],
+   "caveat": [
+    "Whichever you pick: the request did more than any tool. Asked with the one-paragraph request (it is on every evidence page), Claude Code with nothing installed passed all 7 checks; asked in one line, every build ran past 800 字 and 6 of 7 made something up. Check owners and due dates against the record before you send a summary on.",
+    "不管选哪个：问法比工具管用。用那段话去问（每个证据页上都有原文），什么都不装的 Claude Code 7 项全过；只说一句话，每一份都超过 800 字，7 份里 6 份编了东西。总结转发之前，负责人和截止日期要对照原文核一遍。"
+   ]
+  },
+  "runs": {
+   "phuryn/pm-skills": {
+    "ran": true,
+    "stars": 27762,
+    "sheet": "phuryn__pm-skills.html",
+    "cells": [
+     [
+      "4/7",
+      null,
+      ""
+     ],
+     [
+      "4",
+      null,
+      "num"
+     ],
+     [
+      "7/7",
+      null,
+      "touch-ups"
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "2,632 / 601",
+      null,
+      "num"
+     ],
+     [
+      "×1.5 / ×1.2",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-line request: 4 of 7 checks, made up 4 statements",
+      "一句话：7 项过 4 项，编了 4 处"
+     ],
+     [
+      "one-paragraph request: 7 of 7, made up nothing",
+      "一段话：7 项过 7 项，没编"
+     ],
+     [
+      "2,632 and 601 字",
+      "2,632 字和 601 字"
+     ],
+     [
+      "1.1 + 0.9 min",
+      "1.1 + 0.9 分钟"
+     ]
+    ],
+    "note": "Its pm-execution plugin, which holds the summarize-meeting skill; only that plugin was installed.",
+    "note_zh": "装的是它的 pm-execution 插件（含 summarize-meeting skill），只装了这一个插件。",
+    "sub": "summarize-meeting"
+   },
+   "genspark-ai/genoffice": {
+    "ran": true,
+    "stars": 11926,
+    "sheet": "genspark-ai__genoffice.html",
+    "cells": [
+     [
+      "5/7",
+      null,
+      ""
+     ],
+     [
+      "3",
+      null,
+      "num"
+     ],
+     [
+      "6/7",
+      null,
+      ""
+     ],
+     [
+      "2",
+      null,
+      "num"
+     ],
+     [
+      "2,363 / 648",
+      null,
+      "num"
+     ],
+     [
+      "×2.3 / ×1.7",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-line request: 5 of 7 checks, made up 3 statements",
+      "一句话：7 项过 5 项，编了 3 处"
+     ],
+     [
+      "one-paragraph request: 6 of 7, made up 2 statements",
+      "一段话：7 项过 6 项，编了 2 处"
+     ],
+     [
+      "2,363 and 648 字",
+      "2,363 字和 648 字"
+     ],
+     [
+      "2.1 + 1.9 min",
+      "2.1 + 1.9 分钟"
+     ]
+    ],
+    "note": "Only its meeting-minutes skill, written for GenOffice's own AI; it delivered a Word file both times.",
+    "note_zh": "只装了 meeting-minutes 这一个 skill，它本来是写给 GenOffice 自带的 AI 用的；两次交的都是 Word 文件。",
+    "sub": "meeting-minutes"
+   },
+   "composio-community/awesome-codex-skills": {
+    "ran": true,
+    "stars": 17249,
+    "sheet": "composio-community__awesome-codex-skills.html",
+    "cells": [
+     [
+      "4/7",
+      null,
+      ""
+     ],
+     [
+      "10",
+      null,
+      "num"
+     ],
+     [
+      "7/7",
+      null,
+      "touch-ups"
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "2,636 / 617",
+      null,
+      "num"
+     ],
+     [
+      "×1.7 / ×1.6",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-line request: 4 of 7 checks, made up 10 statements",
+      "一句话：7 项过 4 项，编了 10 处"
+     ],
+     [
+      "one-paragraph request: 7 of 7, made up nothing",
+      "一段话：7 项过 7 项，没编"
+     ],
+     [
+      "2,636 and 617 字",
+      "2,636 字和 617 字"
+     ],
+     [
+      "1.4 + 1.2 min",
+      "1.4 + 1.2 分钟"
+     ]
+    ],
+    "note": "Only its meeting-notes-and-actions skill, which says both \"do not invent facts\" and \"suggest a deadline when one is missing\".",
+    "note_zh": "只装了 meeting-notes-and-actions 这一个 skill，它既写「不要编造事实」，又写「缺截止日期就建议一个」。",
+    "sub": "meeting-notes-and-actions"
+   },
+   "steipete/summarize": {
+    "ran": true,
+    "stars": 6789,
+    "sheet": "steipete__summarize.html",
+    "cells": [
+     [
+      "5/7",
+      null,
+      ""
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "5/7",
+      null,
+      ""
+     ],
+     [
+      "1",
+      null,
+      "num"
+     ],
+     [
+      "942 / 562",
+      null,
+      "num"
+     ],
+     [
+      "×0.8 / ×1.9",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-line request: 5 of 7 checks, made up nothing",
+      "一句话：7 项过 5 项，没编"
+     ],
+     [
+      "one-paragraph request: 5 of 7, made up 1 statement",
+      "一段话：7 项过 5 项，编了 1 处"
+     ],
+     [
+      "942 and 562 字",
+      "942 字和 562 字"
+     ],
+     [
+      "0.6 + 1.4 min",
+      "0.6 + 1.4 分钟"
+     ]
+    ],
+    "note": "A command-line summariser for files, pages and videos (summarize 0.26.0) with its skill, run through the logged-in Claude Code. Not made for meetings.",
+    "note_zh": "通用的命令行摘要工具（summarize 0.26.0，能总结文件、网页和视频），加上它的 skill，模型走已登录的 Claude Code。不是专门做会议的。"
+   },
+   "NousResearch/hermes-agent": {
+    "ran": true,
+    "stars": 261577,
+    "sheet": "NousResearch__hermes-agent.html",
+    "cells": [
+     [
+      "3/7",
+      null,
+      "substantial"
+     ],
+     [
+      "7",
+      null,
+      "num"
+     ],
+     [
+      "7/7",
+      null,
+      "touch-ups"
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "2,781 / 630",
+      null,
+      "num"
+     ],
+     [
+      "×1.6 / ×1.3",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-line request: 3 of 7 checks, made up 7 statements",
+      "一句话：7 项过 3 项，编了 7 处"
+     ],
+     [
+      "one-paragraph request: 7 of 7, made up nothing",
+      "一段话：7 项过 7 项，没编"
+     ],
+     [
+      "2,781 and 630 字",
+      "2,781 字和 630 字"
+     ],
+     [
+      "1.1 + 1.1 min",
+      "1.1 + 1.1 分钟"
+     ]
+    ],
+    "note": "Only its meeting-action-items skill, not the Hermes agent; the skill says never to invent a due date.",
+    "note_zh": "只装了 meeting-action-items 这一个 skill，没装 Hermes 本体；这个 skill 写明截止日期绝不编。",
+    "sub": "meeting-action-items"
+   },
+   "github/awesome-copilot": {
+    "ran": true,
+    "stars": 40913,
+    "sheet": "github__awesome-copilot.html",
+    "cells": [
+     [
+      "2/7",
+      null,
+      "substantial"
+     ],
+     [
+      "7",
+      null,
+      "num"
+     ],
+     [
+      "6/7",
+      null,
+      ""
+     ],
+     [
+      "1",
+      null,
+      "num"
+     ],
+     [
+      "2,826 / 625",
+      null,
+      "num"
+     ],
+     [
+      "×1.6 / ×1.4",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-line request: 2 of 7 checks, made up 7 statements",
+      "一句话：7 项过 2 项，编了 7 处"
+     ],
+     [
+      "one-paragraph request: 6 of 7, made up 1 statement",
+      "一段话：7 项过 6 项，编了 1 处"
+     ],
+     [
+      "2,826 and 625 字",
+      "2,826 字和 625 字"
+     ],
+     [
+      "1.6 + 1.4 min",
+      "1.6 + 1.4 分钟"
+     ]
+    ],
+    "note": "Only its meeting-minutes skill, which must ask up to 3 questions before writing; it stopped to ask once on each request.",
+    "note_zh": "只装了 meeting-minutes 这一个 skill，它要求动笔前先问最多 3 个问题；两种问法下各停下来问了一次。",
+    "sub": "meeting-minutes"
+   }
+  }
+ },
+ "content-writing": {
+  "type": "table",
+  "date": "2026-11-08",
+  "dir": "/best-runs/writing/",
+  "results": "https://github.com/zhuyansen/agent-skills-hub/blob/main/ops/writing-runs/RESULTS.md",
+  "title": [
+   "Writing skills tested: one made-up fact list, a quarterly report, two ways of asking",
+   "实测对比：同一份虚构事实清单写季度总结，两种问法"
+  ],
+  "intro": [
+   "On 2026-11-08 we gave 6 writing and anti-AI-tone skills the same job: write a support team's third-quarter work report from a made-up fact list of about 730 字, with 4 projects and their figures, 4 problems, the spending, 4 plans for the fourth quarter and 5 old figures that must not be given as current. Each was installed from its README in a throwaway sandbox and used by Claude Code (Claude Opus 5.5) from two requests in the person's words: one line, 「帮我写一份季度工作总结。」 (\"Write me a quarterly work report\"), and one paragraph asking for about 1,500 字 in three parts, only the list's facts and figures, nothing worked out, plain words with no stock phrases or 排比, and the problems told straight. A tester session with no tool loaded checked every report against the same 8 checks, fixed before the runs: seven scripted against an answer key and fixed tone lists, and one, anything the list does not support, read sentence by sentence. Claude Code with nothing installed did the same as a control.",
+   "2026-11-08，我们让 6 个写作和去 AI 味 skill 做同一件事：照一份约 730 字的虚构事实清单，写一个客服团队的第三季度工作总结。清单里有 4 个项目和数字、4 个没做好的地方、花费、4 项第四季度计划，还有 5 个不能当成现在的旧数字。每个工具在用完即删的沙箱里照 README 安装，由 Claude Code（Claude Opus 5.5）按两种说法使用：一句话，「帮我写一份季度工作总结。」；一段话，要求 1500 字左右、分三块、只用清单里的事实和数字、别自己算、说大白话、别用套话和排比、问题要写实。另起一个不装工具的测试会话，用开跑前定好的同一套 8 项检查核对每份总结：7 项由脚本对照答案和固定词表判定，1 项（有没有清单不支持的内容）逐句阅读。不装任何工具的 Claude Code 做同样的事，作为对照。"
+  ],
+  "finding": [
+   "On the one-paragraph request no tool beat Claude Code with nothing installed: it passed all 8 checks in 1.2 minutes of writing (1.9 for the whole run, the check included) and $0.19 of usage at API prices, and all 6 tools passed 7 of 8: 4 came in under 1,200 字, and official-document-skill 1 and anthropics/skills 3 added statements the list does not support. On the one-line request the control passed 5 of 8: it put in 9 figures that are not on the list, 7 of them worked out itself, and 3 statements the list does not support; the 3 anti-AI-tone skills (Humanizer-zh, shuorenhua, lieflat-less-ai-tone) passed 7 of 8 with neither. Every one-line report came in under 1,200 字.",
+   "按那段话问，没有工具比什么都不装的 Claude Code 更好：它 8 项全过，写了 1.2 分钟（连检查在内整个运行 1.9 分钟），按 API 价用量 $0.19；6 个工具都是 8 项过 7 项：4 个不到 1,200 字，official-document-skill 加了 1 处、anthropics/skills 加了 3 处清单不支持的内容。只说一句话时，对照组 8 项过 5 项：写进了 9 个清单里没有的数字，其中 7 个是自己算的，还有 3 处清单不支持；3 个去 AI 味 skill（Humanizer-zh、shuorenhua、lieflat-less-ai-tone）8 项过 7 项，这两样都没有。一句话问法下的每一份都不到 1,200 字。"
+  ],
+  "name_col": [
+   "Tool",
+   "工具"
+  ],
+  "columns": [
+   [
+    "One line (8 checks)",
+    "一句话（8 项）"
+   ],
+   [
+    "Off-list figures (line, worked out)",
+    "清单外数字（一句话，其中自己算的）"
+   ],
+   [
+    "Unsupported (line)",
+    "清单不支持（一句话）"
+   ],
+   [
+    "One paragraph (8 checks)",
+    "一段话（8 项）"
+   ],
+   [
+    "Unsupported (paragraph)",
+    "清单不支持（一段话）"
+   ],
+   [
+    "字 (line / paragraph)",
+    "字数（一句话 / 一段话）"
+   ],
+   [
+    "Usage vs no tool",
+    "用量（不装工具 = 1）"
+   ]
+  ],
+  "see": [
+   "See both reports →",
+   "看两份总结 →"
+  ],
+  "evidence": [
+   "Both reports",
+   "两份总结"
+  ],
+  "line_label": [
+   "Quarterly report test, 2026-11-08:",
+   "2026-11-08 季度总结实测："
+  ],
+  "control": {
+   "sheet": "octocat__Hello-World.html",
+   "label": [
+    "See the no-tool run →",
+    "看不装工具的对照 →"
+   ]
+  },
+  "verdict": {
+   "title": [
+    "Which one to install",
+    "到底装哪个"
+   ],
+   "rule": [
+    "Ranked by checks passed on both requests, then statements the list does not support, then build time. One run per tool and request, on one made-up fact list; the same 8 checks for both requests, the 1,200-字 floor included, which only the paragraph asks for (about 1,500).",
+    "排名规则：先看两种问法一共过了几项，再看有几处清单不支持，最后看做了多久。每个工具每种问法只跑一次，用的是一份虚构的事实清单；两种问法用同一套 8 项检查，1,200 字的下限也算在内，虽然只有那段话提了字数（1500 字左右）。"
+   ],
+   "picks": [
+    {
+     "repo": "op7418/Humanizer-zh",
+     "role": [
+      "If you want one installed",
+      "真要装一个"
+     ],
+     "why": [
+      "7 of 8 on both requests, with no figure worked out and nothing the list does not support; it failed only the length, at 938 and 978 字. On the one-line request that beat Claude Code alone (5 of 8); on the paragraph it was one check behind (8 of 8).",
+      "两种问法都是 8 项过 7 项，没有自己算的数字，也没有清单不支持的内容；只有字数没过，938 字和 978 字。一句话的问法下比只用 Claude Code（过 5 项）好；按那段话问，比它（8 项全过）少一项。"
+     ]
+    },
+    {
+     "repo": "MrGeDiao/shuorenhua",
+     "role": [
+      "If you would rather install a Claude Code plugin",
+      "想用 Claude Code 插件的方式装"
+     ],
+     "why": [
+      "The same 7 of 8 on both requests with nothing worked out or made up, at 2.1 and 2.3 times the usage of no tool; 920 and 1,155 字, both under the 1,200 the check asks for.",
+      "两种问法同样 8 项过 7 项，没有自己算的数，也没编，用量是不装工具的 2.1 倍和 2.3 倍；920 字和 1,155 字，都没到检查要求的 1,200 字。"
+     ]
+    },
+    {
+     "repo": "larashero3-dotcom/lieflat-less-ai-tone",
+     "role": [
+      "If you want a report on the AI tone before the rewrite",
+      "想先看一份 AI 味检测报告再改"
+     ],
+     "why": [
+      "7 of 8 on both with nothing worked out or made up. It stops once to show its detection report and waits, and used 3.9 and 5.7 times the usage of no tool; its one-line report was the shortest, 781 字.",
+      "两种问法都是 8 项过 7 项，没有自己算的数，也没编。它会停下来一次给你看检测报告、等你回复，用量是不装工具的 3.9 倍和 5.7 倍；一句话问法下写得最短，781 字。"
+     ]
+    }
+   ],
+   "avoid_label": [
+    "Check these against your facts:",
+    "这几个要对照事实核一遍："
+   ],
+   "avoid": [
+    {
+     "repo": "duyunzhoudyz/dyz-gongwen-skills",
+     "why": [
+      "8 figures it worked out itself on the one-line request, at 11.8 times the usage of no tool",
+      "一句话问法下有 8 个自己算出来的数字，用量是不装工具的 11.8 倍"
+     ]
+    },
+    {
+     "repo": "anthropics/skills",
+     "why": [
+      "its internal-comms skill added 3 statements the list does not support on the paragraph request",
+      "它的 internal-comms skill 按那段话写时，加了 3 处清单不支持的内容"
+     ]
+    },
+    {
+     "repo": "Liuxiangjian-ai/official-document-skill",
+     "why": [
+      "2 figures worked out on the one-line request and 1 cause the list does not give on the paragraph",
+      "一句话问法下有 2 个自己算的数字，按那段话写时加了 1 个清单没给的原因"
+     ]
+    }
+   ],
+   "caveat": [
+    "Whichever you pick: with the one-paragraph request (it is on every evidence page), Claude Code with nothing installed passed all 8 checks in 1.2 minutes of writing and $0.19 of usage at API prices; every tool passed 7. A tool earned its place on the one-line request, where the anti-AI-tone skills kept to the list and Claude Code alone worked out figures of its own.",
+    "不管选哪个：用那段话去问（每个证据页上都有原文），什么都不装的 Claude Code 8 项全过，写了 1.2 分钟，按 API 价用量 $0.19；每个工具都只过 7 项。工具真正有用的是一句话的问法：去 AI 味的 skill 守住了清单，只用 Claude Code 则自己算出了数字。"
+   ]
+  },
+  "runs": {
+   "op7418/Humanizer-zh": {
+    "ran": true,
+    "stars": 22242,
+    "sheet": "op7418__Humanizer-zh.html",
+    "cells": [
+     [
+      "7/8",
+      null,
+      ""
+     ],
+     [
+      "0 (0)",
+      null,
+      "num"
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "7/8",
+      null,
+      ""
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "938 / 978",
+      null,
+      "num"
+     ],
+     [
+      "×3.2 / ×2.1",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-line request: 7 of 8 checks, no figure off the list, nothing the list does not support",
+      "一句话：8 项过 7 项，没有清单以外的数字，没有清单不支持的内容"
+     ],
+     [
+      "one-paragraph request: 7 of 8, nothing the list does not support",
+      "一段话：8 项过 7 项，没有清单不支持的内容"
+     ],
+     [
+      "938 and 978 字",
+      "938 字和 978 字"
+     ],
+     [
+      "0.8 + 1.1 min",
+      "0.8 + 1.1 分钟"
+     ]
+    ],
+    "note": "A Chinese anti-AI-tone skill: the report is written first, then revised by its patterns. Our tone lists drew on the same patterns.",
+    "note_zh": "中文去 AI 味 skill：先写稿再按它的模式改。这次 AI 味检查的词表参考了同一份模式。"
+   },
+   "MrGeDiao/shuorenhua": {
+    "ran": true,
+    "stars": 2532,
+    "sheet": "MrGeDiao__shuorenhua.html",
+    "cells": [
+     [
+      "7/8",
+      null,
+      ""
+     ],
+     [
+      "0 (0)",
+      null,
+      "num"
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "7/8",
+      null,
+      ""
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "920 / 1,155",
+      null,
+      "num"
+     ],
+     [
+      "×2.1 / ×2.3",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-line request: 7 of 8 checks, no figure off the list, nothing the list does not support",
+      "一句话：8 项过 7 项，没有清单以外的数字，没有清单不支持的内容"
+     ],
+     [
+      "one-paragraph request: 7 of 8, nothing the list does not support",
+      "一段话：8 项过 7 项，没有清单不支持的内容"
+     ],
+     [
+      "920 and 1,155 字",
+      "920 字和 1,155 字"
+     ],
+     [
+      "0.7 + 1.4 min",
+      "0.7 + 1.4 分钟"
+     ]
+    ],
+    "note": "A Chinese plain-language rewriting plugin that sets out to keep facts, conditions and commitments.",
+    "note_zh": "中文「说人话」改写插件，主打保事实、保条件、保承诺。"
+   },
+   "larashero3-dotcom/lieflat-less-ai-tone": {
+    "ran": true,
+    "stars": 6829,
+    "sheet": "larashero3-dotcom__lieflat-less-ai-tone.html",
+    "cells": [
+     [
+      "7/8",
+      null,
+      ""
+     ],
+     [
+      "0 (0)",
+      null,
+      "num"
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "7/8",
+      null,
+      ""
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "781 / 1,128",
+      null,
+      "num"
+     ],
+     [
+      "×3.9 / ×5.7",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-line request: 7 of 8 checks, no figure off the list, nothing the list does not support",
+      "一句话：8 项过 7 项，没有清单以外的数字，没有清单不支持的内容"
+     ],
+     [
+      "one-paragraph request: 7 of 8, nothing the list does not support",
+      "一段话：8 项过 7 项，没有清单不支持的内容"
+     ],
+     [
+      "781 and 1,128 字",
+      "781 字和 1,128 字"
+     ],
+     [
+      "1.4 + 3.4 min",
+      "1.4 + 3.4 分钟"
+     ]
+    ],
+    "note": "An anti-AI-tone skill that runs a detection script first and waits for 「按建议改」 before rewriting; it stopped once on each request.",
+    "note_zh": "去 AI 味 skill：先跑脚本出检测报告，等用户回复「按建议改」再改写；两种问法下各停下来一次。"
+   },
+   "Liuxiangjian-ai/official-document-skill": {
+    "ran": true,
+    "stars": 437,
+    "sheet": "Liuxiangjian-ai__official-document-skill.html",
+    "cells": [
+     [
+      "6/8",
+      null,
+      ""
+     ],
+     [
+      "2 (2)",
+      null,
+      "num"
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "7/8",
+      null,
+      ""
+     ],
+     [
+      "1",
+      null,
+      "num"
+     ],
+     [
+      "1,064 / 1,323",
+      null,
+      "num"
+     ],
+     [
+      "×2.2 / ×2.3",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-line request: 6 of 8 checks, 2 figures not on the list (2 worked out), nothing the list does not support",
+      "一句话：8 项过 6 项，2 个清单没有的数字（2 个自己算的），没有清单不支持的内容"
+     ],
+     [
+      "one-paragraph request: 7 of 8, 1 statement the list does not support",
+      "一段话：8 项过 7 项，1 处清单不支持"
+     ],
+     [
+      "1,064 and 1,323 字",
+      "1,064 字和 1,323 字"
+     ],
+     [
+      "0.6 + 1.6 min",
+      "0.6 + 1.6 分钟"
+     ]
+    ],
+    "note": "One SKILL.md for official-document writing, with a second review pass in the style of a humanizer.",
+    "note_zh": "一个 SKILL.md 的公文写作 skill，带 humanizer 式的二次审稿。"
+   },
+   "anthropics/skills": {
+    "ran": true,
+    "stars": 188983,
+    "sheet": "anthropics__skills.html",
+    "cells": [
+     [
+      "6/8",
+      null,
+      ""
+     ],
+     [
+      "2 (2)",
+      null,
+      "num"
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "7/8",
+      null,
+      ""
+     ],
+     [
+      "3",
+      null,
+      "num"
+     ],
+     [
+      "1,029 / 1,391",
+      null,
+      "num"
+     ],
+     [
+      "×1.9 / ×1.7",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-line request: 6 of 8 checks, 2 figures not on the list (2 worked out), nothing the list does not support",
+      "一句话：8 项过 6 项，2 个清单没有的数字（2 个自己算的），没有清单不支持的内容"
+     ],
+     [
+      "one-paragraph request: 7 of 8, 3 statements the list does not support",
+      "一段话：8 项过 7 项，3 处清单不支持"
+     ],
+     [
+      "1,029 and 1,391 字",
+      "1,029 字和 1,391 字"
+     ],
+     [
+      "0.8 + 1.4 min",
+      "0.8 + 1.4 分钟"
+     ]
+    ],
+    "note": "Only its internal-comms skill, Anthropic's skill for status reports and updates to leadership.",
+    "note_zh": "只装了 internal-comms 这一个 skill，是 Anthropic 官方写状态汇报、领导汇报的 skill。",
+    "sub": "internal-comms"
+   },
+   "duyunzhoudyz/dyz-gongwen-skills": {
+    "ran": true,
+    "stars": 438,
+    "sheet": "duyunzhoudyz__dyz-gongwen-skills.html",
+    "cells": [
+     [
+      "5/8",
+      null,
+      ""
+     ],
+     [
+      "8 (8)",
+      null,
+      "num"
+     ],
+     [
+      "1",
+      null,
+      "num"
+     ],
+     [
+      "7/8",
+      null,
+      ""
+     ],
+     [
+      "0",
+      null,
+      "num"
+     ],
+     [
+      "1,020 / 946",
+      null,
+      "num"
+     ],
+     [
+      "×11.8 / ×8.3",
+      null,
+      "num"
+     ]
+    ],
+    "bits": [
+     [
+      "one-line request: 5 of 8 checks, 8 figures not on the list (8 worked out), 1 statement the list does not support",
+      "一句话：8 项过 5 项，8 个清单没有的数字（8 个自己算的），1 处清单不支持"
+     ],
+     [
+      "one-paragraph request: 7 of 8, nothing the list does not support",
+      "一段话：8 项过 7 项，没有清单不支持的内容"
+     ],
+     [
+      "1,020 and 946 字",
+      "1,020 字和 946 字"
+     ],
+     [
+      "2.9 + 3.6 min",
+      "2.9 + 3.6 分钟"
+     ]
+    ],
+    "note": "Its gongwen plugin (17 skills); reports go through gongwen-report, and it delivered a Word file both times.",
+    "note_zh": "装的是它的 gongwen 插件（17 个 skill），总结汇报走 gongwen-report；两次交的都是 Word 文件。",
+    "sub": "gongwen-report"
+   }
+  }
  }
 }

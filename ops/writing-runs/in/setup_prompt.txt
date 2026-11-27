@@ -1,0 +1,7 @@
+The repository at ~/src is a tool for AI coding agents: a Claude Code plugin or skills (for writing reports and work documents, or for taking the AI tone out of Chinese text), a workflow of commands, a command-line tool, or an MCP server. Install it the way its own README says, so that a new Claude Code session working in ~/work can use it. ~/work is the project folder: already a git repository, holding the person's 季度事实清单.md; leave that file as it is.
+- A plugin: the /plugin slash commands do not work in this session. Use the equivalent commands instead: `claude plugin marketplace add <source>`, then `claude plugin install <name>@<marketplace>`.
+- Skills, commands or agents: put them where the README says Claude Code should load them (~/.claude/... or ~/work/.claude/...).
+- An MCP server: install it and register it with `claude mcp add --scope user ...`.
+- A command-line tool or package: install it. A global npm install may need `sudo`, or a user prefix; Python packages may need `pip3 install --break-system-packages`.
+If the tool needs a model, use Claude Code itself: this machine is signed in to Claude Code, and there are no other API keys. Do not write anything yet. Do not ask questions; where an installer asks, take its defaults.
+At the end print exactly one line: SETUP: done <what you installed, with the commands> or SETUP: failed <reason>.

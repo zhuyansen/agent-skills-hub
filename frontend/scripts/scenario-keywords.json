@@ -841,13 +841,210 @@
     "documentation"
    ],
    "min_results": 5,
-   "max_results": 10
+   "max_results": 16,
+   "featured": [
+    "op7418/Humanizer-zh",
+    "MrGeDiao/shuorenhua",
+    "larashero3-dotcom/lieflat-less-ai-tone",
+    "Liuxiangjian-ai/official-document-skill",
+    "anthropics/skills",
+    "duyunzhoudyz/dyz-gongwen-skills"
+   ]
   },
   "related": [
    "anti-slop",
    "ppt-presentation",
    "image-generation"
-  ]
+  ],
+  "method": {
+   "h2": "How we test writing skills: does the report keep to the facts",
+   "h2_zh": "我们怎么测写作 skill：写出来的总结守不守事实",
+   "thesis": "A work report is only as good as its facts. Asked to turn a short fact list into a long report, an AI expands it, and the expansion is where figures it worked out itself, effects nobody measured and stock phrases come in. So we give every tool the same made-up fact list, ask in two ways, and check the report against an answer key and fixed tone lists.",
+   "thesis_zh": "工作总结好不好，先看事实对不对。让 AI 把一份短短的事实清单写成长篇总结，它就得往里扩写，自己算出来的数字、没人量过的效果、套话，都是在扩写时冒出来的。所以我们给每个工具同一份虚构的事实清单，用两种说法去问，再对照答案和固定词表逐项核对。",
+   "h3_routes": [
+    "Four kinds we tested",
+    "实测的四类"
+   ],
+   "columns": [
+    [
+     "Kind",
+     "类型"
+    ],
+    [
+     "How it works",
+     "怎么做"
+    ],
+    [
+     "What you gain",
+     "强项"
+    ],
+    [
+     "What to check",
+     "要留意什么"
+    ]
+   ],
+   "routes": [
+    {
+     "name": "Anti-AI-tone skills",
+     "name_zh": "去 AI 味 skill",
+     "how": "Rules for plain writing, applied while writing or as a second pass; one runs a detection script first (Humanizer-zh, lieflat-less-ai-tone, shuorenhua).",
+     "how_zh": "写大白话的规则，边写边用或写完再改；其中一个先跑检测脚本（Humanizer-zh、lieflat-less-ai-tone、shuorenhua）。",
+     "gain": "On the one-line request all three passed 7 of 8, with no figure off the list and nothing the list does not support.",
+     "gain_zh": "一句话的问法下三个都是 8 项过 7 项，没有清单以外的数字，也没有清单不支持的内容。",
+     "cost": "All three wrote under 1,200 字 on both requests: they cut, where the paragraph asked for about 1,500.",
+     "cost_zh": "两种问法下三个都不到 1,200 字：它们往短里删，而那段话要的是 1500 字左右。"
+    },
+    {
+     "name": "Official-document (公文) skills",
+     "name_zh": "公文写作 skill",
+     "how": "Templates and phrasing of Chinese official reports; one delivers a formatted Word file (dyz-gongwen-skills, official-document-skill).",
+     "how_zh": "中文公文的模板和写法；其中一个交排好版的 Word 文件（dyz-gongwen-skills、official-document-skill）。",
+     "gain": "The layout a reader of official documents expects.",
+     "gain_zh": "公文读者熟悉的版式。",
+     "cost": "On the one-line request they worked out 8 and 2 figures of their own; dyz-gongwen-skills used 11.8 times the usage of no tool.",
+     "cost_zh": "一句话的问法下分别自己算出了 8 个和 2 个数字；dyz-gongwen-skills 的用量是不装工具的 11.8 倍。"
+    },
+    {
+     "name": "Business-writing skills",
+     "name_zh": "职场写作 skill",
+     "how": "A format for status reports and updates to leadership: progress, plans, problems (the internal-comms skill in anthropics/skills).",
+     "how_zh": "状态汇报、领导汇报的固定格式：进展、计划、问题（anthropics/skills 里的 internal-comms）。",
+     "gain": "A structure every manager knows.",
+     "gain_zh": "领导都熟悉的结构。",
+     "cost": "On the paragraph request it added 3 statements the list does not support, a cause the list does not give among them.",
+     "cost_zh": "按那段话写时，加了 3 处清单不支持的内容，其中有一条清单没给的因果。"
+    },
+    {
+     "name": "No tool: Claude Code on its own",
+     "name_zh": "不装工具：只用 Claude Code",
+     "how": "Claude Code reads the list and writes the report.",
+     "how_zh": "Claude Code 直接读清单、写总结。",
+     "gain": "With the one-paragraph request, all 8 checks in 1.2 minutes of writing and $0.19 of usage.",
+     "gain_zh": "按那段话问，8 项全过，写了 1.2 分钟，用量 $0.19。",
+     "cost": "With one line, 9 figures not on the list, 7 of them worked out, and 3 statements the list does not support.",
+     "cost_zh": "只说一句话时，写进了 9 个清单里没有的数字（7 个是自己算的），还有 3 处清单不支持。"
+    }
+   ],
+   "gap": "None of these knows your facts. A tool can keep to the list it is given; whether the list is right, and whether the report says what your manager needs, stays with you.",
+   "gap_zh": "这些工具都不知道你的事实。工具能做到的是守住你给它的清单；清单对不对、总结是不是领导要看的，还得你自己把关。",
+   "h3_next": [
+    "Pick by how you will ask",
+    "按你打算怎么问来选"
+   ],
+   "next_stop": [
+    {
+     "who": "You will write the full request (only the list, no working out, the length, plain words)",
+     "who_zh": "愿意把要求写全（只用清单、别自己算、字数、大白话）",
+     "pick": "Nothing to install: Claude Code alone passed all 8 checks",
+     "pick_zh": "不用装：只用 Claude Code 就 8 项全过"
+    },
+    {
+     "who": "You will only type one line",
+     "who_zh": "只打算说一句话",
+     "pick": "op7418/Humanizer-zh",
+     "pick_zh": "op7418/Humanizer-zh"
+    },
+    {
+     "who": "You would rather install a Claude Code plugin",
+     "who_zh": "想用 Claude Code 插件的方式装",
+     "pick": "MrGeDiao/shuorenhua",
+     "pick_zh": "MrGeDiao/shuorenhua"
+    },
+    {
+     "who": "You want a report on the AI tone before the rewrite",
+     "who_zh": "想先看 AI 味检测报告再改",
+     "pick": "larashero3-dotcom/lieflat-less-ai-tone",
+     "pick_zh": "larashero3-dotcom/lieflat-less-ai-tone"
+    }
+   ],
+   "h3_questions": [
+    "Four questions we ask of every report",
+    "每份总结我们问四个问题"
+   ],
+   "questions": [
+    {
+     "q": "Is every figure one the list gives, with none worked out (a growth rate, a difference, a share) and no old figure given as current?",
+     "q_zh": "每个数字都是清单给的吗？有没有自己算的（增长率、差值、占比），或者把旧数字当成现在的？"
+    },
+    {
+     "q": "Does it say anything the list does not support: praise, causes, effects, plans?",
+     "q_zh": "有没有清单不支持的内容：好评、原因、效果、计划？"
+    },
+    {
+     "q": "Are the problems told straight, with a figure or a cause, and none turned into a success?",
+     "q_zh": "没做好的地方写实了吗？有没有数字或原因？有没有被说成成绩？"
+    },
+    {
+     "q": "Is it free of stock phrases, empty elevation and 排比?",
+     "q_zh": "有没有套话、空泛拔高和排比？"
+    }
+   ],
+   "floor_activity": [
+    "while writing",
+    "写作时的行为"
+   ],
+   "h3_findings": [
+    "What our test found",
+    "实测发现了什么"
+   ],
+   "findings": [
+    {
+     "item": "On the one-paragraph request no tool beat Claude Code with nothing installed: it passed all 8 checks in 1.2 minutes of writing (1.9 for the whole run, the check included) and $0.19 of usage at API prices, and all 6 tools passed 7 of 8: 4 came in under 1,200 字, and official-document-skill 1 and anthropics/skills 3 added statements the list does not support. On the one-line request the control passed 5 of 8: it put in 9 figures that are not on the list, 7 of them worked out itself, and 3 statements the list does not support; the 3 anti-AI-tone skills (Humanizer-zh, shuorenhua, lieflat-less-ai-tone) passed 7 of 8 with neither. Every one-line report came in under 1,200 字.",
+     "item_zh": "按那段话问，没有工具比什么都不装的 Claude Code 更好：它 8 项全过，写了 1.2 分钟（连检查在内整个运行 1.9 分钟），按 API 价用量 $0.19；6 个工具都是 8 项过 7 项：4 个不到 1,200 字，official-document-skill 加了 1 处、anthropics/skills 加了 3 处清单不支持的内容。只说一句话时，对照组 8 项过 5 项：写进了 9 个清单里没有的数字，其中 7 个是自己算的，还有 3 处清单不支持；3 个去 AI 味 skill（Humanizer-zh、shuorenhua、lieflat-less-ai-tone）8 项过 7 项，这两样都没有。一句话问法下的每一份都不到 1,200 字。",
+     "ours": true
+    },
+    {
+     "item": "Working out is the commonest slip: on the one-line request Claude Code alone wrote differences such as 「提高 15 个百分点」 and 「缩短 43 秒」 and a share, 「占预算的 90%」, none of which the list gives. Told 「数字照抄，别自己算」, it and every tool kept to the list's figures.",
+     "item_zh": "最常见的毛病是自己算：一句话的问法下，只用 Claude Code 写出了「提高 15 个百分点」「缩短 43 秒」这样的差值和「占预算的 90%」这样的占比，清单里都没有。告诉它「数字照抄，别自己算」以后，它和每个工具都只用清单上的数字。",
+     "ours": true
+    },
+    {
+     "item": "The anti-AI-tone skills cut rather than padded: all three came in under 1,200 字 on both requests, so check the length you asked for.",
+     "item_zh": "去 AI 味的 skill 是往短里删，不是往长里凑：两种问法下三个都不到 1,200 字，要的字数得自己核一下。",
+     "ours": true
+    }
+   ],
+   "did": [
+    {
+     "item": "Ran 6 skills on 2026-11-08: each installed from its README in a throwaway sandbox and given the same made-up fact list twice, once with a one-line request and once with a one-paragraph one, with Claude Code with nothing installed as a control. A tester session with no tool loaded checked each report against 8 checks fixed before the runs: seven scripted against an answer key and fixed tone lists, and one, anything the list does not support, read sentence by sentence.",
+     "item_zh": "2026-11-08 实跑了 6 个 skill：每个在用完即删的沙箱里按 README 安装，拿同一份虚构的事实清单写两次，一次只说一句话，一次给一段要求，另有不装工具的 Claude Code 作对照。另起一个不装工具的测试会话，按开跑前定好的 8 项检查核对每份总结：7 项由脚本对照答案和固定词表判定，1 项（有没有清单不支持的内容）逐句阅读。",
+     "ours": true
+    },
+    {
+     "item": "Security-graded every repo against 44 published rules.",
+     "item_zh": "按 44 条公开规则给每个仓库做了安全评级。"
+    }
+   ],
+   "not_done": [
+    {
+     "item": "One run per tool and request, on one made-up fact list in Chinese of about 730 字; a real team's facts, another language or another kind of document may go differently. Tone is counted against fixed lists, which miss some AI phrasing and can flag a plain word used in its concrete sense.",
+     "item_zh": "每个工具每种问法只跑一次，用的是一份约 730 字的虚构中文事实清单；真实团队的材料、别的语言或别的文体，结果可能不同。AI 味按固定词表计数，会漏掉一些 AI 写法，也可能把按字面意思用的普通词算进去。",
+     "ours": true
+    },
+    {
+     "item": "Apart from the 6 tested skills, the list below is matched by keyword in our catalog (content, writing, blog, article, copywriting, text generation, markdown, documentation); it has not been reviewed by hand.",
+     "item_zh": "除了实测的 6 个 skill，下面的列表是按关键词（content、writing、blog、article、copywriting、text generation、markdown、documentation）从我们的目录里匹配出来的，没有逐个人工审阅。"
+    },
+    {
+     "item": "A security grade reads what a repository says and contains; it does not watch the tool run.",
+     "item_zh": "安全评级看的是仓库写了什么、包含什么，不是观察工具运行时的行为。"
+    },
+    {
+     "item": "No one pays to be listed or ranked here.",
+     "item_zh": "没有任何条目是付费上榜或付费排名的。"
+    }
+   ],
+   "sources": [],
+   "author": {
+    "name": "Jason Zhu",
+    "about": "/about/",
+    "x": "https://x.com/GoSailGlobal",
+    "github": "https://github.com/zhuyansen",
+    "role": "Builds and maintains Agent Skills Hub; tracking open-source agent skills since 2024; author of the Blue Book of Agent Skills 2026.",
+    "role_zh": "Agent Skills Hub 的作者与维护者；2024 年起追踪开源 agent skill；《Agent Skills 蓝皮书 2026》作者。",
+    "reviewed": "2026-11-27"
+   }
+  }
  },
  {
   "slug": "translation",
@@ -890,14 +1087,210 @@
     "condense"
    ],
    "min_results": 3,
-   "max_results": 10
+   "max_results": 16,
+   "featured": [
+    "phuryn/pm-skills",
+    "steipete/summarize",
+    "genspark-ai/genoffice",
+    "composio-community/awesome-codex-skills",
+    "NousResearch/hermes-agent",
+    "github/awesome-copilot"
+   ]
   },
   "related": [
    "content-writing",
-   "document-parsing",
-   "translation"
+   "anti-slop",
+   "knowledge-base"
   ],
-  "retired": true
+  "method": {
+   "h2": "How we test summary tools: what a colleague who missed the meeting gets",
+   "h2_zh": "我们怎么测总结工具：没来开会的同事拿到的是什么",
+   "thesis": "A meeting summary is useful when a colleague can act on it without opening the record: what was decided, who does what by when, what is still open, and nothing the meeting did not say. A tool that fills in a missing owner or due date makes the summary look complete and makes it wrong. So we give every tool the same made-up record, ask in two ways, and check the result against an answer key.",
+   "thesis_zh": "一份会议总结有没有用，看没来开会的同事不翻原文能不能照着做：定了什么，谁在哪天之前做什么，哪些还没定，以及会上没说的一个字也没有。工具替你补上缺的负责人或截止日期，总结看起来更完整，其实是错的。所以我们给每个工具同一份虚构的会议记录，用两种说法去问，再对照答案逐项核对。",
+   "h3_routes": [
+    "Four kinds we tested",
+    "实测的四类"
+   ],
+   "columns": [
+    [
+     "Kind",
+     "类型"
+    ],
+    [
+     "How it works",
+     "怎么做"
+    ],
+    [
+     "What you gain",
+     "强项"
+    ],
+    [
+     "What to check",
+     "要留意什么"
+    ]
+   ],
+   "routes": [
+    {
+     "name": "Meeting-minutes skills",
+     "name_zh": "会议纪要 skill",
+     "how": "One SKILL.md with a fixed template: decisions, a task table with owner and due date, open questions. We tested the ones in awesome-copilot, genoffice, Composio's awesome-codex-skills and hermes-agent.",
+     "how_zh": "一个 SKILL.md，模板固定：决定、带负责人和截止日期的待办表、未决问题。实测了 awesome-copilot、genoffice、Composio 的 awesome-codex-skills 和 hermes-agent 里的这类 skill。",
+     "gain": "The same sections every time.",
+     "gain_zh": "每次都是同样的几部分。",
+     "cost": "A table with an owner and a date column gets filled in: on the one-line request these four made up 3 to 10 statements each, and wrote 2,363 to 2,826 字.",
+     "cost_zh": "带负责人和日期两栏的表会被填满：一句话的问法下，这四个各编了 3 到 10 处，写了 2,363 到 2,826 字。"
+    },
+    {
+     "name": "Product-management plugins",
+     "name_zh": "产品经理插件",
+     "how": "A plugin of PM skills, one of which turns a transcript into a summary (phuryn/pm-skills).",
+     "how_zh": "一组产品经理 skill 的插件，其中一个把逐字稿整理成总结（phuryn/pm-skills）。",
+     "gain": "Comes with the rest of a PM toolkit.",
+     "gain_zh": "附带整套产品经理工具。",
+     "cost": "On the one-line request it made up 4 statements; with the one-paragraph request, none.",
+     "cost_zh": "一句话的问法下编了 4 处；按那段话问，一处没编。"
+    },
+    {
+     "name": "Command-line summarisers",
+     "name_zh": "命令行摘要工具",
+     "how": "A general summariser for files, pages and videos that the agent runs as a command (steipete/summarize).",
+     "how_zh": "通用的摘要工具，能总结文件、网页和视频，由 agent 当命令调用（steipete/summarize）。",
+     "gain": "Short: 942 字 on the one-line request, and nothing made up.",
+     "gain_zh": "短：一句话的问法下 942 字，没编任何东西。",
+     "cost": "Not made for meetings: no task list, owners and dates spread through the prose; with the paragraph it passed 5 of 7.",
+     "cost_zh": "不是专门做会议的：没有单独的待办清单，负责人和日期散在段落里；按那段话问，7 项过 5 项。"
+    },
+    {
+     "name": "No tool: Claude Code on its own",
+     "name_zh": "不装工具：只用 Claude Code",
+     "how": "Claude Code reads the record and writes the summary.",
+     "how_zh": "Claude Code 直接读会议记录、写总结。",
+     "gain": "With the one-paragraph request, all 7 checks in 1.5 minutes of building.",
+     "gain_zh": "按那段话问，7 项全过，做了 1.5 分钟。",
+     "cost": "With one line, 2,282 字 and 2 statements the record does not support.",
+     "cost_zh": "只说一句话时，写了 2,282 字，有 2 处原文不支持。"
+    }
+   ],
+   "gap": "None of these checks the summary against the record for you. The request decided more of the result than the tool did, and owners and due dates still need checking by someone who was in the meeting.",
+   "gap_zh": "这些工具都不会替你拿总结去对原文。结果好坏，问法起的作用比工具大；负责人和截止日期，仍然要请开过会的人核一遍。",
+   "h3_next": [
+    "Pick by how you will ask",
+    "按你打算怎么问来选"
+   ],
+   "next_stop": [
+    {
+     "who": "You will write the full request (what to include, the length, no guessing)",
+     "who_zh": "愿意把要求写全（写什么、多长、不许猜）",
+     "pick": "Nothing to install: Claude Code alone passed all 7 checks",
+     "pick_zh": "不用装：只用 Claude Code 就 7 项全过"
+    },
+    {
+     "who": "You want a meeting summary skill anyway",
+     "who_zh": "还是想装一个会议总结 skill",
+     "pick": "phuryn/pm-skills",
+     "pick_zh": "phuryn/pm-skills"
+    },
+    {
+     "who": "You will only ever type one line",
+     "who_zh": "只打算说一句话",
+     "pick": "steipete/summarize",
+     "pick_zh": "steipete/summarize"
+    },
+    {
+     "who": "The summary must be a Word file",
+     "who_zh": "必须交 Word 文件",
+     "pick": "genspark-ai/genoffice",
+     "pick_zh": "genspark-ai/genoffice"
+    }
+   ],
+   "h3_questions": [
+    "Four questions we ask of every summary",
+    "每份总结我们问四个问题"
+   ],
+   "questions": [
+    {
+     "q": "Does it open with what was decided, so a reader who stops after one paragraph has the result?",
+     "q_zh": "开头就写定了什么吗？只读第一段的人也能拿到结果吗？"
+    },
+    {
+     "q": "Does every task carry the owner and due date the record gives, and no owner or date the record does not give?",
+     "q_zh": "每个待办都写了原文给的负责人和截止日期吗？有没有原文没给的负责人或日期？"
+    },
+    {
+     "q": "Are figures as the record says them, with no replaced figure given as current and none worked out?",
+     "q_zh": "数字和原文一样吗？有没有把会上推翻的旧数字当成现在的，或者自己算出来的数？"
+    },
+    {
+     "q": "Is every point discussed but not decided marked as not decided, wherever it appears?",
+     "q_zh": "讨论了但没定的事，在出现的每个地方都标了没定吗？"
+    }
+   ],
+   "floor_activity": [
+    "while summarising",
+    "做总结时的行为"
+   ],
+   "h3_findings": [
+    "What our test found",
+    "实测发现了什么"
+   ],
+   "findings": [
+    {
+     "item": "The request mattered more than the tool. Asked in one line, every build ran past 800 字 and 6 of 7 made something up, the control included (2 statements); the tools made up 4 (pm-skills), 3 (genoffice), 10 (awesome-codex-skills), 7 (hermes-agent) and 7 (awesome-copilot), and only summarize made up nothing. Asked in one paragraph, Claude Code with nothing installed passed all 7 checks, as 3 of the 6 tools did; none passed more. What was made up was most often an owner or a due date for a remark nobody was given as a task.",
+     "item_zh": "问法比工具管用。只说一句话时，每一份都超过 800 字，7 份里 6 份编了东西，对照组也编了 2 处；各工具编的处数：pm-skills 4 处、genoffice 3 处、awesome-codex-skills 10 处、hermes-agent 7 处、awesome-copilot 7 处，只有 summarize 一处没编。按那段话问时，什么都不装的 Claude Code 7 项全过，6 个工具里有 3 个也全过，没有更好的。编出来的东西，最常见的是给一句没人领的随口话安上负责人或截止日期。",
+     "ours": true
+    },
+    {
+     "item": "Most of what was made up was an owner or a due date given to a remark nobody was assigned, often marked as a guess: 「建议 11 月 25 日」 for two regression rounds nobody was given, 林雨 as owner of a share-image fix she only called 「不难」. A guess marked 待确认 or 建议 still sits in the task table, where a reader takes it as agreed.",
+     "item_zh": "编出来的东西，大多是给没人领的随口话安上负责人或截止日期，还常常标成猜测：给没人领的两轮回归写「建议 11 月 25 日」，把林雨只说了一句「不难」的分享图压缩记成她负责。标了「待确认」「建议」的猜测照样列在待办表里，读的人会当成已经说定。",
+     "ours": true
+    },
+    {
+     "item": "Asking well beat installing: with the one-paragraph request, 4 of 7 builds passed every check, the control among them; with one line, none did.",
+     "item_zh": "问清楚比装工具管用：按那段话问，7 份里有 4 份 7 项全过，对照组也在其中；只说一句话，一份都没有。",
+     "ours": true
+    }
+   ],
+   "did": [
+    {
+     "item": "Ran 6 tools on 2026-11-08: each installed from its README in a throwaway sandbox and given the same made-up meeting record twice, once with a one-line request and once with a one-paragraph one, with Claude Code with nothing installed as a control. A tester session with no tool loaded checked each summary against 7 checks fixed before the runs: six scripted against an answer key, and one, anything the record does not support, read sentence by sentence.",
+     "item_zh": "2026-11-08 实跑了 6 个工具：每个在用完即删的沙箱里按 README 安装，拿同一份虚构的会议记录做两次，一次只说一句话，一次给一段要求，另有不装工具的 Claude Code 作对照。另起一个不装工具的测试会话，按开跑前定好的 7 项检查核对每份总结：6 项由脚本对照答案判定，1 项（有没有原文不支持的内容）逐句阅读。",
+     "ours": true
+    },
+    {
+     "item": "Security-graded every repo against 44 published rules.",
+     "item_zh": "按 44 条公开规则给每个仓库做了安全评级。"
+    }
+   ],
+   "not_done": [
+    {
+     "item": "One run per tool and request, on one made-up meeting record in Chinese of about 5,000 字; a real meeting, another language or a longer record may go differently. Each skill was installed on its own in Claude Code, so the skills written for another agent (Hermes, GenOffice) ran outside it.",
+     "item_zh": "每个工具每种问法只跑一次，用的是一份约 5,000 字的虚构中文会议记录；真实会议、别的语言或更长的记录，结果可能不同。每个 skill 都是单独装进 Claude Code 的，所以为别的 agent 写的 skill（Hermes、GenOffice）不是在它原本的环境里跑的。",
+     "ours": true
+    },
+    {
+     "item": "Apart from the 6 tested tools, the list below is matched by keyword in our catalog (summariz, summary, digest, tldr, abstract, condense); it has not been reviewed by hand.",
+     "item_zh": "除了实测的 6 个工具，下面的列表是按关键词（summariz、summary、digest、tldr、abstract、condense）从我们的目录里匹配出来的，没有逐个人工审阅。"
+    },
+    {
+     "item": "A security grade reads what a repository says and contains; it does not watch the tool run.",
+     "item_zh": "安全评级看的是仓库写了什么、包含什么，不是观察工具运行时的行为。"
+    },
+    {
+     "item": "No one pays to be listed or ranked here.",
+     "item_zh": "没有任何条目是付费上榜或付费排名的。"
+    }
+   ],
+   "sources": [],
+   "author": {
+    "name": "Jason Zhu",
+    "about": "/about/",
+    "x": "https://x.com/GoSailGlobal",
+    "github": "https://github.com/zhuyansen",
+    "role": "Builds and maintains Agent Skills Hub; tracking open-source agent skills since 2024; author of the Blue Book of Agent Skills 2026.",
+    "role_zh": "Agent Skills Hub 的作者与维护者；2024 年起追踪开源 agent skill；《Agent Skills 蓝皮书 2026》作者。",
+    "reviewed": "2026-11-27"
+   }
+  }
  },
  {
   "slug": "document-parsing",

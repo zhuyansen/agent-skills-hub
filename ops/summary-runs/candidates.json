@@ -1,0 +1,77 @@
+[
+ {
+  "repo": "octocat/Hello-World",
+  "kind": "control",
+  "stars": 0,
+  "grade": "safe",
+  "source": "control",
+  "skill_md": "",
+  "install": "nothing",
+  "why": "不装任何工具的 Claude Code，对照组。"
+ },
+ {
+  "repo": "phuryn/pm-skills",
+  "kind": "plugin",
+  "plugin": "pm-execution",
+  "skill_md": "pm-execution/skills/summarize-meeting/SKILL.md",
+  "install": "claude plugin marketplace add phuryn/pm-skills; claude plugin install pm-execution@pm-skills（README 的装法，只装含会议总结的 pm-execution 这一个插件）",
+  "stars": 27762,
+  "grade": "safe",
+  "source": "hub summarization 关键词命中（子 skill 描述 Summarize a meeting transcript…）；子 skill pm-execution/skills/summarize-meeting 和仓库都是 safe",
+  "why": "最多星的「会议逐字稿 → 结构化纪要」专用 skill：模板固定写决定、待办表（截止日期 / 负责人 / 事项）、未决问题。值得看：它的第 1 步说缺背景就上网搜，第 5 步要求「写给小学毕业生看」。"
+ },
+ {
+  "repo": "github/awesome-copilot",
+  "only": "skills/meeting-minutes",
+  "kind": "skill",
+  "skill_md": "skills/meeting-minutes/SKILL.md",
+  "install": "把 skills/meeting-minutes 文件夹放进 ~/.claude/skills/（Agent Skills 格式，Claude Code 直接读）",
+  "stars": 40913,
+  "grade": "safe",
+  "source": "hub sub_skills: skills/meeting-minutes (safe)；按话题选（会议纪要），描述不命中 summarization 的英文关键词；仓库 safe",
+  "why": "GitHub 官方合集里的会议纪要 skill：严格模板，每条待办必须有负责人和截止日期，缺的写 TBD；开写前「必须」先问最多 3 个问题，正好测中途停下来问、拿到「你按你推荐的来」以后怎么做。"
+ },
+ {
+  "repo": "composio-community/awesome-codex-skills",
+  "only": "meeting-notes-and-actions",
+  "kind": "skill",
+  "skill_md": "meeting-notes-and-actions/SKILL.md",
+  "install": "把 meeting-notes-and-actions 文件夹放进 ~/.claude/skills/（README 的手动装法，换成 Claude Code 的目录）",
+  "stars": 17249,
+  "grade": "safe",
+  "source": "hub sub_skills: meeting-notes-and-actions (safe)；按话题选（会议纪要），描述是 summaries，不命中关键词 summariz / summary；仓库 safe",
+  "why": "Composio 合集里的「逐字稿 → 纪要 + 带负责人的待办」skill，很短。它既写「不要编造事实」，又写「缺截止日期就建议一个」，正好看会不会给待办编日期。"
+ },
+ {
+  "repo": "genspark-ai/genoffice",
+  "only": "skills/recommended/meeting-minutes",
+  "kind": "skill",
+  "skill_md": "skills/recommended/meeting-minutes/SKILL.md",
+  "install": "把 skills/recommended/meeting-minutes 放进 ~/.claude/skills/（等于 npx skills add genspark-ai/genoffice --skill meeting-minutes）",
+  "stars": 11926,
+  "grade": "safe",
+  "source": "hub sub_skills: skills/recommended/meeting-minutes (safe)；按话题选（会议纪要），描述不命中 summarization 的英文关键词；仓库 safe",
+  "why": "Genspark 开源办公套件里的会议纪要 skill，规则最贴这次的检查：「讨论中的倾向不算决定」「缺的写待确认，不猜」，而且交付 Word 文档。注意：它本来是给 GenOffice 自带的 AI 用的，这里只把这一个 skill 装进 Claude Code。"
+ },
+ {
+  "repo": "NousResearch/hermes-agent",
+  "only": "skills/productivity/meeting-action-items",
+  "kind": "skill",
+  "skill_md": "skills/productivity/meeting-action-items/SKILL.md",
+  "install": "把 skills/productivity/meeting-action-items 放进 ~/.claude/skills/（只装这一个 skill，不装 Hermes 本体）",
+  "stars": 261577,
+  "grade": "safe",
+  "source": "hub sub_skills: skills/productivity/meeting-action-items (safe)；按话题选（会后决定和待办），描述不命中 summarization 的英文关键词；仓库 safe",
+  "why": "星最多的 agent 仓库里的会议 skill，防编规则写得最硬：「没定的提议不能写成决定」「截止日期没说就写 unresolved，绝不编」。它是写给 Hermes 的（里面提到 read_file 等 Hermes 工具），看搬到 Claude Code 里还好不好用。仓库 1.4 GB，只稀疏克隆这一个文件夹。"
+ },
+ {
+  "repo": "steipete/summarize",
+  "kind": "cli",
+  "skill_md": ".agents/skills/summarize/SKILL.md",
+  "install": "npm i -g @steipete/summarize，加上 .agents/skills/summarize 放进 ~/.claude/skills/；模型走已登录的 Claude Code（--cli claude）",
+  "stars": 6789,
+  "grade": "safe",
+  "source": "hub summarization 关键词命中（仓库名 summarize）；仓库 safe",
+  "why": "摘要总结场景里唯一能总结本地文件的通用工具（OpenClaw 等好几家的 summarize skill 都是包它）。不是专门做会议的，正好看通用摘要会不会漏掉负责人和日期。README 要 Node 24，沙盒是 Node 22，可能装不上，放最后跑。"
+ }
+]

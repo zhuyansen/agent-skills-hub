@@ -1,0 +1,1113 @@
+[
+ {
+  "repo": "octocat/Hello-World",
+  "kind": "control",
+  "stars": 0,
+  "grade": "safe",
+  "source": "control",
+  "skill_md": "",
+  "install": "nothing",
+  "why": "不装任何工具的 Claude Code，对照组。",
+  "task": "t1",
+  "status": "done",
+  "ending": "finished",
+  "setup": "",
+  "commit": null,
+  "opened": "file",
+  "file": "会议纪要总结.md",
+  "zi": 2282,
+  "checks": {
+   "length": false,
+   "conclusion": true,
+   "decisions": true,
+   "todos": true,
+   "numbers": true,
+   "undecided": true,
+   "invented": false
+  },
+  "passed": 5,
+  "of": 7,
+  "ran": false,
+  "stops": 0,
+  "minutes": 0.8,
+  "paused_seconds": 0,
+  "run_minutes": 1.6,
+  "usage": {
+   "usd": 0.23,
+   "tokens": 100486,
+   "sessions": 1
+  },
+  "setup_usd": 0,
+  "tester_usd": 0.34,
+  "found": {
+   "decisions": 7,
+   "todos": 6,
+   "undecided": 3,
+   "extra_numbers": 0,
+   "stale": 0,
+   "key_numbers": 10
+  },
+  "observed": {
+   "length": "2282 字（上限 800）",
+   "conclusion": "开头 150 字里写到 6 条决定（D1、D2、D4、D5、D6、D7）；开头：因上周会员续费出现重复扣款，2.0 版本从 11 月 20 日推迟到 11 月 27 日（周五）上线；会上定了会员价格（月卡 12 元、年卡 98 元）、新手引导改为 3 步、新用户默认提醒改为晚上 8 点、社区广场不进 2.0、11 月…",
+   "decisions": "7/7 条决定写到了",
+   "todos": "6/6 条待办负责人和截止日期都对",
+   "numbers": "113 个数字，0 个原文里没有；旧数字当成现在的 0 处",
+   "undecided": "3/3 件没定的事写到并标了没定"
+  },
+  "invented": [
+   {
+    "quote": "| 11 月 27 日（周五） | 全员 | 2.0 上线 |",
+    "why": "Listed as an action item with owner 全员. The record only has the decision to move the launch to 11 月 27 日; nobody was given a task of that name, and no owner 全员 was named."
+   },
+   {
+    "quote": "**支付**：自动续费目前关着，修复必须在 11 月 13 日前提测，否则可能影响 27 日上线。",
+    "why": "The record gives 陈磊 the 11 月 13 日 deadline for testing, but nobody says that missing it would affect the 27 日 launch. The summary adds that consequence itself."
+   }
+  ],
+  "noise": [
+   "咖啡机"
+  ],
+  "disagree": [],
+  "doubts": {},
+  "tester_notes": "Markdown in Chinese with clean tables; names are spelt correctly. Very long (2282 字): besides the decisions and tasks it has full per-topic notes, a risks section, and a fourth open item (留存拆分新老用户) that the record treats as a loose ask, not an open point. The decision table has 8 rows; rows 2 (日活口径) and 8 (7 日留存口径) are on top of the 7 key decisions, and both are supported by the record.",
+  "review_note": "",
+  "review_note_zh": "",
+  "usage_x": 1.0
+ },
+ {
+  "repo": "phuryn/pm-skills",
+  "kind": "plugin",
+  "plugin": "pm-execution",
+  "skill_md": "pm-execution/skills/summarize-meeting/SKILL.md",
+  "install": "claude plugin marketplace add phuryn/pm-skills; claude plugin install pm-execution@pm-skills（README 的装法，只装含会议总结的 pm-execution 这一个插件）",
+  "stars": 27762,
+  "grade": "safe",
+  "source": "hub summarization 关键词命中（子 skill 描述 Summarize a meeting transcript…）；子 skill pm-execution/skills/summarize-meeting 和仓库都是 safe",
+  "why": "最多星的「会议逐字稿 → 结构化纪要」专用 skill：模板固定写决定、待办表（截止日期 / 负责人 / 事项）、未决问题。值得看：它的第 1 步说缺背景就上网搜，第 5 步要求「写给小学毕业生看」。",
+  "task": "t1",
+  "status": "done",
+  "ending": "finished",
+  "setup": "SETUP: done pm-execution@pm-skills plugin (v2.2.0, user scope) via `claude plugin marketplace add phuryn/pm-skills` then `claude plugin install pm-execution@pm-skills`",
+  "commit": "2a12295a7717",
+  "opened": "file",
+  "file": "Meeting-Summary-2026-11-03-豆芽打卡产品周会.md",
+  "zi": 2632,
+  "checks": {
+   "length": false,
+   "conclusion": true,
+   "decisions": true,
+   "todos": true,
+   "numbers": false,
+   "undecided": true,
+   "invented": false
+  },
+  "passed": 4,
+  "of": 7,
+  "ran": false,
+  "stops": 0,
+  "minutes": 1.1,
+  "paused_seconds": 0,
+  "run_minutes": 2.9,
+  "usage": {
+   "usd": 0.35,
+   "tokens": 178142,
+   "sessions": 1
+  },
+  "setup_usd": 0.08,
+  "tester_usd": 0.43,
+  "found": {
+   "decisions": 7,
+   "todos": 6,
+   "undecided": 3,
+   "extra_numbers": 1,
+   "stale": 0,
+   "key_numbers": 10
+  },
+  "observed": {
+   "length": "2632 字（上限 800）",
+   "conclusion": "开头 150 字里写到 6 条决定（D1、D2、D4、D5、D6、D7）；开头：上周会员续费重复扣了钱，支付还要修，所以 2.0 推迟一周，改到 11 月 27 日（周五）上线；会上还定了：会员月卡 12 元、年卡 98 元，新手引导改成 3 步，新用户默认提醒改到晚上 8 点，社区广场不进 2.0，11 月的推广钱…",
+   "decisions": "7/7 条决定写到了",
+   "todos": "6/6 条待办负责人和截止日期都对",
+   "numbers": "112 个数字，1 个原文里没有（「16」：…10:00–10:16（约 16 分钟） **地点**：3 …）；旧数字当成现在的 0 处",
+   "undecided": "3/3 件没定的事写到并标了没定"
+  },
+  "invented": [
+   {
+    "quote": "10 | 压缩打卡分享图（解决老手机闪退） | 林雨 | 会上没说日期 ⚠️ | 待办",
+    "why": "Nobody was given this. 陈磊 noted the share image is too big, and 林雨 only said 「分享图确实大，压一压应该就好了，这个不难」. No owner was named, so 林雨 as owner is the summary's own addition."
+   },
+   {
+    "quote": "8 | 新的应用商店截图交给周婷，和公告一起用 | 王小川 | 和第 7 项一起（11 月 24 日前） | 待办",
+    "why": "王小川 only said 「截图我手上有一版新的，改公告的时候一起给你，婷姐」. The record gives this no date. The summary took 11 月 24 日, the deadline of 周婷's announcement task, and put it on this loose ask."
+   },
+   {
+    "quote": "6 | 支付功能完整回归测试两轮（安卓和 iOS 都测） | 孙浩 | 提测后，27 日上线前（会上没说具体日期） | 待办",
+    "why": "孙浩 said 「我这边支付至少要完整回归两轮，安卓和 iOS 都要过」 but gave no deadline, and none was set for him. The window 「提测后，27 日上线前」 is worked out by the summary, even though it adds that no exact date was given."
+   },
+   {
+    "quote": "大家都不赞成终身会员。",
+    "why": "Only 周婷 (「终身会员我不想做」) and 陈磊 (「同意，终身会员后面全是坑」) spoke against it. 林雨 only raised the question, and 王小川, 赵敏 and 孙浩 said nothing about it. The summary gives the opinion to people who did not state it."
+   }
+  ],
+  "noise": [
+   "咖啡机"
+  ],
+  "disagree": [
+   "undecided"
+  ],
+  "doubts": {
+   "numbers": "Two of the three hits look like misreads. 「4.6」: the record says 「应用商店评分还是 4.6 分」, so the figure is the record's own. The summary only dropped the unit 分. 「20 号」: in 「孙浩说 20 号来不及测完。」 the old date is reported as what was said, not given as the launch date; the same paragraph goes on 「周婷当场决定推迟一周」, and the summary everywhere gives 11 月 27 日 as the launch date. 「约 16 分钟」 is a real hit: it is worked out from 10:00–10:16, and the record never states a duration. So the FAIL stands even if the other two hits are dropped.",
+   "undecided": "Row 14 says 「我们在考虑」, which tells the reader the point is still open. The script's marks include 考虑中 but not 在考虑. Also, the row is the loose ask to reply to users (it is not a statement that WeChat login was decided), and it does not present the point as decided. A reviewer may judge 「在考虑」 to be a not-decided mark."
+  },
+  "tester_notes": "The summary is in Chinese Markdown and opens cleanly; the tables render. At about 2,632 字 it is over three times the 800 limit. 「会上定下来的事」 lists 8 items: the 7 decisions plus 「以后日活都用 2.36 万」 and the 7 日留存 wording note. 「每个人要做的事」 puts the 6 real tasks and about 11 loose asks or remarks in one 17-row table, all marked 待办, so the real tasks do not stand out. One smaller wording issue I did not count: 「崩溃主要出在安卓 9 以下的老手机（打卡分享图太大，内存不够）」 states the cause flatly, while 陈磊 said only 「老机型那部分有一些是内存不够」. The filename mixes English and Chinese (Meeting-Summary-…-豆芽打卡产品周会.md). There is no 说明.txt and only one file in output/. Names are spelt correctly.",
+  "review_note": "",
+  "review_note_zh": "",
+  "usage_x": 1.5
+ },
+ {
+  "repo": "github/awesome-copilot",
+  "only": "skills/meeting-minutes",
+  "kind": "skill",
+  "skill_md": "skills/meeting-minutes/SKILL.md",
+  "install": "把 skills/meeting-minutes 文件夹放进 ~/.claude/skills/（Agent Skills 格式，Claude Code 直接读）",
+  "stars": 40913,
+  "grade": "safe",
+  "source": "hub sub_skills: skills/meeting-minutes (safe)；按话题选（会议纪要），描述不命中 summarization 的英文关键词；仓库 safe",
+  "why": "GitHub 官方合集里的会议纪要 skill：严格模板，每条待办必须有负责人和截止日期，缺的写 TBD；开写前「必须」先问最多 3 个问题，正好测中途停下来问、拿到「你按你推荐的来」以后怎么做。",
+  "task": "t1",
+  "status": "done",
+  "ending": "finished",
+  "setup": "SETUP: done installed only the meeting-minutes skill (one file, SKILL.md) to ~/.claude/skills/meeting-minutes via `mkdir -p ~/.claude/skills && cp -r ~/src/skills/meeting-minutes ~/.claude/skills/meeting-minutes` (checked with `diff -r`)",
+  "commit": "797337f33f73",
+  "opened": "file",
+  "file": "会议纪要.md",
+  "zi": 2826,
+  "checks": {
+   "length": false,
+   "conclusion": false,
+   "decisions": true,
+   "todos": true,
+   "numbers": false,
+   "undecided": false,
+   "invented": false
+  },
+  "passed": 2,
+  "of": 7,
+  "ran": false,
+  "stops": 1,
+  "minutes": 1.6,
+  "paused_seconds": 0,
+  "run_minutes": 3.3,
+  "usage": {
+   "usd": 0.37,
+   "tokens": 194681,
+   "sessions": 1
+  },
+  "setup_usd": 0.1,
+  "tester_usd": 0.39,
+  "found": {
+   "decisions": 7,
+   "todos": 6,
+   "undecided": 1,
+   "extra_numbers": 2,
+   "stale": 0,
+   "key_numbers": 10
+  },
+  "observed": {
+   "length": "2826 字（上限 800）",
+   "conclusion": "开头 150 字里写到 0 条决定（无）；开头：结束时间 / 时长：10:16，约 16 分钟 主持人：周婷（产品负责人） 地点：3 楼小会议室（赵敏线上参加） 纪要整理：AI 助手（根据转写稿整理） 审核人：周婷（建议；会议主持人） 分发范围：全体参会人（待周婷确认）",
+   "decisions": "7/7 条决定写到了",
+   "todos": "6/6 条待办负责人和截止日期都对",
+   "numbers": "134 个数字，2 个原文里没有（「16」：… 时长**：10:16，约 16 分钟 - **主持人**：…；「2026-11-08」：…稿） - **最后更新**：2026-11-08 - **说明**：AI 助…）；旧数字当成现在的 0 处",
+   "undecided": "1/3 件没定的事写到并标了没定；U1 没标没定：其他：安卓平板适配、微信登录、竞品改版；U3 没标没定：其他：安卓平板适配、微信登录、竞品改版"
+  },
+  "invented": [
+   {
+    "quote": "A3 | 支付完整回归测试两轮（安卓、iOS 都要过） | 孙浩（测试） | 2.0 上线前（2026-11-27 前；具体日期待定） | 两轮回归通过",
+    "why": "Nobody was given this task. 孙浩 only said '我这边支付至少要完整回归两轮…20 号确实来不及', as a reason for moving the date. The record also gives no due date."
+   },
+   {
+    "quote": "A4 | 打卡页切换日期崩溃：先看日历组件能否升级，不行就自己改 | 林雨（客户端） | 本周（约 2026-11-06）",
+    "why": "林雨 said '我这周先看一下'. The record gives no date, so '约 2026-11-06' is made up."
+   },
+   {
+    "quote": "A5 | 压缩打卡分享图，减少老机型内存崩溃 | 林雨（客户端） | 待定",
+    "why": "Nobody was given this. 林雨 only remarked '分享图确实大，压一压应该就好了，这个不难', so the owner is made up."
+   },
+   {
+    "quote": "A8 | 提供应用商店新版截图（交给周婷，一起更新） | 王小川（设计） | 随 A7，2026-11-24 前",
+    "why": "王小川 said '截图…改公告的时候一起给你'. The record gives no deadline; 2026-11-24 is the due date of 周婷's own task, carried over."
+   },
+   {
+    "quote": "A14 | 拉一下安卓平板用户占比 | 负责人未明确（建议林雨，此事由林雨提出） | 下次周会前（2026-11-10）",
+    "why": "Nobody was told to pull the data. 周婷 only said '等拿到平板用户的占比，我们下次周会再讨论', and gave no owner and no deadline. Both the suggested owner and the due date are the summary's own."
+   },
+   {
+    "quote": "重点：检查本周待办（A1、A4、A6）进度；讨论安卓平板是否适配（需带上平板用户占比）。",
+    "why": "The record says nothing about checking these tasks at the next meeting. It only names the next meeting's time, and says the tablet question will be discussed then."
+   },
+   {
+    "quote": "开始时间：10:00（当地时间；记录未注明时区，UTC 时间待定）",
+    "why": "'UTC 时间待定' is not in the record. The record just says 10:00–10:16, and no time zone was ever pending."
+   }
+  ],
+  "noise": [],
+  "disagree": [],
+  "doubts": {
+   "conclusion": "The script took the 基本信息 list starting '开始时间：10:00（当地时间；记录未注明时区，UTC 时间待定）' as the first block because '开始时间' is not in its meta pattern. Skipping it would not change the verdict: the blocks that follow (参会情况, 议程) contain no decisions either; the first decisions appear only under '## 4. 一句话总结'.",
+   "numbers": "Partly misread: '20', '27', '13' come from dates written as '11-20', '11-27', '11-13', which are record dates (11 月 20/27/13 日) in another notation. The 'old figure as current' hit, '20 号来不及' in D3's reason column ('2.0 上线从 11-20 推迟到 11-27'), is given as the old date that was replaced, not as the current one. The remaining hits are real: '约 16 分钟' is worked out from 10:00–10:16, and '最后更新：2026-11-08' is a date the record does not give. So the verdict would stand even without the misreads.",
+   "undecided": "U1 and U3 are marked as not decided in '## 8. 暂缓 / 未决事项' ('等拿到平板用户占比，下次周会再讨论', '周婷还没想好，以后再说'). The script fails them because of unmarked mentions elsewhere: the agenda line '其他：安卓平板适配、微信登录、竞品改版', the background bullets under '**8. 其他**', and todo rows A14/A15. Under the checklist's 'wherever one appears' rule, that reading is literal, not a misread. Left for the reviewer."
+  },
+  "tester_notes": "The summary is in Chinese and laid out as a full formal minutes template (12 sections, about 2,800 字), well beyond a summary. The decisions only begin at section 4, after 基本信息, 参会情况 and 议程. It adds admin lines the record does not have: '审核人：周婷（建议；会议主持人）', '分发范围：全体参会人（待周婷确认）', '议程文档、幻灯片、录音、相关工单：无', a 版本记录 section with '最后更新：2026-11-08', and an '状态：草稿' banner. The decision table lists 10 items, including items that are not meeting decisions: D4 '自动续费先关闭', an action 陈磊 had already taken, credited as '拍板人 陈磊（已执行）'; and D10 '投放素材里不放会员价格', an agreement between 林雨 and 赵敏. The todo table holds 17 rows, mixing the 6 real tasks with loose asks (S1–S10 in the key), several of them given owners or dates. Dates are mostly ISO style (2026-11-13, 11-27). Tables are valid Markdown, and names are spelt correctly. No small talk was kept.",
+  "review_note": "",
+  "review_note_zh": "",
+  "usage_x": 1.6
+ },
+ {
+  "repo": "composio-community/awesome-codex-skills",
+  "only": "meeting-notes-and-actions",
+  "kind": "skill",
+  "skill_md": "meeting-notes-and-actions/SKILL.md",
+  "install": "把 meeting-notes-and-actions 文件夹放进 ~/.claude/skills/（README 的手动装法，换成 Claude Code 的目录）",
+  "stars": 17249,
+  "grade": "safe",
+  "source": "hub sub_skills: meeting-notes-and-actions (safe)；按话题选（会议纪要），描述是 summaries，不命中关键词 summariz / summary；仓库 safe",
+  "why": "Composio 合集里的「逐字稿 → 纪要 + 带负责人的待办」skill，很短。它既写「不要编造事实」，又写「缺截止日期就建议一个」，正好看会不会给待办编日期。",
+  "task": "t1",
+  "status": "done",
+  "ending": "finished",
+  "setup": "SETUP: done installed only the meeting-notes-and-actions skill (one SKILL.md file) to ~/.claude/skills/meeting-notes-and-actions with `mkdir -p ~/.claude/skills && cp -r ~/src/meeting-notes-and-actions ~/.claude/skills/meeting-notes-and-actions`; ~/work and 会议记录.txt left unchanged",
+  "commit": "0930e1373789",
+  "opened": "file",
+  "file": "会议总结.md",
+  "zi": 2636,
+  "checks": {
+   "length": false,
+   "conclusion": true,
+   "decisions": true,
+   "todos": true,
+   "numbers": false,
+   "undecided": true,
+   "invented": false
+  },
+  "passed": 4,
+  "of": 7,
+  "ran": false,
+  "stops": 1,
+  "minutes": 1.4,
+  "paused_seconds": 0,
+  "run_minutes": 2.7,
+  "usage": {
+   "usd": 0.39,
+   "tokens": 177567,
+   "sessions": 1
+  },
+  "setup_usd": 0.07,
+  "tester_usd": 0.39,
+  "found": {
+   "decisions": 7,
+   "todos": 6,
+   "undecided": 3,
+   "extra_numbers": 1,
+   "stale": 0,
+   "key_numbers": 10
+  },
+  "observed": {
+   "length": "2636 字（上限 800）",
+   "conclusion": "开头 150 字里写到 7 条决定（D1、D2、D3、D4、D5、D6、D7）；开头：一句话速览：2.0 因为支付要修复，从 11 月 20 日推迟到 11 月 27 日（周五） 上线；会员定价为 月卡 12 元、年卡 98 元，不做终身会员；新手引导改用 3 步版；新用户默认提醒时间改为晚上 8 点；社区广场不进 2.0…",
+   "decisions": "7/7 条决定写到了",
+   "todos": "6/6 条待办负责人和截止日期都对",
+   "numbers": "130 个数字，1 个原文里没有（「11 月 25 日」：… | 提测后、上线前（建议 11 月 25 日） | | ☐ | 周婷 |…）；旧数字当成现在的 0 处",
+   "undecided": "3/3 件没定的事写到并标了没定"
+  },
+  "invented": [
+   {
+    "quote": "| ☐ | 林雨（待确认） | 压缩打卡分享图，减少老机型内存崩溃 | 未定（建议 2.0 提测前） |",
+    "why": "Nobody was given this task. 林雨 only said the share image 'should be fine once compressed, not hard' (压一压应该就好了，这个不难). The owner and the suggested deadline are the tool's guess. It is marked 待确认, but it is still listed as an action item with an owner."
+   },
+   {
+    "quote": "打卡分享图压缩（解决老机型崩溃）没有明确指定负责人和日期，林雨说\"不难\"，推测由林雨负责，需确认。",
+    "why": "The quote from 林雨 is accurate, but 'presumably 林雨 is responsible' (推测由林雨负责) is the tool's own guess. The record assigns no owner."
+   },
+   {
+    "quote": "| ☐ | 林雨 | 处理切换日期崩溃：先看第三方日历组件能否升级，不行就自己改 | 本周内（建议 11 月 6 日） |",
+    "why": "林雨 said 我这周先看一下能不能升级 ('this week'). No date was given, so 11 月 6 日 is invented, even though it is labelled 建议 (suggested)."
+   },
+   {
+    "quote": "| ☐ | 孙浩 | 支付完整回归两轮（安卓和 iOS 都要） | 提测后、上线前（建议 11 月 25 日） |",
+    "why": "孙浩 only said the payment fix needs at least two full regression rounds on Android and iOS. Nobody gave it to him as a task with a deadline. 11 月 25 日 appears nowhere in the record (the numbers check also flags it)."
+   },
+   {
+    "quote": "| ☐ | 王小川 | 把新版应用商店截图交给周婷 | 未定（建议 11 月 20 日，留时间给公告） |",
+    "why": "王小川 said he would hand over the screenshots 改公告的时候一起给你 ('when you revise the announcement'). The record gives no date, so 11 月 20 日 and its stated reason are invented."
+   },
+   {
+    "quote": "| ☐ | 赵敏 | 按 2.0 新上线日期调整宣传节奏 | 未定（建议 11 月 12 日，和投放方案一起） |",
+    "why": "赵敏 said 我回头自己调一下 ('I'll adjust it later myself'), with no date. Tying it to 11 月 12 日 and to the ad plan is invented."
+   },
+   {
+    "quote": "| ☐ | 赵敏 | 告诉王小川小红书素材包要哪些内容（新界面截图、图标等；不放价格） | 未定（建议 11 月 12 日） |",
+    "why": "赵敏 said 到时候我跟你说要哪些 ('I'll tell you what's needed when the time comes'), with no date. 11 月 12 日 is invented."
+   },
+   {
+    "quote": "| ☐ | 孙浩 | 在数据看板上写清楚 7 日留存的口径 | 未定（建议 11 月 10 日） |",
+    "why": "孙浩 said 回头我在看板上把口径写清楚 ('I'll make the definition clear on the dashboard later'), with no date. 11 月 10 日 is invented."
+   },
+   {
+    "quote": "| ☐ | 林雨 | 拉出安卓平板用户占比数据，供下次周会讨论 | **11 月 10 日（下次周会）前** |",
+    "why": "周婷 told 林雨 only to leave tablets alone (林雨你先别动) and said 等拿到平板用户的占比，我们下次周会再讨论. Nobody was told to pull the data, and no deadline was set. The owner and the bolded date 11 月 10 日 are invented and look like a firm commitment."
+   },
+   {
+    "quote": "| ☐ | 赵敏 | 回复问微信登录的用户：我们在考虑 | 未定（建议本周） |",
+    "why": "赵敏 said she would reply to users that it is under consideration, with no time given. 建议本周 ('suggested: this week') is invented."
+   }
+  ],
+  "noise": [],
+  "disagree": [],
+  "doubts": {
+   "numbers": "No misread. 「11 月 25 日」 really is a date the record never gives: it is the tool's 建议 deadline for 孙浩's regression rounds. The other 建议 dates (11 月 6/10/12/20 日) pass only because those dates appear elsewhere in the record. Check 7 lists them as invented.",
+   "undecided": "No misread. The 留存拆分 item under 待定问题 is a soft ask, not one of the three open points, and does not affect this check."
+  },
+  "tester_notes": "Written in Chinese and well structured; the Markdown table renders correctly. It runs to 2636 字, more than three times the 800 字 limit. It has five sections: an overview, 9 decisions, open points and risks, 18 to-do rows and a forwardable notice. The 18 to-do rows mix the meeting's 6 real tasks (dates in bold) with loose asks given guessed '（建议）' dates, so a reader may take the guesses as commitments. The 一句话速览 at the top is a blockquote ('>'), not a source note. Names are spelled correctly. No small talk was kept. 习惯熊 (a competitor app the meeting mentioned) appears only as the meeting's own loose ask.",
+  "review_note": "",
+  "review_note_zh": "",
+  "usage_x": 1.7
+ },
+ {
+  "repo": "genspark-ai/genoffice",
+  "only": "skills/recommended/meeting-minutes",
+  "kind": "skill",
+  "skill_md": "skills/recommended/meeting-minutes/SKILL.md",
+  "install": "把 skills/recommended/meeting-minutes 放进 ~/.claude/skills/（等于 npx skills add genspark-ai/genoffice --skill meeting-minutes）",
+  "stars": 11926,
+  "grade": "safe",
+  "source": "hub sub_skills: skills/recommended/meeting-minutes (safe)；按话题选（会议纪要），描述不命中 summarization 的英文关键词；仓库 safe",
+  "why": "Genspark 开源办公套件里的会议纪要 skill，规则最贴这次的检查：「讨论中的倾向不算决定」「缺的写待确认，不猜」，而且交付 Word 文档。注意：它本来是给 GenOffice 自带的 AI 用的，这里只把这一个 skill 装进 Claude Code。",
+  "task": "t1",
+  "status": "done",
+  "ending": "finished",
+  "setup": "SETUP: done installed the meeting-minutes skill (only SKILL.md) to ~/.claude/skills/meeting-minutes using `mkdir -p ~/.claude/skills && cp -r ~/src/skills/recommended/meeting-minutes ~/.claude/skills/meeting-minutes`; ~/work and 会议记录.txt were not changed",
+  "commit": "0ac588ffc435",
+  "opened": "file",
+  "file": "豆芽打卡产品周会 会议纪要 2026-11-03.docx",
+  "zi": 2363,
+  "checks": {
+   "length": false,
+   "conclusion": true,
+   "decisions": true,
+   "todos": true,
+   "numbers": true,
+   "undecided": true,
+   "invented": false
+  },
+  "passed": 5,
+  "of": 7,
+  "ran": false,
+  "stops": 1,
+  "minutes": 2.1,
+  "paused_seconds": 0,
+  "run_minutes": 3.5,
+  "usage": {
+   "usd": 0.52,
+   "tokens": 397030,
+   "sessions": 1
+  },
+  "setup_usd": 0.07,
+  "tester_usd": 0.37,
+  "found": {
+   "decisions": 7,
+   "todos": 6,
+   "undecided": 3,
+   "extra_numbers": 0,
+   "stale": 0,
+   "key_numbers": 10
+  },
+  "observed": {
+   "length": "2363 字（上限 800）",
+   "conclusion": "开头 150 字里写到 6 条决定（D1、D2、D4、D5、D6、D7）；开头：本次产品周会回顾了上周数据和支付重复扣款事故，并逐项讨论 2.0 版本的上线安排、会员价格、新手引导、推送时间和 11 月投放。 会议决定：2.0 推迟到 11 月 27 日上线；会员定价为月卡 12 元、年卡 98 元；采用 3 步新手…",
+   "decisions": "7/7 条决定写到了",
+   "todos": "6/6 条待办负责人和截止日期都对",
+   "numbers": "103 个数字，0 个原文里没有；旧数字当成现在的 0 处",
+   "undecided": "3/3 件没定的事写到并标了没定"
+  },
+  "invented": [
+   {
+    "quote": "| 6 | 提供新版应用商店截图给周婷 | 王小川 | 11-24 前（待确认） | 待办 |",
+    "why": "The record gives no date for this. 王小川 only says 「截图我手上有一版新的，改公告的时候一起给你，婷姐」. The 11-24 date is 周婷's deadline for the announcement, not one set for 王小川's screenshots. Adding 「待确认」 does not change that the date was made up."
+   },
+   {
+    "quote": "| 记录人 | 待定 |",
+    "why": "The record never mentions a note-taker. The summary adds this field and says it is 'to be decided', which the meeting never discussed."
+   },
+   {
+    "quote": "本产品 7 日留存的口径是“7 天内任意一天回来过”，而外部常用口径是“第 7 天回来”，两者不同。",
+    "why": "赵敏 hedged this: 「别人家的 7 日留存口径好像是“第 7 天还回来”」. The summary states as fact that this is the common outside definition. The record supports the difference only as her uncertain impression. This is minor."
+   }
+  ],
+  "noise": [],
+  "disagree": [
+   "conclusion"
+  ],
+  "doubts": {
+   "conclusion": "The script took the metadata table (日期和时间 / 地点 / 参会人 / 记录人 rows) as the opening block. Those rows only give the meeting's date, time, place and people, which the checklist says to skip; the one questionable row is 「记录人 | 待定」. After the table and the heading 「# 摘要」, the first paragraph is 「本次产品周会回顾了上周数据和支付重复扣款事故，并逐项讨论 2.0 版本的上线安排、会员价格、新手引导、推送时间和 11 月投放。会议决定：2.0 推迟到 11 月 27 日上线；会员定价为月卡 12 元、年卡 98 元；采用 3 步新手引导；默认提醒改为晚 8 点……」. Its first 150 字 contain at least 4 decisions (D1, D2, D4, D5). If 记录人 counts as a people line, this check should pass. A reviewer should decide."
+  },
+  "tester_notes": "It is the only file in output/, a Word document, and it opens and reads cleanly. It is written in Chinese and names are spelt correctly. It is really full minutes rather than a summary: 2363 字 against an 800-字 limit, with 8 topic sections, a 14-row task table, an open-items list and the next meeting. The 14-row table mixes the 6 real tasks with loose asks (S1–S10-style items such as 宣传节奏, 存档, 素材包, 回复用户), giving most of them 待确认 or vague due dates, so the firm tasks don't stand out. The 双十二 item appears under a 「决定：」 label but its content says 暂不定. The metadata table has an empty header cell in its first column. No small talk was kept.",
+  "review_note": "",
+  "review_note_zh": "",
+  "usage_x": 2.3
+ },
+ {
+  "repo": "NousResearch/hermes-agent",
+  "only": "skills/productivity/meeting-action-items",
+  "kind": "skill",
+  "skill_md": "skills/productivity/meeting-action-items/SKILL.md",
+  "install": "把 skills/productivity/meeting-action-items 放进 ~/.claude/skills/（只装这一个 skill，不装 Hermes 本体）",
+  "stars": 261577,
+  "grade": "safe",
+  "source": "hub sub_skills: skills/productivity/meeting-action-items (safe)；按话题选（会后决定和待办），描述不命中 summarization 的英文关键词；仓库 safe",
+  "why": "星最多的 agent 仓库里的会议 skill，防编规则写得最硬：「没定的提议不能写成决定」「截止日期没说就写 unresolved，绝不编」。它是写给 Hermes 的（里面提到 read_file 等 Hermes 工具），看搬到 Claude Code 里还好不好用。仓库 1.4 GB，只稀疏克隆这一个文件夹。",
+  "task": "t1",
+  "status": "done",
+  "ending": "finished",
+  "setup": "SETUP: done installed the meeting-action-items skill (SKILL.md only) to ~/.claude/skills/meeting-action-items via `mkdir -p ~/.claude/skills && cp -r ~/src/skills/productivity/meeting-action-items ~/.claude/skills/meeting-action-items`",
+  "commit": "e075441241b8",
+  "opened": "file",
+  "file": "会议总结.md",
+  "zi": 2781,
+  "checks": {
+   "length": false,
+   "conclusion": false,
+   "decisions": true,
+   "todos": true,
+   "numbers": true,
+   "undecided": false,
+   "invented": false
+  },
+  "passed": 3,
+  "of": 7,
+  "ran": false,
+  "stops": 0,
+  "minutes": 1.1,
+  "paused_seconds": 0,
+  "run_minutes": 2.8,
+  "usage": {
+   "usd": 0.36,
+   "tokens": 212581,
+   "sessions": 1
+  },
+  "setup_usd": 0.07,
+  "tester_usd": 0.44,
+  "found": {
+   "decisions": 7,
+   "todos": 6,
+   "undecided": 2,
+   "extra_numbers": 0,
+   "stale": 0,
+   "key_numbers": 10
+  },
+  "observed": {
+   "length": "2781 字（上限 800）",
+   "conclusion": "开头 150 字里写到 0 条决定（无）；开头：记录是自动转写、没人校对过，可能有听错的字。例如 [03:50] 处\"密等\"随即被说话人自己更正为\"幂等\"。 记录带说话人和时间点，看起来是完整的（从开场到散会）。没有发现明显的缺段。 会议记录里所有的日期和星期都核对过日历，全部对得上。…",
+   "decisions": "7/7 条决定写到了",
+   "todos": "6/6 条待办负责人和截止日期都对",
+   "numbers": "187 个数字，0 个原文里没有；旧数字当成现在的 0 处",
+   "undecided": "2/3 件没定的事写到并标了没定；U1 没标没定：届时应已到期或接近到期的事项：A1（11/5）、A2（11/6）、A14（平板占比数据），以及 A3（11/11）、A4（11/12）、A5（11/13）的进展。"
+  },
+  "invented": [
+   {
+    "quote": "A9 | **2.0 上线** | 全员（会上未指定单一负责人） | **11 月 27 日（周五）** | A5、A8、A2 等 | 2.0 已上线 | `[05:05]`",
+    "why": "The launch date is a decision (D1), not a task anyone was given. The record assigns no owner, and '全员' and the prerequisite chain 'A5、A8、A2 等' are the summary's own."
+   },
+   {
+    "quote": "A8 | 支付**完整回归测试至少两轮**，安卓和 iOS 都要过 | 孙浩 | 未明确（需在 11 月 27 日上线前完成） | A5 提测",
+    "why": "At [04:59] 孙浩 only said that payment needs at least two full regression rounds, as a reason 11/20 is too tight. Nobody assigned this task, and the record gives no due date. The '27 日上线前' deadline is inferred."
+   },
+   {
+    "quote": "A7 | 把新版**应用商店截图**给周婷（换掉 1.0 时期的旧截图） | 王小川 | 未明确（\"改公告的时候一起给\"，即 A6 之前）",
+    "why": "The record only says '改公告的时候一起给你' ([05:40]). The due date 'A6 之前' (that is, before 11/24) is the summary's inference."
+   },
+   {
+    "quote": "A6 | 改好**上线公告和应用商店更新说明**，发给大家看 | 周婷 | **11 月 24 日（周二）前** | A7 新截图",
+    "why": "The record does not make 周婷's announcement depend on 王小川's screenshots. The prerequisite 'A7 新截图' is added."
+   },
+   {
+    "quote": "**支付是 2.0 上线的关键路径。** 陈磊估计彻底修好\"要一周多\"，11 月 13 日提测，之后孙浩要做两轮双平台回归，到 27 日上线时间并不宽裕。",
+    "why": "Nobody in the meeting calls payment the critical path or says the 27th schedule is tight. That assessment is the summary's own. The record only says the 20th was too tight."
+   },
+   {
+    "quote": "**自动续费目前是关闭的**（临时方案），修好前会员续费收入会受影响。",
+    "why": "The record says auto-renewal was turned off as a temporary fix ([04:35]). It says nothing about renewal revenue being affected."
+   },
+   {
+    "quote": "主要在安卓 9 以下老机型（分享图太大导致内存不足）和打卡页切日期（第三方日历组件）。",
+    "why": "陈磊 said only '有一些' of the old-device crashes are low memory and that he 'remembers' the share image being large. The record does not state the share image as the cause of the old-device crashes."
+   }
+  ],
+  "noise": [
+   "咖啡机"
+  ],
+  "disagree": [
+   "numbers"
+  ],
+  "doubts": {
+   "numbers": "All 71 'extra' figures are [mm:ss] source timestamps the summary cites (e.g. `[01:23]`, `[05:05]`, `[14:55]`). They are the record's own timestamps [00:01:23] etc. with the hours dropped, not meeting figures. Every one corresponds to a real line in the record. The kit lists no other non-matching figure, so the fail rests only on the timestamps.",
+   "undecided": "The unmarked mention in 八 refers to the follow-up of collecting the tablet user share (A14), not to whether tablet adaptation is decided. It does not present the open point as decided. The point itself is marked 暂不定 in 五, and the A14 row says 供下次周会讨论. A reviewer may judge this mention does not need its own 没定 mark."
+  },
+  "tester_notes": "Written in Chinese, Markdown with several wide tables (an action table with 7 columns) that render fine but are long. The document is about 2.8k 字, a full set of minutes rather than a summary. It opens with a note about the tool ('meeting-action-items（Hermes Agent 技能）'), a meeting-info table and a 记录质量说明 list before the one-line conclusion in section 二. It adds items beyond the meeting's 7 decisions: D1 data correction, D2 retention wording and D9 no price in ad material are listed as decisions. Loose asks (日历组件, 素材包, 看板口径, 宣传节奏, 截图, 回复用户) are listed as action items A7, A10–A13 and A15, mostly with due '未明确', which a reader may take as assigned tasks. The closing 附 section speaks to the requester about unexecuted tool steps and '你要求不发送、不上传' (from the run instructions, not the meeting). Names are spelt correctly. Every citation uses a shortened [mm:ss] timestamp (the record uses [hh:mm:ss]).",
+  "review_note": "",
+  "review_note_zh": "",
+  "usage_x": 1.6
+ },
+ {
+  "repo": "steipete/summarize",
+  "kind": "cli",
+  "skill_md": ".agents/skills/summarize/SKILL.md",
+  "install": "npm i -g @steipete/summarize，加上 .agents/skills/summarize 放进 ~/.claude/skills/；模型走已登录的 Claude Code（--cli claude）",
+  "stars": 6789,
+  "grade": "safe",
+  "source": "hub summarization 关键词命中（仓库名 summarize）；仓库 safe",
+  "why": "摘要总结场景里唯一能总结本地文件的通用工具（OpenClaw 等好几家的 summarize skill 都是包它）。不是专门做会议的，正好看通用摘要会不会漏掉负责人和日期。README 要 Node 24，沙盒是 Node 22，可能装不上，放最后跑。",
+  "task": "t1",
+  "status": "done",
+  "ending": "finished",
+  "setup": "SETUP: done Node 24.22.2 (checksum-verified tarball → ~/.local/opt/node24) + summarize 0.26.0 via `PATH=~/.local/opt/node24/bin:$PATH npm i -g @steipete/summarize`, wrapper ~/.local/bin/summarize, skill via `cp -r ~/src/.agents/skills/summarize ~/.claude/skills/summarize`, ~/.summarize/config.json `{\"model\":\"cli/claude\",\"cli\":{\"enabled\":[\"claude\"]}}`; `summarize --version` → 0.26.0",
+  "commit": "aaccb7c9c30e",
+  "opened": "file",
+  "file": "会议记录总结.md",
+  "zi": 942,
+  "checks": {
+   "length": false,
+   "conclusion": false,
+   "decisions": true,
+   "todos": true,
+   "numbers": true,
+   "undecided": true,
+   "invented": true
+  },
+  "passed": 5,
+  "of": 7,
+  "ran": false,
+  "stops": 0,
+  "minutes": 0.6,
+  "paused_seconds": 0,
+  "run_minutes": 3.2,
+  "usage": {
+   "usd": 0.18,
+   "tokens": 106415,
+   "sessions": 2
+  },
+  "setup_usd": 0.3,
+  "tester_usd": 0.28,
+  "found": {
+   "decisions": 7,
+   "todos": 6,
+   "undecided": 3,
+   "extra_numbers": 0,
+   "stale": 0,
+   "key_numbers": 10
+  },
+  "observed": {
+   "length": "942 字（上限 800）",
+   "conclusion": "开头 150 字里写到 1 条决定（D1）；开头：本次周会的核心结论是：2.0 版本上线时间从 11 月 20 日推迟到 11 月 27 日（周五）。原因是上周三会员续费出现重复扣款，共 37 笔、涉及 1,036 元，款项已全部退还，客服也逐一致电道歉。根源是支付渠道回调会重试，而系统…",
+   "decisions": "7/7 条决定写到了",
+   "todos": "6/6 条待办负责人和截止日期都对",
+   "numbers": "62 个数字，0 个原文里没有；旧数字当成现在的 0 处",
+   "undecided": "3/3 件没定的事写到并标了没定"
+  },
+  "invented": [],
+  "noise": [
+   "咖啡机",
+   "螺蛳粉"
+  ],
+  "disagree": [
+   "todos"
+  ],
+  "doubts": {
+   "todos": "Possible misread: T3's owner and due date are in the same paragraph (item) but in different sentences. 「达人名单和排期要在 11 月 12 日前发到群里。」 has the right date (11 月 12 日) but no owner; 赵敏 is named three sentences earlier, in the sentence the script picked. The script compares sentence by sentence. A reader would most likely take 赵敏 as the owner, but the sentence does not name one, so a reviewer should decide whether this paragraph counts as one item."
+  },
+  "tester_notes": "The output folder holds only one Markdown file, with no 说明.txt. The summary is in Chinese and uses bold pseudo-headings. Some headings do not fit their content: the 「其他主要决定如下」 list starts with a 「数据更正」 item, which is metrics, not a decision. The 投放 decision (only 小红书, budget 3.8 万, 抖音 paused) is a stand-alone paragraph under 「砍掉与搁置的事项」, so a reader may take it for something dropped or postponed. Task owners and due dates are spread through the prose; there is no separate to-do list. Names are spelt correctly.",
+  "review_note": "",
+  "review_note_zh": "",
+  "usage_x": 0.8
+ },
+ {
+  "repo": "octocat/Hello-World",
+  "kind": "control",
+  "stars": 0,
+  "grade": "safe",
+  "source": "control",
+  "skill_md": "",
+  "install": "nothing",
+  "why": "不装任何工具的 Claude Code，对照组。",
+  "task": "t2",
+  "status": "done",
+  "ending": "finished",
+  "setup": "",
+  "commit": null,
+  "opened": "file",
+  "file": "会议总结.md",
+  "zi": 631,
+  "checks": {
+   "length": true,
+   "conclusion": true,
+   "decisions": true,
+   "todos": true,
+   "numbers": true,
+   "undecided": true,
+   "invented": true
+  },
+  "passed": 7,
+  "of": 7,
+  "ran": true,
+  "stops": 0,
+  "minutes": 1.5,
+  "paused_seconds": 0,
+  "run_minutes": 2.2,
+  "usage": {
+   "usd": 0.27,
+   "tokens": 160791,
+   "sessions": 1
+  },
+  "setup_usd": 0,
+  "tester_usd": 0.33,
+  "found": {
+   "decisions": 7,
+   "todos": 6,
+   "undecided": 3,
+   "extra_numbers": 0,
+   "stale": 0,
+   "key_numbers": 2
+  },
+  "observed": {
+   "length": "631 字（上限 800）",
+   "conclusion": "开头 150 字里写到 7 条决定（D1、D2、D3、D4、D5、D6、D7）；开头：结论： 2.0 推迟到11月27日（周五）上线；月卡12元、年卡98元，不做终身会员；新手引导上3步版；默认提醒改晚上8点；社区广场不进2.0；11月只投小红书，预算3.8万。",
+   "decisions": "7/7 条决定写到了",
+   "todos": "6/6 条待办负责人和截止日期都对",
+   "numbers": "41 个数字，0 个原文里没有；旧数字当成现在的 0 处",
+   "undecided": "3/3 件没定的事写到并标了没定"
+  },
+  "invented": [],
+  "noise": [],
+  "disagree": [],
+  "doubts": {},
+  "tester_notes": "Single Markdown file, Chinese, clean layout: bold conclusion line, numbered decisions (8, since it splits out the 日活 correction and the 7日留存 口径 note as decisions, both of which the record supports), a 待办 list (6 dated tasks followed by 5 loose asks marked 没说日期), a 没定 section with 4 items (adds 留存拆新老用户, which is accurate), and the next meeting's date. No small talk kept. Names all spelt correctly. Someone reading it might take the 5 undated loose asks under 待办 for formal tasks, but each one is labelled as having no date.",
+  "review_note": "",
+  "review_note_zh": "",
+  "usage_x": 1.0
+ },
+ {
+  "repo": "phuryn/pm-skills",
+  "kind": "plugin",
+  "plugin": "pm-execution",
+  "skill_md": "pm-execution/skills/summarize-meeting/SKILL.md",
+  "install": "claude plugin marketplace add phuryn/pm-skills; claude plugin install pm-execution@pm-skills（README 的装法，只装含会议总结的 pm-execution 这一个插件）",
+  "stars": 27762,
+  "grade": "safe",
+  "source": "hub summarization 关键词命中（子 skill 描述 Summarize a meeting transcript…）；子 skill pm-execution/skills/summarize-meeting 和仓库都是 safe",
+  "why": "最多星的「会议逐字稿 → 结构化纪要」专用 skill：模板固定写决定、待办表（截止日期 / 负责人 / 事项）、未决问题。值得看：它的第 1 步说缺背景就上网搜，第 5 步要求「写给小学毕业生看」。",
+  "task": "t2",
+  "status": "done",
+  "ending": "finished",
+  "setup": "SETUP: done marketplace phuryn/pm-skills and plugin pm-execution@pm-skills, installed with `claude plugin marketplace add phuryn/pm-skills` and `claude plugin install pm-execution@pm-skills`",
+  "commit": "2a12295a7717",
+  "opened": "file",
+  "file": "会议总结-2026-11-03-产品周会.md",
+  "zi": 601,
+  "checks": {
+   "length": true,
+   "conclusion": true,
+   "decisions": true,
+   "todos": true,
+   "numbers": true,
+   "undecided": true,
+   "invented": true
+  },
+  "passed": 7,
+  "of": 7,
+  "ran": true,
+  "stops": 0,
+  "minutes": 0.9,
+  "paused_seconds": 0,
+  "run_minutes": 2.1,
+  "usage": {
+   "usd": 0.33,
+   "tokens": 190692,
+   "sessions": 1
+  },
+  "setup_usd": 0.1,
+  "tester_usd": 0.21,
+  "found": {
+   "decisions": 7,
+   "todos": 6,
+   "undecided": 3,
+   "extra_numbers": 0,
+   "stale": 0,
+   "key_numbers": 2
+  },
+  "observed": {
+   "length": "601 字（上限 800）",
+   "conclusion": "开头 150 字里写到 5 条决定（D1、D2、D4、D6、D7）；开头：因支付重复扣款要彻底修好并充分测试，2.0 推迟到 11 月 27 号上线。会员定为月卡 12 元、年卡 98 元。2.0 上 3 步新手引导，不做社区广场。11 月只投小红书，预算 3.8 万。",
+   "decisions": "7/7 条决定写到了",
+   "todos": "6/6 条待办负责人和截止日期都对",
+   "numbers": "39 个数字，0 个原文里没有；旧数字当成现在的 0 处",
+   "undecided": "3/3 件没定的事写到并标了没定"
+  },
+  "invented": [],
+  "noise": [],
+  "disagree": [],
+  "doubts": {},
+  "tester_notes": "Only one file in output/, a Markdown file. It is in Chinese and laid out cleanly: title, attendees, 结论, 7 numbered decisions, a 6-row 待办 table (负责人/事项/截止) whose Markdown renders correctly, 4 undated loose asks labelled as having no due date in the record, 3 open points each marked **没定**, and the next meeting's date. Names are spelt correctly. Dates are written as '11 月 13 号' rather than '日'. The first decision mentions the replaced figure 2.6 万, but only as '不再用 2.6 万', so it is not given as current. Most of the record's metrics are left out (retention, crash rate, refund amounts): kit found only 2 of 10 key numbers kept. That is an omission, not something the checklist fails.",
+  "review_note": "",
+  "review_note_zh": "",
+  "usage_x": 1.2
+ },
+ {
+  "repo": "github/awesome-copilot",
+  "only": "skills/meeting-minutes",
+  "kind": "skill",
+  "skill_md": "skills/meeting-minutes/SKILL.md",
+  "install": "把 skills/meeting-minutes 文件夹放进 ~/.claude/skills/（Agent Skills 格式，Claude Code 直接读）",
+  "stars": 40913,
+  "grade": "safe",
+  "source": "hub sub_skills: skills/meeting-minutes (safe)；按话题选（会议纪要），描述不命中 summarization 的英文关键词；仓库 safe",
+  "why": "GitHub 官方合集里的会议纪要 skill：严格模板，每条待办必须有负责人和截止日期，缺的写 TBD；开写前「必须」先问最多 3 个问题，正好测中途停下来问、拿到「你按你推荐的来」以后怎么做。",
+  "task": "t2",
+  "status": "done",
+  "ending": "finished",
+  "setup": "SETUP: done installed skill meeting-minutes to ~/.claude/skills/meeting-minutes via `mkdir -p ~/.claude/skills && cp -r ~/src/skills/meeting-minutes ~/.claude/skills/meeting-minutes`",
+  "commit": "797337f33f73",
+  "opened": "file",
+  "file": "会议纪要_产品周会_2026-11-03.md",
+  "zi": 625,
+  "checks": {
+   "length": true,
+   "conclusion": true,
+   "decisions": true,
+   "todos": true,
+   "numbers": true,
+   "undecided": true,
+   "invented": false
+  },
+  "passed": 6,
+  "of": 7,
+  "ran": false,
+  "stops": 1,
+  "minutes": 1.4,
+  "paused_seconds": 0,
+  "run_minutes": 2.6,
+  "usage": {
+   "usd": 0.38,
+   "tokens": 217575,
+   "sessions": 1
+  },
+  "setup_usd": 0.09,
+  "tester_usd": 0.23,
+  "found": {
+   "decisions": 7,
+   "todos": 6,
+   "undecided": 3,
+   "extra_numbers": 0,
+   "stale": 0,
+   "key_numbers": 5
+  },
+  "observed": {
+   "length": "625 字（上限 800）",
+   "conclusion": "开头 150 字里写到 7 条决定（D1、D2、D3、D4、D5、D6、D7）；开头：结论： 2.0 推迟到 11 月 27 号上线；会员月卡 12 元、年卡 98 元，不做终身会员；新手引导用 3 步版；默认提醒改晚上 8 点；社区广场不进 2.0；11 月只投小红书，预算 3.8 万。",
+   "decisions": "7/7 条决定写到了",
+   "todos": "6/6 条待办负责人和截止日期都对",
+   "numbers": "51 个数字，0 个原文里没有；旧数字当成现在的 0 处",
+   "undecided": "3/3 件没定的事写到并标了没定"
+  },
+  "invented": [
+   {
+    "quote": "审核人：未指定",
+    "why": "The record never mentions a reviewer (审核人) for the meeting or the minutes; this field is template content that is not in the source. It is minor, but the user said nothing absent from the record may be added."
+   }
+  ],
+  "noise": [],
+  "disagree": [],
+  "doubts": {},
+  "tester_notes": "Clean Markdown with a correctly formed table; names are spelt correctly. Owners volunteered the four undated extra to-dos in the meeting, and their due dates are honestly marked 「原文无日期」 or 「“这周”，无具体日期」, so they are not invented. Dates are written 11 月 X 号 rather than 日; this matches the record. The only issue: the header line 「审核人：未指定」 adds a role the record never mentions.",
+  "review_note": "",
+  "review_note_zh": "",
+  "usage_x": 1.4
+ },
+ {
+  "repo": "composio-community/awesome-codex-skills",
+  "only": "meeting-notes-and-actions",
+  "kind": "skill",
+  "skill_md": "meeting-notes-and-actions/SKILL.md",
+  "install": "把 meeting-notes-and-actions 文件夹放进 ~/.claude/skills/（README 的手动装法，换成 Claude Code 的目录）",
+  "stars": 17249,
+  "grade": "safe",
+  "source": "hub sub_skills: meeting-notes-and-actions (safe)；按话题选（会议纪要），描述是 summaries，不命中关键词 summariz / summary；仓库 safe",
+  "why": "Composio 合集里的「逐字稿 → 纪要 + 带负责人的待办」skill，很短。它既写「不要编造事实」，又写「缺截止日期就建议一个」，正好看会不会给待办编日期。",
+  "task": "t2",
+  "status": "done",
+  "ending": "finished",
+  "setup": "SETUP: done installed meeting-notes-and-actions skill into ~/.claude/skills via `mkdir -p ~/.claude/skills && cp -r ~/src/meeting-notes-and-actions ~/.claude/skills/meeting-notes-and-actions`",
+  "commit": "0930e1373789",
+  "opened": "file",
+  "file": "会议总结.md",
+  "zi": 617,
+  "checks": {
+   "length": true,
+   "conclusion": true,
+   "decisions": true,
+   "todos": true,
+   "numbers": true,
+   "undecided": true,
+   "invented": true
+  },
+  "passed": 7,
+  "of": 7,
+  "ran": true,
+  "stops": 0,
+  "minutes": 1.2,
+  "paused_seconds": 0,
+  "run_minutes": 2.3,
+  "usage": {
+   "usd": 0.42,
+   "tokens": 301631,
+   "sessions": 1
+  },
+  "setup_usd": 0.07,
+  "tester_usd": 0.26,
+  "found": {
+   "decisions": 7,
+   "todos": 6,
+   "undecided": 3,
+   "extra_numbers": 0,
+   "stale": 0,
+   "key_numbers": 2
+  },
+  "observed": {
+   "length": "617 字（上限 800）",
+   "conclusion": "开头 150 字里写到 7 条决定（D1、D2、D3、D4、D5、D6、D7）；开头：2.0推迟到11月27号上线；会员月卡12元、年卡98元，不做终身会员；新手引导用3步版；新用户默认提醒改晚上8点；社区广场不进2.0；11月只投小红书，预算3.8万。",
+   "decisions": "7/7 条决定写到了",
+   "todos": "6/6 条待办负责人和截止日期都对",
+   "numbers": "42 个数字，0 个原文里没有；旧数字当成现在的 0 处",
+   "undecided": "3/3 件没定的事写到并标了没定"
+  },
+  "invented": [],
+  "noise": [],
+  "disagree": [],
+  "doubts": {},
+  "tester_notes": "Chinese Markdown, clean layout, opens fine; no 说明.txt and it is the only file. Names spelt correctly. Minor: the 已拍板的决定 list has 8 items. Item 8 「下次周会：11月10号上午10点。」 is meeting logistics, not a decision. Item 1 (日活 2.36万 / 留存口径) is a real call by 周婷 but is not among the answer key's 7. Under 「原文未给日期的待办」 the summary lists commitments people made themselves as 待办; the answer key treats these as loose asks ('soft'). The weakest is 「孙浩：新老用户留存拆分（需陈磊加字段，“不急”）」: in the record 孙浩 only said 「我先记着，这周事多，可能排不上」. Because the summary marks it 「不急」 and gives it no date, I did not count it as invented, but a reviewer may want to look at it. Only 2 of 10 key numbers are kept (2.36万, 3.8万); that is allowed because left-out content is not counted.",
+  "review_note": "",
+  "review_note_zh": "",
+  "usage_x": 1.6
+ },
+ {
+  "repo": "genspark-ai/genoffice",
+  "only": "skills/recommended/meeting-minutes",
+  "kind": "skill",
+  "skill_md": "skills/recommended/meeting-minutes/SKILL.md",
+  "install": "把 skills/recommended/meeting-minutes 放进 ~/.claude/skills/（等于 npx skills add genspark-ai/genoffice --skill meeting-minutes）",
+  "stars": 11926,
+  "grade": "safe",
+  "source": "hub sub_skills: skills/recommended/meeting-minutes (safe)；按话题选（会议纪要），描述不命中 summarization 的英文关键词；仓库 safe",
+  "why": "Genspark 开源办公套件里的会议纪要 skill，规则最贴这次的检查：「讨论中的倾向不算决定」「缺的写待确认，不猜」，而且交付 Word 文档。注意：它本来是给 GenOffice 自带的 AI 用的，这里只把这一个 skill 装进 Claude Code。",
+  "task": "t2",
+  "status": "done",
+  "ending": "finished",
+  "setup": "SETUP: done installed the meeting-minutes skill to ~/.claude/skills/meeting-minutes via `mkdir -p ~/.claude/skills && cp -r ~/src/skills/recommended/meeting-minutes ~/.claude/skills/meeting-minutes`",
+  "commit": "0ac588ffc435",
+  "opened": "file",
+  "file": "豆芽打卡产品周会会议纪要-2026-11-03.docx",
+  "zi": 648,
+  "checks": {
+   "length": true,
+   "conclusion": true,
+   "decisions": true,
+   "todos": true,
+   "numbers": true,
+   "undecided": true,
+   "invented": false
+  },
+  "passed": 6,
+  "of": 7,
+  "ran": false,
+  "stops": 1,
+  "minutes": 1.9,
+  "paused_seconds": 0,
+  "run_minutes": 2.9,
+  "usage": {
+   "usd": 0.46,
+   "tokens": 286401,
+   "sessions": 1
+  },
+  "setup_usd": 0.07,
+  "tester_usd": 0.25,
+  "found": {
+   "decisions": 7,
+   "todos": 6,
+   "undecided": 3,
+   "extra_numbers": 0,
+   "stale": 0,
+   "key_numbers": 2
+  },
+  "observed": {
+   "length": "648 字（上限 800）",
+   "conclusion": "开头 150 字里写到 6 条决定（D1、D2、D4、D5、D6、D7）；开头：2.0 推迟到 11 月 27 号上线；月卡 12 元、年卡 98 元；新手引导改 3 步；默认提醒改晚上 8 点；社区广场不进 2.0；11 月只投小红书，预算 3.8 万。",
+   "decisions": "7/7 条决定写到了",
+   "todos": "6/6 条待办负责人和截止日期都对",
+   "numbers": "45 个数字，0 个原文里没有；旧数字当成现在的 0 处",
+   "undecided": "3/3 件没定的事写到并标了没定"
+  },
+  "invented": [
+   {
+    "quote": "| 记录人 | 待定 |",
+    "why": "The record names no note-taker and nobody discussed choosing one (it is an automatic transcript); marking the note-taker as 'pending' states something the meeting never said."
+   },
+   {
+    "quote": "11 月 10 号（周二）上午 10 点。议程待定。",
+    "why": "The record gives only the date and time of the next meeting (周二，11 月 10 号上午 10 点); it says nothing about its agenda being undecided. The only item explicitly put to next meeting is the tablet question."
+   }
+  ],
+  "noise": [],
+  "disagree": [],
+  "doubts": {},
+  "tester_notes": "Single Word file, opens cleanly; Chinese throughout; names spelt correctly. Tables (meeting info, todo list) extract fine; the todo table has an unlabelled number column. The todo table mixes the 6 real tasks (rows 1–6) with 4 loose self-commitments (rows 7–10) marked '没写，待确认' / '只说“这周”，待确认' for the due date — dates not invented, but a reader may take rows 7–10 as assigned tasks of equal weight. The open-points section adds a 4th item (留存拆新老用户) beyond the 3 in the key; it is supported by the record. Conclusion paragraph repeats the decisions list almost verbatim. Script verdicts all match my reading of the lines; no misreads found.",
+  "review_note": "",
+  "review_note_zh": "",
+  "usage_x": 1.7
+ },
+ {
+  "repo": "NousResearch/hermes-agent",
+  "only": "skills/productivity/meeting-action-items",
+  "kind": "skill",
+  "skill_md": "skills/productivity/meeting-action-items/SKILL.md",
+  "install": "把 skills/productivity/meeting-action-items 放进 ~/.claude/skills/（只装这一个 skill，不装 Hermes 本体）",
+  "stars": 261577,
+  "grade": "safe",
+  "source": "hub sub_skills: skills/productivity/meeting-action-items (safe)；按话题选（会后决定和待办），描述不命中 summarization 的英文关键词；仓库 safe",
+  "why": "星最多的 agent 仓库里的会议 skill，防编规则写得最硬：「没定的提议不能写成决定」「截止日期没说就写 unresolved，绝不编」。它是写给 Hermes 的（里面提到 read_file 等 Hermes 工具），看搬到 Claude Code 里还好不好用。仓库 1.4 GB，只稀疏克隆这一个文件夹。",
+  "task": "t2",
+  "status": "done",
+  "ending": "finished",
+  "setup": "SETUP: done installed skill meeting-action-items (SKILL.md only) via `mkdir -p ~/.claude/skills && cp -r ~/src/skills/productivity/meeting-action-items ~/.claude/skills/meeting-action-items`",
+  "commit": "3e82260ba041",
+  "opened": "file",
+  "file": "会议总结.md",
+  "zi": 630,
+  "checks": {
+   "length": true,
+   "conclusion": true,
+   "decisions": true,
+   "todos": true,
+   "numbers": true,
+   "undecided": true,
+   "invented": true
+  },
+  "passed": 7,
+  "of": 7,
+  "ran": true,
+  "stops": 0,
+  "minutes": 1.1,
+  "paused_seconds": 0,
+  "run_minutes": 2.1,
+  "usage": {
+   "usd": 0.36,
+   "tokens": 251110,
+   "sessions": 1
+  },
+  "setup_usd": 0.07,
+  "tester_usd": 0.23,
+  "found": {
+   "decisions": 7,
+   "todos": 6,
+   "undecided": 3,
+   "extra_numbers": 0,
+   "stale": 0,
+   "key_numbers": 2
+  },
+  "observed": {
+   "length": "630 字（上限 800）",
+   "conclusion": "开头 150 字里写到 6 条决定（D1、D2、D4、D5、D6、D7）；开头：2.0 推迟一周，11月27日（周五）上线。因为上周会员续费重复扣款，支付要修好并完整回归。还定了：月卡12元、年卡98元；新手引导用3步版；默认提醒改晚上8点；社区广场不进2.0；11月只投小红书。",
+   "decisions": "7/7 条决定写到了",
+   "todos": "6/6 条待办负责人和截止日期都对",
+   "numbers": "41 个数字，0 个原文里没有；旧数字当成现在的 0 处",
+   "undecided": "3/3 件没定的事写到并标了没定"
+  },
+  "invented": [],
+  "noise": [],
+  "disagree": [],
+  "doubts": {},
+  "tester_notes": "Clean Markdown, Chinese throughout, table renders fine, names spelt correctly. The 待办 table has 10 rows: the record's 6 tasks plus 4 things people offered to do themselves (soft asks in the key: S2 口径, S3 日历组件, S4 宣传节奏, S5 截图). Each of these is traceable to the record and marked 「原文未给」/「原文只说“这周”」 for the due date, so not invented, but a reader may take them as assigned tasks. The 已定的决定 list has 8 items: items 1–6 cover the key's 7 decisions (price and 终身会员 are merged in item 2), and items 7 (日活 2.36万) and 8 (7日留存口径) are two more instructions 周婷 gave, both supported by the record. The open points also include a fourth item (留存拆新老用户), which is supported by the record.",
+  "review_note": "",
+  "review_note_zh": "",
+  "usage_x": 1.3
+ },
+ {
+  "repo": "steipete/summarize",
+  "kind": "cli",
+  "skill_md": ".agents/skills/summarize/SKILL.md",
+  "install": "npm i -g @steipete/summarize，加上 .agents/skills/summarize 放进 ~/.claude/skills/；模型走已登录的 Claude Code（--cli claude）",
+  "stars": 6789,
+  "grade": "safe",
+  "source": "hub summarization 关键词命中（仓库名 summarize）；仓库 safe",
+  "why": "摘要总结场景里唯一能总结本地文件的通用工具（OpenClaw 等好几家的 summarize skill 都是包它）。不是专门做会议的，正好看通用摘要会不会漏掉负责人和日期。README 要 Node 24，沙盒是 Node 22，可能装不上，放最后跑。",
+  "task": "t2",
+  "status": "done",
+  "ending": "finished",
+  "setup": "SETUP: done Node v24.22.2 (arm64, checksum-verified) in ~/.local/opt/node24; CLI via `PATH=~/.local/opt/node24/bin:$PATH npm i -g @steipete/summarize` (0.26.0) with wrapper ~/.local/bin/summarize; skill via `cp -r ~/src/.agents/skills/summarize ~/.claude/skills/summarize`; model set in ~/.summarize/config.json `{\"model\":\"cli/claude\",\"cli\":{\"enabled\":[\"claude\"]}}`; `summarize --version` → 0.26.0",
+  "commit": "aaccb7c9c30e",
+  "opened": "file",
+  "file": "会议总结.md",
+  "zi": 562,
+  "checks": {
+   "length": true,
+   "conclusion": true,
+   "decisions": true,
+   "todos": true,
+   "numbers": true,
+   "undecided": false,
+   "invented": false
+  },
+  "passed": 5,
+  "of": 7,
+  "ran": false,
+  "stops": 0,
+  "minutes": 1.4,
+  "paused_seconds": 0,
+  "run_minutes": 3.9,
+  "usage": {
+   "usd": 0.51,
+   "tokens": 417719,
+   "sessions": 3
+  },
+  "setup_usd": 0.24,
+  "tester_usd": 0.26,
+  "found": {
+   "decisions": 7,
+   "todos": 6,
+   "undecided": 2,
+   "extra_numbers": 0,
+   "stale": 0,
+   "key_numbers": 2
+  },
+  "observed": {
+   "length": "562 字（上限 800）",
+   "conclusion": "开头 150 字里写到 2 条决定（D1、D6）；开头：结论： 2.0 推迟到 11 月 27 号上线；会员价、新手引导、推送默认时间、11 月投放均已定；社区广场砍掉。",
+   "decisions": "7/7 条决定写到了",
+   "todos": "6/6 条待办负责人和截止日期都对",
+   "numbers": "32 个数字，0 个原文里没有；旧数字当成现在的 0 处",
+   "undecided": "2/3 件没定的事写到并标了没定；U1 没标没定：拉取平板用户占比 — 原文未写 — 原文未写"
+  },
+  "invented": [
+   {
+    "quote": "压缩打卡分享图 — 林雨 — 原文未写",
+    "why": "The record never assigns this to anyone. 陈磊 says the share image is several MB, and 林雨 only remarks「分享图确实大，压一压应该就好了，这个不难」. Nobody takes it on or is given it, so the owner 林雨 is made up (the answer key lists it as a loose remark with no owner)."
+   }
+  ],
+  "noise": [],
+  "disagree": [],
+  "doubts": {},
+  "tester_notes": "Only one file, a short Markdown document in Chinese with a clear layout. Things to look at: (1) The 待办 list has 12 items, not the record's 6 tasks. Six are loose self-offers or asks with the date marked 原文未写, which makes the list look longer and less finished than the meeting was. (2)「拉取平板用户占比 — 原文未写 — 原文未写」is open point U1 turned into a todo with no owner. Check 6 already fails it; I did not count it again under check 7, because the checklist leaves the open points to check 6. Strictly, nobody in the meeting was told to pull this data (周婷 only said「等拿到平板用户的占比」). (3)「推送文案这次不改」is listed under 拍板的决定, but it was 林雨's remark, not a ruling by 周婷, and it is not one of the key's 7 decisions. I counted it as supported, but it is borderline. (4) The extra decisions 2.36 万 and 口径 are real rulings but are not in the key. (5)「把新版商店截图和公告一起给周婷」is slightly garbled: 周婷 writes the announcement, and 王小川 gives the screenshots when it is revised. (6) The record's '11 月 13 日' etc. are written as '13 号' throughout, which is fine. No small talk kept.",
+  "review_note": "",
+  "review_note_zh": "",
+  "usage_x": 1.9
+ }
+]
