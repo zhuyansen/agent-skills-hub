@@ -23,8 +23,15 @@ This Worker sits in front of `agentskillshub.top/` (once DNS is on Cloudflare wi
 
 ## Gone audit pages → skill pages (2026-11)
 
-`auditGoneRedirect` in `worker.js`: when GitHub Pages answers 404 for `/audit/<owner>/<repo>/` (the build stopped writing that audit page, usually a SAFE repo under 500 stars) and `/skill/<owner>/<repo>/` exists, the Worker answers `301` to the skill page, which shows the same grade. Any other 404 is passed through unchanged, and `/best/*` is never touched. Bingbot's own fetches in the KV log (11-22 to 11-25) hit 86 such 404s out of 293 audit URLs.
+`auditGoneRedirect` in `worker.js`: when GitHub Pages answers 404 for `/audit/<owner>/<repo>/` (the build stopped writing that audit page, usually a SAFE repo under 500 stars) and `/skill/<owner>/<repo>/` exists, the Worker answers `301` to the skill page, which shows the same grade. Any other 404 is passed through unchanged, and `/best/*` is never touched. Bingbot's own fetches in the log (11-22 to 11-25) hit 86 such 404s out of 293 audit URLs.
 
-`bot-ranges.js` also carries Bing's published Bingbot ranges (`https://www.bing.com/toolbox/bingbot.json`), so Bingbot rows in the KV log say `verified` or `unverified_ip` instead of `no_cidr_list`.
+`bot-ranges.js` also carries Bing's published Bingbot ranges (`https://www.bing.com/toolbox/bingbot.json`), so Bingbot rows record `verified` or `unverified_ip` instead of `no_cidr_list`.
+
+## Analytics Engine Telemetry (2026-11-27, migrated off KV)
+
+Crawler and AI referral telemetry was migrated from Workers KV (`AI_CRAWL_KV`, 1K free `put`/day limit — exceeded when `GPTBot` swept 1,151 `/audit/*` URLs on 2026-11-27) to **Cloudflare Workers Analytics Engine** (`AI_CRAWL_AE`, dataset `ash_ai_crawl_log`, 100K free writes/day, zero KV quota).
+
+- `/audit/*` stays in `wrangler.toml` `routes` **solely** for `auditGoneRedirect`, and is excluded from telemetry by `isTelemetryPath()` in `worker.js`.
+- Query with `CLOUDFLARE_API_TOKEN=<Account Analytics: Read token> python3 ops/geo/ai_crawl_audit.py` (falls back to legacy KV read when AE SQL is unavailable).
 
 Nothing deploys this Worker automatically. After review: `cd ops/edge-proxy && node --test worker.test.mjs && npx wrangler deploy`, then check one gone URL, e.g. `curl -sI https://agentskillshub.top/audit/bitwarden/mcp-server/` should answer `301` with `location: https://agentskillshub.top/skill/bitwarden/mcp-server/`.

@@ -28,7 +28,8 @@ from pathlib import Path
 from typing import Any
 
 ACCOUNT_ID = "111392dcb718001bfa28a9ef3b17f804"
-KV_NAMESPACE_ID = "129a42bc278d452cb8f950b8e8acf1af"
+AE_DATASET = "ash_ai_crawl_log"
+KV_NAMESPACE_ID = "129a42bc278d452cb8f950b8e8acf1af"  # legacy read-only fallback
 SITE = "https://agentskillshub.top"
 UA = "AgentSkillsHub-CrawlAudit/1.0 (+https://agentskillshub.top/ai-info/)"
 PANEL_DIR = Path(__file__).resolve().parent / "panel"
@@ -65,6 +66,32 @@ def cf_get_json(url: str, token: str) -> dict[str, Any]:
             with urllib.request.urlopen(req2, timeout=15) as resp:
                 return json.loads(resp.read().decode("utf-8", "ignore"))
         raise
+
+
+def query_ae_sql(token: str, days: int) -> list[dict[str, Any]]:
+    sql = (
+        "SELECT "
+        "toDate(timestamp) AS day, "
+        "blob1 AS kind, "
+        "blob2 AS actor, "
+        "blob3 AS path, "
+        "blob6 AS ip_status, "
+        "SUM(_sample_interval) AS hits "
+        f"FROM {AE_DATASET} "
+        f"WHERE timestamp >= NOW() - INTERVAL '{int(days)}' DAY "
+        "GROUP BY day, kind, actor, path, ip_status "
+        "FORMAT JSON"
+    )
+    url = f"https://api.cloudflare.com/client/v4/accounts/{ACCOUNT_ID}/analytics_engine/sql"
+    req = urllib.request.Request(
+        url,
+        data=sql.encode("utf-8"),
+        headers={"Authorization": f"Bearer {token}", "User-Agent": UA},
+        method="POST",
+    )
+    with urllib.request.urlopen(req, timeout=20) as resp:
+        payload = json.loads(resp.read().decode("utf-8", "ignore"))
+    return payload.get("data", [])
 
 
 def list_kv_keys(token: str, prefix: str = "") -> list[str]:
@@ -139,45 +166,92 @@ def is_monitored_core_path(path: str) -> bool:
 def main() -> int:
     ap = argparse.ArgumentParser(description="Audit Cloudflare AI crawler logs & Sitemap blind spots")
     ap.add_argument("--days", type=int, default=30, help="Lookback window in days (default: 30)")
-    ap.add_argument("--fetch-values", action="store_true", help="Fetch per-key JSON values (for IP verification breakdown)")
+    ap.add_argument("--source", choices=("auto", "ae", "kv"), default="auto", help="Telemetry backend: ae (Analytics Engine), kv (legacy), or auto")
+    ap.add_argument("--fetch-values", action="store_true", help="Legacy KV mode: fetch per-key JSON values for IP verification breakdown")
     ap.add_argument("--no-save", action="store_true", help="Do not save JSON snapshot")
     args = ap.parse_args()
 
     token = get_cf_token()
     cutoff = (datetime.now(timezone.utc) - timedelta(days=args.days)).strftime("%Y-%m-%d")
 
-    crawl_keys = list_kv_keys(token, prefix="crawl|")
-    ref_keys = list_kv_keys(token, prefix="ref|")
-
     bot_counts: Counter[str] = Counter()
+    bot_hits: Counter[str] = Counter()
     path_bots: dict[str, set[str]] = defaultdict(set)
     ip_status_counts: Counter[str] = Counter()
     ref_counts: Counter[str] = Counter()
     ref_paths: Counter[str] = Counter()
+    source_used = args.source
 
-    for k in crawl_keys:
-        parts = k.split("|", 3)
-        if len(parts) != 4:
-            continue
-        _, day, bot, path = parts
-        if day < cutoff:
-            continue
-        bot_counts[bot] += 1
-        path_bots[path].add(bot)
-        if args.fetch_values:
-            val = read_kv_value(token, k)
-            if val:
-                ip_status_counts[f"{bot}:{val.get('ip_status', 'unknown')}"] += 1
+    ae_rows: list[dict[str, Any]] | None = None
+    if args.source in ("auto", "ae"):
+        try:
+            ae_rows = query_ae_sql(token, args.days)
+            source_used = "analytics_engine"
+        except urllib.error.HTTPError as e:
+            body = e.read().decode("utf-8", "ignore")[:200]
+            if args.source == "ae":
+                raise RuntimeError(
+                    f"Analytics Engine SQL query failed (HTTP {e.code}): {body}. "
+                    "Ensure CLOUDFLARE_API_TOKEN has 'Account Analytics: Read' permission."
+                ) from e
+            print(f"[warn] Analytics Engine SQL unavailable (HTTP {e.code}); falling back to legacy KV. Set CLOUDFLARE_API_TOKEN with Account Analytics:Read for AE queries.")
+            ae_rows = None
 
-    for k in ref_keys:
-        parts = k.split("|", 3)
-        if len(parts) != 4:
-            continue
-        _, day, engine, path = parts
-        if day < cutoff:
-            continue
-        ref_counts[engine] += 1
-        ref_paths[f"{engine} -> {path}"] += 1
+    if ae_rows is not None:
+        seen_day_bot_path: set[tuple[str, str, str]] = set()
+        seen_day_ref_path: set[tuple[str, str, str]] = set()
+        for row in ae_rows:
+            day = str(row.get("day") or "")
+            kind = str(row.get("kind") or "")
+            actor = str(row.get("actor") or "")
+            path = str(row.get("path") or "/")
+            ip_status = str(row.get("ip_status") or "")
+            hits = int(round(float(row.get("hits") or 1)))
+            if day < cutoff:
+                continue
+            if kind == "crawl":
+                key3 = (day, actor, path)
+                if key3 not in seen_day_bot_path:
+                    seen_day_bot_path.add(key3)
+                    bot_counts[actor] += 1
+                bot_hits[actor] += hits
+                path_bots[path].add(actor)
+                if ip_status:
+                    ip_status_counts[f"{actor}:{ip_status}"] += hits
+            elif kind == "ref":
+                key3 = (day, actor, path)
+                if key3 not in seen_day_ref_path:
+                    seen_day_ref_path.add(key3)
+                    ref_counts[actor] += 1
+                ref_paths[f"{actor} -> {path}"] += hits
+    else:
+        source_used = "kv_legacy"
+        crawl_keys = list_kv_keys(token, prefix="crawl|")
+        ref_keys = list_kv_keys(token, prefix="ref|")
+
+        for k in crawl_keys:
+            parts = k.split("|", 3)
+            if len(parts) != 4:
+                continue
+            _, day, bot, path = parts
+            if day < cutoff:
+                continue
+            bot_counts[bot] += 1
+            path_bots[path].add(bot)
+            if args.fetch_values:
+                val = read_kv_value(token, k)
+                if val:
+                    ip_status_counts[f"{bot}:{val.get('ip_status', 'unknown')}"] += 1
+
+        for k in ref_keys:
+            parts = k.split("|", 3)
+            if len(parts) != 4:
+                continue
+            _, day, engine, path = parts
+            if day < cutoff:
+                continue
+            ref_counts[engine] += 1
+            ref_paths[f"{engine} -> {path}"] += 1
 
     sitemap_paths = fetch_sitemap_paths()
     core_paths = [p for p in sitemap_paths if is_monitored_core_path(p)]
@@ -186,11 +260,14 @@ def main() -> int:
 
     report = {
         "timestamp_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "source": source_used,
         "window_days": args.days,
         "cutoff_day": cutoff,
         "total_crawl_day_records": sum(bot_counts.values()),
+        "total_crawl_hits": sum(bot_hits.values()) if bot_hits else sum(bot_counts.values()),
         "unique_crawled_paths": len(path_bots),
         "bots": dict(bot_counts.most_common()),
+        "bot_hits": dict(bot_hits.most_common()),
         "ip_verification": dict(ip_status_counts.most_common()),
         "ai_referrals": dict(ref_counts.most_common()),
         "ai_referral_top_landings": dict(ref_paths.most_common(20)),
@@ -201,8 +278,14 @@ def main() -> int:
     }
 
     print("=== AgentSkillsHub AI Crawler & Sitemap Coverage Audit ===")
-    print(f"Window: last {args.days}d (since {cutoff}) | Bot day-path records: {report['total_crawl_day_records']} | Unique paths: {report['unique_crawled_paths']}")
-    print("Bots:", report["bots"] or "(none yet — telemetry just activated)")
+    print(
+        f"Source: {source_used} | Window: last {args.days}d (since {cutoff}) | "
+        f"Bot day-path records: {report['total_crawl_day_records']} | "
+        f"Total hits: {report['total_crawl_hits']} | Unique paths: {report['unique_crawled_paths']}"
+    )
+    print("Bots (day-path):", report["bots"] or "(none yet — telemetry just activated)")
+    if report["bot_hits"]:
+        print("Bots (raw hits):", report["bot_hits"])
     if report["ip_verification"]:
         print("IP Verification:", report["ip_verification"])
     print("AI Referrals:", report["ai_referrals"] or "(none yet)")

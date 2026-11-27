@@ -6,7 +6,8 @@ import worker, {
   classifyAiReferral,
   isIpv4InCidrs,
   verifyBotIp,
-  logEdgeSignal,
+  isTelemetryPath,
+  writeTelemetryPoint,
   auditFallbackPath,
 } from "./worker.js";
 
@@ -67,32 +68,50 @@ test("isIpv4InCidrs and verifyBotIp validate official CIDR prefixes accurately",
   assert.equal(verifyBotIp("ClaudeBot", "1.2.3.4"), "no_cidr_list");
 });
 
-test("logEdgeSignal deduplicates KV writes per key", async () => {
-  const store = new Map();
-  let puts = 0;
-  const kv = {
-    async get(k) { return store.has(k) ? store.get(k) : null; },
-    async put(k, v) { puts += 1; store.set(k, v); },
-  };
-  const sig = { key: "crawl|2026-11-21|GPTBot|/best/code-review/", payload: { bot: "GPTBot" } };
-  assert.equal(await logEdgeSignal(kv, sig), true);
-  assert.equal(await logEdgeSignal(kv, sig), false);
-  assert.equal(puts, 1);
+test("isTelemetryPath includes core GEO routes and skips /audit/*", () => {
+  assert.equal(isTelemetryPath("/"), true);
+  assert.equal(isTelemetryPath("/index.html"), true);
+  assert.equal(isTelemetryPath("/best/code-review/"), true);
+  assert.equal(isTelemetryPath("/how-we-grade/"), true);
+  assert.equal(isTelemetryPath("/ai-info/"), true);
+  assert.equal(isTelemetryPath("/llms.txt"), true);
+  assert.equal(isTelemetryPath("/sitemap.xml"), true);
+  assert.equal(isTelemetryPath("/audit/"), false);
+  assert.equal(isTelemetryPath("/audit/heydamir/unslop/"), false);
+  assert.equal(isTelemetryPath("/skill/heydamir/unslop/"), false);
 });
 
-test("fetch serves Link header and logs AI bot via waitUntil", async () => {
+test("writeTelemetryPoint formats Analytics Engine data points", () => {
+  const points = [];
+  const ae = { writeDataPoint(p) { points.push(p); } };
+  const ok = writeTelemetryPoint(ae, {
+    kind: "crawl",
+    actor: "GPTBot",
+    path: "/best/code-review/",
+    providerOrHost: "OpenAI",
+    purpose: "training",
+    ipStatus: "verified",
+    ct: "text/html",
+    status: 200,
+  });
+  assert.equal(ok, true);
+  assert.equal(points.length, 1);
+  assert.deepEqual(points[0], {
+    indexes: ["crawl:GPTBot"],
+    blobs: ["crawl", "GPTBot", "/best/code-review/", "OpenAI", "training", "verified", "text/html"],
+    doubles: [200, 1],
+  });
+  assert.equal(writeTelemetryPoint(null, {}), false);
+});
+
+test("fetch serves Link header and logs AI bot to Analytics Engine (no KV)", async () => {
   const origFetch = globalThis.fetch;
   globalThis.fetch = async () => new Response("<html>ok</html>", {
     status: 200,
     headers: { "Content-Type": "text/html; charset=utf-8" },
   });
-  const store = new Map();
-  const kv = {
-    async get(k) { return store.has(k) ? store.get(k) : null; },
-    async put(k, v) { store.set(k, v); },
-  };
-  const pending = [];
-  const ctx = { waitUntil(p) { pending.push(p); } };
+  const points = [];
+  const ae = { writeDataPoint(p) { points.push(p); } };
   try {
     const req = new Request("https://agentskillshub.top/", {
       headers: {
@@ -101,14 +120,35 @@ test("fetch serves Link header and logs AI bot via waitUntil", async () => {
         "CF-Connecting-IP": "132.196.86.10",
       },
     });
-    const resp = await worker.fetch(req, { AI_CRAWL_KV: kv }, ctx);
-    await Promise.all(pending);
+    const resp = await worker.fetch(req, { AI_CRAWL_AE: ae }, { waitUntil() {} });
     assert.equal(resp.status, 200);
     assert.match(resp.headers.get("Link") || "", /llms\.txt/);
-    assert.equal(store.size, 1);
-    const saved = JSON.parse([...store.values()][0]);
-    assert.equal(saved.bot, "GPTBot");
-    assert.equal(saved.ip_status, "verified");
+    assert.equal(points.length, 1);
+    assert.equal(points[0].blobs[0], "crawl");
+    assert.equal(points[0].blobs[1], "GPTBot");
+    assert.equal(points[0].blobs[2], "/");
+    assert.equal(points[0].blobs[5], "verified");
+    assert.deepEqual(points[0].doubles, [200, 1]);
+  } finally {
+    globalThis.fetch = origFetch;
+  }
+});
+
+test("fetch skips Analytics Engine telemetry on /audit/* while preserving 301 redirect", async () => {
+  const origFetch = globalThis.fetch;
+  globalThis.fetch = async (input) => {
+    const u = new URL(typeof input === "string" ? input : input.url);
+    return new Response("x", { status: u.pathname.startsWith("/skill/") ? 200 : 404 });
+  };
+  const points = [];
+  const ae = { writeDataPoint(p) { points.push(p); } };
+  try {
+    const req = new Request("https://agentskillshub.top/audit/bitwarden/mcp-server/", {
+      headers: { "User-Agent": "GPTBot/1.0 (+https://openai.com/gptbot)" },
+    });
+    const resp = await worker.fetch(req, { AI_CRAWL_AE: ae }, { waitUntil() {} });
+    assert.equal(resp.status, 301);
+    assert.equal(points.length, 0);
   } finally {
     globalThis.fetch = origFetch;
   }

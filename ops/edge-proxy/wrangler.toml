@@ -7,6 +7,8 @@ routes = [
   { pattern = "agentskillshub.top/", zone_name = "agentskillshub.top" },
   { pattern = "agentskillshub.top/index.html", zone_name = "agentskillshub.top" },
   { pattern = "agentskillshub.top/best/*", zone_name = "agentskillshub.top" },
+  # Kept solely for auditGoneRedirect (301 gone /audit/<owner>/<repo>/ -> /skill/<owner>/<repo>/).
+  # /audit/* requests are excluded from telemetry writes in worker.js.
   { pattern = "agentskillshub.top/audit/*", zone_name = "agentskillshub.top" },
   { pattern = "agentskillshub.top/how-we-grade*", zone_name = "agentskillshub.top" },
   { pattern = "agentskillshub.top/ai-info*", zone_name = "agentskillshub.top" },
@@ -14,6 +16,8 @@ routes = [
   { pattern = "agentskillshub.top/sitemap*", zone_name = "agentskillshub.top" }
 ]
 
-[[kv_namespaces]]
-binding = "AI_CRAWL_KV"
-id = "129a42bc278d452cb8f950b8e8acf1af"
+# Migrated from Workers KV (AI_CRAWL_KV, 1K puts/day free limit) to
+# Workers Analytics Engine (100K data points/day free, zero KV quota usage).
+[[analytics_engine_datasets]]
+binding = "AI_CRAWL_AE"
+dataset = "ash_ai_crawl_log"
