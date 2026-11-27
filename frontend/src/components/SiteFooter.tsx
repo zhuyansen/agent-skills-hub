@@ -2,10 +2,16 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useI18n } from "../i18n/I18nContext";
 import { HowWeGradeLink } from "./HowWeGradeLink";
 
+// Target pages of the brand questions in the GIGALinks test (ops/geo/questions.json; treated and
+// control groups in ops/geo/experiments.json). Nothing on them changes before the 2027-01-01
+// read-out, so the footer link to the A–Z directory leaves them out until then.
+const FROZEN_UNTIL_2027 = new Set(["/", "/zh/", "/analyzer/", "/how-we-grade/", "/agent-skills-directories/"]);
+
 export function SiteFooter() {
   const { t, lang } = useI18n();
   const navigate = useNavigate();
   const location = useLocation();
+  const showBrowse = !FROZEN_UNTIL_2027.has(location.pathname.replace(/\/?$/, "/"));
 
   const navigateToSection = (id: string) => {
     // Special routes — navigate directly instead of scrolling.
@@ -273,6 +279,14 @@ export function SiteFooter() {
             {lang === "zh" ? "AI 事实页" : "AI Info"}
           </a>
           <span className="text-gray-700">·</span>
+          {showBrowse && (
+            <>
+              <a href="/browse/" className="hover:text-white transition-colors">
+                {lang === "zh" ? "全部页面（A–Z）" : "All pages A–Z"}
+              </a>
+              <span className="text-gray-700">·</span>
+            </>
+          )}
           <HowWeGradeLink className="hover:text-white transition-colors" />
           <span className="text-gray-700">·</span>
           {__STATS_LIVE__ && (

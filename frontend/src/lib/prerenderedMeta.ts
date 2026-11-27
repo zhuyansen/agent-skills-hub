@@ -14,6 +14,10 @@
 // which the React page has no other way to know.
 //
 // And the /best/ guides that list the skill (<meta name="ash:best">, scripts/skill-guides.mjs).
+//
+// And the recently added and random skill pages the static page links (<meta name="ash:related">,
+// scripts/related-links.mjs): they are picked at build time from the whole catalog, which the
+// React page does not load.
 
 import type { Pair, TestedEntry } from "./testedCopy.mjs";
 
@@ -28,6 +32,7 @@ let description: string | null = null;
 let installs: string[] = [];
 let tested: TestedEntry[] = [];
 let guides: GuideLink[] = [];
+let related: RelatedLinks = { recent: [], random: [] };
 let path: string | null = null;
 let shell: string | null = null;
 
@@ -62,6 +67,33 @@ function isGuideLink(v: unknown): v is GuideLink {
     && typeof v.title === "string" && typeof v.titleZh === "string";
 }
 
+/** A skill page the static page links: owner/repo, display name, stars. */
+export type RelatedLink = [slug: string, name: string, stars: number];
+
+export interface RelatedLinks {
+  recent: RelatedLink[];
+  random: RelatedLink[];
+}
+
+// An owner/repo that is safe to put in a /skill/<owner>/<repo>/ link.
+const REPO_SLUG = /^[A-Za-z0-9._-]+\/[A-Za-z0-9._-]+$/;
+
+function isRelatedLink(v: unknown): v is RelatedLink {
+  return Array.isArray(v) && v.length === 3 && typeof v[0] === "string" && REPO_SLUG.test(v[0])
+    && typeof v[1] === "string" && typeof v[2] === "number";
+}
+
+function parseRelated(json: string | null): RelatedLinks {
+  try {
+    const value: unknown = json ? JSON.parse(json) : null;
+    if (!isRecord(value)) return { recent: [], random: [] };
+    const list = (v: unknown) => (Array.isArray(v) ? v.filter(isRelatedLink) : []);
+    return { recent: list(value.recent), random: list(value.random) };
+  } catch {
+    return { recent: [], random: [] };
+  }
+}
+
 /** Called once in main.tsx, before the static tags are removed. */
 export function rememberPrerenderedPage(
   content: string | null,
@@ -70,12 +102,14 @@ export function rememberPrerenderedPage(
   testedJson: string | null = null,
   shellHtml: string | null = null,
   guidesJson: string | null = null,
+  relatedJson: string | null = null,
 ): void {
   description = content;
   shell = shellHtml;
   installs = parseList(installJson).filter((v): v is string => typeof v === "string");
   tested = parseList(testedJson).filter(isTestedEntry);
   guides = parseList(guidesJson).filter(isGuideLink);
+  related = parseRelated(relatedJson);
   // Only a page that names itself as canonical is pre-rendered for that URL. The 404.html
   // fallback boots index.html, whose description belongs to the homepage.
   path = canonical ? new URL(canonical, window.location.origin).pathname : null;
@@ -101,6 +135,11 @@ export function prerenderedTested(): TestedEntry[] {
 /** The /best/ guides that list the pre-rendered page's skill while the browser is on it, else []. */
 export function prerenderedGuides(): GuideLink[] {
   return onPrerenderedPage() ? guides : [];
+}
+
+/** The recently added and random links of the pre-rendered page while the browser is on it. */
+export function prerenderedRelated(): RelatedLinks {
+  return onPrerenderedPage() ? related : { recent: [], random: [] };
 }
 
 /** The pre-rendered page body (#root before React mounted) while the browser is on that

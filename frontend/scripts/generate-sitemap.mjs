@@ -21,6 +21,7 @@
  *   dist/sitemap-book.xml      — /book/ + 12 chapters + 4 appendices
  *   dist/sitemap-audit.xml     — /audit/{owner}/{repo}/, written by generate-audit-pages.mjs and
  *                                registered here (withdrawn 2026-08-16, back 2026-11-21)
+ *   /browse/ (the A–Z directory) goes into sitemap-top.xml with the other hub pages (2026-11)
  *
  * Run: node scripts/generate-sitemap.mjs
  */
@@ -283,6 +284,27 @@ function articleEntries(path, today) {
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>${lastmodLine(declaredDate(path, today))}
   </url>`];
+}
+
+/**
+ * The A–Z directory written by generate-browse-pages.mjs: /browse/ and every letter page. Hub
+ * pages like the categories, so they go into sitemap-top.xml. No lastmod: the lists change with
+ * the catalog on every build, and a date that moves on every build is the noise described above.
+ */
+function browseEntries() {
+  const root = "dist/browse";
+  if (!existsSync(`${root}/index.html`)) return [];
+  const paths = [];
+  const walk = (rel) => {
+    if (existsSync(`${root}${rel}index.html`)) paths.push(`/browse${rel}`);
+    for (const d of readdirSync(`${root}${rel}`, { withFileTypes: true })) if (d.isDirectory()) walk(`${rel}${d.name}/`);
+  };
+  walk("/");
+  return paths.sort().map((path) => `  <url>
+    <loc>${SITE}${path}</loc>
+    <changefreq>daily</changefreq>
+    <priority>${path === "/browse/" ? "0.7" : "0.5"}</priority>
+  </url>`);
 }
 
 /**
@@ -590,6 +612,9 @@ async function main() {
     hubEntries.push(...entries);
     if (entries.length) console.log(`${path}: into sitemap-top.xml`);
   }
+  const browse = browseEntries();
+  hubEntries.push(...browse);
+  if (browse.length) console.log(`/browse/: ${browse.length} directory pages into sitemap-top.xml`);
 
   // 6b-bis. sitemap-top.xml: hub pages first, then skills with stars >= 500. The i18n wrapper
   // declares the xhtml namespace the scenario entries' hreflang links need.

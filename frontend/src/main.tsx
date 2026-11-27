@@ -56,6 +56,7 @@ if (!isStaticOnlyPage) {
     document.querySelector('meta[name="ash:tested"]')?.getAttribute("content") ?? null,
     document.getElementById("root")?.innerHTML ?? null,
     document.querySelector('meta[name="ash:best"]')?.getAttribute("content") ?? null,
+    document.querySelector('meta[name="ash:related"]')?.getAttribute("content") ?? null,
   );
   staticDescription?.remove();
   if (staticCanonical?.getAttribute("href") === "https://agentskillshub.top/") {

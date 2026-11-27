@@ -24,6 +24,7 @@ import { SiteHeader } from "../components/SiteHeader";
 import { SiteFooter } from "../components/SiteFooter";
 import { ComboRecommendation } from "../components/ComboRecommendation";
 import { RelatedSkills } from "../components/RelatedSkills";
+import { RotatingLinks } from "../components/RotatingLinks";
 import { VerifiedBadge } from "../components/VerifiedBadge";
 import { ContactCreatorModal } from "../components/ContactCreatorModal";
 import {
@@ -488,6 +489,9 @@ export function SkillDetailPage() {
           currentRepo={detail.repo_full_name}
           stars={detail.stars}
         />
+
+        {/* Recently added + random pages, picked at build time (scripts/related-links.mjs) */}
+        <RotatingLinks />
       </main>
 
       <SiteFooter />

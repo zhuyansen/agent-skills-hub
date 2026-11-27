@@ -3,8 +3,11 @@
  *
  * Key changes from V1:
  *   - noindex for low-quality pages (stars < 50 or no README + no description)
- *   - "Same Category" links block (top 10 by stars in same category)
- *   - "Same Language" links block (top 5 by stars in same language)
+ *   - "Same Category" links block (top 5 by stars in same category; 10 until 2026-11)
+ *   - "Same Language" links block (top 3 by stars in same language; 5 until 2026-11)
+ *   - "Recently added" and "More from the catalog" blocks (related-links.mjs, 2026-11): every
+ *     page used to link the same few most-starred repos; these spread the links over every
+ *     indexable page, and the line under the page links the A–Z directory (/browse/).
  *
  * 2026-10-18, after reading Google's own docs (checked 2026-10-17):
  *   - The page opens with what only we have, the install command we found and the
@@ -26,6 +29,8 @@ import { guidesHtml, guidesIndex, guidesMeta } from "./skill-guides.mjs";
 import { catalogCounts, homeCountTexts, stampCatalogCounts, stampHomeCounts } from "./home-counts.mjs";
 import { homeListsHtml, stampHomeLists } from "./home-lists.mjs";
 import { skillPageLang, skillCopy, flagName, findingText } from "./skill-page-copy.mjs";
+import { SKILL_LINKS, buildDay, firstPicks, linkRing, randomPicks, recentByCategory } from "./related-links.mjs";
+import { browseFooter, relatedMeta, skillLinkBlocks } from "./related-links-html.mjs";
 import { skillTitle, headingClause, brandedHeading, skillDescription, fallbackTitle, TITLE_FALLBACK, DESCRIPTION_LIMIT } from "../src/lib/skillMeta.mjs";
 import { HOW_WE_GRADE_PATH, RULE_COUNT } from "../src/lib/howWeGradeMeta.mjs";
 import { readFileSync, mkdirSync, writeFileSync, existsSync } from "fs";
@@ -189,7 +194,19 @@ const SHARED_DESCRIPTION = new Map();
 // description that is equal, missing, or only differs past the cut at DESCRIPTION_LIMIT.
 const descriptionKey = (name, d) => skillDescription(name || "", d || "");
 
-function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex, languageIndex, topicIndex) {
+/**
+ * The recently-added and random links of one page: indexable pages only, never the page itself
+ * or a repo another block of the page already links.
+ */
+function rotatingLinks(skill, links, shown) {
+  const skip = (s) => s.repo_full_name === skill.repo_full_name || shown.has(s.repo_full_name);
+  const recent = firstPicks(links.recent.get(skill.category || "other"), SKILL_LINKS.recent, skip);
+  for (const s of recent) shown.add(s.repo_full_name);
+  const random = randomPicks(links.ring, links.day, skill.repo_full_name, SKILL_LINKS.random, skip);
+  return { recent, random };
+}
+
+function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex, languageIndex, topicIndex, links) {
   const {
     repo_full_name, repo_url, repo_name, author_name, author_avatar_url,
     stars, forks, description, category, language, score, license,
@@ -388,20 +405,25 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
     return { name: target.repo_name, slug: target.repo_full_name, score: c.compatibility_score, reason: c.reason };
   }).filter(Boolean).slice(0, 5);
 
-  // Same-category links (top 10, excluding self, only indexed pages)
+  // Same-category links (the most-starred few, excluding self, only indexed pages)
   const sameCatSkills = (categoryIndex.get(category) || [])
     .filter((s) => s.repo_full_name !== repo_full_name && shouldIndex(s))
-    .slice(0, 10);
+    .slice(0, SKILL_LINKS.popular);
 
-  // Same-language links (top 5, excluding self, only indexed pages)
+  // Same-language links (the most-starred few, excluding self, only indexed pages)
   const sameLangSkills = language
     ? (languageIndex.get(language) || [])
       .filter((s) => s.repo_full_name !== repo_full_name && shouldIndex(s))
-      .slice(0, 5)
+      .slice(0, SKILL_LINKS.language)
     : [];
 
   // Alternatives — topic overlap + similar size, different author, same category preferred
   const alternatives = findAlternatives(skill, categoryIndex, topicIndex, 6);
+
+  // Recently added + random: whatever the blocks above do not already link
+  const shown = new Set([...compLinks.map((x) => x.slug), ...alternatives, ...sameCatSkills, ...sameLangSkills]
+    .map((x) => (typeof x === "string" ? x : x.repo_full_name)));
+  const rotating = rotatingLinks(skill, links, shown);
 
   // JSON-LD: SoftwareSourceCode
   const jsonLd = JSON.stringify({
@@ -526,7 +548,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   <meta name="referrer" content="strict-origin-when-cross-origin" />${robotsMeta}
   <title>${esc(title)}</title>
   <meta name="description" content="${esc(metaDesc)}" />${installs.length ? `
-  <meta name="ash:install" content="${esc(JSON.stringify(installs))}" />` : ""}${testedMeta(tested)}${guidesMeta(guides)}
+  <meta name="ash:install" content="${esc(JSON.stringify(installs))}" />` : ""}${testedMeta(tested)}${guidesMeta(guides)}${relatedMeta(rotating)}
   <meta name="keywords" content="${esc(keywords)}" />
 
   <!-- Open Graph -->
@@ -632,6 +654,9 @@ ${breadcrumbLd}
       <!-- Same Language -->
       ${sameLangHtml}
 
+      <!-- Recently added + a daily random selection (related-links.mjs) -->
+      ${skillLinkBlocks(rotating, c, catText)}
+
       <!-- Trust / methodology (E-E-A-T: how the grade is made, who is responsible) -->
       ${trustBlock(lang)}
 
@@ -644,6 +669,7 @@ ${breadcrumbLd}
         }>${substitute ? c.viewAlt(substitute) : c.viewGithub}</a>
         <a href="/category/${esc(category)}/" style="display:inline-block;padding:8px 20px;background:#f0f0ff;color:#4f46e5;border-radius:8px;text-decoration:none;font-size:14px">${c.browseCat(catText)}</a>
       </div>
+      ${browseFooter([c.browseAll, c.browseAudits])}
     </div>
   </div>
   <noscript>
@@ -808,6 +834,7 @@ ${breadcrumbLd}
       <div style="margin:32px 0;text-align:center">
         <a href="/" style="display:inline-block;padding:10px 24px;background:#4f46e5;color:#fff;border-radius:8px;text-decoration:none;font-size:14px">Explore All Skills on Agent Skills Hub</a>
       </div>
+      ${browseFooter(["Every skill page, A–Z", "Every security audit, A–Z"])}
     </div>
   </div>
   <noscript>
@@ -892,6 +919,12 @@ async function main() {
     if (hasPage(s)) SHARED_DESCRIPTION.set(k, (SHARED_DESCRIPTION.get(k) || 0) + 1);
   }
 
+  // The pool the recently-added and random blocks draw from: pages this run writes without noindex.
+  const day = buildDay();
+  const linkable = skills.filter((s) => hasPage(s) && isIndexedSkillPage(s) && s.repo_full_name.split("/").length === 2);
+  const links = { day, ring: linkRing(linkable, day, (s) => s.repo_full_name), recent: recentByCategory(linkable) };
+  console.log(`Rotating links: ${linkable.length} indexable pages to draw from, seeded by ${day}`);
+
   // Generate skill pages
   let ok = 0;
   let skipped = 0;
@@ -920,7 +953,7 @@ async function main() {
     const skillComps = compositions.get(skill.id) || [];
     writeFileSync(
       join(dir, "index.html"),
-      buildSkillHtml(skill, assetTags, skillComps, skillById, categoryIndex, languageIndex, topicIndex),
+      buildSkillHtml(skill, assetTags, skillComps, skillById, categoryIndex, languageIndex, topicIndex, links),
     );
     ok++;
 
