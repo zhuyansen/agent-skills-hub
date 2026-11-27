@@ -15,4 +15,21 @@ Disallow: /*?repo=
 # 2026-11-09). Their images and videos stay open: the guides show them.
 Disallow: /best-runs/*.html$
 
+# User-triggered AI assistants fetching benchmark proof linked from /best/* guides.
+# Pages carry <meta name="robots" content="noindex"> so they stay out of search indexes,
+# while assistants can verify first-hand test runs without triggering robots violations.
+User-agent: ChatGPT-User
+User-agent: Claude-User
+User-agent: Perplexity-User
+User-agent: MistralAI-User
+User-agent: DuckAssistBot
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+Allow: /
+Allow: /best-runs/
+Disallow: /*?search=
+Disallow: /*?tab=
+Disallow: /*?page=
+Disallow: /*?sort=
+Disallow: /*?repo=
+
 Sitemap: https://agentskillshub.top/sitemap.xml

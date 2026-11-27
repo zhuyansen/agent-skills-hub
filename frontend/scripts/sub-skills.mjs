@@ -157,7 +157,7 @@ export function parentSectionHtml(repo, list, lang = "en") {
   const more = list.length > PARENT_LIST_SHOWN
     ? `<p style="font-size:13px;color:#64748b;margin:6px 0 0">${c.more(list.length - PARENT_LIST_SHOWN, link)}</p>`
     : "";
-  return `<section style="margin:20px 0">
+  return `<section data-ash-sub-skills="1" style="margin:20px 0">
         <h2 style="font-size:18px;color:#1e293b;margin-bottom:8px">${c.title(list.length)}</h2>
         <ul style="list-style:none;padding:0;margin:0;display:grid;gap:6px">
           ${shown}
