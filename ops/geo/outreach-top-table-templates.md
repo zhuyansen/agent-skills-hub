@@ -13,7 +13,7 @@
 - **Via Zenodo Web UI**: Open `https://zenodo.org/records/21292799` → **Edit** → **Related works** → add 3 rows → **Publish**:
   1. `Is documented by` → `https://agentskillshub.top/how-we-grade/` (`URL`, `Technical note`)
   2. `Is supplement to` → `https://agentskillshub.top` (`URL`, `Software`)
-  3. `Is referenced by` → `10.5281/zenodo.24387074` (`DOI`, `Dataset`)
+  3. `Is referenced by` → `10.5281/zenodo.24387073` (`DOI`, `Dataset`)
 
 ---
 

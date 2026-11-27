@@ -12,6 +12,13 @@ The works come from the public ORCID record, so a new paper is checked from the 
 For each DOI: doi.org (handle API), DataCite creators, OpenAlex authorships, Semantic Scholar, Wikidata.
 Missing from OpenAlex / Semantic Scholar / Wikidata is coverage, not an issue: indexing takes weeks.
 
+An OpenAlex author page is ours when it carries our ORCID, or when most of its works are ours (the ORCID
+works plus the concept DOI of each, from DataCite's IsVersionOf, because OpenAlex files the concept DOIs).
+A page that only shares the name is not: until 2026-11-27 any "Jason Zhu" counted, so a Stanford
+researcher's page holding one of our datasets was called ours and the fix said to merge it. Maintenance
+rule 1 fixes misfiled works only: no claiming, no merging. A same-name page whose works could not be read
+is unverified (PARTIAL_FETCH), never ours.
+
 Free APIs, no keys. Pure checks in `check_work` and `summarize`; `audit_academic_index` does the fetching.
 
   python3 ops/geo/academic_index.py           # readable report
@@ -34,6 +41,8 @@ ORCID = "0009-0000-2894-6285"
 PENDING_DAYS = 2            # a DOI younger than this may still be on its way to DataCite
 FIX_CREATORS = "jasonzhu.ai: ops/geo/zenodo/fix_creators.py（把记录号加进 RECORDS，先预览再 --apply）"
 LOG = "jasonzhu.ai: ops/geo/ENTITY-GRAPH-ITERATION-LOG.md"
+MISATTRIBUTED_FIX = ("DataCite 改对后等 OpenAlex 刷新（约两天）；还不对就提工单，请 OpenAlex 把 {work} 从 {author} 移走。"
+                     "只修挂错人，不认领、不合并作者页（维护规则 1）")
 
 HttpGet = Callable[..., tuple[int, dict[str, str], str]]
 
@@ -60,6 +69,24 @@ def has_our_orcid(ids: list[str]) -> bool:
 def zenodo_record(doi: str) -> str:
     m = re.match(r"10\.5281/zenodo\.(\d+)$", doi, re.I)
     return m.group(1) if m else ""
+
+
+def author_verdict(a: dict[str, Any], work: dict[str, Any]) -> tuple[str, str]:
+    """'ours', 'theirs' or 'unverified' for an authorship that carries our name, and the reason in words.
+
+    work["our_dois"]: our DOIs, versions and concepts; work["author_works"]: {author_id: [doi] or None}.
+    """
+    if a.get("orcid") and ORCID in a["orcid"]:
+        return "ours", "ORCID 一致"
+    dois = (work.get("author_works") or {}).get(a.get("author_id"))
+    if dois is None:
+        return "unverified", ""
+    ours = {d.lower() for d in work.get("our_dois") or ()}
+    total = len(dois)                                # one entry per work; "" for a work without a DOI
+    mine = sum(1 for d in dois if d and d.lower() in ours)
+    if total and mine * 2 > total:
+        return "ours", f"这个作者页 {total} 个作品里 {mine} 个是你的"
+    return "theirs", f"这个作者页 {total} 个作品里只有 {mine} 个是你的"
 
 
 def check_work(work: dict[str, Any], today: date) -> dict[str, Any]:
@@ -104,29 +131,36 @@ def check_work(work: dict[str, Any], today: date) -> dict[str, Any]:
     # 3. OpenAlex files it under us
     oa = work.get("openalex")
     our_authors: list[str] = []
+    unverified: list[str] = []
     if oa:
         for a in oa.get("authorships", []):
             if not is_ours(a.get("raw")):
                 continue
+            aid = a.get("author_id") or ""
             wrong_name = not is_ours(a.get("display_name"))
             wrong_orcid = bool(a.get("orcid")) and ORCID not in a["orcid"]
-            if wrong_name or wrong_orcid:
-                issues.append({"kind": "openalex_misattributed", "doi": doi,
-                               "detail": (f"OpenAlex 把署名「{a.get('raw')}」归到了别人 {a.get('author_id')}"
-                                          f"（{a.get('display_name')}"
-                                          + ("，挂的是别人的 ORCID" if wrong_orcid else "") + f"），作品 {oa.get('id')}"),
-                               "fix": ("DataCite 改对后等 OpenAlex 刷新（约两天）；还不对就在 openalex.org 关联 ORCID、"
-                                       f"认领自己的作者页后添加这条作品，或提工单让 {a.get('author_id')} 移走 {oa.get('id')}")})
-            else:
-                our_authors.append(a.get("author_id") or "")
+            verdict, why = ("theirs", "") if (wrong_name or wrong_orcid) else author_verdict(a, work)
+            if verdict == "ours":
+                our_authors.append(aid)
                 if not a.get("orcid"):
-                    notes.append(f"OpenAlex 作者 {a.get('author_id')} 没挂 ORCID（认领后会补上）")
+                    notes.append(f"OpenAlex 作者 {aid} 没挂 ORCID；{why}，算是你")
+            elif verdict == "unverified":
+                unverified.append(aid)
+                notes.append(f"OpenAlex 作者 {aid}「{a.get('display_name')}」同名、没挂 ORCID，作品列表没读到，没法确认是不是你")
+            else:
+                issues.append({"kind": "openalex_misattributed", "doi": doi,
+                               "detail": (f"OpenAlex 把署名「{a.get('raw')}」归到了别人 {aid}"
+                                          f"（{a.get('display_name')}"
+                                          + ("，挂的是别人的 ORCID" if wrong_orcid else "")
+                                          + (f"，{why}" if why else "") + f"），作品 {oa.get('id')}"),
+                               "fix": MISATTRIBUTED_FIX.format(work=oa.get("id"), author=aid)})
 
     return {
         "doi": doi, "title": work.get("title", ""), "published": work.get("published", ""),
         "resolves": work.get("handle"), "openalex": (oa or {}).get("id", "") if oa else "",
         "semantic_scholar": work.get("semantic_scholar"), "wikidata": work.get("wikidata", ""),
-        "our_openalex_authors": sorted(set(filter(None, our_authors))), "issues": issues, "notes": notes,
+        "our_openalex_authors": sorted(set(filter(None, our_authors))),
+        "unverified_openalex_authors": sorted(set(filter(None, unverified))), "issues": issues, "notes": notes,
     }
 
 
@@ -134,16 +168,19 @@ def summarize(rows: list[dict[str, Any]], orcid_author: str, fetch_errors: dict[
     n = len(rows)
     issues = [i for r in rows for i in r["issues"]]
     authors = sorted({a for r in rows for a in r["our_openalex_authors"]})
+    unverified = sorted({a for r in rows for a in r.get("unverified_openalex_authors", [])} - set(authors))
+    notes = []
     if len(authors) > 1:
-        issues.append({"kind": "openalex_split", "doi": "",
-                       "detail": f"OpenAlex 把你拆成了 {len(authors)} 个作者：{'、'.join(authors)}",
-                       "fix": "openalex.org 登录 → Settings → Link ORCID，认领后把另几个作者页的作品添加进来（添加即合并）"})
-    status = "ISSUES_FOUND" if issues else ("PARTIAL_FETCH" if fetch_errors or not n else "VERIFIED")
+        # A split is not one of the three errors rule 1 fixes; merging pages is what it rules out.
+        notes.append(f"OpenAlex 里你有 {len(authors)} 个作者页：{'、'.join(authors)}。按维护规则 1 不认领、不合并，作品挂对人就行")
+    status = "ISSUES_FOUND" if issues else ("PARTIAL_FETCH" if fetch_errors or not n or unverified else "VERIFIED")
     return {
         "node": "8_Academic_Index",
         "status": status,
         "works": rows,
         "issues": issues,
+        "notes": notes,
+        "openalex_unverified_authors": unverified,
         "coverage": {
             "works": n,
             "doi_resolves": sum(1 for r in rows if r["resolves"]),
@@ -199,8 +236,12 @@ def fetch_work(http_get: HttpGet, w: dict[str, str], wikidata: dict[str, str]) -
         work["datacite_creators"] = [{"name": c.get("name"),
                                       "ids": [n.get("nameIdentifier", "") for n in c.get("nameIdentifiers", [])]}
                                      for c in creators]
+        work["concept_dois"] = [str(r.get("relatedIdentifier", "")).lower()
+                                for r in dc["data"]["attributes"].get("relatedIdentifiers") or []
+                                if r.get("relationType") == "IsVersionOf" and r.get("relatedIdentifierType") == "DOI"]
     else:
         work["datacite_creators"] = None
+        work["concept_dois"] = []
 
     oa = _json(*http_get(f"https://api.openalex.org/works/doi:{doi}?select=id,authorships")[::2])
     work["openalex"] = None if not oa else {
@@ -215,6 +256,14 @@ def fetch_work(http_get: HttpGet, w: dict[str, str], wikidata: dict[str, str]) -
     work["semantic_scholar"] = True if code == 200 else (False if code == 404 else None)   # 429: unknown
     work["wikidata"] = wikidata.get(doi.upper(), "")
     return work
+
+
+def openalex_author_dois(http_get: HttpGet, author_id: str) -> list[str] | None:
+    """The DOIs of an OpenAlex author page's works, or None if they could not be read."""
+    data = _json(*http_get(f"https://api.openalex.org/works?filter=author.id:{author_id}&per-page=200&select=doi")[::2])
+    if data is None:
+        return None
+    return [str(r.get("doi") or "").lower().removeprefix("https://doi.org/") for r in data.get("results", [])]
 
 
 def wikidata_items(http_get: HttpGet, dois: list[str]) -> dict[str, str] | None:
@@ -237,10 +286,15 @@ def audit_academic_index(http_get: HttpGet, today: date | None = None, pause: fl
     if wikidata is None:
         errors["wikidata"] = "SPARQL unreadable"
         wikidata = {}
-    rows = []
+    fetched = []
     for w in works:
-        rows.append(check_work(fetch_work(http_get, w, wikidata), today))
+        fetched.append(fetch_work(http_get, w, wikidata))
         time.sleep(pause)                          # Semantic Scholar allows about one request a second without a key
+    our_dois = {w["doi"].lower() for w in fetched} | {c for w in fetched for c in w.get("concept_dois", [])}
+    same_name = sorted({a["author_id"] for w in fetched for a in (w.get("openalex") or {}).get("authorships", [])
+                        if a.get("author_id") and not a.get("orcid") and is_ours(a.get("raw")) and is_ours(a.get("display_name"))})
+    author_works = {aid: openalex_author_dois(http_get, aid) for aid in same_name}
+    rows = [check_work(w | {"our_dois": our_dois, "author_works": author_works}, today) for w in fetched]
     author = _json(*http_get(f"https://api.openalex.org/authors/orcid:{ORCID}?select=id")[::2])
     return summarize(rows, (author or {}).get("id", "").rsplit("/", 1)[-1], errors)
 
@@ -258,6 +312,8 @@ def print_report(node: dict[str, Any]) -> None:
         print(f"  ! {name}: {err}")
     for i in node["issues"]:
         print(f"\n  [{i['kind']}] {i['doi']}\n    {i['detail']}\n    fix: {i['fix']}")
+    for n in node.get("notes", []):
+        print(f"  · {n}")
     for r in node["works"]:
         for n in r["notes"]:
             print(f"  · {r['doi']}: {n}")

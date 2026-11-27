@@ -1,5 +1,5 @@
 {
-  "_about": "Ledger for the fact-consistency node of entity_audit.py. Live facts must agree on every node; snapshot facts may differ from the live count but must sit next to their DOI or report name. Edit this file when a fact really changes. Two live counts exist: directory_size (indexed, from the homepage, loose tolerance for hand-rounded copy) and graded_count (security-graded, from /ai-info/, tight tolerance). A number may match either.",
+  "_about": "Ledger for the fact-consistency node of entity_audit.py. Live facts must agree on every node; snapshot facts may differ from the live count but must sit next to their DOI or report name. Edit this file when a fact really changes. Two live counts exist: directory_size (indexed, from the homepage, loose tolerance for hand-rounded copy) and graded_count (security-graded, from /ai-info/, tight tolerance). A number is judged against the count its own clause names (graded or indexed); one whose clause names neither, or both, may match either (2026-11-27).",
   "live": {
     "directory_size": {
       "canonical_source": "site_home",
@@ -8,7 +8,11 @@
       "tolerance": 0.2
     },
     "launch_date": {
-      "value": "2026-03-08"
+      "value": "2026-03-08",
+      "not_in_sources": [
+        "company_home"
+      ],
+      "why": "the company page's foundingDate is the company's own, not the product's launch"
     },
     "security_rules": {
       "value": 44
@@ -44,6 +48,7 @@
       "name": "Supply-chain audit dataset (105K)",
       "count": 105000,
       "anchors": [
+        "24387073",
         "24387074",
         "24420920",
         "24432858",
@@ -89,7 +94,7 @@
   ],
   "snapshot_sources": [
     "zenodo_21292799",
-    "zenodo_24387074",
+    "zenodo_24387073",
     "wikidata_dataset"
   ],
   "other_counts": [

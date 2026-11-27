@@ -7,6 +7,12 @@ and that look-alike domains only appear in a disclaimer. A model that reads 280,
 on the site and 130K+ in the MCP server card has two facts to pick from, and may
 pick the stale one.
 
+A page is read as its visible text, its three summary tags (description, og:description,
+twitter:description) and its JSON-LD. Until 2026-11-27 the summary tags were dropped, so
+/ai-info/ called the index total "graded" in all three and nothing noticed. A count whose
+own clause says graded is judged against the graded count, one that says indexed against
+the index total; a count whose clause says neither, or both, may match either.
+
 Facts live in brand-facts.json:
   - live facts must agree everywhere (the directory size is read from the homepage,
     so it follows the real count instead of being typed in);
@@ -47,7 +53,13 @@ SOURCES: dict[str, tuple[str, str]] = {
     "wikidata_org": ("https://www.wikidata.org/wiki/Special:EntityData/Q141986406.json", "wikidata"),
     "wikidata_dataset": ("https://www.wikidata.org/wiki/Special:EntityData/Q141735092.json", "wikidata"),
     "zenodo_21292799": ("https://zenodo.org/api/records/21292799", "zenodo"),
-    "zenodo_24387074": ("https://zenodo.org/api/records/24387074", "zenodo"),
+    # The concept record answers with its newest version; 24387074 was version 1, superseded on 2026-11-21.
+    "zenodo_24387073": ("https://zenodo.org/api/records/24387073", "zenodo"),
+    # The other two sites state the product's facts too: on 2026-11-27 the company's home page still said
+    # 42 rules (the ledger says 44) and no check read it.
+    "company_home": ("https://gosailglobal.com/", "html"),
+    "jasonzhu_about": ("https://jasonzhu.ai/en/about", "html"),
+    "jasonzhu_llms_txt": ("https://jasonzhu.ai/llms.txt", "text"),
 }
 
 MONTHS = "January|February|March|April|May|June|July|August|September|October|November|December"
@@ -65,15 +77,36 @@ RULES_RE = re.compile(r"(?<![\w.])(\d{1,3})[- ](?:(?:published|static|security|g
 FOUNDER_RE = re.compile(r"(?:founded by|founder)[:,]?\s+(?:and maintainer\s+)?([A-Z][a-z]+(?: [A-Z][a-z]+)?)")
 DISCLAIMER_RE = re.compile(r"not affiliated|unaffiliated|\bnor\b|no affiliation|无关|无任何关联|没有关联|不隶属|非本平台|not the same", re.I)
 
+# Which live count a number names, read from its own clause (2026-11-27).
+GRADED_WORDS = re.compile(r"grad(?:ed|es|ing)\b|评级", re.I)
+INDEXED_WORDS = re.compile(r"\bindex(?:ed|es|ing)?\b|收录", re.I)
+# "·", "|" and dashes separate items in a tagline ("267,000+ projects · security-graded + quality-scored").
+CLAUSE_END = re.compile(r"[.;:!?。；：！？,，()（）\n·•|—–]")
+COUNT_LABEL = {"directory_size": "indexed", "graded_count": "graded"}
+SUMMARY_TAGS = ("description", "og:description", "twitter:description")
+META_TAG = re.compile(r"<meta\b[^>]*>", re.I)
+META_ATTR = re.compile(r'([\w:-]+)\s*=\s*(?:"([^"]*)"|\'([^\']*)\')')
+
 
 # ---------------------------------------------------------------- text extraction
 
+def meta_summaries(body: str) -> list[str]:
+    """A page's description, og:description and twitter:description, each text once."""
+    out: dict[str, None] = {}
+    for tag in META_TAG.findall(body):
+        attrs = {m.group(1).lower(): m.group(2) if m.group(2) is not None else m.group(3) for m in META_ATTR.finditer(tag)}
+        if (attrs.get("name") or attrs.get("property") or "").lower() in SUMMARY_TAGS and attrs.get("content"):
+            out[attrs["content"]] = None
+    return list(out)
+
+
 def html_to_text(body: str) -> str:
-    """Visible text plus JSON-LD (structured claims count as claims)."""
+    """Visible text, the summary tags and JSON-LD (structured claims count as claims)."""
     ld = " ".join(re.findall(r'<script[^>]+application/ld\+json[^>]*>(.*?)</script>', body, re.I | re.S))
+    summaries = " . ".join(meta_summaries(body))
     body = re.sub(r"<(script|style|noscript)\b.*?</\1>", " ", body, flags=re.I | re.S)
     body = re.sub(r"<[^>]+>", " ", body)
-    return re.sub(r"\s+", " ", html_lib.unescape(body + " " + ld)).strip()
+    return re.sub(r"\s+", " ", html_lib.unescape(body + " . " + summaries + " . " + ld)).strip()
 
 
 def body_to_text(kind: str, body: str) -> str:
@@ -132,6 +165,26 @@ def snippet(text: str, start: int, end: int, size: int = 70) -> str:
     return "…" + text[max(0, start - size): end + size].strip() + "…"
 
 
+def count_field(text: str, start: int, end: int) -> str | None:
+    """'graded_count' or 'directory_size' when the number's own clause says which, else None.
+
+    "287,000+ skills & MCP servers graded on 44 rules" names the graded count; "Indexed Repositories
+    287,000+" the index; "287,000+ skills, every popular one security-graded" neither: the comma ends
+    the number's clause before "graded".
+    """
+    before = text[max(0, start - 40):start]
+    cuts = list(CLAUSE_END.finditer(before))
+    if cuts:
+        before = before[cuts[-1].end():]
+    after = text[end:end + 40]
+    cut = CLAUSE_END.search(after)
+    if cut:
+        after = after[:cut.start()]
+    clause = before + text[start:end] + after
+    graded, indexed = bool(GRADED_WORDS.search(clause)), bool(INDEXED_WORDS.search(clause))
+    return "graded_count" if graded and not indexed else "directory_size" if indexed and not graded else None
+
+
 # ---------------------------------------------------------------- the check
 
 LIVE_COUNTS = ("directory_size", "graded_count")
@@ -180,11 +233,20 @@ def check_texts(texts: dict[str, tuple[str, str]], ledger: dict[str, Any]) -> di
             ctx = window(text, m.start(), m.end())
             if any(oc["count"] == value and oc["context"] in ctx for oc in ledger.get("other_counts", [])):
                 continue
-            if any(v and abs(value - v) <= live[f]["tolerance"] * v for f, v in live_values.items()):
+            field = count_field(text, m.start(), m.end())
+            matches = {f for f, v in live_values.items() if v and abs(value - v) <= live[f]["tolerance"] * v}
+            if matches and (field is None or field in matches):
                 continue
+            # A snapshot next to its DOI is judged as the snapshot, even when it also lands near a live count.
             snap = next((sp for sp in ledger["snapshots"] if abs(value - sp["count"]) <= 0.01 * sp["count"]), None)
             if snap and (is_snapshot_source or any(a in ctx for a in snap["anchors"])):
                 snapshot_hits.append({"source": name, "snapshot": snap["name"], "found": m.group(0).strip()})
+                continue
+            if field and matches:
+                other = next(iter(matches))
+                add("skill_count", name, url, m.group(0).strip(), f"~{live_values[field]:,}+ ({field})", text,
+                    m.start(), m.end(), f"the sentence calls it {COUNT_LABEL[field]}, but it is the "
+                                        f"{COUNT_LABEL[other]} count (~{live_values[other]:,}+)")
                 continue
             if is_snapshot_source:
                 continue  # a dataset record describing its own contents
@@ -193,7 +255,8 @@ def check_texts(texts: dict[str, tuple[str, str]], ledger: dict[str, Any]) -> di
             add("skill_count", name, url, m.group(0).strip(), expected_counts, text, m.start(), m.end(), why)
 
         # 2. launch date (lower precision is fine if it agrees: 2026-03 vs 2026-03-08)
-        for m in DATE_RE.finditer(text):
+        own_dates = name in live["launch_date"].get("not_in_sources", [])
+        for m in ([] if own_dates else DATE_RE.finditer(text)):
             found = normalize_date(m.group(1))
             if not live["launch_date"]["value"].startswith(found):
                 add("launch_date", name, url, found, live["launch_date"]["value"], text, m.start(), m.end(),

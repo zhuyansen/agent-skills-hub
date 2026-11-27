@@ -55,8 +55,9 @@ def print_entity_edges():
     """Entity-audit node 1, relation rules: the founder, Agent Skills Hub and the operating company stay apart.
 
     Until 2026-11-24 the site's JSON-LD described the three as one thing (the product carried the
-    company's legal name and the founder's own accounts). ops/geo/entity_edges.py checks the live pages
-    against nine rules; a missing file means the check did not run, not that the graph is clean.
+    company's legal name and the founder's own accounts). ops/geo/entity_edges.py checks every page
+    template against its rules; a missing file means the check did not run, not that the graph is clean.
+    A pass names the pages it covers: on 11-26 「9 条都过」 covered 12 pages while 36 others broke rule 8.
     """
     ee = load("geo/out/entity-edges.json")
     if not ee:
@@ -66,18 +67,46 @@ def print_entity_edges():
     issues = ee.get("issues") or []
     if issues:
         print(f"\n## ⚠️ 实体关系有问题 {len(issues)} 处(人、ASH、运营公司又混到一起了)\n")
+        by_rule = {}
         for i in issues:
-            print(f"- [ ] **第 {i['rule']} 条** `{i['page']}` {i['node']}: {i['detail']}")
-            print(f"  - 怎么修: {i['fix']}")
+            by_rule.setdefault(i["rule"], []).append(i)
+        for rule, items in sorted(by_rule.items()):
+            pages = sorted({i["page"] for i in items})
+            tops = {}
+            for p in pages:
+                top = "/" + p.strip("/").split("/")[0] + "/" if p.strip("/") else "/"
+                tops[top] = tops.get(top, 0) + 1
+            where = "、".join(f"{k} {v}" for k, v in sorted(tops.items(), key=lambda kv: -kv[1])[:6])
+            first = items[0]
+            print(f"- [ ] **第 {rule} 条** · {len(pages)} 页({where}) · 例 `{first['page']}` {first['node']}: {first['detail']}")
+            print(f"  - 怎么修: {first['fix']}")
         print(f"\n> 规则见 `ops/geo/entity_edges.py` 文件头;来龙去脉在 {ee.get('log', 'jasonzhu.ai 的实体迭代日志')}。")
     section("🔗 实体关系(人、ASH、运营公司分开)")
     errs = ee.get("fetch_errors") or {}
-    state = f"✅ {ee.get('rules', 9)} 条都过" if not issues else f"⚠️ {len(issues)} 处不合规"
+    rules = ee.get("rules", 9)
+    if issues:
+        state = f"⚠️ {len(issues)} 处不合规"
+    elif errs:
+        state = f"⚠️ 只查到一部分,查到的页面上 {rules} 条都过"
+    else:
+        state = f"✅ {rules} 条都过"
+    cov = ee.get("coverage") or {}
+    where = ("按模板 " + "、".join(f"{k} {v['checked']}/{v['in_sitemap']}" for k, v in cov.items())
+             if cov else f"没读到 sitemap,只有主页面和 {len(ee.get('blog_pages') or [])} 篇博客")
     prof = ee.get("profiles")
-    print(f"- {state} · 查了 {ee.get('pages_checked', 0)} 个页面({len(ee.get('blog_pages') or [])} 篇博客)、"
+    missed = list(errs)
+    print(f"- {state} · 查了 {ee.get('pages_checked', 0)} 个页面({where})、"
           f"{ee.get('blocks', 0)} 段 JSON-LD · 本人档案以 jasonzhu.ai 为准"
           + (f"({prof} 个)" if prof is not None else "(没读到,第 2 条没查)")
-          + (f" · ⚠️ 没抓到: {', '.join(errs)}" if errs else ""))
+          + (f" · ⚠️ 没抓到: {', '.join(missed[:5])}" + (f" 等 {len(missed)} 处" if len(missed) > 5 else "") if missed else ""))
+    frozen = ee.get("frozen") or []
+    if frozen:
+        per_rule = {}
+        for i in frozen:
+            per_rule[i["rule"]] = per_rule.get(i["rule"], 0) + 1
+        print(f"- 🧊 冻结中 {len(frozen)} 处(" + "、".join(f"第 {k} 条 {v}" for k, v in sorted(per_rule.items()))
+              + f"):GIGALinks 冻结页到 {ee.get('frozen_until', '2027-01-01')} 不改,修法在分支 "
+              f"`{ee.get('frozen_branch', 'entity/gigalinks-frozen-fixes')}`,读完后合并;过了这天还在就算问题")
 
 
 def print_fact_consistency():

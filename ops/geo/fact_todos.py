@@ -45,7 +45,10 @@ EXTERNAL = {
     "wikidata_org": ("Wikidata Q141986406", "https://www.wikidata.org/wiki/Q141986406 手动编辑"),
     "wikidata_dataset": ("Wikidata Q141735092", "https://www.wikidata.org/wiki/Q141735092 手动编辑"),
     "zenodo_21292799": ("Zenodo 21292799", "Zenodo 上点 Edit 改描述（不必发新版本）"),
-    "zenodo_24387074": ("Zenodo 24387074", "Zenodo 上点 Edit 改描述（不必发新版本）"),
+    "zenodo_24387073": ("Zenodo 24387073（总 DOI，读的是最新版本）", "Zenodo 上点 Edit 改描述（不必发新版本）"),
+    "company_home": ("公司官网 gosailglobal.com 首页", "源码不在 git 里；改完先和线上逐页比对，再用 wrangler 部署"),
+    "jasonzhu_about": ("jasonzhu.ai /en/about", "jasonzhu.ai 仓库 src/app/[lang]/about/page.tsx，推 main 后 Vercel 部署"),
+    "jasonzhu_llms_txt": ("jasonzhu.ai /llms.txt", "jasonzhu.ai 仓库 src/app/llms.txt/route.ts，推 main 后 Vercel 部署"),
 }
 
 

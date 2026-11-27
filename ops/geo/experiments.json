@@ -86,6 +86,10 @@
   {
    "date": "部署日（待填）",
    "note": "新增 /browse/ A–Z 目录：列出全部可索引 /skill/ 页和全部 /audit/ 页，每页最多 500 条，进 sitemap-top.xml；/skill/、/audit/、/category/ 静态页底部和 React 页脚加链接（React 页脚在 GIGALinks 冻结页上不显示）。"
+  },
+  {
+   "date": "2026-11-27",
+   "note": "实体关系（全站，无对照组，不碰 GIGALinks 冻结页）：蓝皮书 12 页的作者改成引用 jasonzhu.ai/#person；/about/、/ai-info/、/skill/、/audit/、/compare/、子技能页和 11 篇博客的 twitter:site 从本人 @GoSailGlobal 改成产品 @agentskillshub（博客另写 twitter:creator @GoSailGlobal）；/about/ 的本人别名和 jasonzhu.ai 对齐，/ai-info/ 的 founder 只留 @id、name、url；/ai-info/ 三处摘要把收录总数从「graded」改成「indexed」；配套数据集换成总 DOI 24387073（/ai-info/、llms.txt、CITATION.cff）。冻结页（全部 /best/、/、/zh/、/how-we-grade/、/analyzer/、/agent-skills-directories/、/daily/、/stats/、/blog/securing-117k-ai-skills/ 和 SPA 外壳 index.html）的同类修复在分支 entity/gigalinks-frozen-fixes，2027-01-02 合并。检查同日扩到每种页面模板（ops/geo/entity_edges.py 12 条）。"
   }
  ]
 }

@@ -129,7 +129,7 @@ def audit_entity_home() -> dict[str, Any]:
             **g,
             "has_disambiguation_dev": "agentskillshub.dev" in html,
             "has_doi_21292799": "10.5281/zenodo.21292799" in html,
-            "has_doi_24387074": "10.5281/zenodo.24387074" in html,
+            "has_doi_24387073": "10.5281/zenodo.24387073" in html,
             "has_wikidata_q141986406": "Q141986406" in html,
         }
         pages.append(page_info)
@@ -140,7 +140,7 @@ def audit_entity_home() -> dict[str, Any]:
                 "dataset_id_present": f"{SITE}/#dataset" in g["at_ids"],
                 "disambiguation_visible": "agentskillshub.dev" in html,
                 "doi_21292799_present": "10.5281/zenodo.21292799" in html,
-                "doi_24387074_present": "10.5281/zenodo.24387074" in html,
+                "doi_24387073_present": "10.5281/zenodo.24387073" in html,
                 "no_2024_founding_ambiguity": "since 2024" not in html.lower(),
             }
 
@@ -148,7 +148,7 @@ def audit_entity_home() -> dict[str, Any]:
     status = "VERIFIED" if (
         home_signals.get("org_id_present")
         and home_signals.get("cross_site_person_id_present")
-        and home_signals.get("doi_24387074_present")
+        and home_signals.get("doi_24387073_present")
         and len(shared_ids) >= 2
     ) else "PARTIAL"
 
@@ -213,7 +213,8 @@ def audit_wikidata() -> dict[str, Any]:
 
 
 def audit_academic_graph() -> dict[str, Any]:
-    dois = ["10.5281/zenodo.21292799", "10.5281/zenodo.24387074"]
+    # The companion dataset by its concept DOI (maintenance rule 2); 24387074 was version 1, superseded 2026-11-21.
+    dois = ["10.5281/zenodo.21292799", "10.5281/zenodo.24387073"]
     records = []
     all_bidirectional = True
     for doi in dois:
@@ -287,7 +288,7 @@ def audit_ecosystem_and_edge() -> tuple[dict[str, Any], dict[str, Any]]:
         "npm_packages": pkgs,
         "mcp_server_card_http": sc_code,
         "llms_txt_http": llms_code,
-        "llms_txt_cites_24387074": "24387074" in llms_body if llms_code == 200 else False,
+        "llms_txt_cites_24387073": "24387073" in llms_body if llms_code == 200 else False,
     }
 
     rb_code, _, rb_body = http_get(f"{SITE}/robots.txt")
@@ -309,7 +310,7 @@ def run_serp_probes() -> dict[str, Any]:
         return {"status": "SKIPPED_NO_GOANYAPI_API_KEY"}
     probes = [
         ("doi_21292799", '"10.5281/zenodo.21292799"'),
-        ("doi_24387074", '"10.5281/zenodo.24387074"'),
+        ("doi_24387073", '"10.5281/zenodo.24387073"'),
         ("wikidata_q141986406", '"Q141986406" "agentskillshub"'),
         ("third_party_mentions", '"agentskillshub.top" -site:agentskillshub.top'),
         ("github_badge_adoption", 'site:github.com "agentskillshub.top/badge/"'),
@@ -368,7 +369,7 @@ def run_forrester_split_probe() -> dict[str, Any]:
                 "mentions_jason_zhu": "jason zhu" in low or "yansen" in low,
                 "mentions_2026_03_08": "2026-03-08" in low or "march 8, 2026" in low,
                 "mentions_gosailglobal": "gosailglobal" in low or "brickai" in low,
-                "mentions_zenodo_doi": "21292799" in low or "24387074" in low,
+                "mentions_zenodo_doi": any(d in low for d in ("21292799", "21292798", "24387073", "24387074")),
                 "correctly_disambiguates_dev": ("not affiliated" in low or "unaffiliated" in low) and "agentskillshub.dev" in low,
             },
             "answer_preview": ans[:420],
