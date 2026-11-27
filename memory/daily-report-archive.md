@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-11-27
+1. nexu-io/opengame — 🆕 利用多种 AI 编码智能体快速构建并发布网页游戏，提供百款游戏模板供二次创作。（875★ 458.7/day）
+2. chanke17/KuroCat — 🆕 在桌面提供原生轻量化动态猫咪助手，支持 OBS 推流与多平台交互，无需复杂配置。（672★ 156.2/day）
+3. erkamyaman/rea-games — 🆕 通过行为规格描述实现游戏逆向工程，支持在主流游戏引擎中还原帧级游戏逻辑。（307★ 148.4/day）
+4. EL4CTEO/shrink-anything — 🆕 自动分析并剔除代码库中的无效文件、冗余依赖与死代码，确保在测试通过的前提下瘦身。（268★ 72.7/day）
+5. Moh4696/inkworks-skill — 🆕 为 AI 智能体增加交互式 3D 原理解析页生成能力，以工程制图风格展示工作流程。（97★ 49.6/day）
+6. lukendeasy/open-diagram — 🆕 利用 Python 构建块自动生成具备自校验布局能力的复杂架构图表。（405★ 47.0/day）
+7. Logiaweb/limora-unslop — 🆕 一键调用 AI 为项目生成专属图标、横幅及对比演示视频，优化项目视觉与交付感。（70★ 33.4/day）
+8. op7418/guizang-magi2-skill — 🆕 实现视频转代码与代码驱动视频动作的闭环控制，深度优化提示词并修复 MCP 兼容性。（62★ 31.2/day）
+9. DeadInternetStudios/100x-engineer-skill — 🆕 整合前 Cursor 工程师经验，将自然语言提示词转化为经形式化验证的生产级代码。（117★ 30.1/day）
+10. mutonby/openshorts — 基于 AI 实时监测视频高光点，实现长视频到 9:16 短视频的自动剪辑与配音。（9951★ 29.0/day）
+🎯 今日趋势：近期智能体技能开发向 **游戏自动化构建**、**项目代码质量优化** 以及 **多模态交互辅助** 三个维度深度扩展。
+> 注：GitHub Actions 自动生成（gemini-4-hydrogen 挑选和撰写，数据和格式由脚本核对）。去重范围＝repo 内 archive 全部 151 个日期段，比对 1,495 个 owner/repo。单连接查询（`connect_timeout=15`、`statement_timeout=30000`、NullPool）一次：`first_seen ≥72h`、stars ≥20 得 150 条；切回 48h 剩 87 条、去重后 86 条，未放宽到 72h。velocity = stars ÷ max(距 created_at 天数, 1)，按 velocity 往下用 `gh api` 抽查 26 个。**代码硬规则剔除**：kofimehta06/capture-one-23：刷星嫌疑：118★ 却 0 个 fork；11 个 security_grade 为 unknown。**模型排除项**：①1276486/ZERO-X-Bypass-Jailbreak（103★ 11.1/day）：包含规避风控、免杀、渗透测试及远控工具等内容，不符合安全推荐标准。。**轻红旗**（保留）：chanke17/KuroCat：该用户粉丝较少，但有活跃的在线网页及开源贡献记录。；erkamyaman/rea-games：作者拥有多个高星项目，项目完整度与技术文档规范。。🆕 判定＝created_at 距今 14 天内：opengame（1.9 天）、KuroCat（4.3 天）、rea-games（2.1 天）、shrink-anything（3.7 天）、inkworks-skill（2.0 天）、open-diagram（8.6 天）、limora-unslop（2.1 天）、guizang-magi2-skill（2.0 天）、100x-engineer-skill（3.9 天）。security_grade：入选 10 仓为 safe。表中 stars 为数据库快照。
+
+---
+
 ## 2026-11-26
 1. usetuff/tuff — 🆕 整合项目管理、文档与聊天，让你的团队与 AI 智能体在同一个平台上协作完成任务。（215★ 17.4/day）
 2. byttrade/bytx-skills — 🆕 为 AI 智能体提供加密货币交易技能，通过 MCP 服务与 CLI 实现安全可控的量化操作。（90★ 11.6/day）
