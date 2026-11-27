@@ -116,7 +116,8 @@
     "MoaKK/AI-Code-Reviewer",
     "n24q02m/better-code-review-graph",
     "wdnmd1265/Audison",
-    "minetechnic2012-lang/claude-ops-inspector"
+    "minetechnic2012-lang/claude-ops-inspector",
+    "mturac/simulacra"
    ]
   },
   "related": [
@@ -2453,7 +2454,9 @@
     "adamd9/skill-image-gen",
     "guilhermealvestech/codex-imagegen",
     "grandamenium/nano-banana-2-skill",
-    "hatchlight/hatchlight"
+    "hatchlight/hatchlight",
+    "jakubcurik/nano-banana",
+    "legolev/mediamcp"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -3187,7 +3190,8 @@
     "sunflower-of-parchman/codex-hygiene",
     "Alice53211/auth-codex-plugin",
     "Matchameleon/gpt-codex-plugin",
-    "angieruiz17/codex-gpt-plugin"
+    "angieruiz17/codex-gpt-plugin",
+    "mturac/everything-openai-codex"
    ]
   },
   "related": [
@@ -5177,7 +5181,9 @@
     "SadhvikChirunomula/measured-humanizer",
     "LCY000/zh-tw-writing",
     "Logiaweb/limora-unslop",
-    "Yan-W-u/zh-novel-writing-toolkit"
+    "Yan-W-u/zh-novel-writing-toolkit",
+    "ormeilu/avoid-ai-writing-russian",
+    "igotlinux/humanizeai-cli"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -6238,7 +6244,8 @@
     "refinist/lanhu-context-mcp",
     "sergiobanhos/generate-icons",
     "pycodebr/hedesign",
-    "yashh1323/atelier-ui"
+    "yashh1323/atelier-ui",
+    "webkubor/logo-brand-designer"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -7369,7 +7376,10 @@
     "realihang/academic-ppt-skill",
     "jeonghun-app/pptx-deck-skill",
     "jialiruo-png/economics-empirical-ppt-skill",
-    "przntperfect/prznt-deck"
+    "przntperfect/prznt-deck",
+    "123zhaozheng/SlideForge",
+    "xiaoli1999/li-talk-skills",
+    "voidful/Slider"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -9523,7 +9533,14 @@
     "ishu86/after-effects-mcp",
     "davidalfasunarna/3d-engineering-video-claude-skills",
     "iamaanahmad/agents-video-editing-skills",
-    "AmirMakir/papertalk"
+    "AmirMakir/papertalk",
+    "gnawbit/tabretake",
+    "jasonc00person/claude-copy-style",
+    "jasonc00person/claude-video-effects",
+    "muchuanhung/make-demo-video",
+    "Abm32/runsight",
+    "Ding200602/video-shotcraft",
+    "aumpny/lemo-opuscar"
    ],
    "sub_skills": [
     {

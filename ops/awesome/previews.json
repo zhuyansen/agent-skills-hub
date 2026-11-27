@@ -63,6 +63,14 @@
   "type": "image/webp",
   "bytes": 8789556
  },
+ "123zhaozheng/SlideForge": {
+  "repo": "123zhaozheng/SlideForge",
+  "url": "https://raw.githubusercontent.com/123zhaozheng/SlideForge/HEAD/docs/assets/example-1-strategy-house.jpg",
+  "alt": "Example 1 rendered",
+  "score": 1.7,
+  "type": "image/jpeg",
+  "bytes": 246765
+ },
  "124zhe/xigua-msvideo-skill": {
   "repo": "124zhe/xigua-msvideo-skill",
   "url": "https://raw.githubusercontent.com/124zhe/xigua-msvideo-skill/HEAD/skills/youtube-ms-paint-images/assets/frame-007_00m11s839ms.png",
@@ -230,6 +238,14 @@
   "score": -2.5,
   "type": "image/png",
   "bytes": 287639
+ },
+ "Abm32/runsight": {
+  "repo": "Abm32/runsight",
+  "url": "https://raw.githubusercontent.com/Abm32/runsight/HEAD/docs/demo.gif",
+  "alt": "RunSight exploring a sample app and producing an edited demo video",
+  "score": 4.9,
+  "type": "image/gif",
+  "bytes": 3357565
  },
  "AbubakrChan/product-launch-motion": {
   "repo": "AbubakrChan/product-launch-motion",
@@ -3071,6 +3087,14 @@
   "type": "image/png",
   "bytes": 161081
  },
+ "aumpny/lemo-opuscar": {
+  "repo": "aumpny/lemo-opuscar",
+  "url": "https://raw.githubusercontent.com/aumpny/lemo-opuscar/HEAD/docs/my-style-before.jpg",
+  "alt": "A library style: Swiss Motion Graphics",
+  "score": 1.9,
+  "type": "image/jpeg",
+  "bytes": 54669
+ },
  "aunysillyme/lean-browser-use": {
   "repo": "aunysillyme/lean-browser-use",
   "url": "https://raw.githubusercontent.com/aunysillyme/lean-browser-use/HEAD/docs/trailer.gif",
@@ -4455,6 +4479,14 @@
   "type": "image/png",
   "bytes": 352146
  },
+ "gnawbit/tabretake": {
+  "repo": "gnawbit/tabretake",
+  "url": "https://raw.githubusercontent.com/gnawbit/tabretake/HEAD/docs/hero.gif",
+  "alt": "TabRetake recording Vikunja: creating a task, dragging it across a Kanban board,",
+  "score": 2.05,
+  "type": "image/gif",
+  "bytes": 424761
+ },
  "gnipbao/knowledge-cat-ppt-skill": {
   "repo": "gnipbao/knowledge-cat-ppt-skill",
   "url": "https://raw.githubusercontent.com/gnipbao/knowledge-cat-ppt-skill/HEAD/docs/images/mode-native-pptx.png",
@@ -5183,6 +5215,14 @@
   "type": "image/png",
   "bytes": 216008
  },
+ "jakubcurik/nano-banana": {
+  "repo": "jakubcurik/nano-banana",
+  "url": "https://raw.githubusercontent.com/jakubcurik/nano-banana/HEAD/assets/terminal.png",
+  "alt": "Terminal output of one generation: the model, an estimated cost of 0.0504 USD, t",
+  "score": 1.45,
+  "type": "image/png",
+  "bytes": 187362
+ },
  "jammaru/launch-video-craft": {
   "repo": "jammaru/launch-video-craft",
   "url": "https://raw.githubusercontent.com/jammaru/launch-video-craft/HEAD/assets/agent-demo.webp",
@@ -5654,6 +5694,14 @@
   "score": 0.0,
   "type": "image/jpeg",
   "bytes": 56392
+ },
+ "legolev/mediamcp": {
+  "repo": "legolev/mediamcp",
+  "url": "https://raw.githubusercontent.com/legolev/mediamcp/main/assets/banner.png",
+  "alt": "mediamcp",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 892214
  },
  "lemomo-ai/lemo-animi": {
   "repo": "lemomo-ai/lemo-animi",
@@ -6127,6 +6175,14 @@
   "type": "image/jpeg",
   "bytes": 119610
  },
+ "muchuanhung/make-demo-video": {
+  "repo": "muchuanhung/make-demo-video",
+  "url": "https://raw.githubusercontent.com/muchuanhung/make-demo-video/HEAD/examples/showreel/demo.gif",
+  "alt": "make-demo-video 的 20 秒 showreel：播放鍵攤開成分鏡板，帶過三種剪法、只重畫一幕與 20 秒重算，再收回播放鍵",
+  "score": 5.0,
+  "type": "image/gif",
+  "bytes": 4842454
+ },
  "mucsbr/ppt-agent-workflow-san": {
   "repo": "mucsbr/ppt-agent-workflow-san",
   "url": "https://raw.githubusercontent.com/mucsbr/ppt-agent-workflow-san/HEAD/2.png",
@@ -6422,6 +6478,14 @@
   "score": 4.7,
   "type": "image/gif",
   "bytes": 2601235
+ },
+ "ormeilu/avoid-ai-writing-russian": {
+  "repo": "ormeilu/avoid-ai-writing-russian",
+  "url": "https://raw.githubusercontent.com/ormeilu/avoid-ai-writing-russian/HEAD/docs/demo.gif",
+  "alt": "Детектор aiw-ru находит 14 примет ИИ-стиля в рекламном абзаце, ставит правке 0/1",
+  "score": 4.55,
+  "type": "image/gif",
+  "bytes": 483167
  },
  "ortegarod/openclaw-vps-deploy": {
   "repo": "ortegarod/openclaw-vps-deploy",
@@ -7671,6 +7735,14 @@
   "type": "image/jpeg",
   "bytes": 158147
  },
+ "voidful/Slider": {
+  "repo": "voidful/Slider",
+  "url": "https://raw.githubusercontent.com/voidful/Slider/HEAD/assets/readme/phone-present.jpg",
+  "alt": "Phone remote: notes, timer, previews, and Back and Next",
+  "score": 1.95,
+  "type": "image/jpeg",
+  "bytes": 145485
+ },
  "w1163222589-coder/slide-image-to-editable-pptx": {
   "repo": "w1163222589-coder/slide-image-to-editable-pptx",
   "url": "https://raw.githubusercontent.com/w1163222589-coder/slide-image-to-editable-pptx/HEAD/assets/screenshots/10.jpg?v=20260607-1302",
@@ -7862,6 +7934,14 @@
   "score": -1.45,
   "type": "image/png",
   "bytes": 522783
+ },
+ "xiaoli1999/li-talk-skills": {
+  "repo": "xiaoli1999/li-talk-skills",
+  "url": "https://raw.githubusercontent.com/xiaoli1999/li-talk-skills/HEAD/docs/images/edit.jpg",
+  "alt": "在线编辑：双击路牌上的「投茶」进入改字，旁边浮出字号、颜色、对齐工具条，顶部是改动数、撤销重做和「通知 AI 修改」",
+  "score": -0.7,
+  "type": "image/jpeg",
+  "bytes": 178603
  },
  "xieziyu/duetlens": {
   "repo": "xieziyu/duetlens",

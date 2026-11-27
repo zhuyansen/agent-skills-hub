@@ -10510,5 +10510,131 @@
    "general": 0.12
   },
   "kind": "explainer"
+ },
+ {
+  "repo": "gnawbit/tabretake",
+  "stars": 45,
+  "description": "Create repeatable web app demos, README GIFs and 9:16 videos from editable JSON steps or existing screen recordings. Local CLI and Agent Skill for Claude Code, Codex and Cursor.",
+  "scores": {
+   "promo": 0.56,
+   "explainer": 0.25,
+   "music": 0.02,
+   "motion": 0.36,
+   "shorts": 0.58,
+   "editing": 0.64,
+   "demo": 0.95,
+   "story": 0.05,
+   "avatar": 0.03,
+   "general": 0.18
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "jasonc00person/claude-copy-style",
+  "stars": 36,
+  "description": "Free Claude Code skill: paste any video, Claude copies its editing style into a style card and renders an original example in that style.",
+  "scores": {
+   "promo": 0.25,
+   "explainer": 0.28,
+   "music": 0.06,
+   "motion": 0.56,
+   "shorts": 0.29,
+   "editing": 0.04,
+   "demo": 0.34,
+   "story": 0.14,
+   "avatar": 0.19,
+   "general": 0.09
+  },
+  "kind": "motion"
+ },
+ {
+  "repo": "jasonc00person/claude-video-effects",
+  "stars": 9,
+  "description": "17 video effects Claude makes on your own videos. A free Claude Code skill: paste the link into Claude Code and ask for an effect.",
+  "scores": {
+   "promo": 0.19,
+   "explainer": 0.27,
+   "music": 0.03,
+   "motion": 0.81,
+   "shorts": 0.86,
+   "editing": 0.91,
+   "demo": 0.21,
+   "story": 0.06,
+   "avatar": 0.07,
+   "general": 0.44
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "muchuanhung/make-demo-video",
+  "stars": 7,
+  "description": "用claude code 做demo影片腳本",
+  "scores": {
+   "promo": 0.82,
+   "explainer": 0.53,
+   "music": 0.11,
+   "motion": 0.78,
+   "shorts": 0.46,
+   "editing": 0.08,
+   "demo": 0.83,
+   "story": 0.09,
+   "avatar": 0.03,
+   "general": 0.07
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "Abm32/runsight",
+  "stars": 7,
+  "description": "Your project demos itself: one command runs your web app, explores it in a browser and produces an edited demo video. Free without an API key, or directed by Claude Code, Cursor, Codex (MCP) or any model.",
+  "scores": {
+   "promo": 0.47,
+   "explainer": 0.31,
+   "music": 0.02,
+   "motion": 0.06,
+   "shorts": 0.13,
+   "editing": 0.61,
+   "demo": 0.97,
+   "story": 0.05,
+   "avatar": 0.03,
+   "general": 0.06
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "Ding200602/video-shotcraft",
+  "stars": 5,
+  "description": "把 Claude Code / Codex 变成动效设计工作室：Remotion 自动生成宣传片/营销/演示视频（2.5D 运镜/卡点剪辑/电影级音效），fork 自 @Vincentwei1021",
+  "scores": {
+   "promo": 0.92,
+   "explainer": 0.2,
+   "music": 0.09,
+   "motion": 0.16,
+   "shorts": 0.23,
+   "editing": 0.11,
+   "demo": 0.48,
+   "story": 0.19,
+   "avatar": 0.07,
+   "general": 0.31
+  },
+  "kind": "promo"
+ },
+ {
+  "repo": "aumpny/lemo-opuscar",
+  "stars": 1,
+  "description": "A toolbox of film styles made in code for Claude Code: 99 ready to use, and your own. Each style is a style prompt plus a demo film made entirely in code by Claude Opus 5.5, with no video model. By Lemomo. · 一套用代码做片的风格工具箱：99 种现成风格，也能做出你自己的",
+  "scores": {
+   "promo": 0.32,
+   "explainer": 0.36,
+   "music": 0.2,
+   "motion": 0.23,
+   "shorts": 0.24,
+   "editing": 0.05,
+   "demo": 0.48,
+   "story": 0.54,
+   "avatar": 0.1,
+   "general": 0.84
+  },
+  "kind": "general"
  }
 ]

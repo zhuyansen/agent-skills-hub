@@ -4352,5 +4352,33 @@
    "rules": 0.64
   },
   "kind": "detector"
+ },
+ {
+  "repo": "ormeilu/avoid-ai-writing-russian",
+  "stars": 51,
+  "description": "Скилл для ИИ-агентов и CLI на Python/uv: находит и убирает ИИ-стиль в русских текстах (канцелярит, кальки, штампы), проверяет сохранность правки и оценивает текст по фрагментам в духе «Антиплагиата» с калибровкой по вашим отчётам. Русская адаптация avoid-ai-writing.",
+  "scores": {
+   "writing": 0.95,
+   "detector": 0.98,
+   "chinese": 0.02,
+   "code": 0.08,
+   "design": 0.06,
+   "rules": 0.62
+  },
+  "kind": "detector"
+ },
+ {
+  "repo": "igotlinux/humanizeai-cli",
+  "stars": 5,
+  "description": "AI to human text, which you can use with your antigravity, codex, and claude-code and dont worry its free, have fun.",
+  "scores": {
+   "writing": 0.92,
+   "detector": 0.08,
+   "chinese": 0.06,
+   "code": 0.12,
+   "design": 0.06,
+   "rules": 0.07
+  },
+  "kind": "writing"
  }
 ]

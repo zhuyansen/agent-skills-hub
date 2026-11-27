@@ -36988,5 +36988,32 @@
   "days": 64,
   "stars_per_day": 0.078125,
   "verdict": "admit"
+ },
+ {
+  "repo": "DoGMaTiiC/hermes-jev",
+  "name": "hermes-jev",
+  "stars": 5,
+  "description": "Hermes Agent plugin: route each turn to the one skill that fits, via TypeSafe Jev on the Vercel AI Gateway. Fail-open, opt-in, stdlib only.",
+  "topics": [],
+  "created": "2026-09-18",
+  "pushed": "2026-09-25",
+  "source": "topic",
+  "readme_chars": 2861,
+  "names_model": false,
+  "uses_jev": 0.97,
+  "is_software": 0.98,
+  "reusable_tool": 0.91,
+  "one_command_start": 0.46,
+  "complete_docs": 0.13,
+  "shows_result": 0.03,
+  "specific_outcome": 0.29,
+  "novel_angle": 0.67,
+  "shareable_output": 0.6,
+  "quality": 0.2275,
+  "tier": "低",
+  "hit_prior": 0.43333333333333335,
+  "days": 70,
+  "stars_per_day": 0.07142857142857142,
+  "verdict": "low_quality"
  }
 ]

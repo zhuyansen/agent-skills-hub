@@ -15864,5 +15864,42 @@
   "days": 217,
   "stars_per_day": 0.2350230414746544,
   "verdict": "low_quality"
+ },
+ {
+  "repo": "webkubor/logo-brand-designer",
+  "name": "logo-brand-designer",
+  "stars": 63,
+  "description": "为项目设计/重设计/验收品牌标识的 agent skill：交付 design token、设计理念、透明底 1:1 SVG、离线评审页与真实截图。Logo design & brand identity skill for AI agents (design tokens, SVG, review page, screenshots).",
+  "topics": [
+   "agent-skill",
+   "ai-agent",
+   "brand-identity",
+   "branding",
+   "design-system",
+   "design-token",
+   "design-tools",
+   "logo",
+   "skill",
+   "svg"
+  ],
+  "created": "2026-10-27",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 864,
+  "names_model": false,
+  "on_subject": 0.96,
+  "is_software": 0.98,
+  "shows_result": 0.76,
+  "one_command_start": 0.9,
+  "specific_outcome": 0.93,
+  "complete_docs": 0.69,
+  "novel_angle": 0.51,
+  "shareable_output": 0.78,
+  "quality": 0.8200000000000001,
+  "tier": "高",
+  "hit_prior": 0.6833333333333332,
+  "days": 31,
+  "stars_per_day": 2.032258064516129,
+  "verdict": "admit"
  }
 ]

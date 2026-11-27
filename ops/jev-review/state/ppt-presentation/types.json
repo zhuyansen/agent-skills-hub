@@ -3974,5 +3974,47 @@
    "general": 0.05
   },
   "kind": "pptx"
+ },
+ {
+  "repo": "xiaoli1999/li-talk-skills",
+  "stars": 7,
+  "description": "支持在线编辑 · 16 种风格 · 一句话生成的 AI 演讲课件 Skill，支持 Claude Code、Codex、Cursor、DeepSeek、WorkBuddy 等",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.03,
+   "html": 0.97,
+   "business": 0.41,
+   "convert": 0.65,
+   "general": 0.2
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "voidful/Slider",
+  "stars": 7,
+  "description": "Agent skill that turns a research paper into an evidence-traceable talk: one HTML file, with speaker notes, timer, and next slide on your phone.",
+  "scores": {
+   "image": 0.03,
+   "pptx": 0.02,
+   "html": 0.97,
+   "business": 0.05,
+   "convert": 0.94,
+   "general": 0.09
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "123zhaozheng/SlideForge",
+  "stars": 12,
+  "description": "Turn documents, ideas, or flat AI slides into 100% native editable PowerPoint (.pptx) decks via multi-batch AI component sheets + OOXML layered reconstruction.",
+  "scores": {
+   "image": 0.05,
+   "pptx": 0.93,
+   "html": 0.02,
+   "business": 0.76,
+   "convert": 0.49,
+   "general": 0.08
+  },
+  "kind": "pptx"
  }
 ]

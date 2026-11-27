@@ -3876,5 +3876,33 @@
    "mcp": 0.82
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "jakubcurik/nano-banana",
+  "stars": 18,
+  "description": "Agent skill for generating and editing images with Google's Nano Banana (Gemini) models, with cost estimates and a prompting guide. Unofficial.",
+  "scores": {
+   "gpt_image": 0.01,
+   "nano_banana": 0.96,
+   "open_models": 0.02,
+   "editing": 0.16,
+   "design": 0.09,
+   "mcp": 0.35
+  },
+  "kind": "nano_banana"
+ },
+ {
+  "repo": "legolev/mediamcp",
+  "stars": 5,
+  "description": "🎨 MCP server for AI media generation — create and edit images, generate video via OpenRouter or any OpenAI-compatible API",
+  "scores": {
+   "gpt_image": 0.15,
+   "nano_banana": 0.1,
+   "open_models": 0.09,
+   "editing": 0.18,
+   "design": 0.1,
+   "mcp": 0.98
+  },
+  "kind": "mcp"
  }
 ]
