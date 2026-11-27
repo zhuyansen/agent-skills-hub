@@ -130,7 +130,7 @@ const HEAD = (title, desc, canonical, ld) => `<!doctype html>
 <meta property="og:image:height" content="630" />
 <meta property="og:image:type" content="image/png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content="@GoSailGlobal" />
+<meta name="twitter:site" content="@agentskillshub" />
 <meta name="twitter:title" content="${esc(title)}" />
 <meta name="twitter:description" content="${esc(desc)}" />
 <meta name="twitter:image" content="${OG_IMAGE}" />

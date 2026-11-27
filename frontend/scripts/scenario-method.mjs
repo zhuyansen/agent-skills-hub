@@ -12,6 +12,7 @@
  */
 import { esc, biAttrs } from "./shared-utils.mjs";
 import { displayName } from "../src/lib/repoBrand.mjs";
+import { FOUNDER, isFounder } from "./founder-ld.mjs";
 
 // Rules a skill trips by how it is installed, not by what it does once running.
 const INSTALL_RULES = new Set(["sudo_usage", "curl_pipe_shell", "wget_pipe_shell", "fenced_download_exec"]);
@@ -155,7 +156,9 @@ export function methodHtml(scenario, cards, scenarioKinds) {
 export function methodLd(scenario, pageUrl) {
   const a = scenario.method?.author;
   if (!a) return "";
-  const person = { "@type": "Person", name: a.name, url: `https://agentskillshub.top${a.about}`, sameAs: [a.x, a.github] };
+  const person = isFounder(a.name)
+    ? FOUNDER
+    : { "@type": "Person", name: a.name, url: `https://agentskillshub.top${a.about}`, sameAs: [a.x, a.github] };
   const data = { "@context": "https://schema.org", "@type": "WebPage", url: pageUrl, author: person, reviewedBy: person, lastReviewed: a.reviewed,
     ...(scenario.method.sources?.length ? { citation: scenario.method.sources.map((x) => ({ "@type": /arxiv\.org|doi\.org/.test(x.url) ? "ScholarlyArticle" : "CreativeWork", name: x.label, url: x.url })) } : {}) };
   return `  <script type="application/ld+json">\n${JSON.stringify(data)}\n  </script>`;
