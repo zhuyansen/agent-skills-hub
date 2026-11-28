@@ -74,18 +74,19 @@
     "skill_for_comparison": "同样做法套在 /skill/ 页：treated 123、control 1,199 页；双重差分 −0.22 个百分点，95% 区间 −1.19 到 +0.64（基线 CTR 约 0.9%）"
    },
    "power_note": "按 A/A 区间，10% 分组跑 4–6 周，/audit/ 只有处理组 CTR 变化超过约 ±4 个百分点（基线 2.5%）才看得出来；正常的标题效果测不出，大概率读出「区间含 0」。要测出来得把 share_percent 提到 50（区间约缩小到 0.6 倍）或拉长时间。改 share_percent 必须在开始前改，并在这里重记。",
+   "同期改动": "2026-11-27 上线的内链调整、/browse/ 目录和退役 /audit/ 页 301 到 /skill/（377bcef3）都落在比较的前 28 天里。分组按仓库哈希，两组受的影响一样，双重差分能扣掉平均影响，但会加波动；读数时把 11-30 之后 301 掉的页从两期都去掉。",
    "decision_rule": "最终读数的 95% 区间整体在 0 以上才全量换；整体在 0 以下撤回；含 0 记为「测不出」，不按点估计做决定。",
    "来源": "frontend/scripts/audit-title-test.json、frontend/scripts/audit-meta.mjs、ops/gsc/audit_title_test.py"
   }
  ],
  "events": [
   {
-   "date": "部署日（待填）",
-   "note": "全站内链（无对照组）：/skill/ 和 /audit/ 页的热门链接减少（同分类 10→5、同语言 5→3、审计同分类 6→3），新增「最近收录」和按构建日期换的「随机」两个区块（只连可索引页）；React 版 /skill/ 页显示同样两块。分支 feat/links-dir-titles。"
+   "date": "2026-11-27",
+   "note": "全站内链（无对照组）：/skill/ 和 /audit/ 页的热门链接减少（同分类 10→5、同语言 5→3、审计同分类 6→3），新增「最近收录」和按构建日期换的「随机」两个区块（只连可索引页）；React 版 /skill/ 页显示同样两块。分支 feat/links-dir-titles；2026-11-27 随 0dbeacd1、30078e28、377bcef3 一起上线（部署运行 45945629867，06:02 UTC 完成；日期 11-27 补记）。"
   },
   {
-   "date": "部署日（待填）",
-   "note": "新增 /browse/ A–Z 目录：列出全部可索引 /skill/ 页和全部 /audit/ 页，每页最多 500 条，进 sitemap-top.xml；/skill/、/audit/、/category/ 静态页底部和 React 页脚加链接（React 页脚在 GIGALinks 冻结页上不显示）。"
+   "date": "2026-11-27",
+   "note": "新增 /browse/ A–Z 目录：列出全部可索引 /skill/ 页和全部 /audit/ 页，每页最多 500 条，进 sitemap-top.xml；/skill/、/audit/、/category/ 静态页底部和 React 页脚加链接（React 页脚在 GIGALinks 冻结页上不显示）。2026-11-27 和上面那条同一次部署上线（日期 11-27 补记）。"
   },
   {
    "date": "2026-11-27",

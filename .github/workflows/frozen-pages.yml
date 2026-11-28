@@ -1,0 +1,29 @@
+name: Frozen pages guard
+
+# GIGALinks 冻结页守卫（ops/geo/check_frozen.py）：推到 main 的提交里，有人改了冻结页的源文件就报红，
+# 并按 GitHub 的设置给推送的人发失败通知。只是报警，不会撤回提交；冻结页名单和例外见脚本开头。
+# 2027-01-02（UTC）起脚本自己不再检查，这个工作流那之后可以删掉。
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check the pushed commits
+        env:
+          BEFORE: ${{ github.event.before }}
+          AFTER: ${{ github.sha }}
+        run: |
+          python3 ops/geo/check_frozen.py --selftest
+          python3 ops/geo/check_frozen.py "$BEFORE" "$AFTER"
