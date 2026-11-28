@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useI18n } from "../i18n/I18nContext";
+import { retargetKind, retargetedSlug, rewriteMirrorCommand } from "../lib/goneRepo.mjs";
 import type { Skill } from "../types/skill";
 
 interface Props {
@@ -47,12 +48,19 @@ export function getInstallCommands(
   skill: Skill,
   readmeCommands: string[] = [],
 ): InstallOption[] {
-  const name = skill.repo_full_name;
-  const options: InstallOption[] = readmeCommands.map((command) => ({
-    label: labelOf(command),
-    command,
-    fromReadme: true,
-  }));
+  const isMirror =
+    skill.repo_status === "gone" &&
+    retargetKind(skill.repo_full_name, skill.repo_url) === "mirror";
+  const mirrorSlug = isMirror ? retargetedSlug(skill.repo_full_name, skill.repo_url) : null;
+  const name = mirrorSlug ?? skill.repo_full_name;
+  const options: InstallOption[] = readmeCommands.map((raw) => {
+    const command = mirrorSlug ? rewriteMirrorCommand(raw, skill.repo_full_name, mirrorSlug) : raw;
+    return {
+      label: labelOf(command),
+      command,
+      fromReadme: true,
+    };
+  });
   const taken = (label: string) => options.some((o) => o.label === label);
   if ((skill.category || "").toLowerCase().includes("skill")) {
     for (const [agent, label] of SKILL_AGENTS) {
@@ -66,10 +74,14 @@ export function getInstallCommands(
 }
 
 export function InstallCommand({ skill, readmeCommands = [] }: Props) {
-  const { t } = useI18n();
+  const { lang, t } = useI18n();
   const commands = getInstallCommands(skill, readmeCommands);
   const [activeIdx, setActiveIdx] = useState(0);
   const [copied, setCopied] = useState(false);
+  const isMirror =
+    skill.repo_status === "gone" &&
+    retargetKind(skill.repo_full_name, skill.repo_url) === "mirror";
+  const mirrorSlug = isMirror ? retargetedSlug(skill.repo_full_name, skill.repo_url) : null;
 
   const active = commands[activeIdx];
 
@@ -93,6 +105,18 @@ export function InstallCommand({ skill, readmeCommands = [] }: Props) {
 
   return (
     <div className="w-full">
+      {mirrorSlug && (
+        <div className="mb-1.5 flex items-center gap-1.5 text-xs text-amber-700 dark:text-amber-300">
+          <span className="inline-flex items-center px-1.5 py-0.5 rounded bg-amber-100 dark:bg-amber-900/40 font-semibold">
+            {lang === "zh" ? "镜像安装命令" : "Mirror install"}
+          </span>
+          <span>
+            {lang === "zh"
+              ? `指向归档镜像 ${mirrorSlug}（原仓库已 404）`
+              : `Uses archived mirror ${mirrorSlug} (original repo 404)`}
+          </span>
+        </div>
+      )}
       {/* Tab selector for multiple install methods */}
       {commands.length > 1 && (
         <div className="flex items-center gap-1 mb-2">

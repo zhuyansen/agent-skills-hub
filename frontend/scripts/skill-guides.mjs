@@ -14,6 +14,12 @@ import { esc } from "./shared-utils.mjs";
 // No repo was on more than three guides when this was written; the cap keeps the line short.
 const MAX_GUIDES = 3;
 
+// High-traffic archived/deleted repos linked to their relevant /best/ guide without
+// adding them into the guide's own repo list (keeps frozen /best/ pages untouched).
+const EXTRA_GUIDES = {
+  "bodila51/gtavi-claudecode": ["claude-video-skills"],
+};
+
 function guideOf(sc, zh) {
   return { slug: sc.slug, title: sc.title, titleZh: zh[sc.slug]?.t || sc.title };
 }
@@ -30,10 +36,24 @@ function listedRepos(sc, kinds) {
 /** owner/repo (lowercased) → the live guides that list it, in scenario-keywords.json order. */
 export function guidesIndex(scenarios, kinds, zh = {}) {
   const index = new Map();
+  const liveBySlug = new Map();
   for (const sc of scenarios.filter((s) => !s.retired)) {
+    const g = guideOf(sc, zh);
+    liveBySlug.set(sc.slug, g);
     for (const name of listedRepos(sc, kinds)) {
       if (!index.has(name)) index.set(name, []);
-      index.get(name).push(guideOf(sc, zh));
+      index.get(name).push(g);
+    }
+  }
+  for (const [repoKey, slugs] of Object.entries(EXTRA_GUIDES)) {
+    for (const slug of slugs) {
+      const g = liveBySlug.get(slug);
+      if (!g) continue;
+      const list = index.get(repoKey) || [];
+      if (!list.some((existing) => existing.slug === g.slug)) {
+        list.push(g);
+        index.set(repoKey, list);
+      }
     }
   }
   return index;

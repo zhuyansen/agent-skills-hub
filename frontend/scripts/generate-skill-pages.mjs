@@ -37,6 +37,7 @@ import { readFileSync, mkdirSync, writeFileSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { displayName } from "../src/lib/repoBrand.mjs";
+import { goneCopy, matchGoneGuide, rewriteMirrorCommand } from "../src/lib/goneRepo.mjs";
 import {
   SUPABASE_URL, SUPABASE_ANON_KEY, SITE, CATEGORY_LABELS,
   esc, starsK, formatDate, stripMarkdown, truncate, parseJsonArray, biAttrs,
@@ -256,39 +257,27 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
     unsafe: ["#991b1b", "#fef2f2", "#fecaca"],
     reject: ["#991b1b", "#fef2f2", "#fecaca"],
   };
-  // A dead entry whose repo_url was retargeted at a DIFFERENT repository. The
-  // two changes that produce this shipped days apart and neither knew about the
-  // other, so /skill/Manavarya09/design-extract/ ended up saying "this repo
-  // returns 404" directly above a "View on GitHub" button pointing at
-  // arvindrk/extract-design-system — a live repo by a different author, with
-  // nothing marking it as a different project. A reader can only conclude the
-  // project moved there. It did not: different owner, different creation date,
-  // different name, 3,334 stars against 167. Implying succession is a worse
-  // failure for a trust-layer site than either the dead link or the bare label.
-  const substitute = isGone && repo_url &&
-    !repo_url.toLowerCase().endsWith(`/${repo_full_name.toLowerCase()}`)
-    ? repo_url.replace(/^https?:\/\/github\.com\//, "")
-    : null;
-  const goneEn = `— ${repo_full_name} returns 404 on GitHub. It was deleted, or its owner's account was removed. The data below is our last successful snapshot.`;
-  const goneZh = `—— ${repo_full_name} 在 GitHub 上已返回 404,可能是仓库被删除或作者账号已注销。下方数据是我们最后一次成功抓取的快照。`;
-  const subEn = substitute
-    ? ` The GitHub link below points to ${substitute}, a SEPARATE project by a different author that solves the same problem — not a continuation of this one.`
-    : "";
-  const subZh = substitute
-    ? ` 下方 GitHub 链接指向 ${substitute},那是另一位作者解决同类问题的**独立项目**,并非本项目的延续。`
-    : "";
-  const goneBanner = isGone
-    ? `<div style="margin:16px 0;padding:12px 16px;border:1px solid #fecaca;background:#fef2f2;border-radius:8px;font-size:14px;color:#991b1b">
-        <strong ${biAttrs("Repository no longer available", "仓库已下架")}>${c.goneLabel}</strong>
-        <span ${biAttrs(goneEn + subEn, goneZh + subZh)}>${esc(lang === "zh" ? goneZh + subZh : goneEn + subEn)}</span>
-      </div>`
-    : "";
-  // Link /audit/ only where generate-audit-pages.mjs writes one: the same rule
-  // decides both, so a skill page never links to an audit page that 404s.
   const hasAudit = hasAuditPage(skill);
   const auditUrl = `/audit/${repo_full_name}/`;
   const guides = GUIDES.get(repo_full_name.toLowerCase()) || [];
   const ogImage = `${SITE}/og-image.png`;
+
+  const gone = isGone ? goneCopy(repo_full_name, repo_url) : null;
+  const primaryGuide = guides[0] || (isGone ? matchGoneGuide(skill) : null);
+  const goneGuideCta = isGone && primaryGuide
+    ? `<div style="margin-top:8px"><a href="/best/${esc(primaryGuide.slug)}/" style="color:#4f46e5;font-weight:600;text-decoration:none" ${biAttrs(
+        `Looking for actively maintained alternatives? See ${primaryGuide.title} →`,
+        `寻找仍在持续维护的同类工具？查看「${primaryGuide.titleZh}」→`,
+      )}>${esc(lang === "zh"
+        ? `寻找仍在持续维护的同类工具？查看「${primaryGuide.titleZh}」→`
+        : `Looking for actively maintained alternatives? See ${primaryGuide.title} →`)}</a></div>`
+    : "";
+  const goneBanner = isGone && gone
+    ? `<div style="margin:16px 0;padding:12px 16px;border:1px solid ${gone.kind === "mirror" ? "#fde68a" : "#fecaca"};background:${gone.kind === "mirror" ? "#fffbeb" : "#fef2f2"};border-radius:8px;font-size:14px;color:${gone.kind === "mirror" ? "#92400e" : "#991b1b"}">
+        <strong ${biAttrs(gone.headingEn, gone.headingZh)}>${esc(lang === "zh" ? gone.headingZh : gone.headingEn)}</strong>
+        <span ${biAttrs(gone.bodyEn, gone.bodyZh)}>${esc(lang === "zh" ? gone.bodyZh : gone.bodyEn)}</span>${goneGuideCta}
+      </div>`
+    : "";
 
   // SEO-optimized title: exact repo_full_name matches brand-name queries
   // (e.g. "higgsfield-seedance2-jineng" hit 19.1% CTR in GSC data 2026-04).
@@ -297,7 +286,11 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   // what to use instead; "is it safe" belongs to /audit/, which held the same intent
   // under a second self-canonical URL. "install" is only promised when the README
   // gave us a command to show.
-  const installs = isGone ? [] : skill.install_commands || [];
+  const installs = isGone
+    ? (gone?.kind === "mirror" && gone.targetSlug
+        ? (skill.install_commands || []).map((cmd) => rewriteMirrorCommand(cmd, repo_full_name, gone.targetSlug))
+        : [])
+    : skill.install_commands || [];
   const intent = installs.length ? "what it is, how to install & alternatives" : TITLE_FALLBACK;
   // No "| Agent Skills Hub": Google prints the site name above the title, and the
   // suffix pushed the median title to 83 characters, past what the SERP shows.
