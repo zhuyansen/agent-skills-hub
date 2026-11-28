@@ -32,6 +32,33 @@ export interface SponsorSlot {
   sponsored?: boolean;
 }
 
+export interface TopBannerConfig {
+  badge: string;
+  badgeZh: string;
+  prefix: string;
+  prefixZh: string;
+  tagline: string;
+  taglineZh: string;
+  url: string;
+  /** True when occupied by a paid external title sponsor (adds rel="sponsored"). */
+  sponsored?: boolean;
+}
+
+/**
+ * Full-width top announcement / title-sponsor bar (mcp.so style).
+ * Swap to a paid brand (`sponsored: true`) whenever the top-banner slot sells.
+ */
+export const TOP_BANNER_SPONSOR: TopBannerConfig = {
+  prefix: "Launch Promo",
+  prefixZh: "限时特惠",
+  badge: "Fast-Track $19",
+  badgeZh: "48h 加急审核 $19",
+  tagline: "48h priority security review (was $49) — or book a $69/mo homepage rail slot",
+  taglineZh: "48 小时优先安全初审（原价 $49）· 或预订 $69/月 首页双侧边栏赞助位",
+  url: "/submit/",
+  sponsored: false,
+};
+
 export const SLOTS_PER_SIDE = 5;
 export const TOTAL_SPONSOR_SLOTS = SLOTS_PER_SIDE * 2;
 
