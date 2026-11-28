@@ -97,7 +97,16 @@ async function main() {
   const html = replaceShellContent(zhHead(enHtml, total), shellHtml(enHtml, total, lists));
   mkdirSync(join(DIST, "zh"), { recursive: true });
   writeFileSync(join(DIST, "zh", "index.html"), html);
-  console.log(`✓ /zh/: ${(lists.match(/<li>/g) || []).length} skills listed, ${scenarioLinks(enHtml).length} scenarios linked`);
+  // Reciprocal HTML hreflang on `/` (only injected here after generate-static-pages has already
+  // copied the SPA shell to other routes, so non-home pages are not affected).
+  if (!/rel="alternate"[^>]*hreflang="zh"/.test(enHtml)) {
+    writeFileSync(
+      join(DIST, "index.html"),
+      enHtml.replace("</head>", `  ${hreflangTags("/")}
+</head>`),
+    );
+  }
+  console.log(`✓ /zh/: ${(lists.match(/<li>/g) || []).length} skills listed, ${scenarioLinks(enHtml).length} scenarios linked (reciprocal hreflang added to /)`);
 }
 
 // The twin is an extra page: a failure leaves it out (the sitemap lists /zh/ only when the file
