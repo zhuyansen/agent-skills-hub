@@ -1,5 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { resetMcpCacheForTests } from "./mcp.js";
 import worker, {
   prefersMarkdown,
   classifyAiCrawler,
@@ -200,4 +201,100 @@ test("a gone audit page without a skill page stays 404; live pages and other rou
   assert.equal(best.resp.status, 404);
   assert.deepEqual(best.asked, ["GET /best/retired-page/"]);
   assert.equal((await fetchThrough("/audit/x/y/", { "/skill/x/y/": 200 }, "POST")).resp.status, 404);
+});
+
+test("homepage response includes WebMCP Origin-Trial HTTP header", async () => {
+  const origFetch = globalThis.fetch;
+  globalThis.fetch = async () => new Response("<html>ok</html>", {
+    status: 200,
+    headers: { "Content-Type": "text/html; charset=utf-8" },
+  });
+  try {
+    const req = new Request("https://agentskillshub.top/", { headers: { Accept: "text/html" } });
+    const resp = await worker.fetch(req, {}, { waitUntil() {} });
+    assert.equal(resp.status, 200);
+    assert.match(resp.headers.get("Origin-Trial") || "", /^Av4qNLcb6Jnxq9G/);
+  } finally {
+    globalThis.fetch = origFetch;
+  }
+});
+
+test("remote Streamable HTTP MCP endpoint serves tools/list and executes search_skills & audit_skill", async () => {
+  resetMcpCacheForTests();
+  const origFetch = globalThis.fetch;
+  globalThis.fetch = async (input) => {
+    const u = new URL(typeof input === "string" ? input : input.url);
+    if (u.pathname === "/search-index.json") {
+      return new Response(
+        JSON.stringify({
+          skills: [
+            { f: "anthropics/claude-code", n: "Claude Code", c: "claude-skill", s: 50000, q: 96, g: "safe", d: "Official CLI" },
+            { f: "evil/bad-skill", n: "Bad Skill", c: "agent-tool", s: 100, q: 10, g: "unsafe", d: "Flagged skill" },
+          ],
+        }),
+        { status: 200, headers: { "Content-Type": "application/json" } }
+      );
+    }
+    return new Response("not found", { status: 404 });
+  };
+  try {
+    const getResp = await worker.fetch(new Request("https://agentskillshub.top/mcp"), {}, { waitUntil() {} });
+    assert.equal(getResp.status, 200);
+    const info = await getResp.json();
+    assert.equal(info.transport, "streamable-http");
+
+    const listResp = await worker.fetch(
+      new Request("https://agentskillshub.top/mcp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ jsonrpc: "2.0", id: 1, method: "tools/list" }),
+      }),
+      {},
+      { waitUntil() {} }
+    );
+    const listJson = await listResp.json();
+    assert.deepEqual(
+      listJson.result.tools.map((t) => t.name),
+      ["search_skills", "audit_skill", "get_skill_install"]
+    );
+
+    const searchResp = await worker.fetch(
+      new Request("https://agentskillshub.top/mcp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          jsonrpc: "2.0",
+          id: 2,
+          method: "tools/call",
+          params: { name: "search_skills", arguments: { query: "claude", min_security: "safe" } },
+        }),
+      }),
+      {},
+      { waitUntil() {} }
+    );
+    const searchJson = await searchResp.json();
+    assert.equal(searchJson.result.structuredContent.total_matches, 1);
+    assert.equal(searchJson.result.structuredContent.results[0].repo, "anthropics/claude-code");
+
+    const auditResp = await worker.fetch(
+      new Request("https://agentskillshub.top/mcp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          jsonrpc: "2.0",
+          id: 3,
+          method: "tools/call",
+          params: { name: "audit_skill", arguments: { repo: "https://github.com/anthropics/claude-code" } },
+        }),
+      }),
+      {},
+      { waitUntil() {} }
+    );
+    const auditJson = await auditResp.json();
+    assert.equal(auditJson.result.structuredContent.found, true);
+    assert.equal(auditJson.result.structuredContent.security_grade, "safe");
+  } finally {
+    globalThis.fetch = origFetch;
+    resetMcpCacheForTests();
+  }
 });

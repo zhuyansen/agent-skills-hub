@@ -15,6 +15,10 @@
  */
 
 import { OFFICIAL_BOT_CIDRS } from "./bot-ranges.js";
+import { handleMcpRequest } from "./mcp.js";
+
+// Chrome 149-162 WebMCP Origin Trial token for https://agentskillshub.top (expires 2027-03-29).
+const WEBMCP_ORIGIN_TRIAL_TOKEN = "Av4qNLcb6Jnxq9G/Vb1xVmK1nQboDSeyS/8XmOVwjvBdZnqnCdkfq+o0CugmDVMA5Dm/aodgb738bqyoFm9iiwYAAABSeyJvcmlnaW4iOiJodHRwczovL2FnZW50c2tpbGxzaHViLnRvcDo0NDMiLCJmZWF0dXJlIjoiV2ViTUNQIiwiZXhwaXJ5IjoxODA2MzY0ODAwfQ==";
 
 const HOME_LINK_HEADER = [
   '</llms.txt>; rel="describedby"; type="text/plain"',
@@ -289,6 +293,9 @@ export async function auditGoneRedirect(url, originResponse) {
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+    if (url.pathname === "/mcp" || url.pathname === "/mcp/") {
+      return handleMcpRequest(request, url);
+    }
     const isRead = request.method === "GET" || request.method === "HEAD";
     if (isRead && isHomepagePath(url.pathname) && prefersMarkdown(request.headers.get("Accept"))) {
       const mdResponse = await serveMarkdownHome(request, url);
@@ -308,6 +315,7 @@ export default {
 
     const headers = new Headers(originResponse.headers);
     headers.set("Link", HOME_LINK_HEADER);
+    headers.set("Origin-Trial", WEBMCP_ORIGIN_TRIAL_TOKEN);
     appendVaryAccept(headers);
     const finalResp = new Response(originResponse.body, {
       status: originResponse.status,

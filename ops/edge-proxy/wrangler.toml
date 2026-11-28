@@ -13,7 +13,9 @@ routes = [
   { pattern = "agentskillshub.top/how-we-grade*", zone_name = "agentskillshub.top" },
   { pattern = "agentskillshub.top/ai-info*", zone_name = "agentskillshub.top" },
   { pattern = "agentskillshub.top/llms*", zone_name = "agentskillshub.top" },
-  { pattern = "agentskillshub.top/sitemap*", zone_name = "agentskillshub.top" }
+  { pattern = "agentskillshub.top/sitemap*", zone_name = "agentskillshub.top" },
+  { pattern = "agentskillshub.top/mcp", zone_name = "agentskillshub.top" },
+  { pattern = "agentskillshub.top/mcp/*", zone_name = "agentskillshub.top" }
 ]
 
 # Migrated from Workers KV (AI_CRAWL_KV, 1K puts/day free limit) to

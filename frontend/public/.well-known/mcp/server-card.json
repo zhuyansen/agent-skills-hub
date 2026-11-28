@@ -12,13 +12,8 @@
     "version": "0.3.0"
   },
   "transport": {
-    "type": "stdio",
-    "endpoint": "https://agentskillshub.top/mcp",
-    "command": "npx",
-    "args": [
-      "-y",
-      "@agentskillshub/mcp"
-    ]
+    "type": "streamable-http",
+    "endpoint": "https://agentskillshub.top/mcp"
   },
   "capabilities": {
     "tools": {
@@ -63,5 +58,6 @@
         "type": "stdio"
       }
     }
-  ]
+  ],
+  "instructions": "Connect directly via MCP Streamable HTTP at https://agentskillshub.top/mcp (no authentication required; e.g. `claude mcp add --transport http agentskillshub https://agentskillshub.top/mcp`), or run the local stdio server via `npx -y @agentskillshub/mcp` (supports optional ASH_PRO_KEY for pro_search)."
 }
