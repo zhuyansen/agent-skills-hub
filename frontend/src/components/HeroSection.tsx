@@ -144,11 +144,11 @@ export function HeroSection({ stats, onSearch }: Props) {
   const agentCount = categoryCount(stats, "agent-tool", FALLBACK_COUNTS.agent);
 
   return (
-    <section className="hero-gradient full-bleed px-4 pt-8 pb-12 sm:pt-20 sm:pb-16 mb-8 relative z-20">
+    <section className="hero-gradient full-bleed px-4 pt-6 pb-12 sm:pt-10 sm:pb-16 mb-8 relative z-20">
       <div className="max-w-3xl mx-auto text-center relative z-10">
         {/* The three guides with our own test results, where the hero used to open with empty
             padding and an enterprise banner (Enterprise stays in the header and below the search). */}
-        <nav aria-label={isZh ? "热门场景" : "Popular guides"} className="mb-8">
+        <nav aria-label={isZh ? "热门场景" : "Popular guides"} className="mb-6">
           <div className="grid grid-cols-3 gap-2 sm:gap-3">
             {TOP_GUIDES.map((g) => (
               <GuideCard key={g.slug} guide={g} zh={isZh} />
@@ -157,21 +157,18 @@ export function HeroSection({ stats, onSearch }: Props) {
           <a
             href={isZh ? "/best/zh/" : "/best/"}
             onClick={() => trackGuideClick("all", "top")}
-            className="inline-block mt-3 text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
+            className="inline-block mt-2.5 text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
           >
             {isZh ? "全部场景 →" : "All guides →"}
           </a>
         </nav>
 
         {/* Main headline */}
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white tracking-[-0.03em] leading-[1.05] mb-5">
+        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white tracking-[-0.03em] leading-[1.05] mb-6">
           {t("hero.title").replace("{count}", countDisplay)}
         </h1>
-        <p className="text-base sm:text-lg text-[var(--text-2)] mb-9 max-w-xl mx-auto leading-relaxed">
-          {t("hero.subtitle")}
-        </p>
 
-        {/* Search bar */}
+        {/* Search bar — directly between headline and subtitle so it sits above the fold */}
         <div className="relative max-w-2xl mx-auto mb-5" ref={containerRef}>
           <svg
             className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500 z-10"
@@ -278,6 +275,10 @@ export function HeroSection({ stats, onSearch }: Props) {
             </div>
           )}
         </div>
+
+        <p className="text-base sm:text-lg text-[var(--text-2)] mb-5 max-w-xl mx-auto leading-relaxed">
+          {t("hero.subtitle")}
+        </p>
 
         {/* Audit funnel entry — parallel to search: "find a skill" vs "vet a repo" */}
         <div className="-mt-1 mb-6 text-sm">
