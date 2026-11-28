@@ -3,6 +3,7 @@
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Origin-Trial: Av4qNLcb6Jnxq9G/Vb1xVmK1nQboDSeyS/8XmOVwjvBdZnqnCdkfq+o0CugmDVMA5Dm/aodgb738bqyoFm9iiwYAAABSeyJvcmlnaW4iOiJodHRwczovL2FnZW50c2tpbGxzaHViLnRvcDo0NDMiLCJmZWF0dXJlIjoiV2ViTUNQIiwiZXhwaXJ5IjoxODA2MzY0ODAwfQ==
 
 /*.html
   Cache-Control: public, max-age=0, must-revalidate

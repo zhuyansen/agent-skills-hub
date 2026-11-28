@@ -37,17 +37,28 @@ interface SearchIndexPayload {
   skills?: IndexEntry[];
 }
 
+interface WebMcpAnnotations {
+  readOnlyHint?: boolean;
+  consequentialHint?: boolean;
+  untrustedContentHint?: boolean;
+  debugging?: boolean;
+}
+
+interface WebMcpExecuteContext {
+  signal?: AbortSignal;
+}
+
 interface ModelContextTool {
   name: string;
   title?: string;
   description: string;
   inputSchema: Record<string, unknown>;
-  annotations?: { readOnlyHint?: boolean };
-  execute: (input: Record<string, unknown>) => Promise<Record<string, unknown>>;
+  annotations?: WebMcpAnnotations;
+  execute: (input: Record<string, unknown>, context?: WebMcpExecuteContext) => Promise<Record<string, unknown>>;
 }
 
 interface ModelContextLike {
-  registerTool?: (tool: ModelContextTool) => unknown;
+  registerTool?: (tool: ModelContextTool, options?: { signal?: AbortSignal }) => unknown;
 }
 
 type NavigatorWithModelContext = Navigator & { modelContext?: ModelContextLike };
@@ -56,10 +67,10 @@ type DocumentWithModelContext = Document & { modelContext?: ModelContextLike };
 let cachedSkills: IndexEntry[] | null = null;
 let inflightLoad: Promise<IndexEntry[]> | null = null;
 
-async function loadCatalog(): Promise<IndexEntry[]> {
+async function loadCatalog(signal?: AbortSignal): Promise<IndexEntry[]> {
   if (cachedSkills) return cachedSkills;
   if (inflightLoad) return inflightLoad;
-  inflightLoad = fetch(INDEX_URL)
+  inflightLoad = fetch(INDEX_URL, { signal })
     .then(async (res) => {
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = (await res.json()) as SearchIndexPayload;
@@ -113,14 +124,14 @@ function formatSkillSummary(item: IndexEntry): Record<string, unknown> {
   };
 }
 
-async function executeSearchSkills(input: Record<string, unknown>): Promise<Record<string, unknown>> {
+async function executeSearchSkills(input: Record<string, unknown>, ctx?: WebMcpExecuteContext): Promise<Record<string, unknown>> {
   const query = typeof input.query === "string" ? input.query.trim().toLowerCase() : "";
   const category = typeof input.category === "string" ? input.category.trim().toLowerCase() : "";
   const minSecurity = typeof input.min_security === "string" ? input.min_security.trim() : "";
   const rawLimit = typeof input.limit === "number" ? Math.trunc(input.limit) : DEFAULT_LIMIT;
   const limit = Math.min(Math.max(rawLimit, 1), MAX_LIMIT);
   const tokens = query.split(/\s+/).filter(Boolean);
-  const skills = await loadCatalog();
+  const skills = await loadCatalog(ctx?.signal);
   const scored: Array<{ score: number; item: IndexEntry }> = [];
   for (const item of skills) {
     if (category && (item.c ?? "").toLowerCase() !== category) continue;
@@ -136,10 +147,10 @@ async function executeSearchSkills(input: Record<string, unknown>): Promise<Reco
   };
 }
 
-async function executeAuditSkill(input: Record<string, unknown>): Promise<Record<string, unknown>> {
+async function executeAuditSkill(input: Record<string, unknown>, ctx?: WebMcpExecuteContext): Promise<Record<string, unknown>> {
   const repo = normalizeRepo(input.repo);
   if (!repo) return { error: "Provide a GitHub repo as 'owner/repo'." };
-  const skills = await loadCatalog();
+  const skills = await loadCatalog(ctx?.signal);
   const match = skills.find((item) => item.f.toLowerCase() === repo);
   if (!match) {
     return {
@@ -160,10 +171,10 @@ async function executeAuditSkill(input: Record<string, unknown>): Promise<Record
   };
 }
 
-async function executeGetInstall(input: Record<string, unknown>): Promise<Record<string, unknown>> {
+async function executeGetInstall(input: Record<string, unknown>, ctx?: WebMcpExecuteContext): Promise<Record<string, unknown>> {
   const repo = normalizeRepo(input.repo);
   if (!repo) return { error: "Provide a GitHub repo as 'owner/repo'." };
-  const skills = await loadCatalog();
+  const skills = await loadCatalog(ctx?.signal);
   const match = skills.find((item) => item.f.toLowerCase() === repo);
   const canonicalRepo = match?.f ?? repo;
   return {
@@ -191,7 +202,7 @@ const WEBMCP_TOOLS: ModelContextTool[] = [
         },
         required: ["query"],
       },
-      annotations: { readOnlyHint: true },
+      annotations: { readOnlyHint: true, consequentialHint: false, untrustedContentHint: false },
       execute: executeSearchSkills,
     },
     {
@@ -205,7 +216,7 @@ const WEBMCP_TOOLS: ModelContextTool[] = [
         },
         required: ["repo"],
       },
-      annotations: { readOnlyHint: true },
+      annotations: { readOnlyHint: true, consequentialHint: false, untrustedContentHint: false },
       execute: executeAuditSkill,
     },
     {
@@ -219,37 +230,38 @@ const WEBMCP_TOOLS: ModelContextTool[] = [
         },
         required: ["repo"],
       },
-      annotations: { readOnlyHint: true },
+      annotations: { readOnlyHint: true, consequentialHint: false, untrustedContentHint: false },
       execute: executeGetInstall,
     },
 ];
 
-function getModelContexts(): ModelContextLike[] {
-  const contexts: ModelContextLike[] = [];
-  const navCtx = typeof navigator !== "undefined" ? (navigator as NavigatorWithModelContext).modelContext : undefined;
+function getPrimaryModelContext(): ModelContextLike | null {
+  // Chrome 149+ WebMCP spec exposes document.modelContext; fall back to early-draft navigator.modelContext only if absent.
   const docCtx = typeof document !== "undefined" ? (document as DocumentWithModelContext).modelContext : undefined;
-  if (navCtx && typeof navCtx.registerTool === "function") contexts.push(navCtx);
-  if (docCtx && docCtx !== navCtx && typeof docCtx.registerTool === "function") contexts.push(docCtx);
-  return contexts;
+  if (docCtx && typeof docCtx.registerTool === "function") return docCtx;
+  const navCtx = typeof navigator !== "undefined" ? (navigator as NavigatorWithModelContext).modelContext : undefined;
+  if (navCtx && typeof navCtx.registerTool === "function") return navCtx;
+  return null;
 }
 
-function registerOnContext(ctx: ModelContextLike, tools: ModelContextTool[]): void {
-  for (const tool of tools) {
+let registrationController: AbortController | null = null;
+
+/** Registers AgentSkillsHub WebMCP tools once on page load when supported by the browser. */
+export function registerWebMcpTools(): () => void {
+  if (registrationController) return () => registrationController?.abort();
+  const ctx = getPrimaryModelContext();
+  if (!ctx) return () => {};
+  const controller = new AbortController();
+  registrationController = controller;
+  for (const tool of WEBMCP_TOOLS) {
     try {
-      Promise.resolve(ctx.registerTool?.(tool)).catch(() => {});
+      Promise.resolve(ctx.registerTool?.(tool, { signal: controller.signal })).catch(() => {});
     } catch {
       // Ignore duplicate registration or unsupported browser edge cases.
     }
   }
-}
-
-let registered = false;
-
-/** Registers AgentSkillsHub WebMCP tools once on page load when supported by the browser. */
-export function registerWebMcpTools(): void {
-  if (registered) return;
-  const contexts = getModelContexts();
-  if (contexts.length === 0) return;
-  registered = true;
-  for (const ctx of contexts) registerOnContext(ctx, WEBMCP_TOOLS);
+  return () => {
+    controller.abort();
+    if (registrationController === controller) registrationController = null;
+  };
 }
