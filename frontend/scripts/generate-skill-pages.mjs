@@ -263,6 +263,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   const ogImage = `${SITE}/og-image.png`;
 
   const gone = isGone ? goneCopy(repo_full_name, repo_url) : null;
+  const substitute = gone?.targetSlug || null;
   const primaryGuide = guides[0] || (isGone ? matchGoneGuide(skill) : null);
   const goneGuideCta = isGone && primaryGuide
     ? `<div style="margin-top:8px"><a href="/best/${esc(primaryGuide.slug)}/" style="color:#4f46e5;font-weight:600;text-decoration:none" ${biAttrs(
@@ -657,9 +658,17 @@ ${breadcrumbLd}
       <div style="margin:24px 0;display:flex;gap:16px;flex-wrap:wrap">
         <a href="${esc(ghUrl)}" style="display:inline-block;padding:8px 20px;background:#1e293b;color:#fff;border-radius:8px;text-decoration:none;font-size:14px" ${
           substitute
-            ? biAttrs(`View alternative: ${substitute} →`, `查看替代项目:${substitute} →`)
+            ? gone?.kind === "mirror"
+              ? biAttrs(`View mirror: ${substitute} →`, `查看社区镜像:${substitute} →`)
+              : biAttrs(`View alternative: ${substitute} →`, `查看替代项目:${substitute} →`)
             : biAttrs("View on GitHub →", "在 GitHub 上查看 →")
-        }>${substitute ? c.viewAlt(substitute) : c.viewGithub}</a>
+        }>${
+          substitute
+            ? gone?.kind === "mirror"
+              ? esc(lang === "zh" ? `查看社区镜像:${substitute} →` : `View mirror: ${substitute} →`)
+              : c.viewAlt(substitute)
+            : c.viewGithub
+        }</a>
         <a href="/category/${esc(category)}/" style="display:inline-block;padding:8px 20px;background:#f0f0ff;color:#4f46e5;border-radius:8px;text-decoration:none;font-size:14px">${c.browseCat(catText)}</a>
       </div>
       ${browseFooter([c.browseAll, c.browseAudits])}
