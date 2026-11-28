@@ -3904,5 +3904,19 @@
    "mcp": 0.98
   },
   "kind": "mcp"
+ },
+ {
+  "repo": "pichalabs/kenya-real-images",
+  "stars": 7,
+  "description": "Codex plugin and ChatGPT skill that make AI images of Kenyan people and places look like real photos. Install guide and skill ZIP download on the website.",
+  "scores": {
+   "gpt_image": 0.48,
+   "nano_banana": 0.05,
+   "open_models": 0.19,
+   "editing": 0.03,
+   "design": 0.04,
+   "mcp": 0.21
+  },
+  "kind": "gpt_image"
  }
 ]

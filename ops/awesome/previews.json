@@ -567,6 +567,14 @@
   "type": "image/gif",
   "bytes": 735757
  },
+ "BeatAPI/BeatCMO": {
+  "repo": "BeatAPI/BeatCMO",
+  "url": "https://raw.githubusercontent.com/BeatAPI/BeatCMO/HEAD/assets/beatcmo-social-preview.png",
+  "alt": "BeatCMO — Evidence-First, Multimodal AI CMO for Coding Agents",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 373140
+ },
  "Besty0728/Unity-Skills": {
   "repo": "Besty0728/Unity-Skills",
   "url": "https://raw.githubusercontent.com/Besty0728/Unity-Skills/HEAD/docs/Unity-Skills-H.png",
@@ -1959,6 +1967,14 @@
   "type": "image/gif",
   "bytes": 6377089
  },
+ "OmniJev/Flide": {
+  "repo": "OmniJev/Flide",
+  "url": "https://raw.githubusercontent.com/OmniJev/Flide/HEAD/examples/answers.gif",
+  "alt": "An email and its eight answers, all from one forward pass",
+  "score": 2.5,
+  "type": "image/gif",
+  "bytes": 60167
+ },
  "OrenFang/orencut": {
   "repo": "OrenFang/orencut",
   "url": "https://raw.githubusercontent.com/OrenFang/orencut/HEAD/docs/orencut-showcase.gif",
@@ -2071,6 +2087,14 @@
   "type": "image/png",
   "bytes": 709930
  },
+ "RayVelez27/instalanding.ai": {
+  "repo": "RayVelez27/instalanding.ai",
+  "url": "https://raw.githubusercontent.com/RayVelez27/instalanding.ai/HEAD/assets/preview.png",
+  "alt": "InstaLanding.ai — one-shot HTML library",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 253942
+ },
  "ReviewStage/stage-cli": {
   "repo": "ReviewStage/stage-cli",
   "url": "https://raw.githubusercontent.com/ReviewStage/stage-cli/main/assets/screenshot.png",
@@ -2078,6 +2102,14 @@
   "score": -2.7,
   "type": "image/png",
   "bytes": 1853175
+ },
+ "Rich627/slides-skill": {
+  "repo": "Rich627/slides-skill",
+  "url": "https://raw.githubusercontent.com/Rich627/slides-skill/HEAD/docs/previews/pitch-deck.png",
+  "alt": "Pitch deck example",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 470724
  },
  "RohanRatwani/explainer-video-opus-5.5": {
   "repo": "RohanRatwani/explainer-video-opus-5.5",
@@ -4415,6 +4447,14 @@
   "type": "image/png",
   "bytes": 1278047
  },
+ "generalizingai/claude-animated-documentary-skill": {
+  "repo": "generalizingai/claude-animated-documentary-skill",
+  "url": "https://raw.githubusercontent.com/generalizingai/claude-animated-documentary-skill/HEAD/animated-documentary/preview.jpg",
+  "alt": "demo",
+  "score": 2.0,
+  "type": "image/jpeg",
+  "bytes": 265676
+ },
  "geonwoo-jeong/japanese-humanizer": {
   "repo": "geonwoo-jeong/japanese-humanizer",
   "url": "https://raw.githubusercontent.com/geonwoo-jeong/japanese-humanizer/HEAD/assets/social-preview.png",
@@ -4607,6 +4647,14 @@
   "type": "image/png",
   "bytes": 90274
  },
+ "hassaanua01-cpu/build-html-ppt-skill": {
+  "repo": "hassaanua01-cpu/build-html-ppt-skill",
+  "url": "https://raw.githubusercontent.com/hassaanua01-cpu/build-html-ppt-skill/HEAD/files/preview.png",
+  "alt": "",
+  "score": 2.0,
+  "type": "image/png",
+  "bytes": 221242
+ },
  "hatchlight/hatchlight": {
   "repo": "hatchlight/hatchlight",
   "url": "https://raw.githubusercontent.com/hatchlight/hatchlight/HEAD/apps/web/public/samples/sdxl-turbo.webp",
@@ -4622,6 +4670,14 @@
   "score": 0.0,
   "type": "image/jpeg",
   "bytes": 18528
+ },
+ "helderpgoncalves/feedbot": {
+  "repo": "helderpgoncalves/feedbot",
+  "url": "https://raw.githubusercontent.com/helderpgoncalves/feedbot/HEAD/docs/assets/install.gif",
+  "alt": "Feedbot installer running curl -fsSL https://get.feedbot.dev | sh",
+  "score": 0.1,
+  "type": "image/gif",
+  "bytes": 1320905
  },
  "helloo1568/image-ppt": {
   "repo": "helloo1568/image-ppt",
@@ -5246,6 +5302,14 @@
   "score": 4.9,
   "type": "image/gif",
   "bytes": 6588161
+ },
+ "jasonlee-breadcrumb/motion-reel": {
+  "repo": "jasonlee-breadcrumb/motion-reel",
+  "url": "https://raw.githubusercontent.com/jasonlee-breadcrumb/motion-reel/HEAD/docs/markup.png",
+  "alt": "Mark up",
+  "score": -0.05,
+  "type": "image/png",
+  "bytes": 445151
  },
  "jaxxchen003/book-video-factory": {
   "repo": "jaxxchen003/book-video-factory",
@@ -5911,6 +5975,14 @@
   "type": "image/gif",
   "bytes": 2015038
  },
+ "mahamsultana/polycast": {
+  "repo": "mahamsultana/polycast",
+  "url": "https://raw.githubusercontent.com/mahamsultana/polycast/HEAD/docs/demo.gif",
+  "alt": "PolyCast demo: the orb says \"Rude. I thought it was me.\" and the host answers",
+  "score": 4.65,
+  "type": "image/gif",
+  "bytes": 4534820
+ },
  "manoletre/explainer-video": {
   "repo": "manoletre/explainer-video",
   "url": "https://raw.githubusercontent.com/manoletre/explainer-video/HEAD/docs/search.jpg",
@@ -5982,6 +6054,14 @@
   "score": -0.55,
   "type": "image/png",
   "bytes": 12433
+ },
+ "meka-im/google-trends-for-agent": {
+  "repo": "meka-im/google-trends-for-agent",
+  "url": "https://raw.githubusercontent.com/meka-im/google-trends-for-agent/HEAD/docs/assets/store-button-en.png",
+  "alt": "Open in Apify Store",
+  "score": -0.5,
+  "type": "image/png",
+  "bytes": 9065
  },
  "memex-lab/product-launch-video-skill": {
   "repo": "memex-lab/product-launch-video-skill",
@@ -6391,6 +6471,14 @@
   "type": "image/png",
   "bytes": 895062
  },
+ "oil-oil/oil-slide": {
+  "repo": "oil-oil/oil-slide",
+  "url": "https://raw.githubusercontent.com/oil-oil/oil-slide/HEAD/docs/assets/showcase.webp",
+  "alt": "三套示例：Oil Studio 新版本发布会（银盐黑白里的陶土小人），Oil Book 直播课程介绍（小黄书小人走完课程），Oil UI 开发者大会分享（画廊纸",
+  "score": 1.8,
+  "type": "image/webp",
+  "bytes": 379568
+ },
  "oil-oil/oil-ui": {
   "repo": "oil-oil/oil-ui",
   "url": "https://raw.githubusercontent.com/oil-oil/oil-ui/HEAD/assets/readme/proof-mona-lisa.webp",
@@ -6567,6 +6655,14 @@
   "type": "image/png",
   "bytes": 730901
  },
+ "pichalabs/kenya-real-images": {
+  "repo": "pichalabs/kenya-real-images",
+  "url": "https://raw.githubusercontent.com/pichalabs/kenya-real-images/HEAD/docs/images/charity-before.jpg",
+  "alt": "Charity-poster stereotype",
+  "score": 1.5,
+  "type": "image/jpeg",
+  "bytes": 129360
+ },
  "pireel/pireel": {
   "repo": "pireel/pireel",
   "url": "https://cdn.pireel.com/static/landing/editorial-scenes/chat-editing-hero-dark-v8.jpg",
@@ -6694,6 +6790,14 @@
   "score": -0.45,
   "type": "image/png",
   "bytes": 67970
+ },
+ "qwwiwi/codex-cli-telegram-plugin": {
+  "repo": "qwwiwi/codex-cli-telegram-plugin",
+  "url": "https://raw.githubusercontent.com/qwwiwi/codex-cli-telegram-plugin/HEAD/docs/images/banner-dark.png",
+  "alt": "Codex CLI Telegram Plugin",
+  "score": -2.5,
+  "type": "image/png",
+  "bytes": 1239043
  },
  "qybaihe/codex-ppt": {
   "repo": "qybaihe/codex-ppt",
@@ -7015,6 +7119,14 @@
   "type": "image/png",
   "bytes": 621433
  },
+ "shandaiqiecheng-commits/aigc-humanizer-skill": {
+  "repo": "shandaiqiecheng-commits/aigc-humanizer-skill",
+  "url": "https://raw.githubusercontent.com/shandaiqiecheng-commits/aigc-humanizer-skill/HEAD/assets/before.jpg",
+  "alt": "原文检测结果",
+  "score": -0.1,
+  "type": "image/jpeg",
+  "bytes": 269409
+ },
  "shariefabdelmonem/interactive-html-presentation": {
   "repo": "shariefabdelmonem/interactive-html-presentation",
   "url": "https://raw.githubusercontent.com/shariefabdelmonem/interactive-html-presentation/HEAD/assets/preview-present-simple.jpg",
@@ -7166,6 +7278,14 @@
   "score": 4.8,
   "type": "image/gif",
   "bytes": 5558350
+ },
+ "srvjha/reel-animated-explainer": {
+  "repo": "srvjha/reel-animated-explainer",
+  "url": "https://raw.githubusercontent.com/srvjha/reel-animated-explainer/HEAD/demo/reel-rag-chunking.gif",
+  "alt": "RAG chunking reel: explainer panel on top, speaker below",
+  "score": 3.0,
+  "type": "image/gif",
+  "bytes": 2021867
  },
  "staryone/motlab": {
   "repo": "staryone/motlab",
@@ -7510,6 +7630,14 @@
   "score": 1.7,
   "type": "image/png",
   "bytes": 104009
+ },
+ "trina-app/community-humanizer": {
+  "repo": "trina-app/community-humanizer",
+  "url": "https://raw.githubusercontent.com/trina-app/community-humanizer/HEAD/docs/img/quiz-en-light.png",
+  "alt": "Human or AI? Take the quiz",
+  "score": 0.0,
+  "type": "image/png",
+  "bytes": 35379
  },
  "trunghaiy/appshot": {
   "repo": "trunghaiy/appshot",

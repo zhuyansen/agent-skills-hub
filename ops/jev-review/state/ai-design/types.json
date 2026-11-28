@@ -3120,5 +3120,19 @@
    "review": 0.52
   },
   "kind": "graphics"
+ },
+ {
+  "repo": "RayVelez27/instalanding.ai",
+  "stars": 270,
+  "description": "Free, open-source library of premium, single-file HTML landing pages, motion components, and interactive experiences. No frameworks. No dependencies. Built for humans and AI coding agents.",
+  "scores": {
+   "ui": 0.86,
+   "system": 0.89,
+   "tool_mcp": 0.05,
+   "to_code": 0.47,
+   "graphics": 0.78,
+   "review": 0.09
+  },
+  "kind": "system"
  }
 ]

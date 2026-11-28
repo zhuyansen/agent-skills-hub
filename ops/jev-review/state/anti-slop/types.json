@@ -4380,5 +4380,47 @@
    "rules": 0.07
   },
   "kind": "writing"
+ },
+ {
+  "repo": "trina-app/community-humanizer",
+  "stars": 58,
+  "description": "A humanizer for Reddit and Clien comments and posts: writes the way each community actually writes. Never posts.",
+  "scores": {
+   "writing": 0.56,
+   "detector": 0.28,
+   "chinese": 0.17,
+   "code": 0.09,
+   "design": 0.07,
+   "rules": 0.61
+  },
+  "kind": "rules"
+ },
+ {
+  "repo": "shandaiqiecheng-commits/aigc-humanizer-skill",
+  "stars": 5,
+  "description": "降低AIGC率（降AI），面向论文与学术写作的润色工具，减少模板化表达，让文本更自然，仅优化表达并保留原文数据与观点。 / AIGC humanizer for academic writing: reduce AIGC traces and template-like phrasing in papers while preserving data and arguments.",
+  "scores": {
+   "writing": 0.73,
+   "detector": 0.28,
+   "chinese": 0.88,
+   "code": 0.06,
+   "design": 0.09,
+   "rules": 0.76
+  },
+  "kind": "chinese"
+ },
+ {
+  "repo": "tasarren/x-anti-slop",
+  "stars": 5,
+  "description": "Personal regular-expression filters for X. TypeScript extension for Firefox and Chromium browsers.",
+  "scores": {
+   "writing": 0.03,
+   "detector": 0.1,
+   "chinese": 0.04,
+   "code": 0.11,
+   "design": 0.14,
+   "rules": 0.07
+  },
+  "kind": "design"
  }
 ]

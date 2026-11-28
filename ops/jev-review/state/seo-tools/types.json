@@ -5134,5 +5134,37 @@
    "marketing": 0.05
   },
   "kind": "suite"
+ },
+ {
+  "repo": "meka-im/google-trends-for-agent",
+  "stars": 26,
+  "description": "Open-source (MIT) pytrends alternative for AI agents, CLI & MCP — calibrated daily search volume via 59 Google Ads anchors",
+  "scores": {
+   "suite": 0.07,
+   "audit": 0.03,
+   "research": 0.93,
+   "data_mcp": 0.21,
+   "geo": 0.25,
+   "content": 0.07,
+   "links": 0.01,
+   "marketing": 0.06
+  },
+  "kind": "research"
+ },
+ {
+  "repo": "BeatAPI/BeatCMO",
+  "stars": 6,
+  "description": "Open-source AI CMO skills for SaaS, AI products & global websites — Evidence-first growth diagnosis, SEE→BET→SHIP→LEARN operating loop, and 32 multimodal creative models powered by BeatAPI.",
+  "scores": {
+   "suite": 0.9,
+   "audit": 0.2,
+   "research": 0.23,
+   "data_mcp": 0.25,
+   "geo": 0.31,
+   "content": 0.48,
+   "links": 0.08,
+   "marketing": 0.96
+  },
+  "kind": "marketing"
  }
 ]

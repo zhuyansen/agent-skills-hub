@@ -4016,5 +4016,89 @@
    "general": 0.08
   },
   "kind": "pptx"
+ },
+ {
+  "repo": "hassaanua01-cpu/build-html-ppt-skill",
+  "stars": 144,
+  "description": "Build HTML PPT Skill: Audience-Aware Slides and Speaker Notes Template",
+  "scores": {
+   "image": 0.06,
+   "pptx": 0.03,
+   "html": 0.97,
+   "business": 0.73,
+   "convert": 0.12,
+   "general": 0.22
+  },
+  "kind": "html"
+ },
+ {
+  "repo": "oil-oil/oil-slide",
+  "stars": 12,
+  "description": "AI presentation generator for agents: designs the whole deck as images first, then rebuilds every slide as editable HTML and native PPTX. Also 3:4 Xiaohongshu carousels. 先出整套设计稿，再变成能改字的 PPT。Web app: slide.oiloil.org",
+  "scores": {
+   "image": 0.27,
+   "pptx": 0.94,
+   "html": 0.86,
+   "business": 0.44,
+   "convert": 0.25,
+   "general": 0.57
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "YuanMouJun/yuanmou-ppt-skill",
+  "stars": 6,
+  "description": "All-in-One AI PPT Generator & Image/Screenshot/PDF to Editable PPTX Skill — 一句话从零策划整套商业PPT / 1.6W+免登录版式库 / 图片截图PDF转可编辑PPT / 支持Trae、Qoder、OpenClaw、Claude Code、Codex、Cursor",
+  "scores": {
+   "image": 0.04,
+   "pptx": 0.91,
+   "html": 0.03,
+   "business": 0.93,
+   "convert": 0.78,
+   "general": 0.21
+  },
+  "kind": "business"
+ },
+ {
+  "repo": "johnnyknocke/pptx-from-layouts-skill",
+  "stars": 5,
+  "description": "Claude Code skill for generating PowerPoint decks from markdown using template slide master layouts",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.91,
+   "html": 0.01,
+   "business": 0.9,
+   "convert": 0.76,
+   "general": 0.08
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "Rich627/slides-skill",
+  "stars": 5,
+  "description": "Agent skill (Claude Code / Codex / Cursor) that generates editable .pptx decks from a JSON spec — 15 slide types, 7 themes, visual QA loop",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.94,
+   "html": 0.02,
+   "business": 0.8,
+   "convert": 0.1,
+   "general": 0.09
+  },
+  "kind": "pptx"
+ },
+ {
+  "repo": "yigengjiang/paper-to-slides",
+  "stars": 5,
+  "description": "An agent skill for turning research papers into editable Beamer slides, preserving original figures and adding timed speaker scripts.",
+  "scores": {
+   "image": 0.02,
+   "pptx": 0.02,
+   "html": 0.02,
+   "business": 0.04,
+   "convert": 0.93,
+   "general": 0.06
+  },
+  "kind": "convert"
  }
 ]

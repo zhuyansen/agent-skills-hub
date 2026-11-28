@@ -10636,5 +10636,113 @@
    "general": 0.84
   },
   "kind": "general"
+ },
+ {
+  "repo": "mylxsw/cinematic-video-skill",
+  "stars": 19,
+  "description": "Claude Code skill: turn a one-line brief into a fact-checked cinematic motion-graphics film with an original score, rendered from code (Remotion + numpy), with automated layout QA.",
+  "scores": {
+   "promo": 0.38,
+   "explainer": 0.45,
+   "music": 0.27,
+   "motion": 0.06,
+   "shorts": 0.09,
+   "editing": 0.04,
+   "demo": 0.15,
+   "story": 0.19,
+   "avatar": 0.04,
+   "general": 0.11
+  },
+  "kind": "general"
+ },
+ {
+  "repo": "jasonlee-breadcrumb/motion-reel",
+  "stars": 9,
+  "description": "Claude Code skill: turn a talking-head recording into a vertical reel with code-built motion graphics. Storyboard, proxy, final.",
+  "scores": {
+   "promo": 0.17,
+   "explainer": 0.29,
+   "music": 0.03,
+   "motion": 0.53,
+   "shorts": 0.96,
+   "editing": 0.97,
+   "demo": 0.39,
+   "story": 0.08,
+   "avatar": 0.03,
+   "general": 0.04
+  },
+  "kind": "editing"
+ },
+ {
+  "repo": "generalizingai/claude-animated-documentary-skill",
+  "stars": 5,
+  "description": "Free Claude skill: make cartoon documentaries entirely in code (no AI video). Characters, layered sets, camera and edit in Remotion; ElevenLabs narration.",
+  "scores": {
+   "promo": 0.1,
+   "explainer": 0.76,
+   "music": 0.03,
+   "motion": 0.09,
+   "shorts": 0.1,
+   "editing": 0.04,
+   "demo": 0.32,
+   "story": 0.24,
+   "avatar": 0.06,
+   "general": 0.06
+  },
+  "kind": "explainer"
+ },
+ {
+  "repo": "srvjha/reel-animated-explainer",
+  "stars": 5,
+  "description": "Turn a raw talking-head video into an animated explainer reel with Claude. Word-timed captions, speech-synced diagrams, music and 27 themes. Claude Code plugin + SKILL.md.",
+  "scores": {
+   "promo": 0.26,
+   "explainer": 0.92,
+   "music": 0.05,
+   "motion": 0.4,
+   "shorts": 0.95,
+   "editing": 0.92,
+   "demo": 0.4,
+   "story": 0.07,
+   "avatar": 0.06,
+   "general": 0.11
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "mahamsultana/polycast",
+  "stars": 5,
+  "description": "Write a script. Get a low-poly 3D podcast video. Three.js + headless Chrome, voices by Cartesia or free OS TTS. Also a Claude Code skill.",
+  "scores": {
+   "promo": 0.56,
+   "explainer": 0.58,
+   "music": 0.05,
+   "motion": 0.13,
+   "shorts": 0.84,
+   "editing": 0.07,
+   "demo": 0.5,
+   "story": 0.45,
+   "avatar": 0.68,
+   "general": 0.12
+  },
+  "kind": "shorts"
+ },
+ {
+  "repo": "DisturbedMediaGroup/claude-animation-skill",
+  "stars": 5,
+  "description": "Claude Code skill for directing 3D animation in Blender: product/hero shots, camera moves, lens and forced-perspective math, F-curve timing, and the 12 principles for hard-surface objects. Includes a verified bpy library.",
+  "scores": {
+   "promo": 0.52,
+   "explainer": 0.22,
+   "music": 0.05,
+   "motion": 0.25,
+   "shorts": 0.07,
+   "editing": 0.04,
+   "demo": 0.17,
+   "story": 0.09,
+   "avatar": 0.03,
+   "general": 0.06
+  },
+  "kind": "promo"
  }
 ]

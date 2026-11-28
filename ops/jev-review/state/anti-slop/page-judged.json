@@ -5430,5 +5430,38 @@
   "days": 65,
   "stars_per_day": 0.7846153846153846,
   "verdict": "admit"
+ },
+ {
+  "repo": "trina-app/community-humanizer",
+  "name": "community-humanizer",
+  "stars": 58,
+  "description": "A humanizer for Reddit and Clien comments and posts: writes the way each community actually writes. Never posts.",
+  "topics": [
+   "ai-writing",
+   "claude-code",
+   "claude-code-skill",
+   "humanizer",
+   "korean",
+   "reddit"
+  ],
+  "created": "2024-11-15",
+  "pushed": "",
+  "source": "catalog",
+  "readme_chars": 9787,
+  "names_model": false,
+  "on_subject": 0.94,
+  "is_software": 0.97,
+  "shows_result": 0.92,
+  "one_command_start": 0.71,
+  "specific_outcome": 0.77,
+  "complete_docs": 0.67,
+  "novel_angle": 0.6,
+  "shareable_output": 0.83,
+  "quality": 0.7675000000000001,
+  "tier": "高",
+  "hit_prior": 0.7833333333333333,
+  "days": 743,
+  "stars_per_day": 0.07806191117092867,
+  "verdict": "admit"
  }
 ]

@@ -117,7 +117,8 @@
     "n24q02m/better-code-review-graph",
     "wdnmd1265/Audison",
     "minetechnic2012-lang/claude-ops-inspector",
-    "mturac/simulacra"
+    "mturac/simulacra",
+    "mattzcarey/shippie"
    ]
   },
   "related": [
@@ -1990,7 +1991,9 @@
     "turmyshevd/openclawgotchi",
     "1995parham/ELBoT",
     "nguyencaotai1969/telegram-bot-router",
-    "hlibsuslov/telegram-bot-ui"
+    "hlibsuslov/telegram-bot-ui",
+    "qwwiwi/codex-cli-telegram-plugin",
+    "helderpgoncalves/feedbot"
    ],
    "exclude_repos": [
     "smixs/iva",
@@ -2456,7 +2459,8 @@
     "grandamenium/nano-banana-2-skill",
     "hatchlight/hatchlight",
     "jakubcurik/nano-banana",
-    "legolev/mediamcp"
+    "legolev/mediamcp",
+    "pichalabs/kenya-real-images"
    ],
    "exclude_repos": [
     "NimaChu/xiaohongshu-content-creator",
@@ -5183,7 +5187,10 @@
     "Logiaweb/limora-unslop",
     "Yan-W-u/zh-novel-writing-toolkit",
     "ormeilu/avoid-ai-writing-russian",
-    "igotlinux/humanizeai-cli"
+    "igotlinux/humanizeai-cli",
+    "trina-app/community-humanizer",
+    "shandaiqiecheng-commits/aigc-humanizer-skill",
+    "tasarren/x-anti-slop"
    ],
    "exclude_repos": [
     "simonlin1212/SDesign",
@@ -5194,7 +5201,8 @@
     "Mutakisa/game-slop-purge",
     "tasteskill/tasteskill",
     "taufiquebuilds/nopurple",
-    "erkamyaman/unslopovich"
+    "erkamyaman/unslopovich",
+    "proffitteoy/Mathematician-Humanizer"
    ]
   },
   "related": [
@@ -5718,7 +5726,9 @@
     "gitroomhq/postiz-content-skills",
     "omerbatutandogan/seekwide",
     "koihq/koi",
-    "ifyour/gefei-seo-skill"
+    "ifyour/gefei-seo-skill",
+    "meka-im/google-trends-for-agent",
+    "BeatAPI/BeatCMO"
    ],
    "featured": [
     "AgriciDaniel/claude-seo"
@@ -6245,7 +6255,8 @@
     "sergiobanhos/generate-icons",
     "pycodebr/hedesign",
     "yashh1323/atelier-ui",
-    "webkubor/logo-brand-designer"
+    "webkubor/logo-brand-designer",
+    "RayVelez27/instalanding.ai"
    ],
    "exclude_repos": [
     "Adityaraj0421/design-studio",
@@ -7160,7 +7171,8 @@
     "clearfunction/cf-devtools",
     "MiraclePlus/pre-pp",
     "andyluu98/slidefly",
-    "taufiquebuilds/nopurple"
+    "taufiquebuilds/nopurple",
+    "oil-oil/oil-ppt"
    ],
    "admit_reviewed": [
     "2slides/mcp-2slides",
@@ -7379,7 +7391,13 @@
     "przntperfect/prznt-deck",
     "123zhaozheng/SlideForge",
     "xiaoli1999/li-talk-skills",
-    "voidful/Slider"
+    "voidful/Slider",
+    "hassaanua01-cpu/build-html-ppt-skill",
+    "oil-oil/oil-slide",
+    "YuanMouJun/yuanmou-ppt-skill",
+    "johnnyknocke/pptx-from-layouts-skill",
+    "Rich627/slides-skill",
+    "yigengjiang/paper-to-slides"
    ],
    "featured": [
     "op7418/guizang-ppt-skill",
@@ -8837,7 +8855,8 @@
     "Todmy/jevqa",
     "glud123/jev-assist",
     "caiovicentino/jev-shield",
-    "mmornati/system-one-router"
+    "mmornati/system-one-router",
+    "OmniJev/Flide"
    ],
    "exclude_repos": [
     "Sheltercosmo/JevSDSQL",
@@ -9540,7 +9559,13 @@
     "muchuanhung/make-demo-video",
     "Abm32/runsight",
     "Ding200602/video-shotcraft",
-    "aumpny/lemo-opuscar"
+    "aumpny/lemo-opuscar",
+    "mylxsw/cinematic-video-skill",
+    "jasonlee-breadcrumb/motion-reel",
+    "generalizingai/claude-animated-documentary-skill",
+    "srvjha/reel-animated-explainer",
+    "mahamsultana/polycast",
+    "DisturbedMediaGroup/claude-animation-skill"
    ],
    "sub_skills": [
     {
@@ -9594,7 +9619,8 @@
     "nocodehack/nocodehack-roblox-engine",
     "kvrancic/oneshot-video",
     "luminexlabs-io/antigravity-remotion-skill",
-    "zz41354899/mografy"
+    "zz41354899/mografy",
+    "aumpny/lemo-opuscar"
    ],
    "tag_matches": [],
    "required_keywords": [

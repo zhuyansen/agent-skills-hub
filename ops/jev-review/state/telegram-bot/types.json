@@ -3750,5 +3750,33 @@
    "business": 0.23
   },
   "kind": "remote"
+ },
+ {
+  "repo": "helderpgoncalves/feedbot",
+  "stars": 5,
+  "description": "Turn community chat into a structured product backlog — Telegram + dashboard + MCP for Claude Code.",
+  "scores": {
+   "assistant": 0.32,
+   "remote": 0.67,
+   "framework": 0.28,
+   "utility": 0.21,
+   "fun": 0.03,
+   "business": 0.18
+  },
+  "kind": "remote"
+ },
+ {
+  "repo": "qwwiwi/codex-cli-telegram-plugin",
+  "stars": 6,
+  "description": "OpenAI Codex CLI as your personal agent in Telegram – a ready setup: autonomous work, parallel sessions, live status card, widgets, self-check. Built on the Codex app-server.",
+  "scores": {
+   "assistant": 0.74,
+   "remote": 0.97,
+   "framework": 0.15,
+   "utility": 0.14,
+   "fun": 0.09,
+   "business": 0.06
+  },
+  "kind": "remote"
  }
 ]
