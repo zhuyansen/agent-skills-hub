@@ -13,6 +13,7 @@ export const USD_PRICING = {
   proStandard: "$49/yr",
   fastTrack: "$49",
   ciGate: "$49/mo",
+  sponsorMonthly: "$299/mo",
 } as const;
 
 export const CHECKOUT_LINKS = {
@@ -20,6 +21,7 @@ export const CHECKOUT_LINKS = {
   pro: (import.meta.env.VITE_STRIPE_PRO_PAYMENT_LINK || "").trim(),
   fasttrack: (import.meta.env.VITE_STRIPE_FASTTRACK_PAYMENT_LINK || "").trim(),
   cigate: (import.meta.env.VITE_STRIPE_CIGATE_PAYMENT_LINK || "").trim(),
+  sponsor: (import.meta.env.VITE_STRIPE_SPONSOR_PAYMENT_LINK || "").trim(),
 } as const;
 
 export function sanitizeStripeRef(raw: string, prefix?: string): string {
