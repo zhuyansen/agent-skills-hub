@@ -45,6 +45,14 @@ const THEME_STYLES: Record<
     card: "bg-amber-50/90 border-amber-200/80 hover:border-amber-400 dark:bg-[#261c10]/95 dark:border-amber-500/20 dark:hover:border-amber-400/45",
     badge: "bg-amber-500/15 text-amber-700 dark:bg-amber-400/20 dark:text-amber-300",
   },
+  teal: {
+    card: "bg-teal-50/90 border-teal-200/80 hover:border-teal-400 dark:bg-[#0d2224]/95 dark:border-teal-500/20 dark:hover:border-teal-400/45",
+    badge: "bg-teal-500/15 text-teal-700 dark:bg-teal-400/20 dark:text-teal-300",
+  },
+  sky: {
+    card: "bg-sky-50/90 border-sky-200/80 hover:border-sky-400 dark:bg-[#0f1f30]/95 dark:border-sky-500/20 dark:hover:border-sky-400/45",
+    badge: "bg-sky-500/15 text-sky-700 dark:bg-sky-400/20 dark:text-sky-300",
+  },
 };
 
 function RailCard({ slot, side }: { slot: SponsorSlot; side: "left" | "right" }) {
@@ -54,20 +62,21 @@ function RailCard({ slot, side }: { slot: SponsorSlot; side: "left" | "right" })
   const tagline = isZh && slot.taglineZh ? slot.taglineZh : slot.tagline;
   const palette = THEME_STYLES[slot.theme] ?? THEME_STYLES.indigo;
   const isExternal = /^https?:\/\//i.test(slot.url);
+  const isStaticPage = slot.url === "/daily/" || slot.url === "/best/" || slot.url === "/blog/";
 
   const inner = (
     <div
-      className={`group relative rounded-2xl border px-3.5 py-4 min-h-[124px] flex flex-col items-center justify-center text-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg ${palette.card}`}
+      className={`group relative rounded-2xl border px-3.5 py-3.5 min-h-[120px] flex flex-col items-center justify-center text-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg ${palette.card}`}
     >
       <span className="absolute top-2.5 right-3 text-[9px] font-semibold uppercase tracking-wider text-gray-400/80 dark:text-white/35">
-        {slot.sponsored ? (isZh ? "SPONSOR" : "SPONSOR") : (isZh ? "精选" : "HUB")}
+        {slot.sponsored ? "SPONSOR" : isZh ? "精选" : "HUB"}
       </span>
       {slot.logoUrl ? (
         <img
           src={slot.logoUrl}
           alt={name}
-          width={32}
-          height={32}
+          width={30}
+          height={30}
           loading="lazy"
           className="w-8 h-8 rounded-lg object-cover mb-2 shadow-sm"
         />
@@ -87,12 +96,18 @@ function RailCard({ slot, side }: { slot: SponsorSlot; side: "left" | "right" })
     </div>
   );
 
-  if (isExternal) {
+  if (isExternal || isStaticPage) {
     return (
       <a
         href={slot.url}
-        target="_blank"
-        rel={slot.sponsored ? "sponsored noopener noreferrer" : "noopener noreferrer"}
+        target={isExternal ? "_blank" : undefined}
+        rel={
+          isExternal
+            ? slot.sponsored
+              ? "sponsored noopener noreferrer"
+              : "noopener noreferrer"
+            : undefined
+        }
         onClick={() => trackEvent("sponsor_slot_click", { slot_id: slot.id, side, sponsored: !!slot.sponsored })}
         className="block no-underline"
       >
@@ -120,7 +135,7 @@ function AdvertiseCard({ side, openTotal }: { side: "left" | "right"; openTotal:
     <Link
       to="/submit/#sponsor"
       onClick={() => trackEvent("sponsor_rail_advertise_click", { side })}
-      className="group rounded-2xl border border-dashed border-gray-300 dark:border-white/15 bg-white/70 dark:bg-white/[0.025] hover:border-indigo-400 dark:hover:border-indigo-400/60 hover:bg-indigo-50/50 dark:hover:bg-indigo-500/[0.07] px-3.5 py-4 min-h-[124px] flex flex-col items-center justify-center text-center transition-all duration-200 hover:-translate-y-0.5 no-underline"
+      className="group rounded-2xl border border-dashed border-gray-300 dark:border-white/15 bg-white/70 dark:bg-white/[0.025] hover:border-indigo-400 dark:hover:border-indigo-400/60 hover:bg-indigo-50/50 dark:hover:bg-indigo-500/[0.07] px-3.5 py-3.5 min-h-[120px] flex flex-col items-center justify-center text-center transition-all duration-200 hover:-translate-y-0.5 no-underline"
     >
       <svg
         className="w-5 h-5 text-gray-400 dark:text-white/45 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 mb-1.5 transition-colors"
@@ -149,7 +164,7 @@ function AdvertiseCard({ side, openTotal }: { side: "left" | "right"; openTotal:
 
 /**
  * TrustMRR / mcp.so-style sticky desktop sponsor rail placed on the left or right flank
- * (4 left + 4 right = 8 cards visible in the first desktop viewport). Hidden below `xl`.
+ * (5 left + 5 right = 10 cards filling the full desktop viewport height). Hidden below `xl`.
  */
 export function HomepageSponsorRail({ side }: RailProps) {
   const paid = side === "left" ? LEFT_SPONSORS : RIGHT_SPONSORS;
@@ -160,7 +175,7 @@ export function HomepageSponsorRail({ side }: RailProps) {
   );
 
   // Fill up to SLOTS_PER_SIDE - 1 top cards (paid sponsors first, then house cards),
-  // reserving the 4th card for the clean dashed "Advertise" CTA whenever seats remain.
+  // reserving the 5th card for the clean dashed "Advertise" CTA whenever seats remain.
   const maxContentSlots = openTotal > 0 ? Math.max(1, SLOTS_PER_SIDE - 1) : SLOTS_PER_SIDE;
   const cards: SponsorSlot[] = [
     ...paid.slice(0, maxContentSlots).map((s) => ({ ...s, sponsored: true })),
@@ -170,7 +185,7 @@ export function HomepageSponsorRail({ side }: RailProps) {
   return (
     <aside
       aria-label={side === "left" ? "Sponsored tools (left)" : "Sponsored tools (right)"}
-      className="hidden xl:flex flex-col gap-3 w-[192px] 2xl:w-[208px] shrink-0 sticky top-[104px] self-start z-30"
+      className="hidden xl:flex flex-col gap-2.5 w-[192px] 2xl:w-[208px] shrink-0 sticky top-[104px] self-start z-30"
     >
       {cards.map((slot) => (
         <RailCard key={slot.id} slot={slot} side={side} />

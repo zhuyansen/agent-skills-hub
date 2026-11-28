@@ -61,10 +61,10 @@ const BUILD_COUNTS = readCatalogCounts();
 /** Stand-ins for a page without the build's counts (the dev server, or a build whose
  *  counting step failed), near the live ones on 11-02 (258,645 / 95,449 / 34,347 / 67,116). */
 const FALLBACK_COUNTS = {
-  total: 258_000,
-  mcp: 95_000,
-  claude: 34_000,
-  agent: 67_000,
+  total: 287_000,
+  mcp: 105_000,
+  claude: 39_000,
+  agent: 74_000,
 } as const;
 
 /** A category's count: live once the stats arrive, else as of the last build, else the stand-in. */
@@ -179,8 +179,13 @@ export function HeroSection({ stats, onSearch }: Props) {
             onFocus={search.open}
             placeholder={t("hero.searchPlaceholder")}
             aria-label="Search skills"
-            className="w-full pl-12 pr-12 py-3.5 border border-gray-200 dark:border-white/15 rounded-2xl bg-white dark:bg-[#0f1629]/90 text-gray-900 dark:text-gray-100 text-base shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-shadow hover:shadow-xl backdrop-blur-sm"
+            className="w-full pl-12 pr-20 py-3.5 border border-indigo-200 dark:border-indigo-400/30 rounded-2xl bg-white dark:bg-[#0d1426]/95 text-gray-900 dark:text-gray-100 text-base shadow-lg shadow-indigo-500/5 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all hover:border-indigo-300 dark:hover:border-indigo-400/50 hover:shadow-xl backdrop-blur-sm"
           />
+          {!query && (
+            <kbd className="hidden sm:inline-flex items-center px-2 py-0.5 text-[11px] font-medium text-gray-400 dark:text-gray-400 bg-gray-100 dark:bg-white/[0.06] border border-gray-200 dark:border-white/10 rounded-md absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none">
+              Enter ↵
+            </kbd>
+          )}
           {query && (
             <button
               onClick={() => {

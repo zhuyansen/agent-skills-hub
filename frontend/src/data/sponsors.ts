@@ -13,7 +13,7 @@
  * `LEFT_SPONSORS` or `RIGHT_SPONSORS` seamlessly takes over a seat.
  */
 
-export type SponsorTheme = "emerald" | "indigo" | "violet" | "rose" | "blue" | "amber";
+export type SponsorTheme = "emerald" | "indigo" | "violet" | "rose" | "blue" | "amber" | "teal" | "sky";
 
 export interface SponsorSlot {
   id: string;
@@ -32,7 +32,7 @@ export interface SponsorSlot {
   sponsored?: boolean;
 }
 
-export const SLOTS_PER_SIDE = 4;
+export const SLOTS_PER_SIDE = 5;
 export const TOTAL_SPONSOR_SLOTS = SLOTS_PER_SIDE * 2;
 
 /** Paid external sponsors on the left rail (add here as slots sell). */
@@ -73,6 +73,16 @@ export const LEFT_HOUSE_CARDS: SponsorSlot[] = [
     badge: "📘",
     theme: "blue",
   },
+  {
+    id: "house-daily",
+    name: "Daily Top 10",
+    nameZh: "每日精选 Top 10",
+    tagline: "Fresh trending Claude skills & MCP servers every day",
+    taglineZh: "每日严选高增长 Claude Skill 与 MCP 工具",
+    url: "/daily/",
+    badge: "🔥",
+    theme: "teal",
+  },
 ];
 
 /** Internal house cards shown in unsold right seats (replaced 1-for-1 as sponsors book). */
@@ -106,5 +116,15 @@ export const RIGHT_HOUSE_CARDS: SponsorSlot[] = [
     url: "/best/",
     badge: "★",
     theme: "amber",
+  },
+  {
+    id: "house-compare",
+    name: "Skill Compare",
+    nameZh: "横向对比工具",
+    tagline: "Compare any two skills across 9 quality dimensions",
+    taglineZh: "按 9 项质量与安全维度横向对比同类 Skill",
+    url: "/compare/",
+    badge: "⚖️",
+    theme: "sky",
   },
 ];

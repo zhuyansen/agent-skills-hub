@@ -20,7 +20,9 @@ export const USD_PRICING = {
 export const CHECKOUT_LINKS = {
   proStandard: (import.meta.env.VITE_STRIPE_PRO_STANDARD_PAYMENT_LINK || "").trim(),
   pro: (import.meta.env.VITE_STRIPE_PRO_PAYMENT_LINK || "").trim(),
-  fasttrack: (import.meta.env.VITE_STRIPE_FASTTRACK_PAYMENT_LINK || "").trim(),
+  // Deliberately reads VITE_STRIPE_FASTTRACK_19_PAYMENT_LINK (not the legacy $49 var)
+  // so buyers are never sent to a stale $49 checkout page while the promo says $19.
+  fasttrack: (import.meta.env.VITE_STRIPE_FASTTRACK_19_PAYMENT_LINK || "").trim(),
   cigate: (import.meta.env.VITE_STRIPE_CIGATE_PAYMENT_LINK || "").trim(),
   sponsor: (import.meta.env.VITE_STRIPE_SPONSOR_PAYMENT_LINK || "").trim(),
 } as const;

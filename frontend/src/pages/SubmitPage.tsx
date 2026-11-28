@@ -561,8 +561,8 @@ export function SubmitPage() {
                     <span className="text-indigo-500 font-bold">✓</span>
                     <span>
                       {isZh
-                        ? `全站严格限额 ${TOTAL_SPONSOR_SLOTS} 席（左 4 + 右 4），按月订阅、随时可停`
-                        : `Strictly capped at ${TOTAL_SPONSOR_SLOTS} seats (4 left + 4 right), monthly, cancel anytime`}
+                        ? `全站严格限额 ${TOTAL_SPONSOR_SLOTS} 席（左 5 + 右 5），按月订阅、随时可停`
+                        : `Strictly capped at ${TOTAL_SPONSOR_SLOTS} seats (5 left + 5 right), monthly, cancel anytime`}
                     </span>
                   </li>
                   <li className="flex items-start gap-2 rounded-lg bg-gray-50 dark:bg-gray-950/60 p-2.5 border border-gray-100 dark:border-gray-800">
