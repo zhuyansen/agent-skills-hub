@@ -46,6 +46,7 @@ def test_classify_session_skus():
     assert poll_stripe.classify_session({"client_reference_id": "pro--hub-member"}) == ("pro", "hub-member")
     assert poll_stripe.classify_session({"client_reference_id": "cigate--acme--skills"}) == ("cigate", "acme/skills")
     assert poll_stripe.classify_session({"client_reference_id": "fasttrack--foo--bar"}) == ("fasttrack", "foo/bar")
+    assert poll_stripe.classify_session({"client_reference_id": "sponsor--acme--left"}) == ("sponsor", "acme/left")
     assert poll_stripe.classify_session({"client_reference_id": "owner--repo"}) is None
     assert poll_stripe.classify_session({"mode": "subscription"}) is None
 

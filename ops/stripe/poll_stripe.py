@@ -195,7 +195,7 @@ def is_ours(session: dict) -> bool:
     return (
         session.get("payment_link") in PAYMENT_LINK_SKUS
         or meta.get("source") == "agentskillshub"
-        or ref.startswith(("pro--", "cigate--", "fasttrack--"))
+        or ref.startswith(("pro--", "cigate--", "fasttrack--", "sponsor--"))
     )
 
 
@@ -210,7 +210,7 @@ def classify_session(session: dict) -> tuple[str, str] | None:
     ref, _ = split_client_ref(session.get("client_reference_id") or "")
     meta_sku = str(meta.get("sku") or "").lower()
 
-    if meta_sku in {"pro", "fasttrack", "cigate", "deep_audit"}:
+    if meta_sku in {"pro", "fasttrack", "cigate", "sponsor", "deep_audit"}:
         sku = meta_sku
         target = ref.split("--", 1)[1].replace("--", "/") if "--" in ref else (ref or "(self-serve)")
         return sku, target
@@ -224,10 +224,18 @@ def classify_session(session: dict) -> tuple[str, str] | None:
     if ref.startswith("fasttrack--"):
         target = ref.removeprefix("fasttrack--").replace("--", "/") or "(not provided)"
         return "fasttrack", target
+    if ref.startswith("sponsor--"):
+        target = ref.removeprefix("sponsor--").replace("--", "/") or "homepage-rail"
+        return "sponsor", target
 
     link_sku = PAYMENT_LINK_SKUS.get(session.get("payment_link") or "")
     if link_sku:
-        defaults = {"pro": "pro-member", "cigate": "team-ci-gate", "fasttrack": "(not provided)"}
+        defaults = {
+            "pro": "pro-member",
+            "cigate": "team-ci-gate",
+            "fasttrack": "(not provided)",
+            "sponsor": "homepage-rail",
+        }
         return link_sku, ref.replace("--", "/") if ref else defaults[link_sku]
     return None
 
@@ -324,6 +332,7 @@ def create_issue(session: dict, sku: str, target: str, key_status: str) -> str:
         "pro": f"⚡ Pro Membership — {target}",
         "cigate": f"🛡️ Team CI Skill Gate — {target}",
         "fasttrack": f"🚀 48h Fast-Track Review — {target}",
+        "sponsor": f"⭐ Homepage Rail Sponsor — {target}",
         "deep_audit": f"💰 Deep Audit order — {target}",
     }
     checklists = {
@@ -340,6 +349,12 @@ def create_issue(session: dict, sku: str, target: str, key_status: str) -> str:
             f"- [ ] Run full manual + static review on `{target}` within 48h\n"
             "- [ ] Update catalog grade/notes if verified safe/fixed\n"
             "- [ ] Email 48h Fast-Track report to submitter\n"
+            "- [ ] Close this issue\n"
+        ),
+        "sponsor": (
+            f"- [ ] Confirm logo, 1-line pitch, target URL & left/right slot for `{target}`\n"
+            "- [ ] Add sponsor entry to `frontend/src/data/sponsors.ts` (`rel=\"sponsored\"`) and deploy\n"
+            "- [ ] Email live homepage screenshot + complimentary Fast-Track audit offer to sponsor\n"
             "- [ ] Close this issue\n"
         ),
         "deep_audit": (
