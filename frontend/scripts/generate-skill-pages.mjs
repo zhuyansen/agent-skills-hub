@@ -37,7 +37,7 @@ import { readFileSync, mkdirSync, writeFileSync, existsSync } from "fs";
 import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { displayName } from "../src/lib/repoBrand.mjs";
-import { goneCopy, rewriteMirrorCommand } from "../src/lib/goneRepo.mjs";
+import { goneCopy, matchGoneGuide, rewriteMirrorCommand } from "../src/lib/goneRepo.mjs";
 import {
   SUPABASE_URL, SUPABASE_ANON_KEY, SITE, CATEGORY_LABELS,
   esc, starsK, formatDate, stripMarkdown, truncate, parseJsonArray, biAttrs,
@@ -263,7 +263,7 @@ function buildSkillHtml(skill, assetTags, compositions, skillById, categoryIndex
   const ogImage = `${SITE}/og-image.png`;
 
   const gone = isGone ? goneCopy(repo_full_name, repo_url) : null;
-  const primaryGuide = guides[0] || null;
+  const primaryGuide = guides[0] || (isGone ? matchGoneGuide(skill) : null);
   const goneGuideCta = isGone && primaryGuide
     ? `<div style="margin-top:8px"><a href="/best/${esc(primaryGuide.slug)}/" style="color:#4f46e5;font-weight:600;text-decoration:none" ${biAttrs(
         `Looking for actively maintained alternatives? See ${primaryGuide.title} →`,

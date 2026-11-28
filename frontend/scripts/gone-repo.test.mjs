@@ -9,6 +9,7 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import {
   goneCopy,
+  matchGoneGuide,
   retargetKind,
   retargetedSlug,
   rewriteMirrorCommand,
@@ -72,4 +73,24 @@ test("Bodila51/gtavi-claudecode links to /best/claude-video-skills/ via guidesIn
   const live = guidesIndex(read("./scenario-keywords.json"), read("./scenario-kinds.json"), read("./scenario-zh.json"));
   const guides = live.get("bodila51/gtavi-claudecode") || [];
   assert.ok(guides.some((g) => g.slug === "claude-video-skills"));
+});
+
+test("matchGoneGuide routes gone high-star repos to active /best/ guides", () => {
+  const scenarios = JSON.parse(readFileSync(new URL("./scenario-keywords.json", import.meta.url), "utf-8"));
+  const liveSlugs = new Set(scenarios.filter((s) => !s.retired).map((s) => s.slug));
+  const cases = [
+    [{ repo_full_name: "Bodila51/gtavi-claudecode", description: "GTA 6 vertical clips", category: "claude-skill" }, "claude-video-skills"],
+    [{ repo_full_name: "mcncarl/jianying-headless", description: "native Jianying drafts editing", category: "agent-tool" }, "claude-video-skills"],
+    [{ repo_full_name: "Manavarya09/design-extract", description: "Extract design system DTCG tokens", category: "mcp-server" }, "ai-design"],
+    [{ repo_full_name: "LiCinCan/blender-ai-mcp-addon", description: "Blender MCP addon", category: "mcp-server" }, "3d-mcp"],
+    [{ repo_full_name: "lingbol088-spec/reverse-flow-skill", description: "本地 CTF 逆向工程流程技能", category: "codex-skill" }, "ai-reverse-engineering"],
+    [{ repo_full_name: "doobidoo/mcp-memory-service", description: "persistent memory for AI agent pipelines", category: "mcp-server" }, "knowledge-base"],
+    [{ repo_full_name: "trhhubsd/ARTEX", description: "autonomous penetration testing system", category: "mcp-server" }, "secret-detection"],
+    [{ repo_full_name: "example/unknown-tool", description: "miscellaneous helper", category: "codex-skill" }, "codex-skills"],
+  ];
+  for (const [skill, expected] of cases) {
+    const g = matchGoneGuide(skill);
+    assert.equal(g.slug, expected, `${skill.repo_full_name} → ${expected}`);
+    assert.ok(liveSlugs.has(g.slug), `matched slug ${g.slug} must be a live scenario`);
+  }
 });

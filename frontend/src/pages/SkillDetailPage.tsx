@@ -17,7 +17,7 @@ import { TestedByUs } from "../components/TestedByUs";
 import { FeaturedInGuides } from "../components/FeaturedInGuides";
 import { skillTitle, skillDescription, fallbackTitle } from "../lib/skillMeta.mjs";
 import { displayName } from "../lib/repoBrand.mjs";
-import { goneCopy } from "../lib/goneRepo.mjs";
+import { goneCopy, matchGoneGuide } from "../lib/goneRepo.mjs";
 import {
   prerenderedCreatorPath,
   prerenderedDescription,
@@ -305,15 +305,7 @@ export function SkillDetailPage() {
           {detail.repo_status === "gone" && (() => {
             const gone = goneCopy(detail.repo_full_name, detail.repo_url);
             const guides = prerenderedGuides();
-            const fallbackGuide =
-              detail.repo_full_name.toLowerCase() === "bodila51/gtavi-claudecode"
-                ? {
-                    slug: "claude-video-skills",
-                    title: "Claude Video Editing & Remotion Skills",
-                    titleZh: "最佳 Claude 视频剪辑与 Remotion Skill",
-                  }
-                : null;
-            const guide = guides[0] ?? fallbackGuide;
+            const guide = guides[0] ?? matchGoneGuide(detail);
             const isMirror = gone.kind === "mirror";
             return (
               <div

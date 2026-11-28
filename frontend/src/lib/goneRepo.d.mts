@@ -9,6 +9,12 @@ export interface GoneCopyResult {
   bodyZh: string;
 }
 
+export interface GoneGuideInfo {
+  slug: string;
+  title: string;
+  titleZh: string;
+}
+
 export function retargetedSlug(repoFullName: string, repoUrl?: string | null): string | null;
 export function retargetKind(repoFullName: string, repoUrl?: string | null): RetargetKind;
 export function rewriteMirrorCommand(
@@ -17,3 +23,7 @@ export function rewriteMirrorCommand(
   mirrorFullName: string,
 ): string;
 export function goneCopy(repoFullName: string, repoUrl?: string | null): GoneCopyResult;
+export function matchGoneGuide(
+  skill: { repo_full_name?: string; description?: string | null; topics?: string | null; category?: string | null },
+  liveBySlug?: Map<string, GoneGuideInfo> | null,
+): GoneGuideInfo | null;
