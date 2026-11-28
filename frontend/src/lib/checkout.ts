@@ -11,9 +11,10 @@
 export const USD_PRICING = {
   proEarly: "$29/yr",
   proStandard: "$49/yr",
-  fastTrack: "$49",
+  fastTrack: "$19",
+  fastTrackOriginal: "$49",
   ciGate: "$49/mo",
-  sponsorMonthly: "$299/mo",
+  sponsorMonthly: "$69/mo",
 } as const;
 
 export const CHECKOUT_LINKS = {

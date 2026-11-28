@@ -356,8 +356,11 @@ export function SubmitPage() {
                   >
                     <div className="flex items-center justify-between text-sm font-semibold text-gray-900 dark:text-white">
                       <span>{isZh ? "加急安全初审" : "Fast-Track Review"}</span>
-                      <span className="text-xs font-bold text-indigo-600 dark:text-indigo-400">
-                        {USD_PRICING.fastTrack} · 48h
+                      <span className="flex items-center gap-1.5 text-xs font-bold text-indigo-600 dark:text-indigo-400">
+                        <span className="line-through font-normal text-gray-400 dark:text-gray-500">
+                          {USD_PRICING.fastTrackOriginal}
+                        </span>
+                        <span>{USD_PRICING.fastTrack} · 48h</span>
                       </span>
                     </div>
                     <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">

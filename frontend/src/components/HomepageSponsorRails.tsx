@@ -110,7 +110,7 @@ export function HomepageSponsorRail({ side }: RailProps) {
   return (
     <aside
       aria-label={side === "left" ? "Sponsored tools (left)" : "Sponsored tools (right)"}
-      className="hidden xl:flex flex-col gap-2.5 w-[176px] 2xl:w-[196px] shrink-0 sticky top-20 self-start pt-6"
+      className="hidden xl:flex flex-col gap-2.5 w-[176px] 2xl:w-[196px] shrink-0 sticky top-32 self-start pt-8 z-30"
     >
       <div className="flex items-center justify-between px-1">
         <span className="text-[10px] font-semibold uppercase tracking-wider text-gray-400 dark:text-gray-500">
