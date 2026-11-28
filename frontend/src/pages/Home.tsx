@@ -10,6 +10,7 @@ const DashboardStats = lazy(() =>
   })),
 );
 import { HeroSection } from "../components/HeroSection";
+import { HomepageSponsorRail } from "../components/HomepageSponsorRails";
 import { LazySection, type Reserve } from "../components/LazySection";
 import { HallOfFame } from "../components/HallOfFame";
 import { RecentlyUpdated } from "../components/RecentlyUpdated";
@@ -242,7 +243,9 @@ export function Home() {
 
       <SiteHeader showTabs tab={tab} onTabChange={setTab} />
 
-      <main className="max-w-[1440px] mx-auto px-4 py-6">
+      <div className="max-w-[1680px] mx-auto flex justify-center gap-4 px-4 pt-4">
+        <HomepageSponsorRail side="left" />
+        <main className="min-w-0 flex-1 max-w-[1160px] pb-6">
         {/* Overview Tab */}
         {tab === "overview" && (
           <div className="animate-fade-in-up">
@@ -628,7 +631,9 @@ export function Home() {
             </a>
           </div>
         </section>
-      </main>
+        </main>
+        <HomepageSponsorRail side="right" />
+      </div>
 
       {/* Skill Detail Panel (for panel-based viewing, kept for backward compat) */}
       {detailSkill && (

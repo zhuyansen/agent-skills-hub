@@ -61,10 +61,10 @@ const BUILD_COUNTS = readCatalogCounts();
 /** Stand-ins for a page without the build's counts (the dev server, or a build whose
  *  counting step failed), near the live ones on 11-02 (258,645 / 95,449 / 34,347 / 67,116). */
 const FALLBACK_COUNTS = {
-  total: 258_000,
-  mcp: 95_000,
-  claude: 34_000,
-  agent: 67_000,
+  total: 287_000,
+  mcp: 105_000,
+  claude: 39_000,
+  agent: 74_000,
 } as const;
 
 /** A category's count: live once the stats arrive, else as of the last build, else the stand-in. */
@@ -144,35 +144,19 @@ export function HeroSection({ stats, onSearch }: Props) {
   const agentCount = categoryCount(stats, "agent-tool", FALLBACK_COUNTS.agent);
 
   return (
-    <section className="hero-gradient full-bleed px-4 pt-8 pb-12 sm:pt-20 sm:pb-16 mb-8 relative z-20">
-      <div className="max-w-3xl mx-auto text-center relative z-10">
-        {/* The three guides with our own test results, where the hero used to open with empty
-            padding and an enterprise banner (Enterprise stays in the header and below the search). */}
-        <nav aria-label={isZh ? "热门场景" : "Popular guides"} className="mb-8">
-          <div className="grid grid-cols-3 gap-2 sm:gap-3">
-            {TOP_GUIDES.map((g) => (
-              <GuideCard key={g.slug} guide={g} zh={isZh} />
-            ))}
-          </div>
-          <a
-            href={isZh ? "/best/zh/" : "/best/"}
-            onClick={() => trackGuideClick("all", "top")}
-            className="inline-block mt-3 text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
-          >
-            {isZh ? "全部场景 →" : "All guides →"}
-          </a>
-        </nav>
+    <section className="hero-gradient rounded-2xl border border-gray-200/80 dark:border-white/[0.08] px-5 py-7 sm:px-9 sm:py-8 mb-6 relative overflow-hidden shadow-sm">
+      {/* Subtle ambient shapes inspired by mcp.so */}
+      <div className="pointer-events-none absolute -top-16 -left-16 w-56 h-56 rounded-full bg-indigo-500/10 dark:bg-indigo-500/[0.12] blur-3xl" aria-hidden="true" />
+      <div className="pointer-events-none absolute -bottom-20 -right-16 w-64 h-64 rounded-full bg-sky-500/10 dark:bg-blue-500/[0.12] blur-3xl" aria-hidden="true" />
 
+      <div className="max-w-3xl mx-auto text-center relative z-10">
         {/* Main headline */}
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white tracking-[-0.03em] leading-[1.05] mb-5">
+        <h1 className="text-3xl sm:text-4xl lg:text-[46px] font-extrabold text-gray-900 dark:text-white tracking-[-0.03em] leading-[1.08] mb-5">
           {t("hero.title").replace("{count}", countDisplay)}
         </h1>
-        <p className="text-base sm:text-lg text-[var(--text-2)] mb-9 max-w-xl mx-auto leading-relaxed">
-          {t("hero.subtitle")}
-        </p>
 
-        {/* Search bar */}
-        <div className="relative max-w-2xl mx-auto mb-5" ref={containerRef}>
+        {/* Search bar — directly between headline and subtitle so it sits front and center */}
+        <div className="relative max-w-2xl mx-auto mb-4" ref={containerRef}>
           <svg
             className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500 z-10"
             fill="none"
@@ -195,8 +179,13 @@ export function HeroSection({ stats, onSearch }: Props) {
             onFocus={search.open}
             placeholder={t("hero.searchPlaceholder")}
             aria-label="Search skills"
-            className="w-full pl-12 pr-12 py-4 border border-gray-200 dark:border-gray-700 rounded-2xl bg-white dark:bg-gray-800/80 text-gray-900 dark:text-gray-100 text-base shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-shadow hover:shadow-xl backdrop-blur-sm"
+            className="w-full pl-12 pr-20 py-3.5 border border-indigo-200 dark:border-indigo-400/30 rounded-2xl bg-white dark:bg-[#0d1426]/95 text-gray-900 dark:text-gray-100 text-base shadow-lg shadow-indigo-500/5 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all hover:border-indigo-300 dark:hover:border-indigo-400/50 hover:shadow-xl backdrop-blur-sm"
           />
+          {!query && (
+            <kbd className="hidden sm:inline-flex items-center px-2 py-0.5 text-[11px] font-medium text-gray-400 dark:text-gray-400 bg-gray-100 dark:bg-white/[0.06] border border-gray-200 dark:border-white/10 rounded-md absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none">
+              Enter ↵
+            </kbd>
+          )}
           {query && (
             <button
               onClick={() => {
@@ -279,8 +268,12 @@ export function HeroSection({ stats, onSearch }: Props) {
           )}
         </div>
 
+        <p className="text-sm sm:text-base text-[var(--text-2)] mb-4 max-w-xl mx-auto leading-relaxed">
+          {t("hero.subtitle")}
+        </p>
+
         {/* Audit funnel entry — parallel to search: "find a skill" vs "vet a repo" */}
-        <div className="-mt-1 mb-6 text-sm">
+        <div className="mb-6 text-sm">
           <Link
             to="/analyzer/"
             className="font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
@@ -290,6 +283,22 @@ export function HeroSection({ stats, onSearch }: Props) {
               : "🔍 or paste any GitHub repo → free security audit"}
           </Link>
         </div>
+
+        {/* The three guides with our own hands-on test results */}
+        <nav aria-label={isZh ? "热门场景" : "Popular guides"} className="mb-5">
+          <div className="grid grid-cols-3 gap-2.5 sm:gap-3">
+            {TOP_GUIDES.map((g) => (
+              <GuideCard key={g.slug} guide={g} zh={isZh} />
+            ))}
+          </div>
+          <a
+            href={isZh ? "/best/zh/" : "/best/"}
+            onClick={() => trackGuideClick("all", "top")}
+            className="inline-block mt-2.5 text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
+          >
+            {isZh ? "全部场景 →" : "All guides →"}
+          </a>
+        </nav>
 
         {/* More guides */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-8">

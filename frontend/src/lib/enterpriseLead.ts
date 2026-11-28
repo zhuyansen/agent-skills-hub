@@ -17,6 +17,7 @@ export type LeadSource =
   | "audit_result"
   | "pro_checkout"
   | "submit_fasttrack"
+  | "submit_sponsor"
   | "ci_gate_page";
 
 export const HOW_FOUND_OPTIONS = [

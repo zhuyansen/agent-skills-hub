@@ -26,27 +26,6 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
   const [nlMessage, setNlMessage] = useState("");
   const nlRef = useRef<HTMLDivElement>(null);
   const subNavRef = useRef<HTMLDivElement>(null);
-  const [navScroll, setNavScroll] = useState({ left: false, right: false });
-
-  // Sub-nav scroll indicator
-  useEffect(() => {
-    const el = subNavRef.current;
-    if (!el) return;
-    const check = () => {
-      setNavScroll({
-        left: el.scrollLeft > 4,
-        right: el.scrollLeft + el.clientWidth < el.scrollWidth - 4,
-      });
-    };
-    check();
-    el.addEventListener("scroll", check, { passive: true });
-    const ro = new ResizeObserver(check);
-    ro.observe(el);
-    return () => {
-      el.removeEventListener("scroll", check);
-      ro.disconnect();
-    };
-  }, [tab]);
 
   // Close newsletter popup on Escape
   useEffect(() => {
@@ -94,9 +73,9 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
   };
 
   return (
-    <header className="bg-gradient-to-r from-white via-white to-blue-50/50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-40 backdrop-blur-sm">
-      <div className="max-w-[1440px] mx-auto px-4 py-3 sm:py-4">
-        <div className="flex items-center justify-between mb-3">
+    <header className="bg-white/95 dark:bg-[#0b1020]/95 border-b border-gray-200 dark:border-white/[0.08] sticky top-0 z-40 backdrop-blur-md">
+      <div className="max-w-[1680px] mx-auto px-4 py-2.5">
+        <div className={`flex items-center justify-between ${showTabs || (breadcrumb && breadcrumb.length > 0) ? "mb-2" : ""}`}>
           <div className="min-w-0">
             <Link to="/" className="flex items-center gap-2 group">
               {/* min-w-0 down the flex chain so the name truncates instead of
@@ -146,26 +125,20 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
                 </span>
               </span>
             </Link>
-            {/* truncate: the flex sibling is shrink-0, so at mid widths this
-                container gets squeezed — without truncate the tagline wraps
-                into a tall word-per-line column. */}
-            <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-0.5 hidden sm:block truncate">
-              {t("header.subtitle")}
-            </p>
           </div>
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
             {/* Browse-by-type megamenu — desktop only */}
             <BrowseMenu />
             <Link
               to="/enterprise/"
-              className="hidden lg:inline-flex items-center px-3 py-1 text-sm text-indigo-700 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 rounded-lg transition-colors font-semibold ring-1 ring-inset ring-indigo-200 dark:ring-indigo-900"
+              className="hidden lg:inline-flex items-center px-2.5 py-1 text-sm text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-gray-50 dark:hover:bg-white/[0.05] rounded-lg transition-colors font-medium"
               title="Enterprise — Trust Layer for AI Agent & MCP Deployment"
             >
               Enterprise
             </Link>
             <Link
               to="/pro/"
-              className="hidden lg:inline-flex items-center gap-1 px-3 py-1 text-sm text-amber-700 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-950/40 rounded-lg transition-colors font-semibold ring-1 ring-inset ring-amber-300 dark:ring-amber-800"
+              className="hidden lg:inline-flex items-center gap-1 px-2.5 py-1 text-sm text-amber-700 dark:text-amber-400 hover:bg-amber-50 dark:hover:bg-amber-950/40 rounded-lg transition-colors font-semibold ring-1 ring-inset ring-amber-300/80 dark:ring-amber-700/60"
               title={
                 lang === "zh"
                   ? "Pro 深度搜索 — README 全文 · 200 条 · 导出 · API"
@@ -175,29 +148,22 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
               ⚡ Pro
             </Link>
             <Link
-              to="/book/"
-              className="hidden xl:inline-flex items-center px-3 py-1 text-sm text-indigo-700 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 rounded-lg transition-colors font-medium"
-              title="Skill 蓝皮书 2026 — 100K Skill 数据原生研究"
+              to="/submit/#sponsor"
+              className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-1 text-sm text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-300 hover:bg-gray-50 dark:hover:bg-white/[0.05] rounded-lg transition-colors font-medium"
+              title={lang === "zh" ? "首页双侧边栏赞助位 · $69/月" : "Advertise on homepage side rails · $69/mo"}
             >
-              Blue Book
+              <svg className="w-3.5 h-3.5 text-gray-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+              </svg>
+              {lang === "zh" ? "投放广告" : "Advertise"}
             </Link>
-            {/* Static HTML pages — use <a href> not <Link> so browser hard-navigates.
-                Blue Book, Daily and Blog wait for xl: from 1024 to ~1165px they
-                squeezed the name to "A…" (11-01); the "···" menu has them below xl. */}
-            <a
-              href="/daily/"
-              className="hidden xl:inline-flex items-center px-3 py-1 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors font-medium"
-              title="Daily — 每日新鲜 skills 精选 Top 10"
+            <Link
+              to="/submit/"
+              className="hidden sm:inline-flex items-center gap-1 px-2.5 py-1 text-sm text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/50 rounded-lg transition-colors font-semibold"
+              title={lang === "zh" ? "提交 Skill 或 $19 加急审核" : "Submit a skill or $19 Fast-Track review"}
             >
-              Daily
-            </a>
-            <a
-              href="/blog/"
-              className="hidden xl:inline-flex items-center px-3 py-1 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800 rounded-lg transition-colors font-medium"
-              title="Blog — 长文 + 案例 + 深度分析"
-            >
-              Blog
-            </a>
+              + {lang === "zh" ? "提交" : "Submit"}
+            </Link>
             {/* Favorites and GitHub: below sm they move into the "···" menu */}
             <Link
               to="/favorites/"
@@ -361,138 +327,80 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
         {/* Tab Navigation or Breadcrumb */}
         {showTabs && onTabChange ? (
           <div className="-mb-3 sm:-mb-4">
-            <div className="flex items-center gap-1 border-b border-gray-100 dark:border-gray-800 pb-0">
+            <div className="relative flex items-center gap-1 border-t border-gray-100 dark:border-white/[0.06] pt-1.5 pb-1.5 overflow-x-auto scrollbar-hide">
               <button
                 onClick={() => onTabChange("overview")}
-                className={`px-3 sm:px-4 py-2 sm:py-2.5 text-sm font-medium border-b-2 transition-colors cursor-pointer ${
+                className={`px-3 py-1.5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
                   tab === "overview"
-                    ? "border-blue-600 text-blue-600"
-                    : "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
+                    ? "border-indigo-500 text-indigo-600 dark:text-indigo-400"
+                    : "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
                 }`}
               >
-                <svg
-                  className="w-4 h-4 inline -mt-0.5 mr-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"
-                  />
-                </svg>
                 {t("tab.overview")}
               </button>
               <button
                 onClick={() => onTabChange("explore")}
-                className={`px-3 sm:px-4 py-2 sm:py-2.5 text-sm font-medium border-b-2 transition-colors cursor-pointer ${
+                className={`px-3 py-1.5 text-sm font-medium border-b-2 transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
                   tab === "explore"
-                    ? "border-blue-600 text-blue-600"
-                    : "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
+                    ? "border-indigo-500 text-indigo-600 dark:text-indigo-400"
+                    : "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
                 }`}
               >
-                <svg
-                  className="w-4 h-4 inline -mt-0.5 mr-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
-                  />
-                </svg>
                 {t("tab.explore")}
               </button>
-            </div>
-            {/* Section quick navigation (overview tab only) */}
-            {tab === "overview" && (
-              <div className="relative">
-                {navScroll.left && (
-                  <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white dark:from-gray-900 to-transparent z-10 pointer-events-none" />
-                )}
-                <div
-                  ref={subNavRef}
-                  className="flex items-center gap-1.5 py-2 overflow-x-auto scrollbar-hide"
-                >
-                  {[
-                    // Order MUST match the section order rendered in Home.tsx —
-                    // otherwise clicking tabs left-to-right scrolls up and down.
-                    { id: "scenarios", label: t("nav.scenarios") },
-                    { id: "trending", label: t("nav.trending") },
-                    { id: "categories", label: t("nav.categories") },
-                    { id: "top-rated", label: t("nav.topRated") },
-                    { id: "masters", label: t("nav.masters") },
-                    { id: "newsletter", label: t("nav.newsletter") },
-                    { id: "recent", label: t("nav.recent") },
-                    { id: "workflows", label: t("nav.workflows") },
-                  ].map((sec) => (
-                    <button
-                      key={sec.id}
-                      onClick={() => {
-                        const el = document.getElementById(sec.id);
-                        if (el) {
-                          // First scroll triggers LazySection rendering via IntersectionObserver
-                          el.scrollIntoView({
-                            behavior: "smooth",
-                            block: "start",
-                          });
-                          // Retry after lazy content renders & layout stabilizes
-                          setTimeout(() => {
-                            el.scrollIntoView({
-                              behavior: "smooth",
-                              block: "start",
-                            });
-                            el.classList.add(
-                              "ring-2",
-                              "ring-indigo-300",
-                              "rounded-xl",
-                            );
-                            setTimeout(
-                              () =>
-                                el.classList.remove(
-                                  "ring-2",
-                                  "ring-indigo-300",
-                                  "rounded-xl",
-                                ),
-                              2000,
-                            );
-                          }, 400);
-                        }
-                      }}
-                      className="px-2.5 py-1 text-xs text-gray-500 dark:text-gray-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/30 rounded-md transition-colors whitespace-nowrap shrink-0 cursor-pointer"
-                    >
-                      {sec.label}
-                    </button>
-                  ))}
-                  {/* Analyzer link (separate page, not scroll target) */}
-                  <Link
-                    to="/analyzer/"
-                    className="px-2.5 py-1 text-xs text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 rounded-md transition-colors whitespace-nowrap shrink-0 font-medium flex items-center gap-1"
+              {tab === "overview" && (
+                <>
+                  <span className="h-4 w-px bg-gray-200 dark:bg-white/10 mx-1.5 shrink-0" aria-hidden="true" />
+                  <div
+                    ref={subNavRef}
+                    className="flex items-center gap-1 overflow-x-auto scrollbar-hide"
                   >
-                    <svg
-                      className="w-3 h-3"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
+                    {[
+                      { id: "scenarios", label: t("nav.scenarios") },
+                      { id: "trending", label: t("nav.trending") },
+                      { id: "categories", label: t("nav.categories") },
+                      { id: "top-rated", label: t("nav.topRated") },
+                      { id: "masters", label: t("nav.masters") },
+                      { id: "workflows", label: t("nav.workflows") },
+                    ].map((sec) => (
+                      <button
+                        key={sec.id}
+                        onClick={() => {
+                          const el = document.getElementById(sec.id);
+                          if (el) {
+                            el.scrollIntoView({ behavior: "smooth", block: "start" });
+                            setTimeout(() => {
+                              el.scrollIntoView({ behavior: "smooth", block: "start" });
+                              el.classList.add("ring-2", "ring-indigo-300", "rounded-xl");
+                              setTimeout(
+                                () => el.classList.remove("ring-2", "ring-indigo-300", "rounded-xl"),
+                                2000,
+                              );
+                            }, 400);
+                          }
+                        }}
+                        className="px-2.5 py-1 text-xs font-medium text-gray-500 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-300 hover:bg-gray-100 dark:hover:bg-white/[0.05] rounded-md transition-colors whitespace-nowrap shrink-0 cursor-pointer"
+                      >
+                        {sec.label}
+                      </button>
+                    ))}
+                    <Link
+                      to="/analyzer/"
+                      className="px-2.5 py-1 text-xs text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 rounded-md transition-colors whitespace-nowrap shrink-0 font-medium flex items-center gap-1"
                     >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 1a1 1 0 011 1v.586l5.707 2.853A1 1 0 0117 6.414V10a7 7 0 01-7 7 7 7 0 01-7-7V6.414a1 1 0 01.293-.975L9 2.586V2a1 1 0 011-1z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                    {t("nav.analyzer")}
-                  </Link>
-                </div>
-                {navScroll.right && (
-                  <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white dark:from-gray-900 to-transparent z-10 pointer-events-none" />
-                )}
-              </div>
-            )}
+                      <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                          fillRule="evenodd"
+                          d="M10 1a1 1 0 011 1v.586l5.707 2.853A1 1 0 0117 6.414V10a7 7 0 01-7 7 7 7 0 01-7-7V6.414a1 1 0 01.293-.975L9 2.586V2a1 1 0 011-1z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      {t("nav.analyzer")}
+                    </Link>
+                  </div>
+                </>
+              )}
+            </div>
           </div>
         ) : breadcrumb && breadcrumb.length > 0 ? (
           <div className="flex items-center gap-2 text-sm -mb-3 sm:-mb-4 pb-2 border-b border-gray-100 dark:border-gray-800">
