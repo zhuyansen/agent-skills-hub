@@ -101,6 +101,15 @@ Deno.test("a Fast-Track order gets no key", async () => {
   assert(!calls.some((c) => c.startsWith("key")));
 });
 
+Deno.test("a Sponsor rail order alerts ops and opens a placement issue with no key", async () => {
+  const { deps, calls } = stubDeps();
+  const out = await processSession(order({ payment_link: null, client_reference_id: "sponsor--Acme--left__ph_abc", amount_total: 6900 }), deps);
+  assertEquals(out, { done: true, sku: "sponsor", keyStatus: "n/a", issueUrl: "https://github.com/o/r/issues/9" });
+  assert(!calls.some((c) => c.startsWith("key")));
+  assert(calls.includes("mail ops@example.com 💰 69.00 USD [sponsor] 成交:Acme/left"));
+  assert(calls.includes("issue ⭐ Homepage Rail Sponsor — Acme/left"));
+});
+
 Deno.test("a failed alert stops before the issue and the purchase event, so Stripe's retry redoes them", async () => {
   const { deps, calls } = stubDeps({ sendEmail: (to) => Promise.resolve(to !== "ops@example.com") });
   await assertRejects(() => processSession(order(), deps));

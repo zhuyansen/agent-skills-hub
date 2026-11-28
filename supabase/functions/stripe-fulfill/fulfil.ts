@@ -26,7 +26,7 @@ export type Session = {
   created?: number;
 };
 
-export type Sku = "pro" | "cigate" | "fasttrack" | "deep_audit";
+export type Sku = "pro" | "cigate" | "fasttrack" | "sponsor" | "deep_audit";
 
 export const EARLY_BIRD_LINK = "plink_1UchmqC0OZ4h2np2kGFSR5Qr";
 export const EARLY_BIRD_LIMIT = 100;
@@ -45,8 +45,9 @@ const PREFIXES: [string, Sku, string][] = [
   ["pro--", "pro", "pro-member"],
   ["cigate--", "cigate", "team-ci-gate"],
   ["fasttrack--", "fasttrack", "(not provided)"],
+  ["sponsor--", "sponsor", "homepage-rail"],
 ];
-const META_SKUS = new Set(["pro", "fasttrack", "cigate", "deep_audit"]);
+const META_SKUS = new Set(["pro", "fasttrack", "cigate", "sponsor", "deep_audit"]);
 
 /** "pro--web__ph_<id>" -> ["pro--web", "<id>"]. */
 export function splitClientRef(raw: string | null | undefined): [string, string] {

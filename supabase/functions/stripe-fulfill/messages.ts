@@ -18,7 +18,8 @@ export function buyerEmail(sku: Sku, key: string): { subject: string; html: stri
 
 const TITLES: Record<Sku, string> = {
   pro: "⚡ Pro Membership — ", cigate: "🛡️ Team CI Skill Gate — ",
-  fasttrack: "🚀 48h Fast-Track Review — ", deep_audit: "💰 Deep Audit order — ",
+  fasttrack: "🚀 48h Fast-Track Review — ", sponsor: "⭐ Homepage Rail Sponsor — ",
+  deep_audit: "💰 Deep Audit order — ",
 };
 
 function checklist(sku: Sku, target: string): string {
@@ -27,6 +28,9 @@ function checklist(sku: Sku, target: string): string {
     cigate: ["Confirm Team `ash_pro_` key delivered", "Send CI Gate onboarding / allowlist review check-in"],
     fasttrack: [`Run full manual + static review on \`${target}\` within 48h`, "Update catalog grade/notes if verified safe/fixed",
       "Email 48h Fast-Track report to submitter"],
+    sponsor: [`Confirm logo, 1-line pitch, target URL & left/right slot for \`${target}\``,
+      "Add sponsor entry to `frontend/src/data/sponsors.ts` (`rel=\"sponsored\"`) and deploy",
+      "Email live homepage screenshot + complimentary Fast-Track audit offer to sponsor"],
     deep_audit: [`Run deep audit on \`${target}\``, "Write report", "Send report to customer"],
   };
   return [...lines[sku], "Close this issue"].map((l) => `- [ ] ${l}\n`).join("");
