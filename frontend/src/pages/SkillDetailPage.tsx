@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { fetchCompatibleSkills } from "../api/client";
 import { useSkillPage } from "../hooks/useSkillPage";
 import { useI18n } from "../i18n/I18nContext";
 import { QualityRadar } from "../components/QualityRadar";
@@ -16,7 +17,15 @@ import { TestedByUs } from "../components/TestedByUs";
 import { FeaturedInGuides } from "../components/FeaturedInGuides";
 import { skillTitle, skillDescription, fallbackTitle } from "../lib/skillMeta.mjs";
 import { displayName } from "../lib/repoBrand.mjs";
-import { prerenderedCreatorPath, prerenderedDescription, prerenderedInstalls, prerenderedShell } from "../lib/prerenderedMeta";
+import { goneCopy } from "../lib/goneRepo.mjs";
+import {
+  prerenderedCreatorPath,
+  prerenderedDescription,
+  prerenderedGuides,
+  prerenderedInstalls,
+  prerenderedShell,
+} from "../lib/prerenderedMeta";
+import type { SkillDetail } from "../types/skill";
 import { BadgeEmbed } from "../components/BadgeEmbed";
 import { FavoriteButton } from "../components/FavoriteButton";
 import { ShareButtons } from "../components/ShareButtons";
@@ -33,7 +42,7 @@ import {
 } from "../data/verifiedCreators";
 
 export function SkillDetailPage() {
-  const { t } = useI18n();
+  const { lang, t } = useI18n();
   const { id, owner, repo } = useParams<{
     id?: string;
     owner?: string;
@@ -41,8 +50,44 @@ export function SkillDetailPage() {
   }>();
   const page = useSkillPage(id, owner, repo);
   const [contactOpen, setContactOpen] = useState(false);
+  const [compatSkills, setCompatSkills] = useState<SkillDetail["compatible_skills"]>([]);
+  const loadedId = page.kind === "ready" ? page.detail.id : null;
+
+  useEffect(() => {
+    setCompatSkills([]);
+    if (loadedId == null) return;
+    let cancelled = false;
+    fetchCompatibleSkills(loadedId)
+      .then((rows) => {
+        if (!cancelled && rows.length > 0) setCompatSkills(rows);
+      })
+      .catch(() => {
+        // Non-critical below-the-fold enrichment
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [loadedId]);
 
   if (page.kind === "loading" || page.kind === "redirecting") {
+    // On a direct landing (e.g. from Google), keep the pre-rendered static HTML on
+    // screen while Supabase fetches live stats instead of wiping the page into a blank
+    // "Loading details..." spinner for 5–30s on slow networks.
+    const shell = page.kind === "loading" ? prerenderedShell() : null;
+    if (shell) {
+      const description = prerenderedDescription();
+      return (
+        <>
+          {description && (
+            <Helmet>
+              <meta name="description" content={description} />
+            </Helmet>
+          )}
+          <div className="fixed top-0 left-0 right-0 h-0.5 bg-indigo-500/70 animate-pulse z-50" />
+          <div dangerouslySetInnerHTML={{ __html: shell }} />
+        </>
+      );
+    }
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
         <SiteHeader breadcrumb={[{ label: "..." }]} />
@@ -256,6 +301,48 @@ export function SkillDetailPage() {
             </div>
           </div>
 
+          {/* Gone / Mirror Notice */}
+          {detail.repo_status === "gone" && (() => {
+            const gone = goneCopy(detail.repo_full_name, detail.repo_url);
+            const guides = prerenderedGuides();
+            const fallbackGuide =
+              detail.repo_full_name.toLowerCase() === "bodila51/gtavi-claudecode"
+                ? {
+                    slug: "claude-video-skills",
+                    title: "Claude Video Editing & Remotion Skills",
+                    titleZh: "最佳 Claude 视频剪辑与 Remotion Skill",
+                  }
+                : null;
+            const guide = guides[0] ?? fallbackGuide;
+            const isMirror = gone.kind === "mirror";
+            return (
+              <div
+                className={`mt-4 rounded-lg border px-4 py-3 text-sm ${
+                  isMirror
+                    ? "border-amber-200 bg-amber-50 text-amber-900 dark:border-amber-800/60 dark:bg-amber-950/30 dark:text-amber-200"
+                    : "border-red-200 bg-red-50 text-red-900 dark:border-red-800/60 dark:bg-red-950/30 dark:text-red-200"
+                }`}
+              >
+                <p className="leading-relaxed">
+                  <strong>{lang === "zh" ? gone.headingZh : gone.headingEn}</strong>{" "}
+                  <span>{lang === "zh" ? gone.bodyZh : gone.bodyEn}</span>
+                </p>
+                {guide && (
+                  <p className="mt-2">
+                    <a
+                      href={`/best/${guide.slug}/`}
+                      className="inline-flex items-center gap-1 font-semibold text-indigo-700 dark:text-indigo-300 hover:underline"
+                    >
+                      {lang === "zh"
+                        ? `寻找仍在持续维护的同类工具？查看「${guide.titleZh}」→`
+                        : `Looking for actively maintained alternatives? See ${guide.title} →`}
+                    </a>
+                  </p>
+                )}
+              </div>
+            );
+          })()}
+
           {/* Action Buttons */}
           <div className="mt-5 flex flex-wrap gap-3">
             <a
@@ -267,7 +354,9 @@ export function SkillDetailPage() {
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
               </svg>
-              {t("detail.viewOnGitHub")}
+              {detail.repo_status === "gone" && goneCopy(detail.repo_full_name, detail.repo_url).kind === "mirror"
+                ? (lang === "zh" ? "查看镜像仓库 (GitHub)" : "View Mirror on GitHub")
+                : t("detail.viewOnGitHub")}
             </a>
             <Link
               to={`/analyzer/?repo=${detail.repo_full_name}`}
@@ -452,13 +541,16 @@ export function SkillDetailPage() {
         />
 
         {/* Compatible Skills */}
-        {detail.compatible_skills && detail.compatible_skills.length > 0 && (
-          <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 p-5 mb-6">
-            <h3 className="text-xs font-medium text-gray-400 dark:text-gray-500 uppercase tracking-wide mb-4">
-              {t("detail.compatibleSkills")}
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {detail.compatible_skills.map((cs) => (
+        {(() => {
+          const list = compatSkills.length > 0 ? compatSkills : (detail.compatible_skills ?? []);
+          if (list.length === 0) return null;
+          return (
+            <div className="bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 p-5 mb-6">
+              <h3 className="text-xs font-medium text-gray-400 dark:text-gray-500 uppercase tracking-wide mb-4">
+                {t("detail.compatibleSkills")}
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {list.map((cs) => (
                 // A real <Link>, not a div+navigate(): the old handler built
                 // /skill/<numeric-id>/, which React Router renders on a
                 // client-side hop but GitHub Pages 404s on any direct load —
@@ -487,7 +579,8 @@ export function SkillDetailPage() {
               ))}
             </div>
           </div>
-        )}
+          );
+        })()}
 
         {/* Related Skills (same category) */}
         <RelatedSkills

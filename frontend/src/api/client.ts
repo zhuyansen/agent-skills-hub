@@ -28,6 +28,7 @@ import {
   sbFetchRecentlyUpdated,
   sbFetchSkillDetail,
   sbFetchSkillBySlug,
+  sbFetchCompatibleSkills,
   sbFetchLanguageStats,
   sbFetchLandingData,
   sbFetchMasters,
@@ -212,6 +213,13 @@ export async function fetchSkillBySlug(slug: string): Promise<SkillDetail> {
   return request<SkillDetail>(
     `/api/skills/by-slug/${encodeURIComponent(slug)}`,
   );
+}
+
+export async function fetchCompatibleSkills(
+  skillId: number,
+): Promise<SkillDetail["compatible_skills"]> {
+  if (USE_SUPABASE) return sbFetchCompatibleSkills(skillId);
+  return [];
 }
 
 export async function fetchLanguageStats(): Promise<

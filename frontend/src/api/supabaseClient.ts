@@ -216,28 +216,19 @@ export async function sbFetchRecentlyUpdated(limit = 10): Promise<Skill[]> {
   return (data ?? []) as unknown as Skill[];
 }
 
-export async function sbFetchSkillDetail(id: number): Promise<SkillDetail> {
+export async function sbFetchCompatibleSkills(
+  skillId: number,
+): Promise<SkillDetail["compatible_skills"]> {
   const sb = ensureSupabase();
-
-  // Fetch skill
-  const { data: skill, error } = await sb
-    .from("skills")
-    .select(SKILL_DETAIL_COLUMNS)
-    .eq("id", id)
-    .abortSignal(AbortSignal.timeout(DETAIL_TIMEOUT_MS))
-    .single<Skill>();
-  if (error) throw new Error(error.message);
-
-  // Fetch compositions
   const { data: comps } = await sb
     .from("skill_compositions")
     .select("compatible_skill_id, compatibility_score, reason")
-    .eq("skill_id", id)
+    .eq("skill_id", skillId)
     .order("compatibility_score", { ascending: false })
     .limit(5)
     .abortSignal(AbortSignal.timeout(DETAIL_TIMEOUT_MS));
 
-  const compatible_skills = [];
+  const compatible_skills: SkillDetail["compatible_skills"] = [];
   if (comps && comps.length > 0) {
     const ids = comps.map((c) => c.compatible_skill_id);
     const { data: others } = await sb
@@ -261,8 +252,23 @@ export async function sbFetchSkillDetail(id: number): Promise<SkillDetail> {
       }
     }
   }
+  return compatible_skills;
+}
 
-  return { ...skill, compatible_skills } as SkillDetail;
+export async function sbFetchSkillDetail(id: number): Promise<SkillDetail> {
+  const sb = ensureSupabase();
+
+  // Return the core skill row after 1 query; compatible_skills hydrates non-blocking
+  // below the fold instead of adding 2 serial Supabase round-trips to initial paint.
+  const { data: skill, error } = await sb
+    .from("skills")
+    .select(SKILL_DETAIL_COLUMNS)
+    .eq("id", id)
+    .abortSignal(AbortSignal.timeout(DETAIL_TIMEOUT_MS))
+    .single<Skill>();
+  if (error) throw new Error(error.message);
+
+  return { ...skill, compatible_skills: [] } as SkillDetail;
 }
 
 export async function sbFetchSkillBySlug(slug: string): Promise<SkillDetail> {
@@ -277,41 +283,7 @@ export async function sbFetchSkillBySlug(slug: string): Promise<SkillDetail> {
     .single<Skill>();
   if (error) throw new Error(error.message);
 
-  // Fetch compositions
-  const { data: comps } = await sb
-    .from("skill_compositions")
-    .select("compatible_skill_id, compatibility_score, reason")
-    .eq("skill_id", skill.id)
-    .order("compatibility_score", { ascending: false })
-    .limit(5)
-    .abortSignal(AbortSignal.timeout(DETAIL_TIMEOUT_MS));
-
-  const compatible_skills = [];
-  if (comps && comps.length > 0) {
-    const ids = comps.map((c) => c.compatible_skill_id);
-    const { data: others } = await sb
-      .from("skills")
-      .select("id, repo_full_name, repo_name, score")
-      .in("id", ids)
-      .abortSignal(AbortSignal.timeout(DETAIL_TIMEOUT_MS));
-
-    const othersMap = new Map((others ?? []).map((o) => [o.id, o]));
-    for (const c of comps) {
-      const other = othersMap.get(c.compatible_skill_id);
-      if (other) {
-        compatible_skills.push({
-          skill_id: other.id,
-          repo_full_name: other.repo_full_name,
-          skill_name: other.repo_name,
-          skill_score: other.score ?? 0,
-          compatibility_score: c.compatibility_score,
-          reason: c.reason,
-        });
-      }
-    }
-  }
-
-  return { ...skill, compatible_skills } as SkillDetail;
+  return { ...skill, compatible_skills: [] } as SkillDetail;
 }
 
 export async function sbFetchLanguageStats(): Promise<
