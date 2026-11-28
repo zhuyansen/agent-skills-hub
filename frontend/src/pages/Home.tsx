@@ -243,9 +243,9 @@ export function Home() {
 
       <SiteHeader showTabs tab={tab} onTabChange={setTab} />
 
-      <div className="max-w-[1840px] mx-auto flex justify-center gap-5 px-4">
+      <div className="max-w-[1680px] mx-auto flex justify-center gap-4 px-4 pt-4">
         <HomepageSponsorRail side="left" />
-        <main className="min-w-0 flex-1 max-w-[1440px] py-6">
+        <main className="min-w-0 flex-1 max-w-[1160px] pb-6">
         {/* Overview Tab */}
         {tab === "overview" && (
           <div className="animate-fade-in-up">

@@ -144,32 +144,19 @@ export function HeroSection({ stats, onSearch }: Props) {
   const agentCount = categoryCount(stats, "agent-tool", FALLBACK_COUNTS.agent);
 
   return (
-    <section className="hero-gradient full-bleed px-4 pt-6 pb-12 sm:pt-10 sm:pb-16 mb-8 relative z-20">
-      <div className="max-w-3xl mx-auto text-center relative z-10">
-        {/* The three guides with our own test results, where the hero used to open with empty
-            padding and an enterprise banner (Enterprise stays in the header and below the search). */}
-        <nav aria-label={isZh ? "热门场景" : "Popular guides"} className="mb-6">
-          <div className="grid grid-cols-3 gap-2 sm:gap-3">
-            {TOP_GUIDES.map((g) => (
-              <GuideCard key={g.slug} guide={g} zh={isZh} />
-            ))}
-          </div>
-          <a
-            href={isZh ? "/best/zh/" : "/best/"}
-            onClick={() => trackGuideClick("all", "top")}
-            className="inline-block mt-2.5 text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
-          >
-            {isZh ? "全部场景 →" : "All guides →"}
-          </a>
-        </nav>
+    <section className="hero-gradient rounded-2xl border border-gray-200/80 dark:border-white/[0.08] px-5 py-7 sm:px-9 sm:py-8 mb-6 relative overflow-hidden shadow-sm">
+      {/* Subtle ambient shapes inspired by mcp.so */}
+      <div className="pointer-events-none absolute -top-16 -left-16 w-56 h-56 rounded-full bg-indigo-500/10 dark:bg-indigo-500/[0.12] blur-3xl" aria-hidden="true" />
+      <div className="pointer-events-none absolute -bottom-20 -right-16 w-64 h-64 rounded-full bg-sky-500/10 dark:bg-blue-500/[0.12] blur-3xl" aria-hidden="true" />
 
+      <div className="max-w-3xl mx-auto text-center relative z-10">
         {/* Main headline */}
-        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 dark:text-white tracking-[-0.03em] leading-[1.05] mb-6">
+        <h1 className="text-3xl sm:text-4xl lg:text-[46px] font-extrabold text-gray-900 dark:text-white tracking-[-0.03em] leading-[1.08] mb-5">
           {t("hero.title").replace("{count}", countDisplay)}
         </h1>
 
-        {/* Search bar — directly between headline and subtitle so it sits above the fold */}
-        <div className="relative max-w-2xl mx-auto mb-5" ref={containerRef}>
+        {/* Search bar — directly between headline and subtitle so it sits front and center */}
+        <div className="relative max-w-2xl mx-auto mb-4" ref={containerRef}>
           <svg
             className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500 z-10"
             fill="none"
@@ -192,7 +179,7 @@ export function HeroSection({ stats, onSearch }: Props) {
             onFocus={search.open}
             placeholder={t("hero.searchPlaceholder")}
             aria-label="Search skills"
-            className="w-full pl-12 pr-12 py-4 border border-gray-200 dark:border-gray-700 rounded-2xl bg-white dark:bg-gray-800/80 text-gray-900 dark:text-gray-100 text-base shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-shadow hover:shadow-xl backdrop-blur-sm"
+            className="w-full pl-12 pr-12 py-3.5 border border-gray-200 dark:border-white/15 rounded-2xl bg-white dark:bg-[#0f1629]/90 text-gray-900 dark:text-gray-100 text-base shadow-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-shadow hover:shadow-xl backdrop-blur-sm"
           />
           {query && (
             <button
@@ -276,12 +263,12 @@ export function HeroSection({ stats, onSearch }: Props) {
           )}
         </div>
 
-        <p className="text-base sm:text-lg text-[var(--text-2)] mb-5 max-w-xl mx-auto leading-relaxed">
+        <p className="text-sm sm:text-base text-[var(--text-2)] mb-4 max-w-xl mx-auto leading-relaxed">
           {t("hero.subtitle")}
         </p>
 
         {/* Audit funnel entry — parallel to search: "find a skill" vs "vet a repo" */}
-        <div className="-mt-1 mb-6 text-sm">
+        <div className="mb-6 text-sm">
           <Link
             to="/analyzer/"
             className="font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
@@ -291,6 +278,22 @@ export function HeroSection({ stats, onSearch }: Props) {
               : "🔍 or paste any GitHub repo → free security audit"}
           </Link>
         </div>
+
+        {/* The three guides with our own hands-on test results */}
+        <nav aria-label={isZh ? "热门场景" : "Popular guides"} className="mb-5">
+          <div className="grid grid-cols-3 gap-2.5 sm:gap-3">
+            {TOP_GUIDES.map((g) => (
+              <GuideCard key={g.slug} guide={g} zh={isZh} />
+            ))}
+          </div>
+          <a
+            href={isZh ? "/best/zh/" : "/best/"}
+            onClick={() => trackGuideClick("all", "top")}
+            className="inline-block mt-2.5 text-xs font-medium text-indigo-600 dark:text-indigo-400 hover:underline"
+          >
+            {isZh ? "全部场景 →" : "All guides →"}
+          </a>
+        </nav>
 
         {/* More guides */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-8">

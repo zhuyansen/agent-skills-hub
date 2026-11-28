@@ -14,6 +14,7 @@ import {
 } from "../lib/checkout";
 import { isCompleteEmail, submitEnterpriseLead } from "../lib/enterpriseLead";
 import { trackEvent } from "../lib/analytics";
+import { HomepageSponsorRail } from "../components/HomepageSponsorRails";
 import { LEFT_SPONSORS, RIGHT_SPONSORS, TOTAL_SPONSOR_SLOTS } from "../data/sponsors";
 
 const GITHUB_URL_RE = /^https?:\/\/github\.com\/[\w.-]+\/[\w.-]+\/?$/i;
@@ -263,26 +264,19 @@ export function SubmitPage() {
       </Helmet>
       <SiteHeader />
 
-      <main className="flex-grow w-full max-w-3xl mx-auto px-4 py-10 sm:py-14">
+      <div className="flex-grow w-full max-w-[1680px] mx-auto flex justify-center gap-4 px-4 pt-4 pb-12">
+        <HomepageSponsorRail side="left" />
+        <main className="min-w-0 flex-1 max-w-3xl py-2 sm:py-4">
         {/* Hero */}
-        <header className="text-center mb-10">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-2">
-            {isZh ? "提交到 Hub" : "Submit to the Hub"}
+        <header className="text-center mb-8">
+          <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white mb-2">
+            {isZh ? "提交到 AgentSkillsHub" : "Submit to AgentSkillsHub"}
           </h1>
-          <p className="text-base text-gray-600 dark:text-gray-300">
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300">
             {isZh
-              ? "三种贡献方式,任选其一。"
-              : "Three ways to contribute. Pick yours."}
+              ? "提交你的 Skill / MCP，或预订首页双侧边栏赞助位（左右实时预览）。"
+              : "List your Skill or MCP server, expedite a 48h security audit, or book a homepage rail slot."}
           </p>
-          <div className="mt-6 flex items-center justify-center gap-3 text-xs text-gray-500 dark:text-gray-500">
-            <span>
-              {isZh ? "从 GitHub 自动收录" : "Indexed from GitHub"}
-            </span>
-            <span className="w-1 h-1 bg-gray-300 dark:bg-gray-700 rounded-full" />
-            <span>{isZh ? "每 8 小时刷新" : "refreshed every 8h"}</span>
-            <span className="w-1 h-1 bg-gray-300 dark:bg-gray-700 rounded-full" />
-            <span>CC BY-NC-SA</span>
-          </div>
         </header>
 
         {/* Cards */}
@@ -475,6 +469,38 @@ export function SubmitPage() {
               </div>
             </div>
           </article>
+
+          {/* Where your listing will be seen (mcp.so/submit trust strip) */}
+          <section className="rounded-xl border border-gray-200 dark:border-white/[0.08] bg-white/80 dark:bg-gray-900/70 p-5 sm:p-6">
+            <h2 className="text-sm font-semibold text-gray-900 dark:text-white mb-1">
+              {isZh ? "你的项目将展示在哪里" : "Where your listing will be seen"}
+            </h2>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mb-4">
+              {isZh
+                ? "面向真实 AI Agent / Claude Code / MCP 开发者检索与安全选型流量，每 8 小时全量同步。"
+                : "High-intent Claude Code, Codex, and MCP developers vetting tools before install — refreshed every 8 hours."}
+            </p>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {[
+                { value: "287K+", label: isZh ? "已索引工具" : "Skills Indexed" },
+                { value: "20K+", label: isZh ? "月活开发者" : "Monthly Developers" },
+                { value: "44", label: isZh ? "静态安全规则" : "Security Rules" },
+                { value: "8h", label: isZh ? "同步刷新周期" : "Refresh Cadence" },
+              ].map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-lg border border-gray-100 dark:border-white/[0.06] bg-gray-50/80 dark:bg-white/[0.025] px-3 py-3 text-center"
+                >
+                  <div className="text-lg font-extrabold tracking-tight text-indigo-600 dark:text-indigo-400">
+                    {stat.value}
+                  </div>
+                  <div className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
 
           {/* Card 1.5 — Homepage Side-Rail Sponsor (TrustMRR-style) */}
           <article
@@ -778,7 +804,9 @@ export function SubmitPage() {
             {isZh ? "查看企业版 →" : "See Enterprise →"}
           </Link>
         </section>
-      </main>
+        </main>
+        <HomepageSponsorRail side="right" />
+      </div>
 
       <SiteFooter />
 

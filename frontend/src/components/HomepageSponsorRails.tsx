@@ -57,13 +57,11 @@ function RailCard({ slot, side }: { slot: SponsorSlot; side: "left" | "right" })
 
   const inner = (
     <div
-      className={`group relative rounded-2xl border px-4 py-5 min-h-[126px] flex flex-col items-center justify-center text-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg ${palette.card}`}
+      className={`group relative rounded-2xl border px-3.5 py-4 min-h-[124px] flex flex-col items-center justify-center text-center transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg ${palette.card}`}
     >
-      {slot.sponsored && (
-        <span className="absolute top-2.5 right-2.5 text-[9px] font-medium uppercase tracking-wider text-gray-400 dark:text-white/35">
-          {isZh ? "赞助" : "Ad"}
-        </span>
-      )}
+      <span className="absolute top-2.5 right-3 text-[9px] font-semibold uppercase tracking-wider text-gray-400/80 dark:text-white/35">
+        {slot.sponsored ? (isZh ? "SPONSOR" : "SPONSOR") : (isZh ? "精选" : "HUB")}
+      </span>
       {slot.logoUrl ? (
         <img
           src={slot.logoUrl}
@@ -71,19 +69,19 @@ function RailCard({ slot, side }: { slot: SponsorSlot; side: "left" | "right" })
           width={32}
           height={32}
           loading="lazy"
-          className="w-8 h-8 rounded-lg object-cover mb-2.5 shadow-sm"
+          className="w-8 h-8 rounded-lg object-cover mb-2 shadow-sm"
         />
       ) : (
         <span
-          className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold mb-2.5 ${palette.badge}`}
+          className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold mb-2 ${palette.badge}`}
         >
           {slot.badge}
         </span>
       )}
-      <span className="text-[13px] font-semibold text-gray-900 dark:text-white leading-tight mb-1.5">
+      <span className="text-[13px] font-semibold text-gray-900 dark:text-white leading-tight mb-1">
         {name}
       </span>
-      <p className="text-[11.5px] leading-snug text-gray-600 dark:text-white/60 line-clamp-2">
+      <p className="text-[11px] leading-snug text-gray-600 dark:text-white/60 line-clamp-2">
         {tagline}
       </p>
     </div>
@@ -122,10 +120,10 @@ function AdvertiseCard({ side, openTotal }: { side: "left" | "right"; openTotal:
     <Link
       to="/submit/#sponsor"
       onClick={() => trackEvent("sponsor_rail_advertise_click", { side })}
-      className="group rounded-2xl border border-dashed border-gray-300 dark:border-white/15 bg-white/70 dark:bg-white/[0.02] hover:border-indigo-400 dark:hover:border-indigo-400/60 hover:bg-indigo-50/50 dark:hover:bg-indigo-500/[0.07] px-4 py-5 min-h-[126px] flex flex-col items-center justify-center text-center transition-all duration-200 hover:-translate-y-0.5 no-underline"
+      className="group rounded-2xl border border-dashed border-gray-300 dark:border-white/15 bg-white/70 dark:bg-white/[0.025] hover:border-indigo-400 dark:hover:border-indigo-400/60 hover:bg-indigo-50/50 dark:hover:bg-indigo-500/[0.07] px-3.5 py-4 min-h-[124px] flex flex-col items-center justify-center text-center transition-all duration-200 hover:-translate-y-0.5 no-underline"
     >
       <svg
-        className="w-5 h-5 text-gray-400 dark:text-white/45 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 mb-2 transition-colors"
+        className="w-5 h-5 text-gray-400 dark:text-white/45 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 mb-1.5 transition-colors"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.8"
@@ -150,8 +148,8 @@ function AdvertiseCard({ side, openTotal }: { side: "left" | "right"; openTotal:
 }
 
 /**
- * TrustMRR-style sticky desktop sponsor rail placed on the left or right flank of
- * the homepage. Hidden below `xl` (<1280px) so mobile & narrow screens stay clean.
+ * TrustMRR / mcp.so-style sticky desktop sponsor rail placed on the left or right flank
+ * (4 left + 4 right = 8 cards visible in the first desktop viewport). Hidden below `xl`.
  */
 export function HomepageSponsorRail({ side }: RailProps) {
   const paid = side === "left" ? LEFT_SPONSORS : RIGHT_SPONSORS;
@@ -162,7 +160,7 @@ export function HomepageSponsorRail({ side }: RailProps) {
   );
 
   // Fill up to SLOTS_PER_SIDE - 1 top cards (paid sponsors first, then house cards),
-  // reserving the bottom slot for the clean dashed "Advertise" card whenever seats remain.
+  // reserving the 4th card for the clean dashed "Advertise" CTA whenever seats remain.
   const maxContentSlots = openTotal > 0 ? Math.max(1, SLOTS_PER_SIDE - 1) : SLOTS_PER_SIDE;
   const cards: SponsorSlot[] = [
     ...paid.slice(0, maxContentSlots).map((s) => ({ ...s, sponsored: true })),
@@ -172,7 +170,7 @@ export function HomepageSponsorRail({ side }: RailProps) {
   return (
     <aside
       aria-label={side === "left" ? "Sponsored tools (left)" : "Sponsored tools (right)"}
-      className="hidden xl:flex flex-col gap-3.5 w-[196px] 2xl:w-[216px] shrink-0 sticky top-32 self-start pt-4 z-30"
+      className="hidden xl:flex flex-col gap-3 w-[192px] 2xl:w-[208px] shrink-0 sticky top-[104px] self-start z-30"
     >
       {cards.map((slot) => (
         <RailCard key={slot.id} slot={slot} side={side} />
