@@ -1,5 +1,21 @@
 # Daily Report Archive
 
+## 2026-11-28
+1. Haruhi764/OmniCAD-Skill — 🆕 辅助 AI 编写并质检二维 CAD 图纸，支持输出可编辑的 DXF、DWG 与 PDF（242★ 27.7/day）
+2. matheusmongarde/central — 🆕 部署 AI 团队协同运营公司业务，内置社媒发布、地图检索与销售技能（31★ 13.2/day）
+3. fus3r/margincue — 🆕 预览 Claude Code 与 Codex 对提示词的解析路径，并在执行前调整决策（48★ 11.0/day）
+4. vkpdeveloper/vmbridge — 🆕 调度自托管云端虚拟机运行编程智能体，支持项目隔离与消息唤醒（55★ 6.8/day）
+5. splashxmoon/friday-code — 聚合 Claude Code、Codex 与 Cursor 等多款编程助手，支持并行协作与互审（129★ 3.9/day）
+6. Xiangyu-CAS/ReaCut — 打造开源 AI 视频剪辑工具，替代传统剪辑软件并提升智能成片效率（164★ 3.6/day）
+7. renjiegod/dsh-godbot — 🆕 协同编排 Claude Code、Codex 与 Antigravity，支持派发任务与接管原生会话（21★ 2.9/day）
+8. Trunks820/grow-loop — 🆕 规范 AI 编程多包交付状态机，支持自动刹车、跨宿主接力与脱敏证据输出（25★ 2.7/day）
+9. Khalidabdi1/design-ai — 提供面向编程智能体与设计工具的 DESIGN.md 规范示例，辅助生成高质量界面（253★ 1.1/day）
+10. use-agent-os/agent-os — 运行本地链上交易智能体，私钥留存本机并自动执行兑换、跨链与止损（83★ 0.6/day）
+🎯 今日趋势：从本次 90 个候选中脱颖而出的项目，明显聚焦于**多智能体协同编排**、**云端与本地隔离执行**以及**工程交付流程可控化**，正在从单点对话走向可验证的生产力闭环。
+> 注：GitHub Actions 自动生成（gemini-4-hydrogen 挑选和撰写，数据和格式由脚本核对）。去重范围＝repo 内 archive 全部 152 个日期段，比对 1,505 个 owner/repo。单连接查询（`connect_timeout=15`、`statement_timeout=30000`、NullPool）一次：`first_seen ≥72h`、stars ≥20 得 150 条；切回 48h 剩 92 条、去重后 90 条，未放宽到 72h。velocity = stars ÷ max(距 created_at 天数, 1)，按 velocity 往下用 `gh api` 抽查 21 个。**代码硬规则剔除**：WalrusQuant/sports-analytic-skills：名字或描述像破解 / 激活 / 外挂类诱饵；68 个 security_grade 为 unknown。**模型排除项**：①51bodila/Gemini-TradingAgents（25★ 10.5/day）：仓库描述为空且分类为 uncategorized，作者仅 5 粉、2 个公开仓库且另一仓库仅 3★，缺乏有效信息与可信度；②1276486/ZERO-X-Bypass-Jailbreak（103★ 10.0/day）：内容为 AI 客户端破甲越狱及免杀、EDR 绕过、远控 C2 等规避安全风控的工具，不符合收录规范；③giakiet22102006/antigravity-custom-theme-skill（59★ 4.7/day）：作者仅 1 粉且其余 2 个仓库均为 0★，该项目暂无 issue 与官网，存在单仓突增刷星嫌疑；④aakashg/growth-podcast-transcripts（40★ 3.5/day）：本质为 166 期播客的 Markdown 文本逐字稿合集，未体现与 AI 智能体或开发者工具的直接集成能力。**轻红旗**（保留）：splashxmoon/friday-code：作者仅 9 粉且其余仓库均为个位数星，但项目有 27 fork、8 issue 及官网；Trunks820/grow-loop：作者仅 1 粉且暂无 issue，但名下另有 69★ 和 54★ 项目且有 2 fork。🆕 判定＝created_at 距今 14 天内：OmniCAD-Skill（8.7 天）、central（2.3 天）、margincue（4.4 天）、vmbridge（8.1 天）、dsh-godbot（7.3 天）、grow-loop（9.2 天）。security_grade：入选 10 仓为 safe。表中 stars 为数据库快照。
+
+---
+
 ## 2026-11-27
 1. nexu-io/opengame — 🆕 利用多种 AI 编码智能体快速构建并发布网页游戏，提供百款游戏模板供二次创作。（875★ 458.7/day）
 2. chanke17/KuroCat — 🆕 在桌面提供原生轻量化动态猫咪助手，支持 OBS 推流与多平台交互，无需复杂配置。（672★ 156.2/day）
