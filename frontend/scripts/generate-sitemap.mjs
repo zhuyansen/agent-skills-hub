@@ -406,14 +406,28 @@ async function main() {
   console.log(`sitemap-static.xml: ${staticEntries.length} URLs`);
 
   // 2. sitemap-categories.xml — derive categories from actual data (no hardcoded list)
-  const catSizes = new Map();
-  for (const s of allSkills) if (s.category) catSizes.set(s.category, (catSizes.get(s.category) || 0) + 1);
+  const catSkillsMap = new Map();
+  for (const s of allSkills) {
+    if (!s.category) continue;
+    let arr = catSkillsMap.get(s.category);
+    if (!arr) { arr = []; catSkillsMap.set(s.category, arr); }
+    arr.push(s);
+  }
   // Same cut as generate-skill-pages.mjs: small categories ship noindex, so they stay out of here.
-  const catsWithSkills = [...catSizes].filter(([, n]) => n >= MIN_CATEGORY_INDEX).map(([cat]) => cat);
+  const catsWithSkills = [...catSkillsMap].filter(([, arr]) => arr.length >= MIN_CATEGORY_INDEX).map(([cat]) => cat);
+  // Real lastmod = newest last_commit_at among the top-20 displayed skills (matches CollectionPage.dateModified).
+  const catLastmod = (cat) => {
+    const arr = (catSkillsMap.get(cat) || []).slice().sort((a, b) => (b.stars || 0) - (a.stars || 0)).slice(0, 20);
+    return arr
+      .map((s) => (typeof s.last_commit_at === "string" ? s.last_commit_at.slice(0, 10) : ""))
+      .filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d))
+      .sort()
+      .at(-1) || null;
+  };
   const catEntries = catsWithSkills.map((cat) => `  <url>
     <loc>${SITE}/category/${cat}/</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>${lastmodLine(declaredDate(`/category/${cat}/`, today))}
+    <priority>0.85</priority>${lastmodLine(catLastmod(cat))}
   </url>`);
   writeFileSync("dist/sitemap-categories.xml", wrapUrlset(catEntries));
   // Hub pages (categories, /best/ scenarios and their Chinese twins, /compare/) also go into
@@ -580,6 +594,17 @@ async function main() {
   }
 
   // 6. sitemap-comparisons.xml — comparison landing pages (/compare/{slug}/)
+  // Comparison pages are pure static HTML (no SPA shell build-date stamp); their JSON-LD
+  // dateModified is the real newest last_commit_at of the compared repos, so keep today too.
+  const staticDateModified = (path) => {
+    try {
+      const html = readFileSync(`dist${path}index.html`, "utf-8");
+      const dates = [...html.matchAll(/"dateModified"\s*:\s*"(\d{4}-\d{2}-\d{2})/g)].map((m) => m[1]);
+      return dates.sort().at(-1) || null;
+    } catch {
+      return null;
+    }
+  };
   let comparisonCount = 0;
   try {
     const compareSlugs = readdirSync("dist/compare");
@@ -588,13 +613,13 @@ async function main() {
       .map((slug) => `  <url>
     <loc>${SITE}/compare/${slug}/</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.80</priority>${lastmodLine(declaredDate(`/compare/${slug}/`, today))}
+    <priority>0.80</priority>${lastmodLine(staticDateModified(`/compare/${slug}/`))}
   </url>`);
     // Also add the /compare/ index page
     comparisonEntries.unshift(`  <url>
     <loc>${SITE}/compare/</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>${lastmodLine(declaredDate(`/compare/`, today))}
+    <priority>0.85</priority>${lastmodLine(staticDateModified(`/compare/`))}
   </url>`);
     writeFileSync("dist/sitemap-comparisons.xml", wrapUrlset(comparisonEntries));
     hubEntries.push(...comparisonEntries);

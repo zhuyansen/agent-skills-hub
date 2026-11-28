@@ -712,12 +712,20 @@ function buildCategoryHtml(catSlug, catSkills, assetTags, allCategories, hasPage
 
   const { scriptTags, linkTags } = assetTags;
 
+  const topCommitDate = catSkills
+    .slice(0, 20)
+    .map((s) => (typeof s.last_commit_at === "string" ? s.last_commit_at.slice(0, 10) : ""))
+    .filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d))
+    .sort()
+    .at(-1);
+
   const jsonLd = JSON.stringify({
     "@context": "https://schema.org",
     "@type": "CollectionPage",
     name: `${catLabel} Tools`,
     url: pageUrl,
     description: metaDesc,
+    dateModified: topCommitDate || undefined,
     mainEntity: {
       "@type": "ItemList",
       numberOfItems: catSkills.length,

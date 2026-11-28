@@ -109,18 +109,22 @@ export function auditDescription(skill, gradeLabel, flagCount) {
 }
 
 /**
- * dist/sitemap-audit.xml: every audit page, most-starred first. No <lastmod>: a page changes when
- * its repo is rescanned, and a date that moves with every scan is the noise that teaches Google to
- * ignore our dates (generate-sitemap.mjs, 2026-10-14).
+ * dist/sitemap-audit.xml: every audit page, most-starred first. Uses the repo's real
+ * last_commit_at date (same signal as /skill/ in sitemap-top.xml) and omits <lastmod> when
+ * absent — never the rescan or build date, which would create noise Google ignores.
  */
 export function auditSitemap(skills, site) {
   const urls = [...skills]
     .sort((a, b) => (b.stars || 0) - (a.stars || 0))
-    .map((s) => `  <url>
+    .map((s) => {
+      const m = typeof s.last_commit_at === "string" ? s.last_commit_at.match(/^(\d{4}-\d{2}-\d{2})/) : null;
+      const lastmod = m ? `\n    <lastmod>${m[1]}</lastmod>` : "";
+      return `  <url>
     <loc>${xmlText(`${site}/audit/${s.repo_full_name}/`)}</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>`);
+    <priority>0.5</priority>${lastmod}
+  </url>`;
+    });
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.join("\n")}

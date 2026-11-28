@@ -260,6 +260,20 @@ function buildComparisonHtml(pair, skillA, skillB, assetTags, allPairs) {
   <script type="application/ld+json">
 ${breadcrumbLd}
   </script>
+  <script type="application/ld+json">
+${JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: title,
+    url: pageUrl,
+    description: metaDesc,
+    dateModified: [skillA.last_commit_at, skillB.last_commit_at]
+      .map((d) => (typeof d === "string" ? d.slice(0, 10) : ""))
+      .filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d))
+      .sort()
+      .at(-1) || undefined,
+  }, null, 2)}
+  </script>
 
   <link rel="stylesheet" href="/best-pages.css" />
   ${linkTags.filter(t => t.includes('stylesheet')).join("\n  ")}
@@ -483,6 +497,21 @@ function buildIndexHtml(pairs, fetchedPairs, assetTags) {
   <link rel="canonical" href="${esc(pageUrl)}" />
   <script type="application/ld+json">
 ${breadcrumbLd}
+  </script>
+  <script type="application/ld+json">
+${JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: title,
+    url: pageUrl,
+    description: metaDesc,
+    dateModified: fetchedPairs
+      .flatMap(({ skillA, skillB }) => [skillA.last_commit_at, skillB.last_commit_at])
+      .map((d) => (typeof d === "string" ? d.slice(0, 10) : ""))
+      .filter((d) => /^\d{4}-\d{2}-\d{2}$/.test(d))
+      .sort()
+      .at(-1) || undefined,
+  }, null, 2)}
   </script>
   <link rel="stylesheet" href="/best-pages.css" />
   ${linkTags.filter(t => t.includes('stylesheet')).join("\n  ")}

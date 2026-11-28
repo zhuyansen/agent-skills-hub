@@ -87,15 +87,16 @@ test("an ultra-long owner/repo caps the description and keeps the verdict", () =
   assert.match(d, /…: graded SAFE by AgentSkillsHub\. No dangerous patterns found\. Quality score 68\/100\.$/);
 });
 
-test("the audit sitemap lists every page once, most-starred first, with no dates", async () => {
+test("the audit sitemap lists every page once, most-starred first, using real last_commit_at dates only", async () => {
   const { auditSitemap } = await import("./audit-meta.mjs");
   const xml = auditSitemap([
     { repo_full_name: "a/small", stars: 60 },
-    { repo_full_name: "b/big", stars: 9000 },
+    { repo_full_name: "b/big", stars: 9000, last_commit_at: "2026-11-25T12:09:27" },
   ], "https://agentskillshub.top");
   const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
   assert.deepEqual(locs, ["https://agentskillshub.top/audit/b/big/", "https://agentskillshub.top/audit/a/small/"]);
-  assert.ok(!xml.includes("<lastmod>"));
+  const dates = [...xml.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((m) => m[1]);
+  assert.deepEqual(dates, ["2026-11-25"]);
   assert.match(xml, /^<\?xml version="1.0" encoding="UTF-8"\?>\n<urlset xmlns="http:\/\/www.sitemaps.org\/schemas\/sitemap\/0.9">/);
 });
 
