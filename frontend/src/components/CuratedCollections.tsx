@@ -12,23 +12,23 @@ interface Collection {
   enDesc: string;
   /** category name to pull a live count from stats.categories (optional) */
   catCount?: string;
-  accent: string;
+  cardClass: string;
+  badgeClass: string;
 }
 
-// Themed, hand-curated entry points — NOT a duplicate of the category grid.
-// Each leans on a Trust angle (audited / quality / enterprise) so the row
-// reinforces our differentiation rather than re-listing buckets.
 const COLLECTIONS: Collection[] = [
   {
     key: "safe-mcp",
     to: "/category/mcp-server/",
-    emoji: "🛡",
+    emoji: "🛡️",
     zh: "MCP 服务器",
     en: "MCP Servers",
     zhDesc: "已安全评级",
     enDesc: "Security-graded",
     catCount: "mcp-server",
-    accent: "hover:border-emerald-300 dark:hover:border-emerald-600/60",
+    cardClass:
+      "bg-emerald-50/80 border-emerald-200/80 hover:border-emerald-400 dark:bg-[#0e241b]/95 dark:border-emerald-500/20 dark:hover:border-emerald-400/50",
+    badgeClass: "bg-emerald-500/15 dark:bg-emerald-400/20",
   },
   {
     key: "claude-skills",
@@ -39,7 +39,9 @@ const COLLECTIONS: Collection[] = [
     zhDesc: "Claude Code 必备",
     enDesc: "Built for Claude Code",
     catCount: "claude-skill",
-    accent: "hover:border-indigo-300 dark:hover:border-indigo-600/60",
+    cardClass:
+      "bg-indigo-50/80 border-indigo-200/80 hover:border-indigo-400 dark:bg-[#131936]/95 dark:border-indigo-500/20 dark:hover:border-indigo-400/50",
+    badgeClass: "bg-indigo-500/15 dark:bg-indigo-400/20",
   },
   {
     key: "top-quality",
@@ -49,7 +51,9 @@ const COLLECTIONS: Collection[] = [
     en: "Top Quality",
     zhDesc: "质量分最高",
     enDesc: "Highest-scored",
-    accent: "hover:border-amber-300 dark:hover:border-amber-600/60",
+    cardClass:
+      "bg-amber-50/80 border-amber-200/80 hover:border-amber-400 dark:bg-[#261c10]/95 dark:border-amber-500/20 dark:hover:border-amber-400/50",
+    badgeClass: "bg-amber-500/15 dark:bg-amber-400/20",
   },
   {
     key: "trending",
@@ -59,7 +63,9 @@ const COLLECTIONS: Collection[] = [
     en: "Trending",
     zhDesc: "增速最快",
     enDesc: "Fastest-rising",
-    accent: "hover:border-orange-300 dark:hover:border-orange-600/60",
+    cardClass:
+      "bg-rose-50/80 border-rose-200/80 hover:border-rose-400 dark:bg-[#28141c]/95 dark:border-rose-500/20 dark:hover:border-rose-400/50",
+    badgeClass: "bg-rose-500/15 dark:bg-rose-400/20",
   },
   {
     key: "enterprise",
@@ -69,7 +75,9 @@ const COLLECTIONS: Collection[] = [
     en: "Enterprise",
     zhDesc: "部署前审计 + 合规",
     enDesc: "Pre-deploy audit",
-    accent: "hover:border-purple-300 dark:hover:border-purple-600/60",
+    cardClass:
+      "bg-violet-50/80 border-violet-200/80 hover:border-violet-400 dark:bg-[#1f1532]/95 dark:border-violet-500/20 dark:hover:border-violet-400/50",
+    badgeClass: "bg-violet-500/15 dark:bg-violet-400/20",
   },
 ];
 
@@ -82,10 +90,10 @@ export function CuratedCollections() {
     cat ? categories.find((c) => c.name === cat)?.count : undefined;
 
   return (
-    <section className="max-w-6xl mx-auto px-4 mb-8">
-      <div className="flex items-center gap-2 mb-3">
-        <h2 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">
-          {isZh ? "精选合集" : "Curated Collections"}
+    <section className="mb-10">
+      <div className="flex items-center gap-2 mb-3.5">
+        <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white tracking-tight">
+          {isZh ? "精选合集" : "Curated collections"}
         </h2>
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
@@ -95,22 +103,27 @@ export function CuratedCollections() {
             <Link
               key={c.key}
               to={c.to}
-              className={`group flex flex-col gap-1 p-3.5 rounded-xl border border-gray-200 dark:border-[var(--border)] bg-white dark:bg-[var(--bg-card)] transition-colors ${c.accent}`}
+              className={`group flex items-center justify-between gap-2.5 px-4 py-4 rounded-2xl border transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md no-underline ${c.cardClass}`}
             >
-              <span className="text-xl leading-none" aria-hidden="true">
+              <div className="min-w-0">
+                <span className="block text-sm font-semibold text-gray-900 dark:text-white truncate">
+                  {isZh ? c.zh : c.en}
+                </span>
+                <span className="block text-[11px] text-gray-500 dark:text-white/55 truncate mt-0.5">
+                  {isZh ? c.zhDesc : c.enDesc}
+                  {typeof count === "number" && (
+                    <span className="text-gray-400 dark:text-white/40">
+                      {" · "}
+                      {count.toLocaleString()}
+                    </span>
+                  )}
+                </span>
+              </div>
+              <span
+                className={`w-9 h-9 rounded-full flex items-center justify-center text-base shrink-0 transition-transform duration-200 group-hover:scale-105 ${c.badgeClass}`}
+                aria-hidden="true"
+              >
                 {c.emoji}
-              </span>
-              <span className="text-sm font-semibold text-gray-900 dark:text-gray-100 mt-1">
-                {isZh ? c.zh : c.en}
-              </span>
-              <span className="text-xs text-gray-500 dark:text-gray-400">
-                {isZh ? c.zhDesc : c.enDesc}
-                {typeof count === "number" && (
-                  <span className="text-gray-400 dark:text-gray-500">
-                    {" · "}
-                    {count.toLocaleString()}
-                  </span>
-                )}
               </span>
             </Link>
           );

@@ -6,6 +6,8 @@ import { ThemeToggle } from "./ThemeToggle";
 import { useI18n } from "../i18n/I18nContext";
 import { HeaderMoreMenu } from "./HeaderMoreMenu";
 import { subscribe } from "../api/client";
+import { TOP_BANNER_SPONSOR } from "../data/sponsors";
+import { trackEvent } from "../lib/analytics";
 
 interface Props {
   /** Show tab navigation (only on Home page) */
@@ -72,8 +74,47 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
     }
   };
 
+  const banner = TOP_BANNER_SPONSOR;
+  const isExternalBanner = /^https?:\/\//i.test(banner.url);
+  const bannerInner = (
+    <div className="max-w-[1680px] mx-auto px-4 py-1.5 flex items-center justify-center gap-2 text-xs sm:text-[13px] font-medium text-slate-900">
+      <span className="opacity-80 hidden sm:inline">
+        {lang === "zh" ? banner.prefixZh : banner.prefix}
+      </span>
+      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-900 text-white text-[11px] font-bold shadow-sm">
+        ⚡ {lang === "zh" ? banner.badgeZh : banner.badge}
+      </span>
+      <span className="truncate">
+        {lang === "zh" ? banner.taglineZh : banner.tagline}
+      </span>
+      <span aria-hidden="true" className="font-bold shrink-0">→</span>
+    </div>
+  );
+
   return (
-    <header className="bg-white/95 dark:bg-[#0b1020]/95 border-b border-gray-200 dark:border-white/[0.08] sticky top-0 z-40 backdrop-blur-md">
+    <>
+      <div className="w-full bg-gradient-to-r from-[#b8c7ff] via-[#dbe4ff] to-[#c4b5fd] border-b border-indigo-300/60">
+        {isExternalBanner ? (
+          <a
+            href={banner.url}
+            target="_blank"
+            rel={banner.sponsored ? "sponsored noopener noreferrer" : "noopener noreferrer"}
+            onClick={() => trackEvent("top_banner_click", { sponsored: !!banner.sponsored })}
+            className="block hover:opacity-90 transition-opacity no-underline"
+          >
+            {bannerInner}
+          </a>
+        ) : (
+          <Link
+            to={banner.url}
+            onClick={() => trackEvent("top_banner_click", { sponsored: false })}
+            className="block hover:opacity-90 transition-opacity no-underline"
+          >
+            {bannerInner}
+          </Link>
+        )}
+      </div>
+      <header className="bg-white/95 dark:bg-[#0b1020]/95 border-b border-gray-200 dark:border-white/[0.08] sticky top-0 z-40 backdrop-blur-md">
       <div className="max-w-[1680px] mx-auto px-4 py-2.5">
         <div className={`flex items-center justify-between ${showTabs || (breadcrumb && breadcrumb.length > 0) ? "mb-2" : ""}`}>
           <div className="min-w-0">
@@ -434,5 +475,6 @@ export function SiteHeader({ showTabs, tab, onTabChange, breadcrumb }: Props) {
         ) : null}
       </div>
     </header>
+    </>
   );
 }

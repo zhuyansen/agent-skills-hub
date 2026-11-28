@@ -21,39 +21,42 @@ export function AuditBox() {
   };
 
   return (
-    <section className="mt-6 mb-10">
-      <div className="max-w-3xl mx-auto rounded-2xl border border-indigo-200 dark:border-indigo-500/30 bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-indigo-950/40 dark:via-transparent dark:to-purple-950/30 p-6 sm:p-8">
-        <div className="flex items-center gap-2 mb-2">
-          <span className="text-xl" aria-hidden>
-            🛡️
-          </span>
-          <h2 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white tracking-tight">
-            {t("audit.title")}
-          </h2>
-        </div>
-        <p className="text-sm text-[var(--text-2)] mb-4">
-          {t("audit.subtitle")}
-        </p>
+    <section className="mb-8">
+      <div className="rounded-2xl border border-indigo-200/80 dark:border-indigo-500/25 bg-gradient-to-r from-indigo-50/90 via-white to-violet-50/80 dark:from-[#121933]/90 dark:via-[#0f162b]/90 dark:to-[#1b1433]/90 px-5 py-5 sm:px-7 sm:py-6 shadow-sm">
+        <div className="flex flex-col lg:flex-row lg:items-center gap-4 lg:gap-6">
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 mb-1">
+              <span className="w-6 h-6 rounded-lg bg-indigo-500/15 dark:bg-indigo-400/20 flex items-center justify-center text-sm" aria-hidden>
+                🛡️
+              </span>
+              <h2 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white tracking-tight">
+                {t("audit.title")}
+              </h2>
+            </div>
+            <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+              {t("audit.subtitle")}
+            </p>
+          </div>
 
-        <div className="flex flex-col sm:flex-row gap-2">
-          <input
-            type="text"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && submit()}
-            placeholder="https://github.com/owner/repo"
-            aria-label={t("audit.title")}
-            className="flex-1 px-4 py-3 rounded-xl border border-gray-300 dark:border-white/15 bg-white dark:bg-white/5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-indigo-500/60"
-          />
-          <button
-            onClick={submit}
-            className="shrink-0 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold transition-colors cursor-pointer"
-          >
-            {t("audit.cta")}
-          </button>
+          <div className="flex flex-col sm:flex-row gap-2 lg:w-[460px] shrink-0">
+            <input
+              type="text"
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && submit()}
+              placeholder="https://github.com/owner/repo"
+              aria-label={t("audit.title")}
+              className="flex-1 px-3.5 py-2.5 rounded-xl border border-gray-300 dark:border-white/15 bg-white dark:bg-[#0b1020]/80 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-indigo-500/60"
+            />
+            <button
+              onClick={submit}
+              className="shrink-0 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold transition-colors cursor-pointer shadow-sm"
+            >
+              {t("audit.cta")}
+            </button>
+          </div>
         </div>
-
-        <p className="mt-3 text-xs text-[var(--text-3)]">{t("audit.hint")}</p>
+        <p className="mt-2.5 text-[11px] text-gray-500 dark:text-gray-500">{t("audit.hint")}</p>
       </div>
     </section>
   );
