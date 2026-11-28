@@ -244,21 +244,46 @@ function getPrimaryModelContext(): ModelContextLike | null {
   return null;
 }
 
+// Chrome 149-162 WebMCP Origin Trial token for https://agentskillshub.top (expires 2027-03-29, registration -1645801781013250047).
+// Injected dynamically via JS so frontend/index.html stays byte-identical during the GIGALinks freeze window.
+const WEBMCP_ORIGIN_TRIAL_TOKEN =
+  "Av4qNLcb6Jnxq9G/Vb1xVmK1nQboDSeyS/8XmOVwjvBdZnqnCdkfq+o0CugmDVMA5Dm/aodgb738bqyoFm9iiwYAAABSeyJvcmlnaW4iOiJodHRwczovL2FnZW50c2tpbGxzaHViLnRvcDo0NDMiLCJmZWF0dXJlIjoiV2ViTUNQIiwiZXhwaXJ5IjoxODA2MzY0ODAwfQ==";
+
+function injectOriginTrialToken(): void {
+  if (typeof document === "undefined" || !document.head) return;
+  if (document.head.querySelector('meta[http-equiv="origin-trial"]')) return;
+  const meta = document.createElement("meta");
+  meta.httpEquiv = "origin-trial";
+  meta.content = WEBMCP_ORIGIN_TRIAL_TOKEN;
+  document.head.appendChild(meta);
+}
+
 let registrationController: AbortController | null = null;
 
-/** Registers AgentSkillsHub WebMCP tools once on page load when supported by the browser. */
-export function registerWebMcpTools(): () => void {
-  if (registrationController) return () => registrationController?.abort();
+function registerNow(controller: AbortController): boolean {
   const ctx = getPrimaryModelContext();
-  if (!ctx) return () => {};
-  const controller = new AbortController();
-  registrationController = controller;
+  if (!ctx) return false;
   for (const tool of WEBMCP_TOOLS) {
     try {
       Promise.resolve(ctx.registerTool?.(tool, { signal: controller.signal })).catch(() => {});
     } catch {
       // Ignore duplicate registration or unsupported browser edge cases.
     }
+  }
+  return true;
+}
+
+/** Registers AgentSkillsHub WebMCP tools once on page load when supported by the browser. */
+export function registerWebMcpTools(): () => void {
+  if (registrationController) return () => registrationController?.abort();
+  injectOriginTrialToken();
+  const controller = new AbortController();
+  registrationController = controller;
+  if (!registerNow(controller)) {
+    // Retry once on next tick in case Blink enables document.modelContext asynchronously after meta append.
+    setTimeout(() => {
+      if (!controller.signal.aborted) registerNow(controller);
+    }, 0);
   }
   return () => {
     controller.abort();
