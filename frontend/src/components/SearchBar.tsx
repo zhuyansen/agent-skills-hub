@@ -80,6 +80,7 @@ export function SearchBar({ value, onChange }: Props) {
   return (
     <div className="relative" ref={containerRef}>
       <svg
+        aria-hidden="true"
         className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 dark:text-gray-500 z-10"
         fill="none"
         stroke="currentColor"
@@ -100,16 +101,22 @@ export function SearchBar({ value, onChange }: Props) {
         onKeyDown={handleKeyDown}
         onFocus={search.open}
         placeholder={t("explore.search")}
+        role="combobox"
         aria-label="Search skills"
+        aria-expanded={view !== "closed"}
+        aria-controls="search-results-listbox"
+        aria-autocomplete="list"
+        aria-activedescendant={view === "results" && activeIdx >= 0 && results[activeIdx] ? `search-option-${results[activeIdx].id}` : undefined}
         className="w-full pl-10 pr-9 py-2.5 border border-gray-200 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-800 text-sm text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
       />
       {local && (
         <button
+          type="button"
           onClick={handleClear}
           className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 cursor-pointer z-10"
           aria-label="Clear search"
         >
-          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
@@ -124,6 +131,7 @@ export function SearchBar({ value, onChange }: Props) {
               <div className="flex items-center justify-between mb-1">
                 <span className="text-[10px] text-gray-400 dark:text-gray-500 uppercase tracking-wide">{t("search.recent")}</span>
                 <button
+                  type="button"
                   onClick={(e) => {
                     e.stopPropagation();
                     clearSearches();
@@ -137,10 +145,11 @@ export function SearchBar({ value, onChange }: Props) {
                 {recentSearches.map((query) => (
                   <button
                     key={query}
+                    type="button"
                     onClick={() => handleHotKeyword(query)}
                     className="px-2 py-0.5 text-xs bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-md hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors cursor-pointer flex items-center gap-1"
                   >
-                    <svg className="w-2.5 h-2.5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg aria-hidden="true" className="w-2.5 h-2.5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     {query}
@@ -158,6 +167,7 @@ export function SearchBar({ value, onChange }: Props) {
                 {HOT_KEYWORDS.map((kw) => (
                   <button
                     key={kw}
+                    type="button"
                     onClick={() => handleHotKeyword(kw)}
                     className="px-2 py-0.5 text-xs bg-gray-50 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-md hover:bg-blue-50 dark:hover:bg-blue-900/30 hover:text-blue-600 dark:hover:text-blue-400 transition-colors cursor-pointer"
                   >
@@ -170,17 +180,21 @@ export function SearchBar({ value, onChange }: Props) {
 
           {/* Loading */}
           {view === "searching" && (
-            <div className="px-3 py-4 text-center">
+            <div role="status" aria-label="Searching" className="px-3 py-4 text-center">
               <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto" />
             </div>
           )}
 
           {/* Results */}
           {view === "results" && (
-            <div className="max-h-72 overflow-y-auto">
+            <div id="search-results-listbox" role="listbox" aria-label="Search results" className="max-h-72 overflow-y-auto">
               {results.map((skill, i) => (
                 <div
                   key={skill.id}
+                  id={`search-option-${skill.id}`}
+                  role="option"
+                  aria-selected={i === activeIdx}
+                  tabIndex={-1}
                   onClick={() => openSkill(skill)}
                   onMouseEnter={() => search.hover(i)}
                   className={`flex items-center gap-3 px-3 py-2.5 cursor-pointer transition-colors ${
@@ -201,7 +215,7 @@ export function SearchBar({ value, onChange }: Props) {
                   </div>
                   <div className="flex items-center gap-2 shrink-0">
                     <span className="text-xs text-gray-400 dark:text-gray-500 flex items-center gap-0.5">
-                      <svg className="w-3 h-3 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
+                      <svg aria-hidden="true" className="w-3 h-3 text-amber-400" fill="currentColor" viewBox="0 0 24 24">
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                       </svg>
                       {skill.stars.toLocaleString()}
@@ -221,7 +235,7 @@ export function SearchBar({ value, onChange }: Props) {
 
           {/* No results */}
           {view === "none" && (
-            <div className="px-3 py-4 text-center text-sm text-gray-400 dark:text-gray-500">
+            <div role="status" className="px-3 py-4 text-center text-sm text-gray-400 dark:text-gray-500">
               {t("explore.noResults")}
             </div>
           )}

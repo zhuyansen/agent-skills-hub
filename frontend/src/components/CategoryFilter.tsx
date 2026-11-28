@@ -8,8 +8,10 @@ interface Props {
 
 export function CategoryFilter({ categories, selected, onSelect }: Props) {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div role="group" aria-label="Filter by category" className="flex flex-wrap gap-2">
       <button
+        type="button"
+        aria-pressed={!selected}
         onClick={() => onSelect("")}
         className={`px-3 py-1.5 text-sm rounded-full border transition-colors ${
           !selected
@@ -22,6 +24,8 @@ export function CategoryFilter({ categories, selected, onSelect }: Props) {
       {categories.map((cat) => (
         <button
           key={cat.name}
+          type="button"
+          aria-pressed={selected === cat.name}
           onClick={() => onSelect(cat.name)}
           className={`px-3 py-1.5 text-sm rounded-full border transition-colors ${
             selected === cat.name

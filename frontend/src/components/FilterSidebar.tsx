@@ -38,7 +38,7 @@ export function FilterSidebar({ params, onUpdate, categories }: Props) {
   };
 
   return (
-    <aside className="w-56 shrink-0 space-y-5">
+    <aside aria-label="Filter skills" className="w-56 shrink-0 space-y-5">
       {/* Quality Grade */}
       <div>
         <h4 className="text-xs font-semibold uppercase text-gray-500 dark:text-gray-400 mb-2 tracking-wide">
@@ -76,6 +76,8 @@ export function FilterSidebar({ params, onUpdate, categories }: Props) {
           {STAR_PRESETS.map(({ label, value }) => (
             <button
               key={value}
+              type="button"
+              aria-pressed={params.min_stars === value}
               onClick={() => setMinStars(value)}
               className={`px-2.5 py-1 text-xs rounded-full border transition-colors cursor-pointer ${
                 params.min_stars === value
@@ -96,6 +98,8 @@ export function FilterSidebar({ params, onUpdate, categories }: Props) {
         </h4>
         <div className="space-y-0.5 max-h-48 overflow-y-auto">
           <button
+            type="button"
+            aria-pressed={!params.category}
             onClick={() => onUpdate({ category: undefined })}
             className={`w-full text-left px-2 py-1 text-xs rounded transition-colors cursor-pointer ${
               !params.category ? "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 font-medium" : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
@@ -106,6 +110,8 @@ export function FilterSidebar({ params, onUpdate, categories }: Props) {
           {categories.map((cat) => (
             <button
               key={cat.name}
+              type="button"
+              aria-pressed={params.category === cat.name}
               onClick={() => onUpdate({ category: params.category === cat.name ? undefined : cat.name })}
               className={`w-full text-left px-2 py-1 text-xs rounded transition-colors cursor-pointer flex items-center justify-between ${
                 params.category === cat.name ? "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400 font-medium" : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
@@ -127,6 +133,8 @@ export function FilterSidebar({ params, onUpdate, categories }: Props) {
           {["micro", "small", "medium", "large"].map((s) => (
             <button
               key={s}
+              type="button"
+              aria-pressed={params.size_category === s}
               onClick={() => onUpdate({ size_category: params.size_category === s ? undefined : s })}
               className={`px-2.5 py-1 text-xs rounded-full border transition-colors cursor-pointer ${
                 params.size_category === s
@@ -149,6 +157,8 @@ export function FilterSidebar({ params, onUpdate, categories }: Props) {
           {["python", "node", "go", "docker", "claude", "mcp"].map((p) => (
             <button
               key={p}
+              type="button"
+              aria-pressed={params.platform === p}
               onClick={() => onUpdate({ platform: params.platform === p ? undefined : p })}
               className={`px-2.5 py-1 text-xs rounded-full border transition-colors cursor-pointer ${
                 params.platform === p
